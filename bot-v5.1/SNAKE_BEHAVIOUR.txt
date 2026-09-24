@@ -1,0 +1,140 @@
+CODEHAMMER BOT-V5.1 SNAKE BEHAVIOUR
+=================================
+
+bot-v5.1 is based directly on bot-v5. It retains the first-phase dispersal,
+portal use, safety model, and 25%/75% late-role split while replacing the late
+support behaviour with coordinated, survival-aware enemy-head containment.
+
+ENGINE SIZE LIMIT
+-----------------
+
+BattleDragon's legal minimum length is 2. Length 1 cannot be produced by a move
+or split, so "one to two" is implemented as length 2 whenever possible.
+
+PHASE 1: DISPERSED MAP-COVERING SWARM, ROUNDS 1-300
+---------------------------------------------------
+
+The team attempts to fill the engine's complete unit limit. A length-4 dragon
+splits into two length-2 racers. Larger parents use a reproducible random child
+length in the legal range 2 to 5:
+
+    child minimum = 2
+    child maximum = min(5, parent length - 2)
+
+New processes wait two turns before splitting; a parent waits four rounds
+between its own splits. The emergency split threshold is length 6 when the old
+tail is outside vision.
+
+Length-2 dragons value pearls normally so they can reach another split. At
+length 3, pearl attraction decreases but still permits growth to 4. At length 4
+or more, splitting takes priority. Once the unit limit is full, safe
+non-growing sprints may spend surplus segments and move dragons back toward
+length 2.
+
+HIGH DISPERSAL COEFFICIENT
+---------------------------
+
+During phase 1, every move receives a teammate-spacing score based on visible
+heads and fresh sonar positions:
+
+- distance 1-2 from a teammate receives a very large penalty;
+- distance 3-6 receives a decreasing separation penalty; and
+- distance 7-16 receives an increasing dispersal reward.
+
+Unseen-territory value is more than doubled, stale-territory value is doubled,
+and exploration remains relevant even while a pearl target exists. The intended
+result is a low-density swarm that covers separate regions rather than forming
+clusters around the same pearls.
+
+ACTIVE PORTAL USE
+-----------------
+
+During phase 1, each traversed known, paired portal adds a strong route bonus.
+The bonus is comparable to a direct pearl and is applied only after the normal
+step, occupancy, flood-space, and continuation checks.
+
+An unpaired portal receives only a smaller exploration incentive because its
+landing tile is unknown. It remains a last-resort route when a known safe move
+exists. Once both portal endpoints are remembered, the bot deliberately uses
+the portal to disperse and reach distant territory.
+
+PHASE 2: SPECIALISTS, ROUNDS 301-500
+------------------------------------
+
+Late roles are deterministic and stable:
+
+    dragon ID divisible by 4 -> GROWER  (approximately 25%)
+    every other dragon       -> SUPPORT (approximately 75%)
+
+Across IDs 0-63 this produces exactly 16 growers and 48 supports. Deaths may
+change the living percentage slightly, but new split children receive roles by
+the same rule.
+
+GROWERS: BECOME THE LONGEST
+----------------------------
+
+Growers stop splitting completely after round 300. They also stop deliberate
+length shedding and ignore combat-pursuit rewards.
+
+Their long-range pearl attraction starts at 250% and increases with current
+length. Direct pearl value starts at 45,000 and rises by 1,500 per segment for
+scoring, capped at length 60. A grower considers a sprint only when the route
+gains at least one net segment.
+
+Growers use the more conservative space, tail-access, and head-threat weights.
+Short teammates yield through length sonar, reinforcing established leaders.
+
+SUPPORTS: STAY SMALL AND CONTAIN ENEMY HEADS
+---------------------------------------------
+
+Supports do not deliberately seek pearls after round 300. They remain close to
+the engine minimum length and use safe non-growing sprints to spend any length
+gained incidentally. A length-4 support may still split when a legal team slot
+exists, preserving the small-snake swarm.
+
+Every non-grower directly pursues a visible, freshly sonar-reported, or rallied
+enemy. Distance two is the preferred containment range: close enough to contest
+escape cells without volunteering for a direct head collision.
+
+When the enemy heading is visible, supports prefer to run in the same direction
+on either side of the enemy's predicted next cell, or occupy the cell two steps
+ahead. Even and odd IDs prefer opposite flanks, so multiple supports cover
+different forward and turning routes instead of piling onto the same position.
+Direct enemy knowledge always takes priority over a swarm rally.
+
+Supports still preserve themselves: occupied bodies, immediate head threats,
+shallow space, and dead ends retain their full safety penalties. They also yield
+to longer teammates. A currently occupied friendly tail is never entered,
+because collision is resolved before that tail releases. When one empty tile
+separates a support from a short teammate's tail, it is encouraged to move into
+that gap and follow the teammate's direction. Vacated tail trails are also
+remembered briefly so the convoy can continue safely.
+
+COMMON SAFETY RULES
+-------------------
+
+1. Known kelp and visible occupied destinations are rejected.
+2. Every sprint step and intermediate destination is validated.
+3. The visible body is simulated in engine order: collision, head insertion,
+   pearl growth, tail release, then sprint cost.
+4. Moves are checked for exits, continuation, flood space, tail access, visible
+   heads, turn order, and teammate conflicts.
+5. Pearl, portal, dispersal, formation, and combat rewards cannot outweigh a
+   confirmed collision or shallow-space trap.
+6. Unknown portal landings and invisible destinations remain last-resort moves.
+
+SONAR
+-----
+
+Status sonar reports predicted position and capped length. It supplies fresh
+teammate positions for dispersal and right-of-way, and DANGER supplies a
+short-lived enemy target.
+
+After round 300, a length-2-to-5 support that can see an enemy head instead sends
+a SWARM signal in all four directions. It contains the support's predicted
+position and length plus the visible enemy's heading. Other supports without a
+direct target move toward a safe radius around that signal and align with the
+reported heading, forming a local containment swarm. Growers ignore rally
+positioning, direct enemy knowledge overrides it, and stale or non-small rally
+messages are ignored. Direct vision always overrides sonar because messages can
+be intercepted or imitated.

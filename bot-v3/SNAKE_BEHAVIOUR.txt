@@ -1,0 +1,92 @@
+CODEHAMMER BOT-V3 SNAKE BEHAVIOUR
+=================================
+
+bot-v3 is the attacker/survivor variant built on bot-v2's collision,
+flood-space, sonar, tail-simulation, and length-control logic.
+
+SMALL RANDOM SPLITS
+-------------------
+
+The requested child range is length 1 to 5. The engine defines MIN_SIZE as 2
+and rejects any split that leaves either dragon shorter than 2. Bot-v3 therefore
+uses the full legal range 2 to 5.
+
+The split size is a reproducible random value based on dragon ID, round, and
+parent length:
+
+    child minimum = 2
+    child maximum = min(5, parent length - 2)
+
+Preferred split thresholds are length 7 in opening, 9 in expansion, and 10 in
+consolidation/endgame. Hard thresholds for an unseen tail are 14, 16, 14, and
+12 respectively.
+
+A new child waits five turns before splitting. A parent waits eight rounds
+between splits. The team target is map-size aware and capped at 12 or the engine
+unit limit, whichever is lower.
+
+The parent requires at least two safe moves. When the complete tail is visible,
+the child head should also have two exits unless the hard threshold has already
+been reached.
+
+STABLE TEAM ROLES
+-----------------
+
+Roles remain fixed for a dragon's lifetime:
+
+    ID divisible by 3  -> ATTACKER
+    every other ID     -> SURVIVOR
+
+A length-2 or length-3 attacker temporarily behaves conservatively until it
+reaches length 4. Its assigned role does not change.
+
+ATTACKER BEHAVIOUR
+------------------
+
+Attackers pursue visible or recently sonar-reported enemy heads. They prefer
+pressure distance two, then distance three, with diminishing pursuit rewards
+out to distance eleven. Distance one is penalised, and known head collisions
+remain forbidden by the common safety scoring.
+
+When an enemy is nearby, attackers halve pearl value so they do not abandon the
+chase for food. They accept more possible sprint-head risk and place slightly
+less weight on open space than survivors.
+
+An attack means pressure and route denial. It never means deliberately entering
+an enemy body, which would kill the attacker.
+
+SURVIVOR BEHAVIOUR
+------------------
+
+Survivors preserve independent racers. They move away from enemy heads within
+six tiles, value exits and flood-filled space more strongly, prefer tail access,
+apply larger head-threat penalties, and yield more strongly to longer teammates.
+
+LENGTH CONTROL
+--------------
+
+Pearl attraction decreases once a dragon reaches its preferred split length and
+drops to a token value at the hard threshold. If splitting is blocked, a fully
+checked sprint may spend one or two segments with non-positive net growth.
+
+Splitting and this length-control behaviour remain available in every game
+stage, including consolidation and endgame.
+
+COMMON SAFETY RULES
+-------------------
+
+1. Known kelp and visible occupied destinations are rejected.
+2. Every sprint step and intermediate destination is validated.
+3. The visible body is simulated in engine order: collision, head insertion,
+   pearl growth, tail release, then sprint cost.
+4. Candidate moves are checked for exits, future moves, flood space, tail
+   access, visible heads, turn order, and teammate conflicts.
+5. Pearl value cannot outweigh a confirmed collision or shallow-space trap.
+6. Unknown portal exits and invisible destinations are last-resort moves.
+
+SONAR
+-----
+
+Status sonar reports predicted position and capped length. Short teammates yield
+to longer teammates. Enemy status and danger messages provide short-lived role
+targets, while direct current vision always overrides sonar.

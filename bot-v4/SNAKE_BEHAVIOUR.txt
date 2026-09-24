@@ -1,0 +1,133 @@
+CODEHAMMER BOT-V3 SNAKE BEHAVIOUR
+=================================
+
+bot-v3 uses two explicit strategic phases separated after round 300. Collision,
+flood-space, tail-simulation, sonar, portal, and head-order checks remain active
+in both phases.
+
+ENGINE SIZE LIMIT
+-----------------
+
+The requested early target is length 1 to 2. BattleDragon defines MIN_SIZE as 2
+and rejects any action that leaves a dragon shorter than 2. The actual attainable
+target is therefore length 2. Length 1 is never requested.
+
+REFERENCE REPLAY: M145346
+-------------------------
+
+The replay demonstrates the intended transition:
+
+- round 300: the teams had 64 and 62 living dragons;
+- most dragons were length 2 or 3;
+- the longest dragons were only length 5 and 6;
+- by round 325, the eventual winner had a length-23 leader; and
+- at round 500, that team won with longest length 37 versus 34 and total length
+  275 versus 162.
+
+Bot-v3 follows the same broad pattern: many minimum-size racers through round
+300, followed by zero splitting and strong pearl growth from round 301.
+
+PHASE 1: SMALL-SNAKE SWARM, ROUNDS 1-300
+-----------------------------------------
+
+The team target is the engine's full unit limit. Bot-v3 no longer caps itself at
+12 racers on large maps.
+
+A dragon becomes eligible to split at length 4. Split sizes remain varied where
+the parent is larger, using a deterministic random value in the legal range:
+
+    child minimum = 2
+    child maximum = min(5, parent length - 2)
+
+At length 4 the only legal result is exactly 2 + 2. At length 5 the result is
+2 + 3 or 3 + 2. Larger parents may create children up to length 5, and those
+children later grow and split again until the unit limit is filled.
+
+New processes wait two turns before splitting and parents wait four rounds
+between their own splits. This prevents a same-turn cascade while replenishing
+lost racers quickly.
+
+Safety requirements before splitting:
+
+- the team must be below the engine unit limit;
+- the parent must have at least two fully observed safe moves;
+- when the full tail is visible, the child head should have two exits; and
+- both parent and child must retain the legal minimum length 2.
+
+Length 6 is the emergency split threshold. At that point an unseen tail is
+allowed because the new child receives its own turn and fresh 7x7 vision later
+in the same round.
+
+EARLY PEARL AND LENGTH CONTROL
+------------------------------
+
+Length-2 dragons value pearls normally so they can reach length 4 and reproduce.
+At length 3, pearl attraction falls but remains sufficient to seek the final
+growth segment required for a legal 2 + 2 split. At length 4 or greater, pearl
+attraction becomes minimal because splitting is preferred.
+
+Once the team reaches the engine unit limit, further splitting is impossible.
+Any dragon longer than 2 may then use a fully checked, zero-growth or
+negative-growth sprint to spend segments and return toward length 2. It never
+sprints below the engine minimum.
+
+PHASE 2: LONGEST-SNAKE GROWTH, ROUNDS 301-500
+----------------------------------------------
+
+Starting in round 301:
+
+- splitting stops completely for every role and every length;
+- deliberate length-shedding stops;
+- a sprint is considered only when it produces at least +1 net length;
+- attacker pursuit is suspended so pearls become the shared objective;
+- long-range pearl attraction rises to at least 250% of its early value;
+- direct pearl value starts at 45,000 and increases by 1,500 per existing
+  segment, capped for scoring at length 60; and
+- shorter teammates continue yielding to longer teammates through sonar.
+
+The increasing pearl value and length-based right-of-way form positive feedback:
+once one dragon becomes longer, nearby shorter teammates give it room and the
+leader becomes increasingly committed to collecting the next pearl. Multiple
+leaders can grow when they occupy different parts of the map.
+
+The bot does not buy length with a known death. Proven collisions, immediate
+dead ends, insufficient flood space, and dangerous head contests still outweigh
+all pearl rewards.
+
+EARLY TEAM ROLES
+----------------
+
+Through round 300, roles are stable by dragon ID:
+
+    ID divisible by 3  -> ATTACKER
+    every other ID     -> SURVIVOR
+
+Attackers of length 4 or more pursue enemy heads, ideally from two to three
+tiles away. Length-2 and length-3 attackers temporarily behave safely while
+growing toward a split.
+
+Survivors emphasize enemy separation, open exits, two-ply continuation,
+flood-filled space, tail access, and teammate right-of-way.
+
+From round 301, both roles suspend these different strategic objectives and
+prioritize safe growth. Their physical collision tolerances remain conservative.
+
+COMMON NON-NEGOTIABLE SAFETY
+-----------------------------
+
+1. Known kelp and visible occupied destinations are rejected.
+2. Every sprint step and intermediate destination is validated.
+3. The visible body is simulated in engine order: collision, head insertion,
+   pearl growth, tail release, then sprint cost.
+4. Candidate moves are checked for exits, future moves, flood space, tail
+   access, visible heads, turn order, and teammate conflicts.
+5. A pearl cannot outweigh a confirmed collision or shallow-space trap.
+6. Unknown portal exits and invisible destinations remain last-resort moves.
+
+SONAR
+-----
+
+Status sonar reports predicted position and capped length. Shorter teammates
+yield to longer teammates, which is especially important during the growth
+phase. Danger and pearl messages are advisory; current direct vision overrides
+them because sonar can be intercepted or imitated.
