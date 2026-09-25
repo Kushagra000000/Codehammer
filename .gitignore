@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+.battlecode-codex/
+
+# Battlecode replays
+replays/
+*.replay
+
+# Secrets
+.env
+.env.*
+*.key
+
+# Temporary logs
+*.log
+battlecode-automation/data/raw_logs/
+
+# Editor junk
+.vscode/*
+!.vscode/extensions.json

@@ -1,0 +1,25 @@
+# UNSW Battlecode replays are large/generated and should stay local.
+replays/
+*.replay
+
+# macOS / editor noise
+.DS_Store
+.vscode/*.log
+
+# Local Python cache
+__pycache__/
+*.py[cod]
+
+# Local automation scratch/build output
+*.tmp
+*.swp
+*.swo
+.pytest_cache/
+
+# Generated dashboard / exports (regenerate with the scripts)
+reports/ladder.html
+reports/*.svg
+reports/*.png
+
+# Per-match raw debug dumps, if you create them later.
+data/raw_logs/

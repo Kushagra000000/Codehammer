@@ -1,0 +1,104 @@
+[
+  {
+    "label": "bot-v1",
+    "path": "bots/archive/bot-v1",
+    "uid": "bot-v1@0ea9ab5a0c",
+    "fingerprint": "0ea9ab5a0cfe7cb22220a67e8535a2d197d2193488c36ff5883383b6add787db",
+    "version": [
+      1
+    ]
+  },
+  {
+    "label": "bot-v2",
+    "path": "bots/archive/bot-v2",
+    "uid": "bot-v2@152f3ebdbb",
+    "fingerprint": "152f3ebdbb6465fbf772311ec28b3525e9030d17ecb7669e61093d52b497d9d9",
+    "version": [
+      2
+    ]
+  },
+  {
+    "label": "bot-v3",
+    "path": "bots/archive/bot-v3",
+    "uid": "bot-v3@952ef69ab3",
+    "fingerprint": "952ef69ab359e58162daded72655f712e60af61acba8ca51a8718a19ab291b80",
+    "version": [
+      3
+    ]
+  },
+  {
+    "label": "bot-v4",
+    "path": "bots/archive/bot-v4",
+    "uid": "bot-v4@1758d1eac9",
+    "fingerprint": "1758d1eac94f2c59ab93d8504c5fcad2bb4e53235c5f702260b261a081065dcc",
+    "version": [
+      4
+    ]
+  },
+  {
+    "label": "bot-v5",
+    "path": "bots/archive/bot-v5",
+    "uid": "bot-v5@95beee6cd6",
+    "fingerprint": "95beee6cd6df21bfd77483d0e80f3c0ff58aa0ad08ae5e4bf817c6177bed1816",
+    "version": [
+      5
+    ]
+  },
+  {
+    "label": "bot-v5.1",
+    "path": "bots/archive/bot-v5.1",
+    "uid": "bot-v5.1@aa0a58e3f4",
+    "fingerprint": "aa0a58e3f44a169d9a8afe37214f782156909a368d3220c1561cb7afe452e62e",
+    "version": [
+      5,
+      1
+    ]
+  },
+  {
+    "label": "bot-v5.2",
+    "path": "bots/archive/bot-v5.2",
+    "uid": "bot-v5.2@7e65282577",
+    "fingerprint": "7e652825773f51556ee095a48914a8b5126b8fa9d8893f11a2a63388869c70e2",
+    "version": [
+      5,
+      2
+    ]
+  },
+  {
+    "label": "bot-v6",
+    "path": "bots/archive/bot-v6",
+    "uid": "bot-v6@8701425477",
+    "fingerprint": "8701425477fc425da49f25d59ac9dfbe3f8ef44d2141beb4ce28572093ac5a64",
+    "version": [
+      6
+    ]
+  },
+  {
+    "label": "bot-v7",
+    "path": "bots/archive/bot-v7",
+    "uid": "bot-v7@42434be603",
+    "fingerprint": "42434be603d0ec1afde735e32e41ba5ad3d6cb02a09eae40ae7530ab23b71fb2",
+    "version": [
+      7
+    ]
+  },
+  {
+    "label": "bot-v8",
+    "path": "bots/archive/bot-v8",
+    "uid": "bot-v8@eb0bdfbb8d",
+    "fingerprint": "eb0bdfbb8d0bd10fe2c9dab833a8d8a612d2390c2c2eac9d0342aa4676d34e00",
+    "version": [
+      8
+    ]
+  },
+  {
+    "label": "bot-v8.2",
+    "path": "bots/current/bot-v8.2",
+    "uid": "bot-v8.2@b5c4190244",
+    "fingerprint": "b5c4190244d565dfd22cbc93df734773c1b3531ea6b80842d97161dcf536a533",
+    "version": [
+      8,
+      2
+    ]
+  }
+]

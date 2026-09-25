@@ -1,0 +1,15 @@
+{
+  "initial_elo": 1000,
+  "k_factor": 24,
+  "workers": 2,
+  "sandbox": false,
+  "both_sides": true,
+  "games_per_order": 1,
+  "opponents_per_new": 5,
+  "champion_min_games": 8,
+  "bootstrap_opponents": 4,
+  "keep_replays": true,
+  "command": "unswbc",
+  "bot_glob": "**/bot.toml",
+  "map_glob": "**/*.map"
+}
