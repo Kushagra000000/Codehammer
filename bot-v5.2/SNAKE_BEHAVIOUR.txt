@@ -1,0 +1,156 @@
+CODEHAMMER BOT-V5.2 SNAKE BEHAVIOUR
+===================================
+
+bot-v5.2 is a replay-driven hardening of bot-v5. It preserves the existing
+two-phase planner, portal memory, sonar protocol, role system, body simulation,
+and flood-space checks. The changes address the failure pattern in M173375:
+
+- Team A split only six times while Team B split 105 times.
+- every Team A death was a head-to-head trade initiated by Team B;
+- six of Team B's seven sprints killed a Team A head; and
+- the match ended before round 300, so late-role logic could not rescue it.
+
+ENGINE SIZE LIMIT
+-----------------
+
+BattleDragon's legal minimum length is 2. A length-1 dragon cannot be created.
+The small-snake swarm therefore uses length-2 racers whenever possible.
+
+PHASE 1: SAFE REPRODUCTIVE SWARM, ROUNDS 1-300
+----------------------------------------------
+
+The team attempts to fill the engine unit limit. Length-2 and length-3 dragons
+strongly pursue pearls. In particular, a length-3 dragon no longer suppresses
+the exact pearl needed to reach split length 4.
+
+A safe length-4 dragon immediately splits into 2 + 2. A larger non-grower
+splits off a length-2 child and may repeat on the next round. Splitting is
+rejected when:
+
+- the stationary parent head is in confirmed enemy head reach;
+- the future child head is in confirmed enemy head reach;
+- the child has no visible exit, unless an emergency long-snake split applies;
+- the body cannot be reconstructed, except at the emergency length ceiling; or
+- the team has reached the unit limit.
+
+Splitting itself is a valid waiting action. The parent is not required to have
+a safe movement plan on the same turn, because it does not move during a split
+and the shortened parent receives fresh vision next round.
+
+REPRODUCTIVE PEARLS ARE NOT SPRINT FUEL
+---------------------------------------
+
+Before the team reaches the unit limit, an ordinary sprint is not selected just
+because it crosses several pearls. Even a positive-net sprint wastes segments
+that could have produced the next child. Racers walk through food and preserve
+all gained length.
+
+A multi-step move remains available when there is no fully safe single-step
+move. This emergency exception lets a trapped dragon spend length to escape.
+At the unit limit, surplus non-growers may again shed length safely.
+
+DISPERSAL WITHOUT STARVATION
+----------------------------
+
+Early dragons still spread across the map through teammate spacing, unseen
+territory value, and portal use. While a length-2 or length-3 dragon is still
+trying to reproduce, spacing penalties are capped below the value of a pearl.
+This prevents two nearby racers from abandoning all food merely to maximize
+distance from one another. Occupied destinations remain illegal.
+
+ACTIVE PORTAL USE
+-----------------
+
+During phase 1, known paired portals receive a route bonus after the ordinary
+collision, occupancy, flood-space, continuation, and head-reach checks. An
+unpaired portal remains a last-resort uncertain route.
+
+ENEMY HEAD REACH
+----------------
+
+Every turn builds a reach map for each visible head. The search uses:
+
+- the visible or freshly reported lower bound on the dragon's length;
+- every currently visible passable edge;
+- static visible body occupancy;
+- one free ordinary step;
+- one segment charged before every additional sprint step; and
+- pearls collected on an earlier step as budget for later sprint steps.
+
+This detects the pearl-funded three-step attack observed in M173375. It also
+detects a length-2 enemy that first eats a pearl and then pays for a second
+step. A pearl on the next destination cannot fund that step because sprint cost
+is checked before movement, matching engine order.
+
+The reach map only calls a route confirmed when the complete path is visible
+and currently clear. It does not assume that an unseen tile is empty or that a
+blocked tail will move in time. Friendly one-step conflicts are treated as
+lethal; deliberate multi-step attack reach is reserved for enemies so allied
+racers do not paralyse their own swarm.
+
+HARD SAFETY TIER
+----------------
+
+A plan is fully safe only when it is:
+
+- known and currently visible;
+- not an immediate or shallow-space trap;
+- outside every confirmed direct head reach; and
+- outside every confirmed enemy sprint reach.
+
+If any fully safe plan exists, unsafe plans are removed from selection rather
+than merely receiving a numerical penalty. Pearls, exploration, portals,
+dispersal, and attack positioning can never outscore a confirmed head attack.
+
+All other heads get an action before this dragon chooses again: higher IDs act
+later in the current round, and lower IDs act earlier next round. Direct and
+sprint threats are therefore both treated as potentially lethal. Longer snakes
+and locally outnumbered snakes apply the strongest trade-avoidance penalty.
+
+DENSITY-ADAPTIVE SURVIVAL
+-------------------------
+
+Safety does not wait until round 300. If at least two enemy heads are visible
+and they locally match or outnumber friendly heads, the dragon temporarily:
+
+- disables attacker attraction;
+- prioritizes survival scoring;
+- increases uncertainty and head-trade penalties; and
+- prefers exits, continuation space, and tail access.
+
+This responds to a small-map swarm before encirclement becomes unavoidable.
+
+PHASE 2: SPECIALISTS, ROUNDS 301-500
+------------------------------------
+
+The bot-v5 role assignment remains unchanged:
+
+    dragon ID divisible by 4 -> GROWER  (approximately 25%)
+    every other dragon       -> SUPPORT (approximately 75%)
+
+Growers stop splitting, pursue pearls with length-scaled rewards, retain their
+segments, and receive conservative space and head-safety scoring. Supports
+continue the small-snake split cycle, yield to longer teammates through sonar,
+and pressure enemy routes without overriding the hard safety tier.
+
+COMMON MOVEMENT RULES
+---------------------
+
+1. Known kelp and currently occupied destinations are rejected.
+2. Every step and intermediate sprint destination is checked.
+3. The body is simulated in engine order: collision, head insertion, pearl
+   growth, normal tail release, then the extra sprint segment charge.
+4. A pearl gained earlier in a sprint may legally fund a later step.
+5. Emergency non-growing sprints are considered only when no safe one-step
+   route exists or when surplus length is deliberately being shed.
+6. Moves are checked for exits, continuation, flood space, future tail access,
+   longer-teammate priority, and confirmed head reach.
+7. Unknown portal landings and invisible destinations remain last resorts.
+
+SONAR
+-----
+
+The bot-v5 sonar format is retained. Status signals announce predicted position
+and capped length for dispersal and right-of-way. Pearl and danger signals keep
+their short lifetimes. Direct vision overrides sonar memory because messages
+can be intercepted or imitated.
