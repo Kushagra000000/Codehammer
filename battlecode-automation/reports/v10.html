@@ -1,0 +1,574 @@
+<meta charset="utf-8"><title>v10 focused evaluation</title><style>body{font:16px system-ui;margin:40px;background:#101923;color:#eee}td,th{padding:12px;border-bottom:1px solid #555}pre{white-space:pre-wrap}</style><h1>v10 focused evaluation</h1><p>Champion remains v9 until a documented decision. Revisions are separated by source fingerprint. Feeding counts measure logged attempts, not confirmed recipient growth. Sandbox games are labelled separately. Internal Elo starts at 1000, excludes sandbox games, and is not an official team rating. Positive maps means W &gt; L in this batch, not statistical validation. v5 is excluded by the requested four-bot scope.</p><p style="padding:18px;background:#203a35"><b>Latest all-map validation — bot-v8: 17W / 0D / 5L; bot-v9: 13W / 0D / 9L.</b><br>Positive observed improvement; statistical superiority over v9 is not established. <a style="color:#9fe8cf" href="../experiments/v10/REPORT.md">Full report and limitations</a></p><table><tr><th>Revision</th><th>Games</th><th>W/D/L</th><th>Win rate</th><th>Internal Elo</th><th>Positive maps</th><th>Mean final longest</th><th>Feed attempts</th><th>Errors / runtime failures</th></tr><tr><td>v10-r1-screen<br><small>86c9629a8cdb</small></td><td>16</td><td>8/2/6</td><td>50.0%</td><td>989.8</td><td>2</td><td>7.9</td><td>10</td><td>0 / 0</td></tr><tr><td>v10.1-r1-screen<br><small>fefb5c95ede1</small></td><td>24</td><td>13/5/6</td><td>54.2%</td><td>1051.4</td><td>3</td><td>9.6</td><td>70</td><td>0 / 0</td></tr><tr><td>v10.1-r2-sandbox<br><small>aed2189378c3</small></td><td>4</td><td>2/0/2</td><td>50.0%</td><td>1000.0</td><td>1</td><td>27.0</td><td>36</td><td>0 / 0</td></tr><tr><td>v10.1-r3-allmaps<br><small>528c355b5cc8</small></td><td>44</td><td>25/0/19</td><td>56.8%</td><td>1011.4</td><td>4</td><td>9.2</td><td>126</td><td>0 / 0</td></tr><tr><td>v10.1-r4-concentration<br><small>800e07868144</small></td><td>16</td><td>9/0/7</td><td>56.2%</td><td>1083.8</td><td>1</td><td>17.1</td><td>134</td><td>0 / 0</td></tr><tr><td>v10.1-r4-validation<br><small>800e07868144</small></td><td>44</td><td>30/0/14</td><td>68.2%</td><td>1083.8</td><td>8</td><td>10.7</td><td>144</td><td>0 / 0</td></tr><tr><td>v10.1-r4-final-sandbox<br><small>800e07868144</small></td><td>2</td><td>0/0/2</td><td>0.0%</td><td>1083.8</td><td>0</td><td>39.5</td><td>41</td><td>0 / 0</td></tr></table><h2>Per-map and opponent results</h2><pre>[
+  {
+    &quot;experiment&quot;: &quot;v10-r1-screen&quot;,
+    &quot;candidate&quot;: &quot;bots/candidate/bot-v10&quot;,
+    &quot;fingerprint&quot;: &quot;86c9629a8cdbd97181b9a5ddcc0412834dc508fb9dfd5ca9494c1e821f6a845c&quot;,
+    &quot;games&quot;: 16,
+    &quot;W&quot;: 8,
+    &quot;D&quot;: 2,
+    &quot;L&quot;: 6,
+    &quot;errors&quot;: 0,
+    &quot;maps&quot;: {
+      &quot;arena&quot;: {
+        &quot;W&quot;: 0,
+        &quot;D&quot;: 2,
+        &quot;L&quot;: 2
+      },
+      &quot;default&quot;: {
+        &quot;W&quot;: 2,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 2
+      },
+      &quot;stronghold&quot;: {
+        &quot;W&quot;: 3,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 1
+      },
+      &quot;trauma&quot;: {
+        &quot;W&quot;: 3,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 1
+      }
+    },
+    &quot;opponents&quot;: {
+      &quot;bot-v8&quot;: {
+        &quot;W&quot;: 6,
+        &quot;D&quot;: 1,
+        &quot;L&quot;: 1
+      },
+      &quot;bot-v9&quot;: {
+        &quot;W&quot;: 2,
+        &quot;D&quot;: 1,
+        &quot;L&quot;: 5
+      }
+    },
+    &quot;lengths&quot;: [
+      0,
+      0,
+      3,
+      4,
+      30,
+      35,
+      9,
+      6,
+      0,
+      0,
+      0,
+      0,
+      14,
+      15,
+      5,
+      6
+    ],
+    &quot;feeds&quot;: 10,
+    &quot;runtime_failures&quot;: 0,
+    &quot;internal_elo&quot;: 989.8,
+    &quot;win_rate&quot;: 0.5,
+    &quot;positive_maps&quot;: [
+      &quot;stronghold&quot;,
+      &quot;trauma&quot;
+    ]
+  },
+  {
+    &quot;experiment&quot;: &quot;v10.1-r1-screen&quot;,
+    &quot;candidate&quot;: &quot;bots/candidate/bot-v10.1&quot;,
+    &quot;fingerprint&quot;: &quot;fefb5c95ede14d2c7a89edcb029e7aba98838546ceccbcb1d4960849284c4a6d&quot;,
+    &quot;games&quot;: 24,
+    &quot;W&quot;: 13,
+    &quot;D&quot;: 5,
+    &quot;L&quot;: 6,
+    &quot;errors&quot;: 0,
+    &quot;maps&quot;: {
+      &quot;arena&quot;: {
+        &quot;W&quot;: 1,
+        &quot;D&quot;: 5,
+        &quot;L&quot;: 0
+      },
+      &quot;default&quot;: {
+        &quot;W&quot;: 4,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 2
+      },
+      &quot;stronghold&quot;: {
+        &quot;W&quot;: 5,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 1
+      },
+      &quot;trauma&quot;: {
+        &quot;W&quot;: 3,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 3
+      }
+    },
+    &quot;opponents&quot;: {
+      &quot;bot-v10&quot;: {
+        &quot;W&quot;: 5,
+        &quot;D&quot;: 1,
+        &quot;L&quot;: 2
+      },
+      &quot;bot-v8&quot;: {
+        &quot;W&quot;: 4,
+        &quot;D&quot;: 2,
+        &quot;L&quot;: 2
+      },
+      &quot;bot-v9&quot;: {
+        &quot;W&quot;: 4,
+        &quot;D&quot;: 2,
+        &quot;L&quot;: 2
+      }
+    },
+    &quot;lengths&quot;: [
+      0,
+      4,
+      10,
+      3,
+      42,
+      21,
+      8,
+      7,
+      0,
+      0,
+      0,
+      4,
+      23,
+      27,
+      8,
+      5,
+      0,
+      0,
+      0,
+      3,
+      19,
+      33,
+      8,
+      5
+    ],
+    &quot;feeds&quot;: 70,
+    &quot;runtime_failures&quot;: 0,
+    &quot;internal_elo&quot;: 1051.4,
+    &quot;win_rate&quot;: 0.5416666666666666,
+    &quot;positive_maps&quot;: [
+      &quot;arena&quot;,
+      &quot;default&quot;,
+      &quot;stronghold&quot;
+    ]
+  },
+  {
+    &quot;experiment&quot;: &quot;v10.1-r2-sandbox&quot;,
+    &quot;candidate&quot;: &quot;bots/candidate/bot-v10.1&quot;,
+    &quot;fingerprint&quot;: &quot;aed2189378c34c54948a826ca26f00da9b7fa069945107bedb84d81a3cf7cfb9&quot;,
+    &quot;games&quot;: 4,
+    &quot;W&quot;: 2,
+    &quot;D&quot;: 0,
+    &quot;L&quot;: 2,
+    &quot;errors&quot;: 0,
+    &quot;maps&quot;: {
+      &quot;big_empty&quot;: {
+        &quot;W&quot;: 0,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 2
+      },
+      &quot;stronghold&quot;: {
+        &quot;W&quot;: 2,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 0
+      }
+    },
+    &quot;opponents&quot;: {
+      &quot;bot-v9&quot;: {
+        &quot;W&quot;: 2,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 2
+      }
+    },
+    &quot;lengths&quot;: [
+      30,
+      37,
+      19,
+      22
+    ],
+    &quot;feeds&quot;: 36,
+    &quot;runtime_failures&quot;: 0,
+    &quot;internal_elo&quot;: 1000.0,
+    &quot;win_rate&quot;: 0.5,
+    &quot;positive_maps&quot;: [
+      &quot;stronghold&quot;
+    ]
+  },
+  {
+    &quot;experiment&quot;: &quot;v10.1-r3-allmaps&quot;,
+    &quot;candidate&quot;: &quot;bots/candidate/bot-v10.1&quot;,
+    &quot;fingerprint&quot;: &quot;528c355b5cc850be539b98f48ba1badbce1f7ce1fcdf4ce0faf55dbd6616d2e3&quot;,
+    &quot;games&quot;: 44,
+    &quot;W&quot;: 25,
+    &quot;D&quot;: 0,
+    &quot;L&quot;: 19,
+    &quot;errors&quot;: 0,
+    &quot;maps&quot;: {
+      &quot;Colosseum&quot;: {
+        &quot;W&quot;: 2,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 2
+      },
+      &quot;arena&quot;: {
+        &quot;W&quot;: 3,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 1
+      },
+      &quot;big_empty&quot;: {
+        &quot;W&quot;: 0,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 4
+      },
+      &quot;default&quot;: {
+        &quot;W&quot;: 4,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 0
+      },
+      &quot;default_small&quot;: {
+        &quot;W&quot;: 2,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 2
+      },
+      &quot;devil&quot;: {
+        &quot;W&quot;: 1,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 3
+      },
+      &quot;queen_of_spades&quot;: {
+        &quot;W&quot;: 2,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 2
+      },
+      &quot;schooltime&quot;: {
+        &quot;W&quot;: 3,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 1
+      },
+      &quot;stronghold&quot;: {
+        &quot;W&quot;: 4,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 0
+      },
+      &quot;trauma&quot;: {
+        &quot;W&quot;: 2,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 2
+      },
+      &quot;trophy&quot;: {
+        &quot;W&quot;: 2,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 2
+      }
+    },
+    &quot;opponents&quot;: {
+      &quot;bot-v8&quot;: {
+        &quot;W&quot;: 15,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 7
+      },
+      &quot;bot-v9&quot;: {
+        &quot;W&quot;: 10,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 12
+      }
+    },
+    &quot;lengths&quot;: [
+      0,
+      3,
+      4,
+      4,
+      32,
+      38,
+      14,
+      3,
+      0,
+      3,
+      4,
+      0,
+      4,
+      3,
+      17,
+      4,
+      22,
+      20,
+      6,
+      7,
+      4,
+      0,
+      0,
+      4,
+      0,
+      4,
+      32,
+      38,
+      10,
+      10,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      20,
+      0,
+      38,
+      27,
+      6,
+      15,
+      4,
+      0
+    ],
+    &quot;feeds&quot;: 126,
+    &quot;runtime_failures&quot;: 0,
+    &quot;internal_elo&quot;: 1011.4,
+    &quot;win_rate&quot;: 0.5681818181818182,
+    &quot;positive_maps&quot;: [
+      &quot;arena&quot;,
+      &quot;default&quot;,
+      &quot;schooltime&quot;,
+      &quot;stronghold&quot;
+    ]
+  },
+  {
+    &quot;experiment&quot;: &quot;v10.1-r4-concentration&quot;,
+    &quot;candidate&quot;: &quot;bots/candidate/bot-v10.1&quot;,
+    &quot;fingerprint&quot;: &quot;800e07868144c581a93707f7b8948c5ed5afa00abdcf22d81469ef0269b1303a&quot;,
+    &quot;games&quot;: 16,
+    &quot;W&quot;: 9,
+    &quot;D&quot;: 0,
+    &quot;L&quot;: 7,
+    &quot;errors&quot;: 0,
+    &quot;maps&quot;: {
+      &quot;big_empty&quot;: {
+        &quot;W&quot;: 1,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 3
+      },
+      &quot;default&quot;: {
+        &quot;W&quot;: 2,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 2
+      },
+      &quot;stronghold&quot;: {
+        &quot;W&quot;: 4,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 0
+      },
+      &quot;trophy&quot;: {
+        &quot;W&quot;: 2,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 2
+      }
+    },
+    &quot;opponents&quot;: {
+      &quot;bot-v10&quot;: {
+        &quot;W&quot;: 4,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 4
+      },
+      &quot;bot-v9&quot;: {
+        &quot;W&quot;: 5,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 3
+      }
+    },
+    &quot;lengths&quot;: [
+      35,
+      35,
+      5,
+      0,
+      35,
+      45,
+      3,
+      0,
+      34,
+      36,
+      3,
+      0,
+      21,
+      17,
+      4,
+      0
+    ],
+    &quot;feeds&quot;: 134,
+    &quot;runtime_failures&quot;: 0,
+    &quot;internal_elo&quot;: 1083.8,
+    &quot;win_rate&quot;: 0.5625,
+    &quot;positive_maps&quot;: [
+      &quot;stronghold&quot;
+    ]
+  },
+  {
+    &quot;experiment&quot;: &quot;v10.1-r4-validation&quot;,
+    &quot;candidate&quot;: &quot;bots/candidate/bot-v10.1&quot;,
+    &quot;fingerprint&quot;: &quot;800e07868144c581a93707f7b8948c5ed5afa00abdcf22d81469ef0269b1303a&quot;,
+    &quot;games&quot;: 44,
+    &quot;W&quot;: 30,
+    &quot;D&quot;: 0,
+    &quot;L&quot;: 14,
+    &quot;errors&quot;: 0,
+    &quot;maps&quot;: {
+      &quot;Colosseum&quot;: {
+        &quot;W&quot;: 4,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 0
+      },
+      &quot;arena&quot;: {
+        &quot;W&quot;: 0,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 4
+      },
+      &quot;big_empty&quot;: {
+        &quot;W&quot;: 4,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 0
+      },
+      &quot;default&quot;: {
+        &quot;W&quot;: 3,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 1
+      },
+      &quot;default_small&quot;: {
+        &quot;W&quot;: 1,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 3
+      },
+      &quot;devil&quot;: {
+        &quot;W&quot;: 2,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 2
+      },
+      &quot;queen_of_spades&quot;: {
+        &quot;W&quot;: 3,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 1
+      },
+      &quot;schooltime&quot;: {
+        &quot;W&quot;: 3,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 1
+      },
+      &quot;stronghold&quot;: {
+        &quot;W&quot;: 3,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 1
+      },
+      &quot;trauma&quot;: {
+        &quot;W&quot;: 3,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 1
+      },
+      &quot;trophy&quot;: {
+        &quot;W&quot;: 4,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 0
+      }
+    },
+    &quot;opponents&quot;: {
+      &quot;bot-v8&quot;: {
+        &quot;W&quot;: 17,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 5
+      },
+      &quot;bot-v9&quot;: {
+        &quot;W&quot;: 13,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 9
+      }
+    },
+    &quot;lengths&quot;: [
+      4,
+      4,
+      0,
+      0,
+      38,
+      44,
+      15,
+      10,
+      0,
+      0,
+      4,
+      3,
+      2,
+      3,
+      20,
+      18,
+      23,
+      23,
+      6,
+      7,
+      3,
+      25,
+      4,
+      4,
+      0,
+      0,
+      38,
+      44,
+      20,
+      0,
+      3,
+      0,
+      0,
+      0,
+      0,
+      3,
+      19,
+      17,
+      18,
+      17,
+      14,
+      8,
+      4,
+      4
+    ],
+    &quot;feeds&quot;: 144,
+    &quot;runtime_failures&quot;: 0,
+    &quot;internal_elo&quot;: 1083.8,
+    &quot;win_rate&quot;: 0.6818181818181818,
+    &quot;positive_maps&quot;: [
+      &quot;Colosseum&quot;,
+      &quot;big_empty&quot;,
+      &quot;default&quot;,
+      &quot;queen_of_spades&quot;,
+      &quot;schooltime&quot;,
+      &quot;stronghold&quot;,
+      &quot;trauma&quot;,
+      &quot;trophy&quot;
+    ]
+  },
+  {
+    &quot;experiment&quot;: &quot;v10.1-r4-final-sandbox&quot;,
+    &quot;candidate&quot;: &quot;bots/candidate/bot-v10.1&quot;,
+    &quot;fingerprint&quot;: &quot;800e07868144c581a93707f7b8948c5ed5afa00abdcf22d81469ef0269b1303a&quot;,
+    &quot;games&quot;: 2,
+    &quot;W&quot;: 0,
+    &quot;D&quot;: 0,
+    &quot;L&quot;: 2,
+    &quot;errors&quot;: 0,
+    &quot;maps&quot;: {
+      &quot;big_empty&quot;: {
+        &quot;W&quot;: 0,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 2
+      }
+    },
+    &quot;opponents&quot;: {
+      &quot;bot-v9&quot;: {
+        &quot;W&quot;: 0,
+        &quot;D&quot;: 0,
+        &quot;L&quot;: 2
+      }
+    },
+    &quot;lengths&quot;: [
+      44,
+      35
+    ],
+    &quot;feeds&quot;: 41,
+    &quot;runtime_failures&quot;: 0,
+    &quot;internal_elo&quot;: 1083.8,
+    &quot;win_rate&quot;: 0.0,
+    &quot;positive_maps&quot;: []
+  }
+]</pre>

@@ -1,0 +1,200 @@
+{
+  "candidate": "bots/candidate/bot-v10.1",
+  "opponent": "bots/candidate/bot-v10",
+  "map": "maps/default.map",
+  "seed": 7202,
+  "reverse": true,
+  "sandbox": false,
+  "experiment": "v10.1-r4-concentration",
+  "toolkit": "1.1.0",
+  "a_hash": "528c355b5cc850be539b98f48ba1badbce1f7ce1fcdf4ce0faf55dbd6616d2e3",
+  "b_hash": "800e07868144c581a93707f7b8948c5ed5afa00abdcf22d81469ef0269b1303a",
+  "map_hash": "6bd7abf2ed51a7f667552c243ad038f4177e450cf2f9dd9be52f826f9e526f95",
+  "id": "18b70fe7d55871fb3c5a270b1f20bc6b49c1f61d86f7710fabed62eb82e0d633",
+  "a": "bots/candidate/bot-v10",
+  "b": "bots/candidate/bot-v10.1",
+  "git_commit": "94af91ee5652b71eeabe0c7517f77aafa54c628b",
+  "exit_code": 0,
+  "metrics": {
+    "metrics_schema": 5,
+    "result": {
+      "terminated": true,
+      "endReason": "teamEliminated",
+      "winner": "A",
+      "teamA": {
+        "dragonCount": 38,
+        "longestDragon": 11,
+        "totalLength": 111
+      },
+      "teamB": {
+        "dragonCount": 0,
+        "longestDragon": 0,
+        "totalLength": 0
+      }
+    },
+    "rounds": 308,
+    "seed": "7202",
+    "teams": {
+      "A": {
+        "first_split_round": 0,
+        "max_units": 40,
+        "portal_entries": 272,
+        "sacrifice_count": 0,
+        "runtime_failures": 0,
+        "max_turn_points": null,
+        "deaths": {
+          "H": 60,
+          "S": 14,
+          "O": 14
+        },
+        "longest_trajectory": [
+          [
+            0,
+            4
+          ],
+          [
+            25,
+            3
+          ],
+          [
+            50,
+            3
+          ],
+          [
+            75,
+            4
+          ],
+          [
+            100,
+            3
+          ],
+          [
+            125,
+            3
+          ],
+          [
+            150,
+            3
+          ],
+          [
+            175,
+            3
+          ],
+          [
+            200,
+            3
+          ],
+          [
+            225,
+            3
+          ],
+          [
+            250,
+            4
+          ],
+          [
+            275,
+            7
+          ],
+          [
+            300,
+            10
+          ],
+          [
+            308,
+            11
+          ]
+        ],
+        "unique_head_tiles": 991,
+        "exploration_coverage": 1,
+        "king_length": null,
+        "portal_deaths": null,
+        "dragonCount": 38,
+        "longestDragon": 11,
+        "totalLength": 111
+      },
+      "B": {
+        "first_split_round": 0,
+        "max_units": 9,
+        "portal_entries": 17,
+        "sacrifice_count": 0,
+        "runtime_failures": 0,
+        "max_turn_points": null,
+        "deaths": {
+          "H": 42,
+          "S": 3
+        },
+        "longest_trajectory": [
+          [
+            0,
+            4
+          ],
+          [
+            25,
+            3
+          ],
+          [
+            50,
+            4
+          ],
+          [
+            75,
+            3
+          ],
+          [
+            100,
+            3
+          ],
+          [
+            125,
+            4
+          ],
+          [
+            150,
+            2
+          ],
+          [
+            175,
+            3
+          ],
+          [
+            200,
+            3
+          ],
+          [
+            225,
+            3
+          ],
+          [
+            250,
+            3
+          ],
+          [
+            275,
+            6
+          ],
+          [
+            300,
+            5
+          ],
+          [
+            308,
+            0
+          ]
+        ],
+        "unique_head_tiles": 489,
+        "exploration_coverage": 0.923828125,
+        "king_length": null,
+        "portal_deaths": null,
+        "dragonCount": 0,
+        "longestDragon": 0,
+        "totalLength": 0
+      }
+    }
+  },
+  "winner": "A",
+  "score": 0.0,
+  "status": "ok",
+  "replay": "replays/research-18b70fe7d55871fb3c5a270b1f20bc6b49c1f61d86f7710fabed62eb82e0d633.replay",
+  "seconds": 18.4
+}

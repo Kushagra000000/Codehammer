@@ -1,0 +1,50 @@
+{
+  "BASELINE_V5": "bots/archive/bot-v5",
+  "CURRENT_CHAMPION": "bots/current/bot-v9",
+  "BEST_DISCOVERED_BOT": "bots/current/bot-v9",
+  "LATEST_CANDIDATE": "bots/candidate/bot-v10.1",
+  "champion_source": "bots/candidate/bot-v9-exp012",
+  "source_fingerprint": "ab9771e0741ba4ae76b71483ae3dc9e1bdc742cf1b31ca1a2a2f0ea02a7b3ad5",
+  "parent": "bots/current/bot-v8",
+  "promotion": "accepted after 400-game research batch; exact EXP012 source copy",
+  "stopping_condition": "Requested v10 features and bounded validation completed; superiority over v9 remains statistically unestablished",
+  "acceptance": {
+    "v5_validation": {
+      "wins": 82,
+      "draws": 1,
+      "losses": 5,
+      "beaten_maps": [
+        "Colosseum.map",
+        "arena.map",
+        "big_empty.map",
+        "default.map",
+        "default_small.map",
+        "devil.map",
+        "queen_of_spades.map",
+        "schooltime.map",
+        "stronghold.map",
+        "trophy.map"
+      ]
+    },
+    "v8_native": {
+      "wins": 11,
+      "draws": 0,
+      "losses": 3
+    },
+    "v4_holdout": {
+      "wins": 4,
+      "draws": 0,
+      "losses": 2
+    },
+    "sandbox_candidate_failures": 0,
+    "sandbox_max_reported_points": 40600000,
+    "weakness": "Trauma; fails v5 map threshold and loses both holdout games to v4 by one segment"
+  },
+  "historical_results_preserved": true,
+  "new_git_commit": null,
+  "snapshot": "candidate-states-final.tar.gz",
+  "active_workflow": "User-directed v10/v10.1 feature implementation; bounded comparisons only with v8/v9",
+  "historical_stopping_condition": "initial 400-game research budget exhausted; no plateau claimed",
+  "LATEST_CANDIDATE_SHA256": "800e07868144c581a93707f7b8948c5ed5afa00abdcf22d81469ef0269b1303a",
+  "v10_report": "battlecode-automation/experiments/v10/REPORT.md"
+}

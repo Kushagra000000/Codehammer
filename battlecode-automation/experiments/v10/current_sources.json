@@ -1,0 +1,12 @@
+{
+  "bot-v10": {
+    "path": "bots/candidate/bot-v10",
+    "sha256": "528c355b5cc850be539b98f48ba1badbce1f7ce1fcdf4ce0faf55dbd6616d2e3",
+    "lineage": "Exact source tested as v10.1-r3-allmaps; initial v10 preserved by SHA-256 archive"
+  },
+  "bot-v10.1": {
+    "path": "bots/candidate/bot-v10.1",
+    "sha256": "800e07868144c581a93707f7b8948c5ed5afa00abdcf22d81469ef0269b1303a",
+    "lineage": "Concentration revision of stable v10; no automatic promotion"
+  }
+}

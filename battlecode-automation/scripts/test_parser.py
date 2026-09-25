@@ -10,6 +10,11 @@ cases = [
     ("team A wins after 39 rounds (by elimination) (0.4s)", "", "bot_a"),
     ("team B wins after 77 rounds (by elimination) (0.8s)", "", "bot_b"),
     ("game ended in a draw after 500 rounds", "", "draw"),
+    ("draw after 500 rounds (equal lengths) (1.2s)", "", "draw"),
+    ("LOG I plan to win or draw this game", "", None),
+    ("", "error: team A wins after 5 rounds", None),
+    ("team A wins after 5 rounds\nteam B wins after 6 rounds", "", None),
+    ("new unknown result format", "", None),
 ]
 
 for stdout, stderr, expected in cases:

@@ -1,5 +1,24 @@
 # Current Project State
 
+## Accepted update — 2026-09-26, after 400 research games
+
+BEST_DISCOVERED_BOT / CURRENT_CHAMPION: `bots/current/bot-v9`.
+Parent: v8 via parameter-equivalent EXP001. Exact tested source: EXP012.
+The only accepted strategy change is portal-aware remembered-map BFS for pearl
+objectives. All project files are byte-identical to the tested candidate.
+
+Independent v5 validation: 82 wins / 1 draw / 5 losses on 11 maps, four seeds,
+both sides; 10 maps pass the preregistered Wilson gate. v8 comparison: 11–3
+across screening and holdouts; v4 holdouts: 4–2. Four sandbox checks passed for
+v9, maximum reported 40.6M points versus 100M limit. Trauma remains weak.
+
+Frozen v5 and previous v8 remain unchanged. Latest experimental candidate is
+v9-exp015 (rejected interaction), not the champion. State/certificate, full
+results and report: `battlecode-automation/experiments/research-20260926/`.
+The initial match budget is exhausted; no plateau or optimality is claimed.
+Working changes are preserved by source manifests and tar snapshots, not a new
+Git commit. No submission was made. The older state below is historical.
+
 Last updated: 2026-09-26
 
 ## Active bot
@@ -60,3 +79,14 @@ and:
 team B wins after ...
 
 Existing match data may contain historical repaired results.
+
+## Latest feature development — 2026-09-26
+
+Best new prototype: `bots/candidate/bot-v10.1` (source hash starts `800e07868144`).
+Stable comparison slot: `bots/candidate/bot-v10` (hash starts `528c355b5cc8`).
+Final fresh all-map native results: 17–5 versus v8, 13–9 versus v9. Final
+sandbox checks pass, maximum 63.8M points. CURRENT_CHAMPION remains v9: the v5
+promotion gate was outside the newly requested four-bot pool, and superiority
+over v9 is not statistically established. Active broad search is retired;
+`v10_matches.py` performs bounded, explicit comparisons only. Dashboard:
+`battlecode-automation/reports/v10.html`. No background search or submission.

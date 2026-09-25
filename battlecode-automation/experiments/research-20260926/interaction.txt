@@ -1,0 +1,741 @@
+Scheduled 16 games
+1 16 default.map 0.0 ok 16.12
+2 16 default.map 0.0 ok 14.42
+3 16 queen_of_spades.map 0.0 ok 5.15
+4 16 queen_of_spades.map 0.0 ok 5.06
+5 16 stronghold.map 0.0 ok 17.1
+6 16 stronghold.map 1.0 ok 17.58
+7 16 trophy.map 0.5 ok 4.44
+8 16 trophy.map 1.0 ok 6.55
+9 16 default.map 1.0 ok 3.48
+10 16 default.map 1.0 ok 5.03
+11 16 queen_of_spades.map 1.0 ok 2.76
+12 16 queen_of_spades.map 1.0 ok 2.73
+13 16 stronghold.map 1.0 ok 16.42
+14 16 stronghold.map 0.0 ok 15.45
+15 16 trophy.map 0.5 ok 3.13
+16 16 trophy.map 1.0 ok 5.52
+{
+  "EXP001-equivalence": {
+    "candidate": "bots/candidate/bot-v9-exp001",
+    "games": 4,
+    "errors": 0,
+    "wins": 4,
+    "draws": 0,
+    "losses": 0,
+    "maps": {
+      "arena.map": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 0
+      },
+      "default_small.map": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 0
+      }
+    },
+    "opponents": {
+      "bot-v5": {
+        "wins": 4,
+        "draws": 0,
+        "losses": 0
+      }
+    }
+  },
+  "EXP001-reference": {
+    "candidate": "bots/current/bot-v8",
+    "games": 4,
+    "errors": 0,
+    "wins": 4,
+    "draws": 0,
+    "losses": 0,
+    "maps": {
+      "arena.map": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 0
+      },
+      "default_small.map": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 0
+      }
+    },
+    "opponents": {
+      "bot-v5": {
+        "wins": 4,
+        "draws": 0,
+        "losses": 0
+      }
+    }
+  },
+  "EXP001-screen": {
+    "candidate": "bots/candidate/bot-v9-exp001",
+    "games": 32,
+    "errors": 0,
+    "wins": 22,
+    "draws": 0,
+    "losses": 10,
+    "maps": {
+      "Colosseum.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "arena.map": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 2
+      },
+      "default.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "default_small.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "devil.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "queen_of_spades.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "stronghold.map": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 2
+      },
+      "trophy.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      }
+    },
+    "opponents": {
+      "bot-v5": {
+        "wins": 14,
+        "draws": 0,
+        "losses": 2
+      },
+      "bot-v8": {
+        "wins": 8,
+        "draws": 0,
+        "losses": 8
+      }
+    }
+  },
+  "EXP002-screen": {
+    "candidate": "bots/candidate/bot-v9-exp002",
+    "games": 32,
+    "errors": 0,
+    "wins": 21,
+    "draws": 0,
+    "losses": 11,
+    "maps": {
+      "Colosseum.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "arena.map": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 2
+      },
+      "default.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "default_small.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "devil.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "queen_of_spades.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "stronghold.map": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 3
+      },
+      "trophy.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      }
+    },
+    "opponents": {
+      "bot-v5": {
+        "wins": 14,
+        "draws": 0,
+        "losses": 2
+      },
+      "bot-v8": {
+        "wins": 7,
+        "draws": 0,
+        "losses": 9
+      }
+    }
+  },
+  "EXP003-screen": {
+    "candidate": "bots/candidate/bot-v9-exp003",
+    "games": 32,
+    "errors": 0,
+    "wins": 24,
+    "draws": 0,
+    "losses": 8,
+    "maps": {
+      "Colosseum.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "arena.map": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 2
+      },
+      "default.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "default_small.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "devil.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "queen_of_spades.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "stronghold.map": {
+        "wins": 4,
+        "draws": 0,
+        "losses": 0
+      },
+      "trophy.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      }
+    },
+    "opponents": {
+      "bot-v5": {
+        "wins": 15,
+        "draws": 0,
+        "losses": 1
+      },
+      "bot-v8": {
+        "wins": 9,
+        "draws": 0,
+        "losses": 7
+      }
+    }
+  },
+  "EXP004-screen": {
+    "candidate": "bots/candidate/bot-v9-exp004",
+    "games": 32,
+    "errors": 0,
+    "wins": 25,
+    "draws": 1,
+    "losses": 6,
+    "maps": {
+      "Colosseum.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "arena.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "default.map": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 2
+      },
+      "default_small.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "devil.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "queen_of_spades.map": {
+        "wins": 4,
+        "draws": 0,
+        "losses": 0
+      },
+      "stronghold.map": {
+        "wins": 4,
+        "draws": 0,
+        "losses": 0
+      },
+      "trophy.map": {
+        "wins": 3,
+        "draws": 1,
+        "losses": 0
+      }
+    },
+    "opponents": {
+      "bot-v5": {
+        "wins": 16,
+        "draws": 0,
+        "losses": 0
+      },
+      "bot-v8": {
+        "wins": 9,
+        "draws": 1,
+        "losses": 6
+      }
+    }
+  },
+  "EXP005-screen": {
+    "candidate": "bots/candidate/bot-v9-exp005",
+    "games": 16,
+    "errors": 0,
+    "wins": 12,
+    "draws": 0,
+    "losses": 4,
+    "maps": {
+      "Colosseum.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "default.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "devil.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "trophy.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      }
+    },
+    "opponents": {
+      "bot-v5": {
+        "wins": 8,
+        "draws": 0,
+        "losses": 0
+      },
+      "bot-v8": {
+        "wins": 4,
+        "draws": 0,
+        "losses": 4
+      }
+    }
+  },
+  "EXP006-screen": {
+    "candidate": "bots/candidate/bot-v9-exp006",
+    "games": 16,
+    "errors": 0,
+    "wins": 12,
+    "draws": 0,
+    "losses": 4,
+    "maps": {
+      "Colosseum.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "default.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "devil.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "trophy.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      }
+    },
+    "opponents": {
+      "bot-v5": {
+        "wins": 8,
+        "draws": 0,
+        "losses": 0
+      },
+      "bot-v8": {
+        "wins": 4,
+        "draws": 0,
+        "losses": 4
+      }
+    }
+  },
+  "EXP007-screen": {
+    "candidate": "bots/candidate/bot-v9-exp007",
+    "games": 16,
+    "errors": 0,
+    "wins": 13,
+    "draws": 0,
+    "losses": 3,
+    "maps": {
+      "Colosseum.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "default.map": {
+        "wins": 4,
+        "draws": 0,
+        "losses": 0
+      },
+      "devil.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "trophy.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      }
+    },
+    "opponents": {
+      "bot-v5": {
+        "wins": 8,
+        "draws": 0,
+        "losses": 0
+      },
+      "bot-v8": {
+        "wins": 5,
+        "draws": 0,
+        "losses": 3
+      }
+    }
+  },
+  "EXP008-screen": {
+    "candidate": "bots/candidate/bot-v9-exp008",
+    "games": 16,
+    "errors": 0,
+    "wins": 12,
+    "draws": 0,
+    "losses": 4,
+    "maps": {
+      "Colosseum.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "default.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "devil.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "trophy.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      }
+    },
+    "opponents": {
+      "bot-v5": {
+        "wins": 8,
+        "draws": 0,
+        "losses": 0
+      },
+      "bot-v8": {
+        "wins": 4,
+        "draws": 0,
+        "losses": 4
+      }
+    }
+  },
+  "EXP009-screen": {
+    "candidate": "bots/candidate/bot-v9-exp009",
+    "games": 16,
+    "errors": 0,
+    "wins": 11,
+    "draws": 0,
+    "losses": 5,
+    "maps": {
+      "Colosseum.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "default.map": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 2
+      },
+      "devil.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "trophy.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      }
+    },
+    "opponents": {
+      "bot-v5": {
+        "wins": 8,
+        "draws": 0,
+        "losses": 0
+      },
+      "bot-v8": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 5
+      }
+    }
+  },
+  "EXP010-screen": {
+    "candidate": "bots/candidate/bot-v9-exp010",
+    "games": 16,
+    "errors": 0,
+    "wins": 12,
+    "draws": 0,
+    "losses": 4,
+    "maps": {
+      "Colosseum.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "default.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "devil.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "trophy.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      }
+    },
+    "opponents": {
+      "bot-v5": {
+        "wins": 8,
+        "draws": 0,
+        "losses": 0
+      },
+      "bot-v8": {
+        "wins": 4,
+        "draws": 0,
+        "losses": 4
+      }
+    }
+  },
+  "EXP011-screen": {
+    "candidate": "bots/candidate/bot-v9-exp011",
+    "games": 16,
+    "errors": 0,
+    "wins": 12,
+    "draws": 0,
+    "losses": 4,
+    "maps": {
+      "Colosseum.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "default.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "devil.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "trophy.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      }
+    },
+    "opponents": {
+      "bot-v5": {
+        "wins": 8,
+        "draws": 0,
+        "losses": 0
+      },
+      "bot-v8": {
+        "wins": 4,
+        "draws": 0,
+        "losses": 4
+      }
+    }
+  },
+  "EXP012-screen": {
+    "candidate": "bots/candidate/bot-v9-exp012",
+    "games": 16,
+    "errors": 0,
+    "wins": 15,
+    "draws": 0,
+    "losses": 1,
+    "maps": {
+      "Colosseum.map": {
+        "wins": 4,
+        "draws": 0,
+        "losses": 0
+      },
+      "default.map": {
+        "wins": 4,
+        "draws": 0,
+        "losses": 0
+      },
+      "devil.map": {
+        "wins": 4,
+        "draws": 0,
+        "losses": 0
+      },
+      "trophy.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      }
+    },
+    "opponents": {
+      "bot-v5": {
+        "wins": 8,
+        "draws": 0,
+        "losses": 0
+      },
+      "bot-v8": {
+        "wins": 7,
+        "draws": 0,
+        "losses": 1
+      }
+    }
+  },
+  "EXP013-screen": {
+    "candidate": "bots/candidate/bot-v9-exp013",
+    "games": 16,
+    "errors": 0,
+    "wins": 13,
+    "draws": 0,
+    "losses": 3,
+    "maps": {
+      "Colosseum.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "default.map": {
+        "wins": 4,
+        "draws": 0,
+        "losses": 0
+      },
+      "devil.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "trophy.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      }
+    },
+    "opponents": {
+      "bot-v5": {
+        "wins": 8,
+        "draws": 0,
+        "losses": 0
+      },
+      "bot-v8": {
+        "wins": 5,
+        "draws": 0,
+        "losses": 3
+      }
+    }
+  },
+  "EXP015-interaction": {
+    "candidate": "bots/candidate/bot-v9-exp015",
+    "games": 16,
+    "errors": 0,
+    "wins": 8,
+    "draws": 2,
+    "losses": 6,
+    "maps": {
+      "default.map": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 2
+      },
+      "queen_of_spades.map": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 2
+      },
+      "stronghold.map": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 2
+      },
+      "trophy.map": {
+        "wins": 2,
+        "draws": 2,
+        "losses": 0
+      }
+    },
+    "opponents": {
+      "bot-v9-exp012": {
+        "wins": 2,
+        "draws": 1,
+        "losses": 5
+      },
+      "bot-v8": {
+        "wins": 6,
+        "draws": 1,
+        "losses": 1
+      }
+    }
+  }
+}

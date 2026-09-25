@@ -1,0 +1,49 @@
+preparing judge clang for this machine
+  clang (1 of 2)...
+  clang (1 of 2): 20s
+  wasm-ld (2 of 2)...
+  wasm-ld (2 of 2): 10s
+building battlecode-automation/experiments/research-20260926/smoke/bot_a to wasm with judge clang
+preparing judge clang for this machine
+  clang (1 of 2)...
+  clang (1 of 2): 0s
+  wasm-ld (2 of 2)...
+  wasm-ld (2 of 2): 0s
+building battlecode-automation/experiments/research-20260926/smoke/bot_b to wasm with judge clang
+loaded wasm vs wasm in the judge's sandbox
+seed 0x000000000135283e
+running round 2/500 --  last: 5ms  eta: 2.7s  dragons: 1 vs 1
+round 22: bot 15 (team A) died: hit another dragon
+round 24: bot 16 (team B) died: lost a head-to-head
+round 24: bot 6 (team A) died: lost a head-to-head
+round 25: bot 5 (team A) died: lost a head-to-head
+round 25: bot 3 (team B) died: lost a head-to-head
+round 25: bot 10 (team A) died: hit itself
+round 26: bot 21 (team A) died: hit another dragon
+round 28: bot 25 (team B) died: lost a head-to-head
+round 28: bot 13 (team A) died: lost a head-to-head
+round 29: bot 19 (team A) died: hit another dragon
+round 29: bot 31 (team B) died: lost a head-to-head
+round 29: bot 27 (team A) died: lost a head-to-head
+round 30: bot 18 (team B) died: lost a head-to-head
+round 30: bot 20 (team A) died: lost a head-to-head
+round 31: bot 1 (team B) died: lost a head-to-head
+round 31: bot 0 (team A) died: lost a head-to-head
+round 32: bot 17 (team A) died: hit another dragon
+round 32: bot 8 (team B) died: lost a head-to-head
+round 32: bot 30 (team A) died: lost a head-to-head
+round 34: bot 32 (team B) died: lost a head-to-head
+round 34: bot 14 (team A) died: lost a head-to-head
+round 36: bot 7 (team A) died: lost a head-to-head
+round 36: bot 2 (team A) died: lost a head-to-head
+round 36: bot 29 (team A) died: hit another dragon
+round 36: bot 48 (team A) died: hit itself
+round 37: bot 44 (team A) died: hit itself
+round 38: bot 41 (team A) died: lost a head-to-head
+round 38: bot 26 (team A) died: lost a head-to-head
+round 38: bot 11 (team B) died: lost a head-to-head
+round 38: bot 54 (team A) died: lost a head-to-head
+team A wins after 39 rounds (by elimination) (0.3s)
+team A points per turn: p50 4.6M  p99 4.9M  mean 4.6M  max 5.0M  (398 turns)
+team B points per turn: p50 5.0M  p99 12.2M  mean 5.4M  max 12.2M  (91 turns)
+wrote replay: replays/research-20260926-sandbox-smoke.replay

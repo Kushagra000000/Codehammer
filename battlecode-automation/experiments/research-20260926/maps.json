@@ -1,0 +1,735 @@
+[
+  {
+    "path": "maps/Colosseum.map",
+    "sha256": "c7549a41ea26600f613a7d906e5c73e90303f3bc037b28d8aa2751cd17819772",
+    "width": 16,
+    "height": 16,
+    "symmetry": "xy",
+    "portal_pairs": 4,
+    "kelp_density": 0.046875,
+    "pearl_capable_tiles": 256,
+    "starts": [
+      {
+        "id": 0,
+        "team": 0,
+        "length": 4,
+        "head": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": 1,
+        "team": 1,
+        "length": 4,
+        "head": [
+          15,
+          15
+        ]
+      }
+    ],
+    "ordinary_components": [
+      256
+    ],
+    "dead_ends": 0,
+    "degree_two_corridor_tiles": 4,
+    "ordinary_articulation_tiles": 0,
+    "family": "open-or-enclosed"
+  },
+  {
+    "path": "maps/arena.map",
+    "sha256": "b4bab09603289c2d186ca94d6cf5362e5cc8f24637736c497d9651c0dd921937",
+    "width": 11,
+    "height": 11,
+    "symmetry": "xy",
+    "portal_pairs": 0,
+    "kelp_density": 0.09090909090909091,
+    "pearl_capable_tiles": 81,
+    "starts": [
+      {
+        "id": 0,
+        "team": 0,
+        "length": 3,
+        "head": [
+          3,
+          5
+        ]
+      },
+      {
+        "id": 1,
+        "team": 1,
+        "length": 3,
+        "head": [
+          7,
+          5
+        ]
+      }
+    ],
+    "ordinary_components": [
+      121
+    ],
+    "dead_ends": 0,
+    "degree_two_corridor_tiles": 4,
+    "ordinary_articulation_tiles": 0,
+    "family": "open-or-enclosed"
+  },
+  {
+    "path": "maps/big_empty.map",
+    "sha256": "6cb3b7be72a4e27ed19363e9009d46742851709f701e61d73b56437314fdd827",
+    "width": 64,
+    "height": 64,
+    "symmetry": "xy",
+    "portal_pairs": 0,
+    "kelp_density": 0.0,
+    "pearl_capable_tiles": 4096,
+    "starts": [
+      {
+        "id": 0,
+        "team": 0,
+        "length": 6,
+        "head": [
+          13,
+          14
+        ]
+      },
+      {
+        "id": 1,
+        "team": 1,
+        "length": 6,
+        "head": [
+          50,
+          49
+        ]
+      },
+      {
+        "id": 2,
+        "team": 0,
+        "length": 6,
+        "head": [
+          18,
+          17
+        ]
+      },
+      {
+        "id": 3,
+        "team": 1,
+        "length": 6,
+        "head": [
+          45,
+          46
+        ]
+      },
+      {
+        "id": 4,
+        "team": 0,
+        "length": 6,
+        "head": [
+          8,
+          11
+        ]
+      },
+      {
+        "id": 5,
+        "team": 1,
+        "length": 6,
+        "head": [
+          55,
+          52
+        ]
+      }
+    ],
+    "ordinary_components": [
+      4096
+    ],
+    "dead_ends": 0,
+    "degree_two_corridor_tiles": 0,
+    "ordinary_articulation_tiles": 0,
+    "family": "large-open"
+  },
+  {
+    "path": "maps/default.map",
+    "sha256": "6bd7abf2ed51a7f667552c243ad038f4177e450cf2f9dd9be52f826f9e526f95",
+    "width": 32,
+    "height": 32,
+    "symmetry": "xy",
+    "portal_pairs": 12,
+    "kelp_density": 0.10546875,
+    "pearl_capable_tiles": 1024,
+    "starts": [
+      {
+        "id": 0,
+        "team": 0,
+        "length": 4,
+        "head": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": 1,
+        "team": 1,
+        "length": 4,
+        "head": [
+          31,
+          31
+        ]
+      },
+      {
+        "id": 2,
+        "team": 0,
+        "length": 4,
+        "head": [
+          4,
+          0
+        ]
+      },
+      {
+        "id": 3,
+        "team": 1,
+        "length": 4,
+        "head": [
+          27,
+          31
+        ]
+      },
+      {
+        "id": 4,
+        "team": 0,
+        "length": 4,
+        "head": [
+          8,
+          0
+        ]
+      },
+      {
+        "id": 5,
+        "team": 1,
+        "length": 4,
+        "head": [
+          23,
+          31
+        ]
+      },
+      {
+        "id": 6,
+        "team": 0,
+        "length": 4,
+        "head": [
+          12,
+          0
+        ]
+      },
+      {
+        "id": 7,
+        "team": 1,
+        "length": 4,
+        "head": [
+          19,
+          31
+        ]
+      }
+    ],
+    "ordinary_components": [
+      830,
+      25,
+      25,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16
+    ],
+    "dead_ends": 0,
+    "degree_two_corridor_tiles": 64,
+    "ordinary_articulation_tiles": 0,
+    "family": "portal-partitioned"
+  },
+  {
+    "path": "maps/default_small.map",
+    "sha256": "8ac4b2eedcf19f8544ab1866acfcbc628b3cb5ff2df87d80aa682dcb5aa9df19",
+    "width": 16,
+    "height": 16,
+    "symmetry": "xy",
+    "portal_pairs": 0,
+    "kelp_density": 0.140625,
+    "pearl_capable_tiles": 256,
+    "starts": [
+      {
+        "id": 0,
+        "team": 0,
+        "length": 3,
+        "head": [
+          1,
+          4
+        ]
+      },
+      {
+        "id": 1,
+        "team": 1,
+        "length": 3,
+        "head": [
+          14,
+          11
+        ]
+      },
+      {
+        "id": 2,
+        "team": 0,
+        "length": 3,
+        "head": [
+          4,
+          1
+        ]
+      },
+      {
+        "id": 3,
+        "team": 1,
+        "length": 3,
+        "head": [
+          11,
+          14
+        ]
+      }
+    ],
+    "ordinary_components": [
+      256
+    ],
+    "dead_ends": 0,
+    "degree_two_corridor_tiles": 20,
+    "ordinary_articulation_tiles": 0,
+    "family": "open-or-enclosed"
+  },
+  {
+    "path": "maps/devil.map",
+    "sha256": "a09e8f2d3bdd1e40fad31a0ecdf00166cd1090c232c56dcc2557729de737f6aa",
+    "width": 32,
+    "height": 16,
+    "symmetry": "y",
+    "portal_pairs": 0,
+    "kelp_density": 0.23828125,
+    "pearl_capable_tiles": 174,
+    "starts": [
+      {
+        "id": 0,
+        "team": 0,
+        "length": 4,
+        "head": [
+          3,
+          5
+        ]
+      },
+      {
+        "id": 1,
+        "team": 1,
+        "length": 4,
+        "head": [
+          28,
+          5
+        ]
+      },
+      {
+        "id": 2,
+        "team": 0,
+        "length": 4,
+        "head": [
+          3,
+          11
+        ]
+      },
+      {
+        "id": 3,
+        "team": 1,
+        "length": 4,
+        "head": [
+          28,
+          11
+        ]
+      },
+      {
+        "id": 4,
+        "team": 0,
+        "length": 4,
+        "head": [
+          3,
+          8
+        ]
+      },
+      {
+        "id": 5,
+        "team": 1,
+        "length": 4,
+        "head": [
+          28,
+          8
+        ]
+      }
+    ],
+    "ordinary_components": [
+      512
+    ],
+    "dead_ends": 0,
+    "degree_two_corridor_tiles": 138,
+    "ordinary_articulation_tiles": 0,
+    "family": "open-or-enclosed"
+  },
+  {
+    "path": "maps/queen_of_spades.map",
+    "sha256": "126d71b46443268596285918d910b7f8d875bf3028ca9c5ff6bad97b4e868938",
+    "width": 25,
+    "height": 35,
+    "symmetry": "xy",
+    "portal_pairs": 2,
+    "kelp_density": 0.16914285714285715,
+    "pearl_capable_tiles": 442,
+    "starts": [
+      {
+        "id": 0,
+        "team": 0,
+        "length": 3,
+        "head": [
+          5,
+          11
+        ]
+      },
+      {
+        "id": 1,
+        "team": 1,
+        "length": 3,
+        "head": [
+          19,
+          23
+        ]
+      },
+      {
+        "id": 2,
+        "team": 0,
+        "length": 3,
+        "head": [
+          2,
+          9
+        ]
+      },
+      {
+        "id": 3,
+        "team": 1,
+        "length": 3,
+        "head": [
+          22,
+          25
+        ]
+      }
+    ],
+    "ordinary_components": [
+      661,
+      85,
+      85,
+      16,
+      16,
+      6,
+      6
+    ],
+    "dead_ends": 22,
+    "degree_two_corridor_tiles": 126,
+    "ordinary_articulation_tiles": 34,
+    "family": "portal-partitioned"
+  },
+  {
+    "path": "maps/schooltime.map",
+    "sha256": "726c404f3b34b4ed7b21cef83628407e70b717cd919f114e4a0e57f7f6d66520",
+    "width": 60,
+    "height": 40,
+    "symmetry": "y",
+    "portal_pairs": 12,
+    "kelp_density": 0.19020833333333334,
+    "pearl_capable_tiles": 326,
+    "starts": [
+      {
+        "id": 0,
+        "team": 0,
+        "length": 4,
+        "head": [
+          3,
+          2
+        ]
+      },
+      {
+        "id": 1,
+        "team": 1,
+        "length": 4,
+        "head": [
+          56,
+          2
+        ]
+      },
+      {
+        "id": 2,
+        "team": 0,
+        "length": 4,
+        "head": [
+          16,
+          3
+        ]
+      },
+      {
+        "id": 3,
+        "team": 1,
+        "length": 4,
+        "head": [
+          43,
+          3
+        ]
+      },
+      {
+        "id": 4,
+        "team": 0,
+        "length": 4,
+        "head": [
+          23,
+          3
+        ]
+      },
+      {
+        "id": 5,
+        "team": 1,
+        "length": 4,
+        "head": [
+          36,
+          3
+        ]
+      }
+    ],
+    "ordinary_components": [
+      1858,
+      204,
+      115,
+      115,
+      32,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "dead_ends": 60,
+    "degree_two_corridor_tiles": 434,
+    "ordinary_articulation_tiles": 132,
+    "family": "portal-partitioned"
+  },
+  {
+    "path": "maps/stronghold.map",
+    "sha256": "02455e481fe56e1e4ceebcb971e977d4e238e9d4fa95a6beb0dbaaae1988e395",
+    "width": 48,
+    "height": 24,
+    "symmetry": "xy",
+    "portal_pairs": 4,
+    "kelp_density": 0.1310763888888889,
+    "pearl_capable_tiles": 210,
+    "starts": [
+      {
+        "id": 0,
+        "team": 0,
+        "length": 4,
+        "head": [
+          4,
+          15
+        ]
+      },
+      {
+        "id": 1,
+        "team": 1,
+        "length": 4,
+        "head": [
+          43,
+          8
+        ]
+      },
+      {
+        "id": 2,
+        "team": 0,
+        "length": 4,
+        "head": [
+          4,
+          2
+        ]
+      },
+      {
+        "id": 3,
+        "team": 1,
+        "length": 4,
+        "head": [
+          43,
+          21
+        ]
+      }
+    ],
+    "ordinary_components": [
+      442,
+      264,
+      264,
+      68,
+      68,
+      23,
+      23
+    ],
+    "dead_ends": 32,
+    "degree_two_corridor_tiles": 144,
+    "ordinary_articulation_tiles": 140,
+    "family": "portal-partitioned"
+  },
+  {
+    "path": "maps/trauma.map",
+    "sha256": "dcf39d713c060e5ded2d031a7ffe1a27ea60fe4b72ff8fb3fffbabc4f81e2066",
+    "width": 48,
+    "height": 24,
+    "symmetry": "xy",
+    "portal_pairs": 6,
+    "kelp_density": 0.24479166666666666,
+    "pearl_capable_tiles": 142,
+    "starts": [
+      {
+        "id": 0,
+        "team": 0,
+        "length": 4,
+        "head": [
+          4,
+          15
+        ]
+      },
+      {
+        "id": 1,
+        "team": 1,
+        "length": 4,
+        "head": [
+          43,
+          8
+        ]
+      },
+      {
+        "id": 2,
+        "team": 0,
+        "length": 4,
+        "head": [
+          4,
+          2
+        ]
+      },
+      {
+        "id": 3,
+        "team": 1,
+        "length": 4,
+        "head": [
+          43,
+          21
+        ]
+      }
+    ],
+    "ordinary_components": [
+      392,
+      264,
+      264,
+      68,
+      68,
+      23,
+      23,
+      21,
+      21,
+      4,
+      4
+    ],
+    "dead_ends": 48,
+    "degree_two_corridor_tiles": 342,
+    "ordinary_articulation_tiles": 254,
+    "family": "portal-partitioned"
+  },
+  {
+    "path": "maps/trophy.map",
+    "sha256": "5f1f6b23d6edb944954a9a31b95f229fd9966bec0875a9f04bca680aa3de33f5",
+    "width": 25,
+    "height": 25,
+    "symmetry": "y",
+    "portal_pairs": 1,
+    "kelp_density": 0.0704,
+    "pearl_capable_tiles": 625,
+    "starts": [
+      {
+        "id": 0,
+        "team": 0,
+        "length": 3,
+        "head": [
+          4,
+          2
+        ]
+      },
+      {
+        "id": 1,
+        "team": 1,
+        "length": 3,
+        "head": [
+          20,
+          2
+        ]
+      },
+      {
+        "id": 2,
+        "team": 0,
+        "length": 3,
+        "head": [
+          4,
+          22
+        ]
+      },
+      {
+        "id": 3,
+        "team": 1,
+        "length": 3,
+        "head": [
+          20,
+          22
+        ]
+      }
+    ],
+    "ordinary_components": [
+      625
+    ],
+    "dead_ends": 1,
+    "degree_two_corridor_tiles": 47,
+    "ordinary_articulation_tiles": 1,
+    "family": "corridor"
+  }
+]

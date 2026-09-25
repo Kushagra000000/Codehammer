@@ -1,0 +1,14 @@
+{
+  "bot-v10": {
+    "source": "bots/candidate/bot-v10",
+    "source_fingerprint": "528c355b5cc850be539b98f48ba1badbce1f7ce1fcdf4ce0faf55dbd6616d2e3",
+    "zip": "bots/candidate/bot-v10.zip",
+    "zip_sha256": "156ddcc61fdebf5a185c4baacef1c94be90f844f842e955cfa379409f4efe484"
+  },
+  "bot-v10.1": {
+    "source": "bots/candidate/bot-v10.1",
+    "source_fingerprint": "800e07868144c581a93707f7b8948c5ed5afa00abdcf22d81469ef0269b1303a",
+    "zip": "bots/candidate/bot-v10.1.zip",
+    "zip_sha256": "b1350995932634ade1961a6725351fc887a13587f0a33c9f09236f8987f3a790"
+  }
+}

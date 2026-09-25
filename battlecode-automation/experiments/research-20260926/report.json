@@ -1,0 +1,597 @@
+{
+  "champion": "bots/current/bot-v9",
+  "latest_candidate": "bots/candidate/bot-v9-exp015",
+  "total_records": 400,
+  "errors": 0,
+  "bots": [
+    {
+      "candidate": "bots/candidate/bot-v9-exp001",
+      "games": 36,
+      "score_rate": 0.7222222222222222,
+      "elo": 1085.9,
+      "v5": {
+        "games": 20,
+        "W": 18,
+        "D": 0,
+        "L": 2
+      },
+      "incumbent": {
+        "games": 16,
+        "W": 8,
+        "D": 0,
+        "L": 8
+      },
+      "v5_maps_beaten": [],
+      "passes_five_maps": false,
+      "strongest": [
+        "default_small.map",
+        "Colosseum.map",
+        "default.map"
+      ],
+      "weakest": [
+        "trophy.map",
+        "arena.map",
+        "stronghold.map"
+      ],
+      "mean_final_longest": 4.694444444444445,
+      "king_length": null,
+      "sacrifices": null,
+      "status": "evaluated"
+    },
+    {
+      "candidate": "bots/archive/bot-v5",
+      "games": 232,
+      "score_rate": 0.04525862068965517,
+      "elo": 588.6,
+      "v5": {
+        "games": 0,
+        "W": 0,
+        "D": 0,
+        "L": 0
+      },
+      "incumbent": {
+        "games": 4,
+        "W": 0,
+        "D": 0,
+        "L": 4
+      },
+      "v5_maps_beaten": [],
+      "passes_five_maps": false,
+      "strongest": [
+        "trauma.map",
+        "stronghold.map",
+        "arena.map"
+      ],
+      "weakest": [
+        "queen_of_spades.map",
+        "trophy.map",
+        "big_empty.map"
+      ],
+      "mean_final_longest": 2.0517241379310347,
+      "king_length": null,
+      "sacrifices": null,
+      "status": "evaluated"
+    },
+    {
+      "candidate": "bots/current/bot-v8",
+      "games": 154,
+      "score_rate": 0.45454545454545453,
+      "elo": 911.3,
+      "v5": {
+        "games": 4,
+        "W": 4,
+        "D": 0,
+        "L": 0
+      },
+      "incumbent": {
+        "games": 0,
+        "W": 0,
+        "D": 0,
+        "L": 0
+      },
+      "v5_maps_beaten": [],
+      "passes_five_maps": false,
+      "strongest": [
+        "arena.map",
+        "default_small.map",
+        "big_empty.map"
+      ],
+      "weakest": [
+        "stronghold.map",
+        "queen_of_spades.map",
+        "schooltime.map"
+      ],
+      "mean_final_longest": 4.305194805194805,
+      "king_length": null,
+      "sacrifices": null,
+      "status": "evaluated"
+    },
+    {
+      "candidate": "bots/candidate/bot-v9-exp002",
+      "games": 32,
+      "score_rate": 0.65625,
+      "elo": 1035.7,
+      "v5": {
+        "games": 16,
+        "W": 14,
+        "D": 0,
+        "L": 2
+      },
+      "incumbent": {
+        "games": 16,
+        "W": 7,
+        "D": 0,
+        "L": 9
+      },
+      "v5_maps_beaten": [],
+      "passes_five_maps": false,
+      "strongest": [
+        "Colosseum.map",
+        "default.map",
+        "default_small.map"
+      ],
+      "weakest": [
+        "trophy.map",
+        "arena.map",
+        "stronghold.map"
+      ],
+      "mean_final_longest": 4.25,
+      "king_length": null,
+      "sacrifices": null,
+      "status": "evaluated"
+    },
+    {
+      "candidate": "bots/candidate/bot-v9-exp003",
+      "games": 32,
+      "score_rate": 0.75,
+      "elo": 1087.0,
+      "v5": {
+        "games": 16,
+        "W": 15,
+        "D": 0,
+        "L": 1
+      },
+      "incumbent": {
+        "games": 16,
+        "W": 9,
+        "D": 0,
+        "L": 7
+      },
+      "v5_maps_beaten": [],
+      "passes_five_maps": false,
+      "strongest": [
+        "stronghold.map",
+        "Colosseum.map",
+        "default.map"
+      ],
+      "weakest": [
+        "queen_of_spades.map",
+        "trophy.map",
+        "arena.map"
+      ],
+      "mean_final_longest": 4.46875,
+      "king_length": null,
+      "sacrifices": null,
+      "status": "evaluated"
+    },
+    {
+      "candidate": "bots/candidate/bot-v9-exp004",
+      "games": 32,
+      "score_rate": 0.796875,
+      "elo": 1093.3,
+      "v5": {
+        "games": 16,
+        "W": 16,
+        "D": 0,
+        "L": 0
+      },
+      "incumbent": {
+        "games": 16,
+        "W": 9,
+        "D": 1,
+        "L": 6
+      },
+      "v5_maps_beaten": [],
+      "passes_five_maps": false,
+      "strongest": [
+        "queen_of_spades.map",
+        "stronghold.map",
+        "trophy.map"
+      ],
+      "weakest": [
+        "default_small.map",
+        "devil.map",
+        "default.map"
+      ],
+      "mean_final_longest": 4.625,
+      "king_length": null,
+      "sacrifices": null,
+      "status": "evaluated"
+    },
+    {
+      "candidate": "bots/candidate/bot-v9-exp005",
+      "games": 16,
+      "score_rate": 0.75,
+      "elo": 1022.7,
+      "v5": {
+        "games": 8,
+        "W": 8,
+        "D": 0,
+        "L": 0
+      },
+      "incumbent": {
+        "games": 8,
+        "W": 4,
+        "D": 0,
+        "L": 4
+      },
+      "v5_maps_beaten": [],
+      "passes_five_maps": false,
+      "strongest": [
+        "Colosseum.map",
+        "default.map",
+        "devil.map"
+      ],
+      "weakest": [
+        "default.map",
+        "devil.map",
+        "trophy.map"
+      ],
+      "mean_final_longest": 3.625,
+      "king_length": null,
+      "sacrifices": null,
+      "status": "evaluated"
+    },
+    {
+      "candidate": "bots/candidate/bot-v9-exp006",
+      "games": 16,
+      "score_rate": 0.75,
+      "elo": 1020.9,
+      "v5": {
+        "games": 8,
+        "W": 8,
+        "D": 0,
+        "L": 0
+      },
+      "incumbent": {
+        "games": 8,
+        "W": 4,
+        "D": 0,
+        "L": 4
+      },
+      "v5_maps_beaten": [],
+      "passes_five_maps": false,
+      "strongest": [
+        "Colosseum.map",
+        "default.map",
+        "devil.map"
+      ],
+      "weakest": [
+        "default.map",
+        "devil.map",
+        "trophy.map"
+      ],
+      "mean_final_longest": 4.375,
+      "king_length": null,
+      "sacrifices": null,
+      "status": "evaluated"
+    },
+    {
+      "candidate": "bots/candidate/bot-v9-exp007",
+      "games": 16,
+      "score_rate": 0.8125,
+      "elo": 1035.4,
+      "v5": {
+        "games": 8,
+        "W": 8,
+        "D": 0,
+        "L": 0
+      },
+      "incumbent": {
+        "games": 8,
+        "W": 5,
+        "D": 0,
+        "L": 3
+      },
+      "v5_maps_beaten": [],
+      "passes_five_maps": false,
+      "strongest": [
+        "default.map",
+        "Colosseum.map",
+        "devil.map"
+      ],
+      "weakest": [
+        "Colosseum.map",
+        "devil.map",
+        "trophy.map"
+      ],
+      "mean_final_longest": 4.5,
+      "king_length": null,
+      "sacrifices": null,
+      "status": "evaluated"
+    },
+    {
+      "candidate": "bots/candidate/bot-v9-exp008",
+      "games": 16,
+      "score_rate": 0.75,
+      "elo": 1014.6,
+      "v5": {
+        "games": 8,
+        "W": 8,
+        "D": 0,
+        "L": 0
+      },
+      "incumbent": {
+        "games": 8,
+        "W": 4,
+        "D": 0,
+        "L": 4
+      },
+      "v5_maps_beaten": [],
+      "passes_five_maps": false,
+      "strongest": [
+        "Colosseum.map",
+        "default.map",
+        "devil.map"
+      ],
+      "weakest": [
+        "default.map",
+        "devil.map",
+        "trophy.map"
+      ],
+      "mean_final_longest": 3.5625,
+      "king_length": null,
+      "sacrifices": null,
+      "status": "evaluated"
+    },
+    {
+      "candidate": "bots/candidate/bot-v9-exp009",
+      "games": 16,
+      "score_rate": 0.6875,
+      "elo": 996.9,
+      "v5": {
+        "games": 8,
+        "W": 8,
+        "D": 0,
+        "L": 0
+      },
+      "incumbent": {
+        "games": 8,
+        "W": 3,
+        "D": 0,
+        "L": 5
+      },
+      "v5_maps_beaten": [],
+      "passes_five_maps": false,
+      "strongest": [
+        "Colosseum.map",
+        "devil.map",
+        "trophy.map"
+      ],
+      "weakest": [
+        "devil.map",
+        "trophy.map",
+        "default.map"
+      ],
+      "mean_final_longest": 3.375,
+      "king_length": null,
+      "sacrifices": null,
+      "status": "evaluated"
+    },
+    {
+      "candidate": "bots/candidate/bot-v9-exp010",
+      "games": 16,
+      "score_rate": 0.75,
+      "elo": 1017.3,
+      "v5": {
+        "games": 8,
+        "W": 8,
+        "D": 0,
+        "L": 0
+      },
+      "incumbent": {
+        "games": 8,
+        "W": 4,
+        "D": 0,
+        "L": 4
+      },
+      "v5_maps_beaten": [],
+      "passes_five_maps": false,
+      "strongest": [
+        "Colosseum.map",
+        "default.map",
+        "devil.map"
+      ],
+      "weakest": [
+        "default.map",
+        "devil.map",
+        "trophy.map"
+      ],
+      "mean_final_longest": 6.125,
+      "king_length": null,
+      "sacrifices": null,
+      "status": "evaluated"
+    },
+    {
+      "candidate": "bots/candidate/bot-v9-exp011",
+      "games": 16,
+      "score_rate": 0.75,
+      "elo": 1016.0,
+      "v5": {
+        "games": 8,
+        "W": 8,
+        "D": 0,
+        "L": 0
+      },
+      "incumbent": {
+        "games": 8,
+        "W": 4,
+        "D": 0,
+        "L": 4
+      },
+      "v5_maps_beaten": [],
+      "passes_five_maps": false,
+      "strongest": [
+        "Colosseum.map",
+        "default.map",
+        "devil.map"
+      ],
+      "weakest": [
+        "default.map",
+        "devil.map",
+        "trophy.map"
+      ],
+      "mean_final_longest": 4.8125,
+      "king_length": null,
+      "sacrifices": null,
+      "status": "evaluated"
+    },
+    {
+      "candidate": "bots/candidate/bot-v9-exp012",
+      "games": 124,
+      "score_rate": 0.8951612903225806,
+      "elo": 1031.5,
+      "v5": {
+        "games": 96,
+        "W": 90,
+        "D": 1,
+        "L": 5
+      },
+      "incumbent": {
+        "games": 14,
+        "W": 11,
+        "D": 0,
+        "L": 3
+      },
+      "v5_maps_beaten": [
+        "maps/Colosseum.map",
+        "maps/arena.map",
+        "maps/big_empty.map",
+        "maps/default.map",
+        "maps/default_small.map",
+        "maps/devil.map",
+        "maps/queen_of_spades.map",
+        "maps/schooltime.map",
+        "maps/stronghold.map",
+        "maps/trophy.map"
+      ],
+      "passes_five_maps": true,
+      "strongest": [
+        "Colosseum.map",
+        "default.map",
+        "devil.map"
+      ],
+      "weakest": [
+        "trophy.map",
+        "stronghold.map",
+        "trauma.map"
+      ],
+      "mean_final_longest": 9.435483870967742,
+      "king_length": null,
+      "sacrifices": null,
+      "status": "champion source"
+    },
+    {
+      "candidate": "bots/archive/bot-v4",
+      "games": 6,
+      "score_rate": 0.3333333333333333,
+      "elo": 996.4,
+      "v5": {
+        "games": 0,
+        "W": 0,
+        "D": 0,
+        "L": 0
+      },
+      "incumbent": {
+        "games": 0,
+        "W": 0,
+        "D": 0,
+        "L": 0
+      },
+      "v5_maps_beaten": [],
+      "passes_five_maps": false,
+      "strongest": [
+        "trauma.map",
+        "big_empty.map",
+        "schooltime.map"
+      ],
+      "weakest": [
+        "trauma.map",
+        "big_empty.map",
+        "schooltime.map"
+      ],
+      "mean_final_longest": 14.166666666666666,
+      "king_length": null,
+      "sacrifices": null,
+      "status": "evaluated"
+    },
+    {
+      "candidate": "bots/candidate/bot-v9-exp013",
+      "games": 16,
+      "score_rate": 0.8125,
+      "elo": 1019.4,
+      "v5": {
+        "games": 8,
+        "W": 8,
+        "D": 0,
+        "L": 0
+      },
+      "incumbent": {
+        "games": 8,
+        "W": 5,
+        "D": 0,
+        "L": 3
+      },
+      "v5_maps_beaten": [],
+      "passes_five_maps": false,
+      "strongest": [
+        "default.map",
+        "Colosseum.map",
+        "devil.map"
+      ],
+      "weakest": [
+        "Colosseum.map",
+        "devil.map",
+        "trophy.map"
+      ],
+      "mean_final_longest": 5.375,
+      "king_length": null,
+      "sacrifices": null,
+      "status": "evaluated"
+    },
+    {
+      "candidate": "bots/candidate/bot-v9-exp015",
+      "games": 16,
+      "score_rate": 0.5625,
+      "elo": 1027.2,
+      "v5": {
+        "games": 0,
+        "W": 0,
+        "D": 0,
+        "L": 0
+      },
+      "incumbent": {
+        "games": 8,
+        "W": 6,
+        "D": 1,
+        "L": 1
+      },
+      "v5_maps_beaten": [],
+      "passes_five_maps": false,
+      "strongest": [
+        "trophy.map",
+        "default.map",
+        "queen_of_spades.map"
+      ],
+      "weakest": [
+        "default.map",
+        "queen_of_spades.map",
+        "stronghold.map"
+      ],
+      "mean_final_longest": 5.5,
+      "king_length": null,
+      "sacrifices": null,
+      "status": "evaluated"
+    }
+  ]
+}

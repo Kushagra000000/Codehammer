@@ -22,6 +22,7 @@ for label, path in checks.items():
 
 unswbc = shutil.which("unswbc")
 print(f"{'OK  ' if unswbc else 'FAIL'} unswbc: {unswbc or 'not found'}")
+ok &= bool(unswbc)
 
 bots = list((REPO / "bots").glob("**/bot.toml")) if (REPO / "bots").exists() else []
 maps = list((REPO / "maps").glob("**/*.map")) if (REPO / "maps").exists() else []

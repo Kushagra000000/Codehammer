@@ -1,0 +1,213 @@
+Scheduled 32 games
+1 32 Colosseum.map 1.0 ok 4.35
+2 32 Colosseum.map 1.0 ok 3.98
+3 32 arena.map 0.0 ok 2.99
+4 32 arena.map 1.0 ok 2.8
+5 32 default.map 1.0 ok 6.25
+6 32 default.map 1.0 ok 3.82
+7 32 default_small.map 1.0 ok 2.79
+8 32 default_small.map 1.0 ok 2.88
+9 32 devil.map 1.0 ok 4.51
+10 32 devil.map 1.0 ok 5.18
+11 32 queen_of_spades.map 1.0 ok 3.12
+12 32 queen_of_spades.map 1.0 ok 2.74
+13 32 stronghold.map 1.0 ok 17.97
+14 32 stronghold.map 0.0 ok 19.03
+15 32 trophy.map 1.0 ok 10.93
+16 32 trophy.map 1.0 ok 6.67
+17 32 Colosseum.map 0.0 ok 3.57
+18 32 Colosseum.map 1.0 ok 2.95
+19 32 arena.map 0.0 ok 3.41
+20 32 arena.map 1.0 ok 3.27
+21 32 default.map 0.0 ok 9.59
+22 32 default.map 1.0 ok 7.53
+23 32 default_small.map 0.0 ok 3.37
+24 32 default_small.map 1.0 ok 2.64
+25 32 devil.map 1.0 ok 4.56
+26 32 devil.map 0.0 ok 4.43
+27 32 queen_of_spades.map 0.0 ok 3.24
+28 32 queen_of_spades.map 1.0 ok 2.98
+29 32 stronghold.map 0.0 ok 17.58
+30 32 stronghold.map 0.0 ok 21.69
+31 32 trophy.map 0.0 ok 10.49
+32 32 trophy.map 1.0 ok 7.07
+{
+  "EXP001-equivalence": {
+    "candidate": "bots/candidate/bot-v9-exp001",
+    "games": 4,
+    "errors": 0,
+    "wins": 4,
+    "draws": 0,
+    "losses": 0,
+    "maps": {
+      "arena.map": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 0
+      },
+      "default_small.map": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 0
+      }
+    },
+    "opponents": {
+      "bot-v5": {
+        "wins": 4,
+        "draws": 0,
+        "losses": 0
+      }
+    }
+  },
+  "EXP001-reference": {
+    "candidate": "bots/current/bot-v8",
+    "games": 4,
+    "errors": 0,
+    "wins": 4,
+    "draws": 0,
+    "losses": 0,
+    "maps": {
+      "arena.map": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 0
+      },
+      "default_small.map": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 0
+      }
+    },
+    "opponents": {
+      "bot-v5": {
+        "wins": 4,
+        "draws": 0,
+        "losses": 0
+      }
+    }
+  },
+  "EXP001-screen": {
+    "candidate": "bots/candidate/bot-v9-exp001",
+    "games": 32,
+    "errors": 0,
+    "wins": 22,
+    "draws": 0,
+    "losses": 10,
+    "maps": {
+      "Colosseum.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "arena.map": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 2
+      },
+      "default.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "default_small.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "devil.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "queen_of_spades.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "stronghold.map": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 2
+      },
+      "trophy.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      }
+    },
+    "opponents": {
+      "bot-v5": {
+        "wins": 14,
+        "draws": 0,
+        "losses": 2
+      },
+      "bot-v8": {
+        "wins": 8,
+        "draws": 0,
+        "losses": 8
+      }
+    }
+  },
+  "EXP002-screen": {
+    "candidate": "bots/candidate/bot-v9-exp002",
+    "games": 32,
+    "errors": 0,
+    "wins": 21,
+    "draws": 0,
+    "losses": 11,
+    "maps": {
+      "Colosseum.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "arena.map": {
+        "wins": 2,
+        "draws": 0,
+        "losses": 2
+      },
+      "default.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "default_small.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "devil.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "queen_of_spades.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      },
+      "stronghold.map": {
+        "wins": 1,
+        "draws": 0,
+        "losses": 3
+      },
+      "trophy.map": {
+        "wins": 3,
+        "draws": 0,
+        "losses": 1
+      }
+    },
+    "opponents": {
+      "bot-v5": {
+        "wins": 14,
+        "draws": 0,
+        "losses": 2
+      },
+      "bot-v8": {
+        "wins": 7,
+        "draws": 0,
+        "losses": 9
+      }
+    }
+  }
+}

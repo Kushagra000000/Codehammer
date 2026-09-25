@@ -533,3 +533,58 @@ Each observed behaviour should become:
 **Observation → Hypothesis → Implementation → Controlled Experiment → Result → Conclusion**
 
 Replay observations are evidence for hypotheses, not proof that the implementation is optimal.
+
+
+## 2026-09-26 research findings (bounded screens)
+
+OBSERVED in v8 code: candidate tiles are usually refreshed by the current vision
+before age scoring. Changing their age coefficient alone cannot reliably drive
+map-wide exploration. EXP004 measures the *future vision window* instead.
+
+TESTED on eight development maps, seed 101, both sides against v5/v8: EXP004
+frontier scored 25.5/32 versus equivalent v8's 22/32. This supports advancing the
+component to independent validation, not claiming it is universally better.
+In particular it lost both Default games against v8; map regressions need followup.
+
+TESTED local king alone scored 21/32, below baseline. King plus opportunistic
+self-feeding scored 24/32; both Stronghold games against v8 were wins with logged
+feeding actions. Only six scheduled matches reached round 300, so general
+late-game value remains UNKNOWN. Local leader election can have multiple kings
+under partial visibility; it does not implement global consensus.
+
+OBSERVED protocol constraint: four sonar echoes are aggregate counts. They cannot
+be converted into four directional enemy positions. Any directional probe needs
+an explicit emission schedule and delayed-response bookkeeping.
+
+
+## Accepted v9 finding — 2026-09-26
+
+SUPPORTED within this batch: pearl objective distance should account for known
+kelp and paired portals. The BFS-only candidate passed 10/11 v5 map gates and
+beat v8 11–3 across development and holdout matches. The frontier+BFS combination
+lost 2–5–1 to BFS alone; more exploration is not automatically additive.
+
+OBSERVED limitation: Trauma rewards preserving late longest length. High coverage
+and many dragons can still lose to a small conservative opponent by one segment.
+Do not optimize coverage as a proxy for the primary tiebreak. King/feeding and
+risk-adjusted routing remain hypotheses for a new independent experiment batch.
+
+## v10 coordination findings — 2026-09-26
+
+OBSERVED: feeding can transfer resources to designated growers, but proximity
+alone does not ensure the named recipient collects them. In the initial
+Stronghold smoke, seven of sixteen donated pearls went to other allies.
+
+TESTED: broad early food denial hurt v10's opening against v9 (2W/1D/5L in the
+four-map screen). Narrower early right-of-way, larger patrol areas, and terrain
+sharing together improved v10.1 to 4W/2D/2L against v9 on the same screening
+schedule. These changes were tested as a bundle; individual effects are UNKNOWN.
+
+OBSERVED: the supplied Stronghold winner grew well before round 250. Late
+feeding alone cannot explain its final length-151 result. A snake's death
+returns only ceil(length/2) pearls, so feeding concentrates resources with loss.
+
+HYPOTHESIS: active territory cooperation is most useful in rich, bounded
+chambers. Two Big Empty sandbox losses show that the current implementation
+has not established a large-open-map advantage. Do not extrapolate the
+Stronghold wins into a universal improvement claim.

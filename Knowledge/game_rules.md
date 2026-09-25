@@ -1,3 +1,14 @@
+## Current protocol verification — 2026-09-26
+
+OBSERVED: isolated toolkit `unswbc 1.1.0`; its bundled C++ helper differs from
+v8's helper only by the final newline. Both negotiate Protocol 3 and parse
+64-bit messages plus five aggregate echo counts. Current official references:
+https://game.battlecode.au/docs/protocol and https://game.battlecode.au/docs/sonar.
+Four directed sonars per turn are supported, one per cardinal direction.
+The Protocol 2.1 / one-sonar / 32-bit excerpts below are historical and superseded.
+Own-body sonar can emerge from the tail; echoes do not identify which ray hit.
+Engine SHA-256: `12e58ad88650da698a4b70c25f4d2c1b0341898787eca60fa95d219fc91ab566`.
+
 The rules and documentations are:
 
 https://game.battlecode.au/docs/structure "Rounds and Turns

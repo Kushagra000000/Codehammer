@@ -1,8 +1,14 @@
 {
-  "generated_at": "2026-09-25T13:15:02.688638+00:00",
-  "champion_uid": "bot-v8@eb0bdfbb8d",
-  "champion_label": "bot-v8",
-  "rating": 1220.1,
-  "games": 110,
-  "selection": "highest Elo among bots meeting champion_min_games; otherwise highest Elo among rated bots"
+  "generated_at": "2026-09-25T16:45:20.712975+00:00",
+  "champion_uid": "bot-v9@ab9771e074",
+  "champion_label": "bot-v9",
+  "path": "bots/current/bot-v9",
+  "fingerprint": "ab9771e0741ba4ae76b71483ae3dc9e1bdc742cf1b31ca1a2a2f0ea02a7b3ad5",
+  "promoted_from": "bot-v9-exp012",
+  "rating": 1031.5,
+  "games": 124,
+  "rating_scope": "2026-09-26 native research cohort; not historical Elo",
+  "selection": "Explicit acceptance certificate in experiments/research-20260926/state.json; never highest Elo alone",
+  "previous_champion": "bot-v8",
+  "source_equivalence": "All project files byte-identical to tested EXP012"
 }

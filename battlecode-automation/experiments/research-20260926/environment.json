@@ -1,0 +1,13 @@
+{
+  "python": "3.13.2 (v3.13.2:4f8bb3947cf, Feb  4 2025, 11:51:10) [Clang 15.0.0 (clang-1500.3.9.4)]",
+  "prefix": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/.battlecode-codex",
+  "toolkit": "1.1.0",
+  "cli": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/.battlecode-codex/bin/unswbc",
+  "engine_sha256": "12e58ad88650da698a4b70c25f4d2c1b0341898787eca60fa95d219fc91ab566",
+  "node": "v20.18.3",
+  "initial_git_commit": "94af91ee5652b71eeabe0c7517f77aafa54c628b",
+  "native_seed_note": "Pearl RNG seeded by CLI; tested bots use deterministic ID/round hashes.",
+  "protocol": 3,
+  "sandbox_turn_point_limit": 100000000,
+  "source_preservation": "Separate candidate directories plus tar archives and SHA-256 manifests; no new commit claimed."
+}

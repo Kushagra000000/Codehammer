@@ -1,0 +1,74 @@
+[
+  {
+    "id": "66e617269458b703fe79ddb521d2d1284cdc5cc5c4fe5702b1b80b32acfd21ce",
+    "map": "maps/big_empty.map",
+    "candidate_side": "A",
+    "teams": {
+      "A": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 40400000.0,
+        "invalid_action_deaths": 0
+      },
+      "B": {
+        "cpu_limit_events": 28,
+        "max_turn_points": 98100000.0,
+        "invalid_action_deaths": 28
+      }
+    },
+    "score": 1.0
+  },
+  {
+    "id": "ef487a00fac845976aabcd22d022c145a047c9989a5e22a6d4d2b414acde0650",
+    "map": "maps/big_empty.map",
+    "candidate_side": "B",
+    "teams": {
+      "A": {
+        "cpu_limit_events": 16,
+        "max_turn_points": 99800000.0,
+        "invalid_action_deaths": 16
+      },
+      "B": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 40600000.0,
+        "invalid_action_deaths": 0
+      }
+    },
+    "score": 1.0
+  },
+  {
+    "id": "f931287d95f1ce215b94fdde647ea8aba9194f2329597c4c8ee9e69aad59641c",
+    "map": "maps/default.map",
+    "candidate_side": "A",
+    "teams": {
+      "A": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 14000000.0,
+        "invalid_action_deaths": 0
+      },
+      "B": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 13700000.0,
+        "invalid_action_deaths": 0
+      }
+    },
+    "score": 1.0
+  },
+  {
+    "id": "775826d3a3fcdd64374cee79f6fa7eb9ddab79aed49bd1e6360b0edd41820e02",
+    "map": "maps/default.map",
+    "candidate_side": "B",
+    "teams": {
+      "A": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 13900000.0,
+        "invalid_action_deaths": 0
+      },
+      "B": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 14000000.0,
+        "invalid_action_deaths": 0
+      }
+    },
+    "score": 1.0
+  }
+]

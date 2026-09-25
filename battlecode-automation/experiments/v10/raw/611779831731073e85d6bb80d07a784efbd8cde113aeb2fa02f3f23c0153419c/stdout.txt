@@ -1,0 +1,42 @@
+loaded c/c++ vs c/c++
+without --sandbox the seed repeats the pearls but not the bots' own random numbers
+seed 0x0000000000001c21
+running round 2/500 --  last: 190ms  eta: 1m35s  dragons: 2 vs 2
+round 29: bot 7 (team A) died: lost a head-to-head
+round 29: bot 3 (team B) died: lost a head-to-head
+round 38: bot 1 (team B) died: lost a head-to-head
+round 38: bot 11 (team A) died: lost a head-to-head
+round 42: bot 12 (team A) died: hit itself
+round 47: bot 2 (team A) died: hit itself
+round 49: bot 13 (team A) died: hit itself
+running round 51/500 --  last: 5ms  eta: 3.7s  dragons: 6 vs 2
+round 60: bot 16 (team A) died: hit itself
+round 62: bot 5 (team A) died: hit itself
+round 62: bot 15 (team A) died: hit itself
+round 66: bot 23 (team A) died: hit itself
+round 67: bot 20 (team A) died: hit itself
+round 73: bot 24 (team A) died: hit itself
+round 75: bot 21 (team A) died: hit itself
+round 75: bot 25 (team A) died: hit itself
+round 82: bot 31 (team A) died: hit itself
+round 89: bot 14 (team A) died: hit another dragon
+round 94: bot 34 (team A) died: hit itself
+round 96: bot 8 (team B) died: lost a head-to-head
+round 96: bot 0 (team A) died: lost a head-to-head
+round 98: bot 32 (team A) died: hit itself
+running round 101/500 --  last: 9ms  eta: 3.2s  dragons: 18 vs 1
+round 100: bot 33 (team A) died: hit another dragon
+round 101: bot 30 (team A) died: hit itself
+round 101: bot 36 (team A) died: hit itself
+round 102: bot 37 (team A) died: hit itself
+round 102: bot 43 (team A) died: hit itself
+round 105: bot 45 (team A) died: hit itself
+round 106: bot 44 (team A) died: hit itself
+round 106: bot 39 (team A) died: lost a head-to-head
+round 106: bot 46 (team A) died: lost a head-to-head
+round 110: bot 47 (team A) died: hit itself
+round 115: bot 10 (team B) died: lost a head-to-head
+round 115: bot 6 (team A) died: lost a head-to-head
+round 115: bot 42 (team A) died: hit itself
+team A wins after 116 rounds (by elimination) (1.0s)
+wrote replay: /Users/kushagra/Desktop/UNSW_battlecode/Codehammer/replays/research-611779831731073e85d6bb80d07a784efbd8cde113aeb2fa02f3f23c0153419c.replay

@@ -52,7 +52,7 @@ RATINGS_PATH = DATA_ROOT / "ratings.json"
 HISTORY_PATH = DATA_ROOT / "elo_history.jsonl"
 CHAMPION_PATH = DATA_ROOT / "champion.json"
 
-VERSION_RE = re.compile(r"(?:bot[-_]?v|v)(\d+(?:\.\d+)*)$", re.IGNORECASE)
+VERSION_RE = re.compile(r"(?:bot[-_]?v|v)(\d+(?:\.\d+)*)(?:-exp\d+)?$", re.IGNORECASE)
 
 
 @dataclass(frozen=True)
@@ -147,6 +147,9 @@ def load_config() -> dict:
     loaded = load_json(CONFIG_PATH, {})
     if isinstance(loaded, dict):
         defaults.update(loaded)
+    local_cli = ROOT / ".battlecode-codex/bin/unswbc"
+    if local_cli.exists():
+        defaults["command"] = str(local_cli)
     return defaults
 
 
@@ -164,6 +167,8 @@ def fingerprint_dir(path: Path) -> str:
     files = []
     for p in path.rglob("*"):
         if not p.is_file():
+            continue
+        if any(part in {".unswbc-build", "__pycache__", ".git"} for part in p.relative_to(path).parts):
             continue
         if p.name in excluded_names or p.suffix in excluded_suffixes:
             continue
@@ -251,6 +256,8 @@ def run_one_match(task: dict) -> MatchResult:
     sandbox = bool(task["sandbox"])
     keep_replays = bool(task["keep_replays"])
     command_name = task["command"]
+    if "/" in command_name and not Path(command_name).is_absolute():
+        command_name = str(ROOT / command_name)
     started_at = utc_now()
     started = time.monotonic()
     stdout = ""
@@ -263,17 +270,22 @@ def run_one_match(task: dict) -> MatchResult:
         (workdir / "maps").mkdir()
         (workdir / "replays").mkdir()
         # Full copies avoid symlink/path surprises and guarantee independent build/replay dirs.
-        a_dst = workdir / "bot_a"
-        b_dst = workdir / "bot_b"
+        # Header edits must invalidate unswbc 1.1.0's source-only wasm cache.
+        alias_a = "bot_a-" + bot_a.fingerprint[:16]
+        alias_b = "bot_b-" + bot_b.fingerprint[:16]
+        a_dst = workdir / alias_a
+        b_dst = workdir / alias_b
         shutil.copytree(ROOT / bot_a.path, a_dst)
         shutil.copytree(ROOT / bot_b.path, b_dst)
         shutil.copy2(ROOT / map_info.path, workdir / "maps" / map_info.name)
 
-        cmd = [command_name, "run", f"maps/{map_info.name}", "bot_a", "bot_b"]
+        cmd = [command_name, "run", f"maps/{map_info.name}", alias_a, alias_b]
         if sandbox:
             cmd.append("--sandbox")
         env = os.environ.copy()
         env.setdefault("NO_COLOR", "1")
+        env["UNSWBC_NO_UPDATE"] = "1"
+        env["UNSWBC_NO_VSCODE"] = "1"
 
         try:
             proc = subprocess.run(
@@ -311,7 +323,11 @@ def run_one_match(task: dict) -> MatchResult:
         elif replay_files and not keep_replays:
             replay_target = None
 
-    winner_alias = parse_winner(stdout, stderr, {"bot_a": bot_a, "bot_b": bot_b})
+    raw_dir = DATA_ROOT / "raw_logs" / match_id
+    raw_dir.mkdir(parents=True, exist_ok=True)
+    (raw_dir / "stdout.txt").write_text(stdout)
+    (raw_dir / "stderr.txt").write_text(stderr)
+    winner_alias = parse_winner(stdout, stderr, {"bot_a": bot_a, "bot_b": bot_b}) if exit_code == 0 else None
     if winner_alias == "bot_a":
         winner_uid, winner_label, result = bot_a.uid, bot_a.label, "win"
     elif winner_alias == "bot_b":
@@ -346,59 +362,14 @@ def run_one_match(task: dict) -> MatchResult:
 
 
 def parse_winner(stdout: str, stderr: str, aliases: dict[str, Bot]) -> str | None:
-    text = f"{stdout}\n{stderr}"
-    low = text.lower()
-    # Draw/tie patterns first.
-    draw_patterns = [r"\bdraw\b", r"\btie\b", r"game\s+(?:ended|ends)\s+in\s+a\s+draw"]
-    for p in draw_patterns:
-        if re.search(p, low):
-            # Only treat a draw as authoritative when it occurs near a result-ish token.
-            if re.search(r"(?:result|winner|ended|game).*\b(?:draw|tie)\b|\b(?:draw|tie)\b.*(?:result|winner|game)", low, re.S):
-                return "draw"
-
-    # UNSW Battlecode 0.3.13 prints results in the form:
-    #   team A wins after 39 rounds (by elimination) (0.4s)
-    #   team B wins after ...
-    # Treat this as authoritative because it is the actual CLI result line.
-    m = re.search(r"\bteam\s+([ab])\s+wins?\b", low)
-    if m:
-        return "bot_a" if m.group(1) == "a" else "bot_b"
-
-    # Also accept an explicit draw sentence when the match exited cleanly.
-    if re.search(r"\b(?:game|match)\b.*\b(?:draw|tie)\b|\b(?:draw|tie)\b.*\b(?:game|match)\b", low, re.S):
+    # Only authoritative result sentences; unknown output remains unparsed.
+    outcomes = re.findall(r"^team ([AB]) wins after \d+ rounds(?: .*|)$", stdout, re.M)
+    draws = re.findall(r"^(?:draw after \d+ rounds.*|game ended in a draw after \d+ rounds.*)$", stdout, re.M)
+    if len(outcomes) + len(draws) != 1:
+        return None
+    if draws:
         return "draw"
-
-    patterns = [
-        r"winner\s*[:=\-]\s*([^\n\r]+)",
-        r"won\s*[:=\-]\s*([^\n\r]+)",
-        r"victor(?:y|ious)?\s*[:=\-]\s*([^\n\r]+)",
-    ]
-    candidate_line = None
-    for p in patterns:
-        m = re.search(p, text, re.IGNORECASE)
-        if m:
-            candidate_line = m.group(1)
-            break
-    if candidate_line:
-        n = candidate_line.lower()
-        if re.search(r"\bbot[_ -]?a\b", n):
-            return "bot_a"
-        if re.search(r"\bbot[_ -]?b\b", n):
-            return "bot_b"
-        for alias, bot in aliases.items():
-            if bot.label.lower() in n or bot.uid.lower() in n:
-                return alias
-
-    # Common sentence forms such as "bot_a wins" / "bot_b was victorious",
-    # plus the real folder names if the CLI prints them.
-    for alias, bot in aliases.items():
-        names = {alias.lower(), bot.label.lower(), bot.uid.lower()}
-        for name in names:
-            if re.search(rf"\b{re.escape(name)}\b[^\n\r]{{0,100}}\b(?:wins?|won|victorious)\b", text, re.I):
-                return alias
-            if re.search(rf"\b(?:wins?|won|victorious)\b[^\n\r]{{0,100}}\b{re.escape(name)}\b", text, re.I):
-                return alias
-    return None
+    return "bot_a" if outcomes[0] == "A" else "bot_b"
 
 
 def generate_match_id() -> str:
@@ -409,6 +380,8 @@ def generate_match_id() -> str:
 
 
 def schedule_pair(a: Bot, b: Bot, maps: list[MapInfo], config: dict, existing: set[tuple], force: bool = False) -> list[dict]:
+    if a.uid == b.uid:
+        return []
     tasks = []
     orders = [(a, b)]
     if config.get("both_sides", True) and a.uid != b.uid:
@@ -495,6 +468,15 @@ def ratings_from_matches(rows: list[dict], config: dict) -> tuple[dict, list[dic
 
 
 def choose_champion(bots: list[Bot], ratings: dict[str, float], stats: dict[str, dict], config: dict) -> Bot | None:
+    # Elo ranking is not a promotion certificate. Retain the explicitly recorded
+    # incumbent; research promotion must satisfy the preregistered v5/map gates.
+    incumbent = load_json(CHAMPION_PATH, {}).get("champion_uid")
+    if incumbent:
+        return next((b for b in bots if b.uid == incumbent), None)
+    return None
+
+
+def highest_rated(bots: list[Bot], ratings: dict[str, float], stats: dict[str, dict], config: dict) -> Bot | None:
     ranked = []
     min_games = int(config.get("champion_min_games", 8))
     bot_map = {b.uid: b for b in bots}
@@ -541,7 +523,8 @@ def update_state_and_dashboard(bots: list[Bot], rows: list[dict], config: dict) 
         "games": stats.get(champion.uid, {}).get("games", 0) if champion else 0,
         "selection": "highest Elo among bots meeting champion_min_games; otherwise highest Elo among rated bots",
     }
-    CHAMPION_PATH.write_text(json.dumps(champion_payload, indent=2) + "\n")
+    # Preserve the historical incumbent record; dashboard selection is read-only.
+    champion_payload = load_json(CHAMPION_PATH, champion_payload)
 
     BOTS_PATH.write_text(json.dumps([asdict(b) for b in bots], indent=2) + "\n")
 
@@ -666,6 +649,9 @@ def main() -> int:
         config["both_sides"] = False
 
     bots = discover_bots()
+    active = set(config.get("active_bot_names", []))
+    if active:
+        bots = [b for b in bots if b.label in active]
     maps = discover_maps()
     if args.maps:
         wanted = set(args.maps)
@@ -720,6 +706,10 @@ def main() -> int:
         known_uids = {r.get("bot_a_uid") for r in rows} | {r.get("bot_b_uid") for r in rows}
         known_uids.discard(None)
         new_bots = choose_new_candidates(bots, known_uids)
+        # Schedule gaps on newly added maps even when every bot is already known.
+        known_maps = {r.get("map_name") for r in rows if r.get("result") in {"win", "draw"}}
+        if any(m.name not in known_maps for m in maps):
+            new_bots = bots
         ratings, _, stats = ratings_from_matches(rows, config)
         champion = choose_champion(bots, ratings, stats, config)
         if champion is None:
@@ -735,13 +725,20 @@ def main() -> int:
                 if b.uid in seen or b.uid == candidate.uid:
                     continue
                 # Baseline guardrail: include oldest version when available.
-                if parse_version(b.label) == (1,):
+                if parse_version(b.label) in {(1,), (5,)}:
                     opponents.append(b)
                     seen.add(b.uid)
             for opponent in opponents:
                 tasks.extend(schedule_pair(candidate, opponent, maps, config, existing, args.force))
 
     if args.dry_run:
+        # New-map gap filling can reach a pairing from either candidate.
+        unique = {}
+        for task in tasks:
+            key = (task["map"]["path"], task["bot_a"]["uid"], task["bot_b"]["uid"])
+            unique.setdefault(key, task)
+        if int(config.get("games_per_order", 1)) == 1:
+            tasks = list(unique.values())
         print(f"Scheduled {len(tasks)} matches with workers={config['workers']}, sandbox={config['sandbox']}.")
         for t in tasks[:25]:
             print(f"  {t['bot_a']['label']} vs {t['bot_b']['label']} on {t['map']['name']}")
@@ -754,6 +751,13 @@ def main() -> int:
         update_state_and_dashboard(bots, rows, config)
         print("No new matches required.")
         return 0
+
+    if int(config.get("games_per_order", 1)) == 1:
+        unique = {}
+        for task in tasks:
+            key = (task["map"]["path"], task["bot_a"]["uid"], task["bot_b"]["uid"])
+            unique.setdefault(key, task)
+        tasks = list(unique.values())
 
     print(f"Running {len(tasks)} matches with {config['workers']} parallel workers on {len(maps)} maps.")
     print("Parallel runs use isolated temporary workspaces; replays are moved into ./replays/.")

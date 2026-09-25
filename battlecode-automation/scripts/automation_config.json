@@ -9,7 +9,13 @@
   "champion_min_games": 8,
   "bootstrap_opponents": 4,
   "keep_replays": true,
-  "command": "unswbc",
+  "command": ".battlecode-codex/bin/unswbc",
   "bot_glob": "**/bot.toml",
-  "map_glob": "**/*.map"
+  "map_glob": "**/*.map",
+  "active_bot_names": [
+    "bot-v8",
+    "bot-v9",
+    "bot-v10",
+    "bot-v10.1"
+  ]
 }

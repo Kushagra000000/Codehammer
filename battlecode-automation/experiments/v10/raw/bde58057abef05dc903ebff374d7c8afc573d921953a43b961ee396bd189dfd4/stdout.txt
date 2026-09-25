@@ -1,0 +1,37 @@
+loaded c/c++ vs c/c++
+without --sandbox the seed repeats the pearls but not the bots' own random numbers
+seed 0x0000000000001c21
+running round 2/500 --  last: 242ms  eta: 2m01s  dragons: 2 vs 2
+round 31: bot 3 (team B) died: lost a head-to-head
+round 31: bot 0 (team A) died: lost a head-to-head
+round 44: bot 10 (team A) died: lost a head-to-head
+round 44: bot 1 (team B) died: lost a head-to-head
+round 49: bot 8 (team A) died: lost a head-to-head
+round 49: bot 9 (team B) died: lost a head-to-head
+running round 51/500 --  last: 6ms  eta: 4.1s  dragons: 7 vs 3
+round 56: bot 2 (team A) died: lost a head-to-head
+round 56: bot 6 (team B) died: lost a head-to-head
+round 76: bot 21 (team A) died: hit itself
+round 77: bot 4 (team B) died: lost a head-to-head
+round 77: bot 15 (team A) died: lost a head-to-head
+round 78: bot 40 (team A) died: lost a head-to-head
+round 78: bot 39 (team B) died: lost a head-to-head
+round 82: bot 12 (team B) died: lost a head-to-head
+round 82: bot 22 (team A) died: lost a head-to-head
+round 85: bot 35 (team B) died: lost a head-to-head
+round 85: bot 26 (team A) died: lost a head-to-head
+round 86: bot 36 (team A) died: lost a head-to-head
+round 86: bot 42 (team B) died: lost a head-to-head
+round 92: bot 46 (team B) died: lost a head-to-head
+round 92: bot 50 (team A) died: lost a head-to-head
+round 94: bot 45 (team A) died: lost a head-to-head
+round 94: bot 53 (team B) died: lost a head-to-head
+round 97: bot 48 (team B) died: lost a head-to-head
+round 97: bot 37 (team A) died: lost a head-to-head
+running round 101/500 --  last: 18ms  eta: 4.9s  dragons: 33 vs 2
+round 100: bot 25 (team B) died: lost a head-to-head
+round 100: bot 31 (team A) died: lost a head-to-head
+round 107: bot 52 (team B) died: lost a head-to-head
+round 107: bot 60 (team A) died: lost a head-to-head
+team A wins after 108 rounds (by elimination) (1.4s)
+wrote replay: /Users/kushagra/Desktop/UNSW_battlecode/Codehammer/replays/research-bde58057abef05dc903ebff374d7c8afc573d921953a43b961ee396bd189dfd4.replay

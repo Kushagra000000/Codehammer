@@ -1,0 +1,43 @@
+{
+  "replay": "replays/research-b5269c55f3fecd1120971c3fcf5f91422830d7ccbb29f4510d01e58c3ba37060.replay",
+  "result": {
+    "terminated": true,
+    "endReason": "roundLimit",
+    "winner": "A",
+    "teamA": {
+      "dragonCount": 17,
+      "longestDragon": 18,
+      "totalLength": 114
+    },
+    "teamB": {
+      "dragonCount": 15,
+      "longestDragon": 15,
+      "totalLength": 75
+    }
+  },
+  "stats": {
+    "A": {
+      "feedIntents": 2,
+      "confirmedSelfFeeds": 2,
+      "droppedFeedPearls": 4,
+      "recipientCollected": 2,
+      "otherAllyCollected": 1,
+      "enemyCollected": 0,
+      "claims": 9,
+      "growerReversals": 1,
+      "patrolSteps": 35
+    },
+    "B": {
+      "feedIntents": 0,
+      "confirmedSelfFeeds": 0,
+      "droppedFeedPearls": 0,
+      "recipientCollected": 0,
+      "otherAllyCollected": 0,
+      "enemyCollected": 0,
+      "claims": 0,
+      "growerReversals": 0,
+      "patrolSteps": 0
+    }
+  },
+  "uncollectedTrackedFeedPearls": 1
+}

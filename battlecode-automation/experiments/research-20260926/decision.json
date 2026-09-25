@@ -1,0 +1,72 @@
+{
+  "candidate": "bots/candidate/bot-v9-exp012",
+  "parent": "bots/candidate/bot-v9-exp001 (v8 equivalent)",
+  "complete": true,
+  "five_map_gate": true,
+  "beaten_maps": [
+    "Colosseum.map",
+    "arena.map",
+    "big_empty.map",
+    "default.map",
+    "default_small.map",
+    "devil.map",
+    "queen_of_spades.map",
+    "schooltime.map",
+    "stronghold.map",
+    "trophy.map"
+  ],
+  "regression_flags": [],
+  "runtime_failure_matches": [],
+  "eligible_for_review": true,
+  "CURRENT_CHAMPION": "bots/current/bot-v9",
+  "BEST_DISCOVERED_BOT": "bots/current/bot-v9",
+  "LATEST_CANDIDATE": "bots/candidate/bot-v9-exp015",
+  "best_new_candidate": "bots/candidate/bot-v9-exp012",
+  "promotion": "accepted after 400-game research batch; exact EXP012 source copy",
+  "batch_games": 400,
+  "candidate_summary": {
+    "candidate": "bots/candidate/bot-v9-exp012",
+    "games": 124,
+    "score_rate": 0.8951612903225806,
+    "elo": 1031.5,
+    "v5": {
+      "games": 96,
+      "W": 90,
+      "D": 1,
+      "L": 5
+    },
+    "incumbent": {
+      "games": 14,
+      "W": 11,
+      "D": 0,
+      "L": 3
+    },
+    "v5_maps_beaten": [
+      "maps/Colosseum.map",
+      "maps/arena.map",
+      "maps/big_empty.map",
+      "maps/default.map",
+      "maps/default_small.map",
+      "maps/devil.map",
+      "maps/queen_of_spades.map",
+      "maps/schooltime.map",
+      "maps/stronghold.map",
+      "maps/trophy.map"
+    ],
+    "passes_five_maps": true,
+    "strongest": [
+      "Colosseum.map",
+      "default.map",
+      "devil.map"
+    ],
+    "weakest": [
+      "trophy.map",
+      "stronghold.map",
+      "trauma.map"
+    ],
+    "mean_final_longest": 9.435483870967742,
+    "king_length": null,
+    "sacrifices": null,
+    "status": "champion source"
+  }
+}
