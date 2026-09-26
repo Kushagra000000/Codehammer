@@ -90,3 +90,17 @@ promotion gate was outside the newly requested four-bot pool, and superiority
 over v9 is not statistically established. Active broad search is retired;
 `v10_matches.py` performs bounded, explicit comparisons only. Dashboard:
 `battlecode-automation/reports/v10.html`. No background search or submission.
+
+## Latest v11 research outcome — 2026-09-26
+
+- Latest candidate: `bots/candidate/bot-v11.1`, R8, SHA860e7ea84e55…;
+  comparison slot: `bots/candidate/bot-v11`, R4, SHA760fed7cf902….
+- 528 local games completed. Exact final v11.1:62W/16D/32L in110 fresh
+  all-map games, leading v10.1/v10/v9/v8 but8W/4D/10L vs v10.2; mutual
+  vs v11 also8W/4D/10L. This does not establish a robust all-opponent winner.
+- Both candidates remain experimental. No champion promotion, no v5 gate,
+  no official submission. Existing v10.1/v10.2 competition choices remain intact.
+- Report, decision, source hashes and ZIPs: `battlecode-automation/experiments/v11/`.
+  Dashboard: `battlecode-automation/reports/v11.html`.
+- Source safety checks and exact-source sandbox pass. Final v11.1 observed
+  maximum51.8M instructions; no CPU-limit or invalid-action events.

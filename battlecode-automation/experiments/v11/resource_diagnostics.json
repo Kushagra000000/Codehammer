@@ -1,0 +1,254 @@
+[
+  {
+    "id": "4864f8b5c76a3458aa6736b42cb22375e204373ae2e388ca5727fbf30b4663eb",
+    "map": "maps/big_empty.map",
+    "candidate_side": "A",
+    "teams": {
+      "A": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 99200000.0,
+        "invalid_action_deaths": 0
+      },
+      "B": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 56900000.0,
+        "invalid_action_deaths": 0
+      }
+    },
+    "score": 0.0
+  },
+  {
+    "id": "ec2098e4e99c628ca74b04af609194e87312be69cbce00f030d71587ab4615c8",
+    "map": "maps/big_empty.map",
+    "candidate_side": "B",
+    "teams": {
+      "A": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 56200000.0,
+        "invalid_action_deaths": 0
+      },
+      "B": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 99800000.0,
+        "invalid_action_deaths": 0
+      }
+    },
+    "score": 0.0
+  },
+  {
+    "id": "e52cec1c15499aa7cc78da020337068f6d6c70477fa9be5feea343a87a1e57cb",
+    "map": "maps/stronghold.map",
+    "candidate_side": "A",
+    "teams": {
+      "A": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 28900000.0,
+        "invalid_action_deaths": 0
+      },
+      "B": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 19100000.0,
+        "invalid_action_deaths": 0
+      }
+    },
+    "score": 0.0
+  },
+  {
+    "id": "45f8767aa696732d89462cd0402fd1477ab89db2204627df8ffb1f18142a6dfe",
+    "map": "maps/stronghold.map",
+    "candidate_side": "B",
+    "teams": {
+      "A": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 19100000.0,
+        "invalid_action_deaths": 0
+      },
+      "B": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 28400000.0,
+        "invalid_action_deaths": 0
+      }
+    },
+    "score": 0.0
+  },
+  {
+    "id": "915b393b995222210eff30a05c923a0142907d3c84e0fb21777f106a4b4f6e2e",
+    "map": "maps/big_empty.map",
+    "candidate_side": "A",
+    "teams": {
+      "A": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 52100000.0,
+        "invalid_action_deaths": 0
+      },
+      "B": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 53800000.0,
+        "invalid_action_deaths": 0
+      }
+    },
+    "score": 0.0
+  },
+  {
+    "id": "15766367d6d32ef212eb9ecdf407023e19e5db31277b5b676204ae766aad6383",
+    "map": "maps/big_empty.map",
+    "candidate_side": "B",
+    "teams": {
+      "A": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 55200000.0,
+        "invalid_action_deaths": 0
+      },
+      "B": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 55000000.0,
+        "invalid_action_deaths": 0
+      }
+    },
+    "score": 1.0
+  },
+  {
+    "id": "6c8f816e0108b17ddb1ca0eac45a9b0a2f3756fbfc9b64a476c970a65039bbd6",
+    "map": "maps/stronghold.map",
+    "candidate_side": "A",
+    "teams": {
+      "A": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 17300000.0,
+        "invalid_action_deaths": 0
+      },
+      "B": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 18500000.0,
+        "invalid_action_deaths": 0
+      }
+    },
+    "score": 0.0
+  },
+  {
+    "id": "3d04e8116fded08808ee6a35ac3719529914506719862616ab4d6a0c210d498f",
+    "map": "maps/stronghold.map",
+    "candidate_side": "B",
+    "teams": {
+      "A": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 19300000.0,
+        "invalid_action_deaths": 0
+      },
+      "B": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 16800000.0,
+        "invalid_action_deaths": 0
+      }
+    },
+    "score": 0.0
+  },
+  {
+    "id": "2ac00b933e8bfab475e147f70feda0c9634570150b2fc734e9c073c44b176856",
+    "map": "maps/big_empty.map",
+    "candidate_side": "A",
+    "teams": {
+      "A": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 51700000.0,
+        "invalid_action_deaths": 0
+      },
+      "B": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 59100000.0,
+        "invalid_action_deaths": 0
+      }
+    },
+    "score": 1.0
+  },
+  {
+    "id": "b2dd3c8ea636c317ea5fd16be053e8352b182d6c6349189168fa36f2a18582cb",
+    "map": "maps/big_empty.map",
+    "candidate_side": "B",
+    "teams": {
+      "A": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 57600000.0,
+        "invalid_action_deaths": 0
+      },
+      "B": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 46900000.0,
+        "invalid_action_deaths": 0
+      }
+    },
+    "score": 1.0
+  },
+  {
+    "id": "7dcadc70a354605a2e7f53889ce95361b5957439366b588fd4534a3d171dac53",
+    "map": "maps/big_empty.map",
+    "candidate_side": "A",
+    "teams": {
+      "A": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 51800000.0,
+        "invalid_action_deaths": 0
+      },
+      "B": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 53000000.0,
+        "invalid_action_deaths": 0
+      }
+    },
+    "score": 0.0
+  },
+  {
+    "id": "f59c3430a681baae09ce3ca4b47f3d47a82b322d7bc9bdb2b4d77b66148a052a",
+    "map": "maps/big_empty.map",
+    "candidate_side": "B",
+    "teams": {
+      "A": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 59600000.0,
+        "invalid_action_deaths": 0
+      },
+      "B": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 50700000.0,
+        "invalid_action_deaths": 0
+      }
+    },
+    "score": 1.0
+  },
+  {
+    "id": "901458c485e886e5d19b76c70f5df18954e9891fbf5b52715490235511a1a0a0",
+    "map": "maps/stronghold.map",
+    "candidate_side": "A",
+    "teams": {
+      "A": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 16700000.0,
+        "invalid_action_deaths": 0
+      },
+      "B": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 19200000.0,
+        "invalid_action_deaths": 0
+      }
+    },
+    "score": 0.0
+  },
+  {
+    "id": "594de357415650a33a8dcdf09d0ce216683b11d21292fa0946e0e937e044129c",
+    "map": "maps/stronghold.map",
+    "candidate_side": "B",
+    "teams": {
+      "A": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 19800000.0,
+        "invalid_action_deaths": 0
+      },
+      "B": {
+        "cpu_limit_events": 0,
+        "max_turn_points": 16399999.999999998,
+        "invalid_action_deaths": 0
+      }
+    },
+    "score": 0.0
+  }
+]

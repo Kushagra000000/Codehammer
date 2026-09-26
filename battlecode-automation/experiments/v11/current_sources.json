@@ -1,0 +1,16 @@
+{
+  "bot-v11": {
+    "path": "bots/candidate/bot-v11",
+    "sha256": "760fed7cf9026f9fcbd89f9e3e400c9b07f03b7d9f662f26ee1edbc0160582ba",
+    "status": "experimental; not promoted",
+    "package": "battlecode-automation/experiments/v11/bot-v11.zip",
+    "package_sha256": "943abdc185bb852066898998fe6676f0ba08c0251abc80e2d984d2c1d256058e"
+  },
+  "bot-v11.1": {
+    "path": "bots/candidate/bot-v11.1",
+    "sha256": "860e7ea84e5571907632bd51de196e0935576d7fc930f3aef2b66dcd4413ac30",
+    "status": "experimental; not promoted",
+    "package": "battlecode-automation/experiments/v11/bot-v11.1.zip",
+    "package_sha256": "40428b6180104c0cd0504f2114a80d146de22985787614e72d18ed95f61a7204"
+  }
+}

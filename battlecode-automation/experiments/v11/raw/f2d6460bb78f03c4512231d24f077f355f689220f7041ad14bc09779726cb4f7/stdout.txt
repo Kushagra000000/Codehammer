@@ -1,0 +1,44 @@
+loaded c/c++ vs c/c++
+without --sandbox the seed repeats the pearls but not the bots' own random numbers
+seed 0x0000000000001fa9
+running round 2/500 --  last: 225ms  eta: 1m52s  dragons: 6 vs 6
+round 19: bot 4 (team A) died: lost a head-to-head
+round 19: bot 5 (team B) died: lost a head-to-head
+round 29: bot 17 (team A) died: hit itself
+round 31: bot 16 (team A) died: lost a head-to-head
+round 31: bot 1 (team B) died: lost a head-to-head
+round 33: bot 21 (team A) died: hit itself
+round 34: bot 14 (team A) died: hit itself
+round 36: bot 3 (team B) died: lost a head-to-head
+round 36: bot 8 (team A) died: lost a head-to-head
+round 44: bot 20 (team A) died: hit itself
+round 44: bot 27 (team A) died: hit itself
+round 49: bot 28 (team A) died: hit itself
+running round 51/500 --  last: 4ms  eta: 3.4s  dragons: 18 vs 4
+round 53: bot 7 (team B) died: lost a head-to-head
+round 53: bot 12 (team A) died: lost a head-to-head
+round 53: bot 15 (team A) died: hit itself
+round 57: bot 37 (team A) died: lost a head-to-head
+round 57: bot 33 (team B) died: lost a head-to-head
+round 63: bot 36 (team A) died: hit itself
+round 67: bot 25 (team A) died: hit itself
+round 68: bot 18 (team A) died: lost a head-to-head
+round 68: bot 11 (team B) died: lost a head-to-head
+round 68: bot 38 (team A) died: hit itself
+round 72: bot 56 (team A) died: hit itself
+round 75: bot 42 (team A) died: hit itself
+round 77: bot 55 (team A) died: hit itself
+round 78: bot 26 (team A) died: hit itself
+round 79: bot 44 (team A) died: hit itself
+round 80: bot 66 (team A) died: hit itself
+round 83: bot 67 (team A) died: hit itself
+round 84: bot 68 (team A) died: hit itself
+round 88: bot 59 (team A) died: hit itself
+round 89: bot 64 (team A) died: hit itself
+round 91: bot 47 (team A) died: hit itself
+round 93: bot 81 (team A) died: hit itself
+round 94: bot 9 (team B) died: lost a head-to-head
+round 94: bot 23 (team A) died: lost a head-to-head
+round 94: bot 69 (team A) died: hit itself
+team A wins after 95 rounds (by elimination) (0.7s)
+wrote replay: /Users/kushagra/Desktop/UNSW_battlecode/Codehammer/replays/research-f2d6460bb78f03c4512231d24f077f355f689220f7041ad14bc09779726cb4f7.replay

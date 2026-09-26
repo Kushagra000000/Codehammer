@@ -62,3 +62,20 @@ One checked grower split reversal was executed. Final lengths were 18–15 (win)
 and 17–18 (loss). Detailed JSON files are in the v10 experiment directory.
 The reference and local Stronghold replay match exactly in dimensions,
 symmetry, horizontal/vertical edges, portals, respawn rules and initial dragons.
+
+## v11 event-level replay checks — 2026-09-26
+
+OBSERVED: v11 R1 Stronghold dragon111 used a two-step sprint at488 and a
+three-step sprint at489, then transferred18 segments to a child at493. Its
+self-death at494 was the discarded length-two parent, not a length20 grower.
+A previous-round-length death metric would misclassify this. The new
+`v11_replay_analysis.cjs` tracks split bodies and movement head/tail updates
+before counting long deaths. It also reports multi-step actions and actual
+whole-body ordering within logged rectangular claims; ordering does not prove
+intent or protection from enemies.
+
+OBSERVED: R6 Colosseum lost9/10 games across five baselines at seed8105, usually
+ending by38–81. Losses were dominated by head-to-head deaths with small swarms.
+That motivated the isolated opening-trade diagnostic; it was not attributed to
+Hamiltonian self-collision. Original replays and all failed candidate replays
+are preserved unchanged.

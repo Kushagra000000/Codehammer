@@ -1,0 +1,1014 @@
+[
+  {
+    "id": "c5fe531b74d722ddc39e84c91157cbd68a492cb2444b1f7baa8b424af7137ff2",
+    "map": "maps/big_empty.map",
+    "candidate_side": "A",
+    "metrics": {
+      "A": {
+        "peak": 45,
+        "long_deaths": [
+          {
+            "round": 132,
+            "id": 0,
+            "reason": "H",
+            "length": 13
+          },
+          {
+            "round": 152,
+            "id": 103,
+            "reason": "H",
+            "length": 14
+          },
+          {
+            "round": 219,
+            "id": 265,
+            "reason": "H",
+            "length": 21
+          },
+          {
+            "round": 228,
+            "id": 310,
+            "reason": "S",
+            "length": 13
+          },
+          {
+            "round": 245,
+            "id": 269,
+            "reason": "H",
+            "length": 15
+          },
+          {
+            "round": 245,
+            "id": 89,
+            "reason": "H",
+            "length": 18
+          },
+          {
+            "round": 265,
+            "id": 409,
+            "reason": "H",
+            "length": 13
+          },
+          {
+            "round": 276,
+            "id": 154,
+            "reason": "H",
+            "length": 19
+          },
+          {
+            "round": 300,
+            "id": 368,
+            "reason": "S",
+            "length": 19
+          },
+          {
+            "round": 311,
+            "id": 282,
+            "reason": "H",
+            "length": 12
+          },
+          {
+            "round": 353,
+            "id": 140,
+            "reason": "S",
+            "length": 13
+          },
+          {
+            "round": 366,
+            "id": 309,
+            "reason": "S",
+            "length": 19
+          },
+          {
+            "round": 380,
+            "id": 422,
+            "reason": "H",
+            "length": 13
+          },
+          {
+            "round": 393,
+            "id": 296,
+            "reason": "S",
+            "length": 14
+          },
+          {
+            "round": 393,
+            "id": 354,
+            "reason": "S",
+            "length": 28
+          },
+          {
+            "round": 402,
+            "id": 37,
+            "reason": "S",
+            "length": 26
+          },
+          {
+            "round": 406,
+            "id": 350,
+            "reason": "S",
+            "length": 23
+          },
+          {
+            "round": 407,
+            "id": 455,
+            "reason": "S",
+            "length": 14
+          },
+          {
+            "round": 412,
+            "id": 464,
+            "reason": "S",
+            "length": 24
+          },
+          {
+            "round": 425,
+            "id": 540,
+            "reason": "H",
+            "length": 16
+          },
+          {
+            "round": 434,
+            "id": 326,
+            "reason": "S",
+            "length": 19
+          },
+          {
+            "round": 437,
+            "id": 438,
+            "reason": "S",
+            "length": 20
+          },
+          {
+            "round": 453,
+            "id": 529,
+            "reason": "S",
+            "length": 23
+          },
+          {
+            "round": 458,
+            "id": 435,
+            "reason": "S",
+            "length": 12
+          },
+          {
+            "round": 466,
+            "id": 248,
+            "reason": "S",
+            "length": 17
+          },
+          {
+            "round": 468,
+            "id": 258,
+            "reason": "S",
+            "length": 22
+          },
+          {
+            "round": 470,
+            "id": 25,
+            "reason": "S",
+            "length": 37
+          },
+          {
+            "round": 478,
+            "id": 446,
+            "reason": "S",
+            "length": 31
+          }
+        ],
+        "sprints": 139,
+        "sprint_steps": 282,
+        "cycle_ordered_turns": 1972,
+        "long_sprints": 79
+      },
+      "B": {
+        "peak": 41,
+        "long_deaths": [
+          {
+            "round": 231,
+            "id": 273,
+            "reason": "H",
+            "length": 13
+          },
+          {
+            "round": 282,
+            "id": 133,
+            "reason": "S",
+            "length": 13
+          },
+          {
+            "round": 313,
+            "id": 201,
+            "reason": "S",
+            "length": 16
+          },
+          {
+            "round": 322,
+            "id": 264,
+            "reason": "S",
+            "length": 30
+          },
+          {
+            "round": 351,
+            "id": 294,
+            "reason": "S",
+            "length": 13
+          },
+          {
+            "round": 392,
+            "id": 283,
+            "reason": "S",
+            "length": 20
+          },
+          {
+            "round": 402,
+            "id": 481,
+            "reason": "S",
+            "length": 14
+          },
+          {
+            "round": 426,
+            "id": 492,
+            "reason": "S",
+            "length": 15
+          },
+          {
+            "round": 427,
+            "id": 539,
+            "reason": "S",
+            "length": 24
+          },
+          {
+            "round": 429,
+            "id": 499,
+            "reason": "S",
+            "length": 16
+          },
+          {
+            "round": 448,
+            "id": 87,
+            "reason": "S",
+            "length": 17
+          },
+          {
+            "round": 450,
+            "id": 527,
+            "reason": "S",
+            "length": 16
+          },
+          {
+            "round": 452,
+            "id": 407,
+            "reason": "S",
+            "length": 16
+          },
+          {
+            "round": 452,
+            "id": 478,
+            "reason": "S",
+            "length": 13
+          },
+          {
+            "round": 456,
+            "id": 416,
+            "reason": "S",
+            "length": 13
+          },
+          {
+            "round": 458,
+            "id": 500,
+            "reason": "S",
+            "length": 14
+          },
+          {
+            "round": 463,
+            "id": 543,
+            "reason": "S",
+            "length": 14
+          },
+          {
+            "round": 465,
+            "id": 523,
+            "reason": "S",
+            "length": 22
+          },
+          {
+            "round": 466,
+            "id": 436,
+            "reason": "S",
+            "length": 15
+          },
+          {
+            "round": 468,
+            "id": 534,
+            "reason": "S",
+            "length": 14
+          },
+          {
+            "round": 471,
+            "id": 447,
+            "reason": "S",
+            "length": 18
+          },
+          {
+            "round": 471,
+            "id": 497,
+            "reason": "S",
+            "length": 12
+          },
+          {
+            "round": 474,
+            "id": 480,
+            "reason": "S",
+            "length": 12
+          },
+          {
+            "round": 474,
+            "id": 508,
+            "reason": "S",
+            "length": 17
+          },
+          {
+            "round": 478,
+            "id": 411,
+            "reason": "S",
+            "length": 18
+          },
+          {
+            "round": 483,
+            "id": 445,
+            "reason": "S",
+            "length": 28
+          },
+          {
+            "round": 488,
+            "id": 460,
+            "reason": "S",
+            "length": 32
+          },
+          {
+            "round": 489,
+            "id": 483,
+            "reason": "S",
+            "length": 15
+          },
+          {
+            "round": 495,
+            "id": 519,
+            "reason": "S",
+            "length": 20
+          }
+        ],
+        "sprints": 98,
+        "sprint_steps": 196,
+        "cycle_ordered_turns": 172,
+        "long_sprints": 0
+      }
+    }
+  },
+  {
+    "id": "a5e2a189047a58574ff72f286a444445634d969c51d7298294929d00b3b457f5",
+    "map": "maps/big_empty.map",
+    "candidate_side": "B",
+    "metrics": {
+      "A": {
+        "peak": 53,
+        "long_deaths": [
+          {
+            "round": 238,
+            "id": 42,
+            "reason": "S",
+            "length": 14
+          },
+          {
+            "round": 251,
+            "id": 130,
+            "reason": "S",
+            "length": 23
+          },
+          {
+            "round": 254,
+            "id": 127,
+            "reason": "S",
+            "length": 12
+          },
+          {
+            "round": 255,
+            "id": 147,
+            "reason": "H",
+            "length": 12
+          },
+          {
+            "round": 268,
+            "id": 16,
+            "reason": "S",
+            "length": 18
+          },
+          {
+            "round": 275,
+            "id": 159,
+            "reason": "S",
+            "length": 17
+          },
+          {
+            "round": 278,
+            "id": 169,
+            "reason": "H",
+            "length": 14
+          },
+          {
+            "round": 298,
+            "id": 357,
+            "reason": "S",
+            "length": 17
+          },
+          {
+            "round": 301,
+            "id": 354,
+            "reason": "S",
+            "length": 22
+          },
+          {
+            "round": 313,
+            "id": 390,
+            "reason": "H",
+            "length": 12
+          },
+          {
+            "round": 318,
+            "id": 331,
+            "reason": "S",
+            "length": 14
+          },
+          {
+            "round": 343,
+            "id": 175,
+            "reason": "S",
+            "length": 17
+          },
+          {
+            "round": 352,
+            "id": 360,
+            "reason": "H",
+            "length": 12
+          },
+          {
+            "round": 353,
+            "id": 359,
+            "reason": "S",
+            "length": 15
+          },
+          {
+            "round": 368,
+            "id": 378,
+            "reason": "S",
+            "length": 15
+          },
+          {
+            "round": 375,
+            "id": 385,
+            "reason": "S",
+            "length": 18
+          },
+          {
+            "round": 381,
+            "id": 305,
+            "reason": "H",
+            "length": 16
+          },
+          {
+            "round": 384,
+            "id": 168,
+            "reason": "H",
+            "length": 14
+          },
+          {
+            "round": 388,
+            "id": 154,
+            "reason": "H",
+            "length": 15
+          },
+          {
+            "round": 388,
+            "id": 439,
+            "reason": "S",
+            "length": 34
+          },
+          {
+            "round": 389,
+            "id": 346,
+            "reason": "S",
+            "length": 12
+          },
+          {
+            "round": 391,
+            "id": 382,
+            "reason": "S",
+            "length": 12
+          },
+          {
+            "round": 399,
+            "id": 407,
+            "reason": "S",
+            "length": 16
+          },
+          {
+            "round": 402,
+            "id": 395,
+            "reason": "S",
+            "length": 17
+          },
+          {
+            "round": 404,
+            "id": 441,
+            "reason": "S",
+            "length": 18
+          },
+          {
+            "round": 406,
+            "id": 329,
+            "reason": "S",
+            "length": 21
+          },
+          {
+            "round": 413,
+            "id": 366,
+            "reason": "S",
+            "length": 29
+          },
+          {
+            "round": 416,
+            "id": 446,
+            "reason": "S",
+            "length": 16
+          },
+          {
+            "round": 417,
+            "id": 170,
+            "reason": "S",
+            "length": 17
+          },
+          {
+            "round": 422,
+            "id": 318,
+            "reason": "S",
+            "length": 17
+          },
+          {
+            "round": 430,
+            "id": 312,
+            "reason": "S",
+            "length": 18
+          },
+          {
+            "round": 438,
+            "id": 463,
+            "reason": "S",
+            "length": 25
+          },
+          {
+            "round": 450,
+            "id": 368,
+            "reason": "S",
+            "length": 19
+          },
+          {
+            "round": 452,
+            "id": 271,
+            "reason": "S",
+            "length": 12
+          },
+          {
+            "round": 456,
+            "id": 437,
+            "reason": "S",
+            "length": 16
+          },
+          {
+            "round": 462,
+            "id": 370,
+            "reason": "S",
+            "length": 21
+          },
+          {
+            "round": 463,
+            "id": 373,
+            "reason": "S",
+            "length": 16
+          },
+          {
+            "round": 467,
+            "id": 462,
+            "reason": "S",
+            "length": 14
+          },
+          {
+            "round": 469,
+            "id": 444,
+            "reason": "S",
+            "length": 18
+          },
+          {
+            "round": 470,
+            "id": 432,
+            "reason": "S",
+            "length": 18
+          },
+          {
+            "round": 471,
+            "id": 355,
+            "reason": "S",
+            "length": 29
+          },
+          {
+            "round": 474,
+            "id": 300,
+            "reason": "S",
+            "length": 16
+          },
+          {
+            "round": 481,
+            "id": 258,
+            "reason": "S",
+            "length": 31
+          },
+          {
+            "round": 484,
+            "id": 413,
+            "reason": "S",
+            "length": 22
+          },
+          {
+            "round": 486,
+            "id": 324,
+            "reason": "S",
+            "length": 17
+          },
+          {
+            "round": 488,
+            "id": 409,
+            "reason": "S",
+            "length": 25
+          },
+          {
+            "round": 490,
+            "id": 316,
+            "reason": "S",
+            "length": 27
+          },
+          {
+            "round": 490,
+            "id": 362,
+            "reason": "S",
+            "length": 20
+          },
+          {
+            "round": 492,
+            "id": 449,
+            "reason": "S",
+            "length": 21
+          },
+          {
+            "round": 493,
+            "id": 2,
+            "reason": "S",
+            "length": 41
+          },
+          {
+            "round": 493,
+            "id": 464,
+            "reason": "S",
+            "length": 26
+          },
+          {
+            "round": 498,
+            "id": 308,
+            "reason": "S",
+            "length": 53
+          },
+          {
+            "round": 499,
+            "id": 402,
+            "reason": "S",
+            "length": 13
+          }
+        ],
+        "sprints": 71,
+        "sprint_steps": 142,
+        "cycle_ordered_turns": 187,
+        "long_sprints": 0
+      },
+      "B": {
+        "peak": 39,
+        "long_deaths": [
+          {
+            "round": 183,
+            "id": 97,
+            "reason": "H",
+            "length": 13
+          },
+          {
+            "round": 220,
+            "id": 59,
+            "reason": "H",
+            "length": 15
+          },
+          {
+            "round": 223,
+            "id": 61,
+            "reason": "S",
+            "length": 13
+          },
+          {
+            "round": 231,
+            "id": 52,
+            "reason": "H",
+            "length": 15
+          },
+          {
+            "round": 247,
+            "id": 298,
+            "reason": "S",
+            "length": 14
+          },
+          {
+            "round": 257,
+            "id": 13,
+            "reason": "H",
+            "length": 14
+          },
+          {
+            "round": 258,
+            "id": 292,
+            "reason": "H",
+            "length": 15
+          },
+          {
+            "round": 270,
+            "id": 39,
+            "reason": "S",
+            "length": 16
+          },
+          {
+            "round": 283,
+            "id": 296,
+            "reason": "H",
+            "length": 12
+          },
+          {
+            "round": 294,
+            "id": 313,
+            "reason": "H",
+            "length": 12
+          },
+          {
+            "round": 297,
+            "id": 276,
+            "reason": "H",
+            "length": 13
+          },
+          {
+            "round": 299,
+            "id": 136,
+            "reason": "H",
+            "length": 19
+          },
+          {
+            "round": 318,
+            "id": 49,
+            "reason": "H",
+            "length": 19
+          },
+          {
+            "round": 325,
+            "id": 274,
+            "reason": "H",
+            "length": 14
+          },
+          {
+            "round": 326,
+            "id": 230,
+            "reason": "S",
+            "length": 20
+          },
+          {
+            "round": 328,
+            "id": 99,
+            "reason": "S",
+            "length": 17
+          },
+          {
+            "round": 340,
+            "id": 211,
+            "reason": "H",
+            "length": 12
+          },
+          {
+            "round": 349,
+            "id": 330,
+            "reason": "S",
+            "length": 12
+          },
+          {
+            "round": 351,
+            "id": 307,
+            "reason": "S",
+            "length": 18
+          },
+          {
+            "round": 356,
+            "id": 343,
+            "reason": "H",
+            "length": 13
+          },
+          {
+            "round": 372,
+            "id": 125,
+            "reason": "S",
+            "length": 12
+          },
+          {
+            "round": 375,
+            "id": 250,
+            "reason": "S",
+            "length": 22
+          },
+          {
+            "round": 376,
+            "id": 101,
+            "reason": "H",
+            "length": 21
+          },
+          {
+            "round": 402,
+            "id": 260,
+            "reason": "S",
+            "length": 15
+          },
+          {
+            "round": 407,
+            "id": 405,
+            "reason": "S",
+            "length": 18
+          },
+          {
+            "round": 424,
+            "id": 53,
+            "reason": "S",
+            "length": 35
+          },
+          {
+            "round": 427,
+            "id": 426,
+            "reason": "S",
+            "length": 12
+          },
+          {
+            "round": 428,
+            "id": 443,
+            "reason": "S",
+            "length": 15
+          },
+          {
+            "round": 431,
+            "id": 458,
+            "reason": "S",
+            "length": 16
+          },
+          {
+            "round": 435,
+            "id": 392,
+            "reason": "S",
+            "length": 17
+          },
+          {
+            "round": 437,
+            "id": 174,
+            "reason": "S",
+            "length": 12
+          },
+          {
+            "round": 488,
+            "id": 197,
+            "reason": "S",
+            "length": 27
+          },
+          {
+            "round": 495,
+            "id": 326,
+            "reason": "S",
+            "length": 23
+          },
+          {
+            "round": 498,
+            "id": 232,
+            "reason": "S",
+            "length": 21
+          },
+          {
+            "round": 499,
+            "id": 451,
+            "reason": "S",
+            "length": 17
+          }
+        ],
+        "sprints": 134,
+        "sprint_steps": 268,
+        "cycle_ordered_turns": 2146,
+        "long_sprints": 79
+      }
+    }
+  },
+  {
+    "id": "bba58041e87b8953c89fb59507d8fff1403aea2636d55195cd505b7532caf6dc",
+    "map": "maps/stronghold.map",
+    "candidate_side": "A",
+    "metrics": {
+      "A": {
+        "peak": 19,
+        "long_deaths": [
+          {
+            "round": 422,
+            "id": 386,
+            "reason": "S",
+            "length": 13
+          },
+          {
+            "round": 455,
+            "id": 358,
+            "reason": "S",
+            "length": 13
+          }
+        ],
+        "sprints": 15,
+        "sprint_steps": 34,
+        "cycle_ordered_turns": 20,
+        "long_sprints": 15
+      },
+      "B": {
+        "peak": 43,
+        "long_deaths": [
+          {
+            "round": 450,
+            "id": 286,
+            "reason": "S",
+            "length": 12
+          },
+          {
+            "round": 496,
+            "id": 534,
+            "reason": "S",
+            "length": 28
+          }
+        ],
+        "sprints": 0,
+        "sprint_steps": 0,
+        "cycle_ordered_turns": 4,
+        "long_sprints": 0
+      }
+    }
+  },
+  {
+    "id": "c34d6a7d170e879517076441b6436ab19d8725fd29917b7861ae2a96c19d878e",
+    "map": "maps/stronghold.map",
+    "candidate_side": "B",
+    "metrics": {
+      "A": {
+        "peak": 26,
+        "long_deaths": [
+          {
+            "round": 469,
+            "id": 478,
+            "reason": "S",
+            "length": 21
+          }
+        ],
+        "sprints": 0,
+        "sprint_steps": 0,
+        "cycle_ordered_turns": 31,
+        "long_sprints": 0
+      },
+      "B": {
+        "peak": 18,
+        "long_deaths": [
+          {
+            "round": 411,
+            "id": 122,
+            "reason": "S",
+            "length": 12
+          },
+          {
+            "round": 427,
+            "id": 258,
+            "reason": "S",
+            "length": 12
+          }
+        ],
+        "sprints": 14,
+        "sprint_steps": 28,
+        "cycle_ordered_turns": 71,
+        "long_sprints": 14
+      }
+    }
+  }
+]
