@@ -701,3 +701,158 @@ Completed pass: 150 append-only ledger games plus one manual smoke. Final source
 has 60 native and two sandbox games. ZIPs verified byte-for-byte against source;
 no official submission and no automatic champion promotion. Final report:
 `battlecode-automation/experiments/v10/REPORT.md`.
+
+## V11-R1 — navigation subsystem (2026-09-26)
+
+Parent frozen v10.2. TESTED: native fixtures pass for both strict and shortcut
+variants. Stronghold smoke seed8100, both sides: v11 1–1 vs v10.2; baseline
+v10.2 1–1 vs v10.1. Four sandbox matches seed8199: v11 0–4 vs v10.2.
+No invalid actions or CPU-limit events, but Big Empty peaks 99.2M/99.8M
+instructions, uncomfortably near 100M. NOT ACCEPTED as an improvement.
+Sources and raw replays are fingerprinted under experiments/v11.
+
+OBSERVED: replay inspection shows real two/three-step defensive sprints and
+length-preserving reversal splits. Counting a dragon's previous-round length
+at its death falsely labels the discarded length-two parent as a long death;
+v11 supplemental metrics now track event-level bodies, including splits.
+HYPOTHESIS for R2: cache repeated route distances and body occupancy, allow
+cycle expansion only when whole-body ordering is preserved, and let verified
+cycle motion override static flood-space penalties. These changes address both
+instruction margin and premature abandonment of safe narrow patrol corridors.
+
+## V11-R2 — cache, ordered expansion and cycle priority
+
+TESTED: seed8101 four-map screen, both sides vs v10.1/v10.2: **10W/2D/4L**,
+5W/1D/2L against each. Native fixtures include 500 invariant-preserving cycle
+moves, tail collision rejection and bounded emergency dodge simulation.
+Advanced to fresh-seed8102 validation across all 11 maps and five baselines.
+
+## V11.1-R2 — eight-step remembered-terrain lookahead + cycle shortcuts
+
+TESTED: identical seed8101 screening schedule: **9W/2D/5L**. Did not improve
+aggregate screening over strict v11 R2. Archived before replacing the v11.1
+working slot. This does not establish that deeper planning is always worse.
+
+## V11.1-R3 — productive patrol territory
+
+HYPOTHESIS: safe rectangles that lack spawning tiles strand growers in empty
+loops. Build on v11 R2, requiring four known spawning cells in each new claim.
+Predeclared sparse-map screen: Devil, Schooltime, Stronghold, Trauma; seed8103,
+both sides vs v11 and v10.2. Exact sources, per-game metrics, runtime and raw
+outputs are in the separate append-only experiments/v11 ledger.
+
+## V11.1-R3 outcome
+
+REJECTED as a strength improvement: seed8103 sparse-map screen finished 4–4
+against v11 and 3–5 against v10.2. Source archived. The four-productive-tile
+claim requirement alone did not improve this sample.
+
+## V11.1-R4 — limited early growers
+
+HYPOTHESIS supported by the reference replay's early longest-dragon trajectory,
+not yet established in our bots: waiting until250 for every grower leaves too
+little time to build a large survivor. Preserve v11 R2 navigation and normal
+round250 phase; allow a stable 1/32 ID-hash subset to retain from100 only after
+16 living allies exist. Latch the role once selected. This avoids choosing a
+map-specific ID and keeps early swarm creation first. Screen both current bests
+on Big Empty, Default, Stronghold and Trophy, both sides seed8104.
+
+## V11.1-R4 outcome and R5
+
+REJECTED: early growth screen finished **5W/0D/11L**. Big Empty reached final
+longest73 and59 in separate games, but Stronghold and Trophy regressed severely.
+This is evidence of a map-dependent tradeoff, not an improved default.
+
+R5 HYPOTHESIS: retain v11 R2 navigation but restore v10.1's worker exploration
+weight6/cap360 and immediate pearl values (grower2800, worker850). This isolates
+whether v10.2's more forceful movement scores undermine the new safety logic.
+Same four-map, both-side screening seed8101 as R2; parent and candidate source
+fingerprints distinguish this controlled comparison from replication.
+
+## V11-R2 all-map validation
+
+TESTED: fresh seed8102, all11 maps, both sides, 110 games. v10.2:11W/2D/9L;
+v10.1:8W/1D/13L; v10:9W/1D/12L; v9:8W/2D/12L; v8:16W/2D/4L.
+REJECTED for promotion: it does not beat the required opponent pool despite
+its promising screen. All110 outcomes parsed with replay/CLI agreement.
+
+## V11.1-R5 and R6
+
+R5 restored v10.1 food/exploration coefficients and screened 9W/2D/5L.
+R6 fixes a source-confirmed communication compatibility bug: the inherited
+4-bit C claim tag overlaps legacy C8/CA/CB packets. For teamB, certain legacy
+messages pass the newer claim's team/time/bounds checks with incorrect field
+interpretation. New claim/status/terrain tags5/6/7 do not overlap any tested
+baseline format. A deterministic fixture reproduces the ambiguous packet and
+verifies rejection. No claim of authenticated sonar is made.
+R6 advances to seed8105, all11 maps, both sides, five baselines (110 games).
+Historical R5 and R2 source states remain archived.
+
+## V11.1-R6 full validation result
+
+TESTED: seed8105, 110 parsed games, **63W/6D/41L**.
+Against v10.2:9W/2D/11L; v10.1:13W/1D/8L; v10:12W/1D/9L;
+v9:11W/1D/10L; v8:18W/1D/3L. Best broad new candidate so far, but fails the
+requested positive result against every baseline. No promotion.
+
+## Final comparison budget and selection rule
+
+R7 directly ports the subsystem onto v10.1 and screens the same four maps and
+seed8101 (16 games). It must score at least12/16 to displace the more extensively
+validated R6 for the final stage; otherwise restore R6 exactly from its tarball.
+Then run a fixed110-game all-map/all-five-baseline replication at seed8110,
+and22 mutual v11/v11.1 games at seed8111. Complete all games regardless of the
+running score. Final source also needs exact-source sandbox checks. Stop this
+session after those checks and report success or failure honestly; do not add
+seeds selectively until a losing comparison turns positive. This is a bounded
+final validation after multiple rejected strategy families, not automatic
+candidate generation or official submission.
+
+## Final diagnostic exception: R8 opening trades
+
+R7 did not reach the12/16 selection score; R6 was restored exactly (hash checked).
+Before final replication, replay inspection found a concrete early failure:
+R6 lost9/10 Colosseum games, generally by round38–81, dominated by head-to-head
+rather than long-snake deaths. The inherited policy disables direct small head
+trades until50 and six allies; v10.1 has no such restriction.
+
+Additional bounded diagnostic, explicitly a CODE change rather than selective
+replication: allow direct trades only at length<=3 with at least2 living allies,
+retaining all large-grower protection. Eight games: Colosseum, both sides,
+v10.1/v10.2, seeds8112/8113. R8 must score>=5/8 to enter the fixed110-game
+seed8110 full-pool run; otherwise restore R6. This is the final diagnostic
+exception to the preceding budget, motivated by a specific observed failure.
+Do not extend the final replication after seeing its outcome.
+
+## Final v11 decision — 2026-09-26
+
+R8 diagnostic:6W/1D/1L, passed its5/8 score criterion. Fixed final validation,
+seed8110, all11 maps, both sides, five opponents: **62W/16D/32L**.
+
+|Opponent|W / D / L|
+|---|---:|
+|v10.2|8 /4 /10|
+|v10.1|13 /3 /6|
+|v10|15 /3 /4|
+|v9|11 /3 /8|
+|v8|15 /3 /4|
+
+Final mutual seed8111 vs v11: **8W/4D/10L**. v11.1 is the strongest new
+full-pool-tested candidate in this session, but is not a universal winner.
+**REJECTED for champion promotion.** The requested all-baseline improvement was
+not achieved, and the historical v5 gate was not tested. Existing competition
+bots and champion bookkeeping are preserved; nothing was submitted.
+
+Exact final v11.1 source: `860e7ea84e5571907632bd51de196e0935576d7fc930f3aef2b66dcd4413ac30`.
+Exact final v11 source: `760fed7cf9026f9fcbd89f9e3e400c9b07f03b7d9f662f26ee1edbc0160582ba`.
+528 games total:514 native,14 sandbox; zero parse failures. Final v11.1 has
+140 native games (110 validation,22 mutual,8 diagnostic) and4 exact-source
+sandbox games. Its sandbox max51.8M instructions; zero CPU-limit events or
+invalid-action deaths. v11 exact-source sandbox also passes.
+
+Bounded stopping condition: completed the fixed final schedule after the
+recorded prototype comparisons and final diagnostic exception. No additional
+seeds were added to turn the unfavorable v10.2/mutual result positive.
+The untested high-food-score × early-small-trade interaction is a concrete
+next hypothesis, not a claimed discovery. All failures, raw outputs, replays,
+source snapshots, packages and decision metadata remain in experiments/v11.

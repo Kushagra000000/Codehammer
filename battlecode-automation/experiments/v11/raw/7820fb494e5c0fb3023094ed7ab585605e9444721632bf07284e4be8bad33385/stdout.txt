@@ -1,0 +1,76 @@
+loaded c/c++ vs c/c++
+without --sandbox the seed repeats the pearls but not the bots' own random numbers
+seed 0x0000000000001fa6
+running round 2/500 --  last: 323ms  eta: 2m41s  dragons: 8 vs 8
+round 4: bot 7 (team B) died: lost a head-to-head
+round 4: bot 14 (team A) died: lost a head-to-head
+round 38: bot 8 (team A) died: lost a head-to-head
+round 38: bot 13 (team B) died: lost a head-to-head
+round 41: bot 4 (team A) died: lost a head-to-head
+round 41: bot 11 (team B) died: lost a head-to-head
+running round 51/500 --  last: 5ms  eta: 4.5s  dragons: 8 vs 11
+round 57: bot 15 (team B) died: lost a head-to-head
+round 57: bot 19 (team A) died: lost a head-to-head
+round 60: bot 16 (team B) died: lost a head-to-head
+round 60: bot 12 (team A) died: lost a head-to-head
+round 68: bot 31 (team B) died: lost a head-to-head
+round 68: bot 30 (team A) died: lost a head-to-head
+round 69: bot 6 (team A) died: lost a head-to-head
+round 69: bot 1 (team B) died: lost a head-to-head
+round 73: bot 9 (team B) died: hit itself
+round 91: bot 5 (team B) died: lost a head-to-head
+round 91: bot 32 (team A) died: lost a head-to-head
+running round 101/500 --  last: 7ms  eta: 3.4s  dragons: 8 vs 19
+round 107: bot 0 (team A) died: lost a head-to-head
+round 107: bot 28 (team B) died: lost a head-to-head
+round 108: bot 29 (team B) died: hit itself
+round 108: bot 45 (team B) died: hit itself
+round 111: bot 22 (team B) died: lost a head-to-head
+round 111: bot 35 (team A) died: lost a head-to-head
+round 113: bot 2 (team A) died: lost a head-to-head
+round 113: bot 46 (team B) died: lost a head-to-head
+round 116: bot 48 (team B) died: hit itself
+round 118: bot 10 (team A) died: lost a head-to-head
+round 118: bot 21 (team B) died: lost a head-to-head
+round 119: bot 37 (team B) died: lost a head-to-head
+round 119: bot 41 (team A) died: lost a head-to-head
+round 141: bot 60 (team A) died: lost a head-to-head
+round 141: bot 18 (team B) died: lost a head-to-head
+round 141: bot 39 (team B) died: lost a head-to-head
+round 141: bot 58 (team A) died: lost a head-to-head
+round 148: bot 25 (team B) died: lost a head-to-head
+round 148: bot 66 (team B) died: lost a head-to-head
+round 149: bot 63 (team B) died: lost a head-to-head
+round 149: bot 20 (team A) died: lost a head-to-head
+running round 151/500 --  last: 10ms  eta: 2.8s  dragons: 5 vs 27
+round 150: bot 49 (team B) died: hit itself
+round 155: bot 23 (team B) died: lost a head-to-head
+round 155: bot 24 (team A) died: lost a head-to-head
+round 165: bot 52 (team B) died: lost a head-to-head
+round 165: bot 54 (team A) died: lost a head-to-head
+round 165: bot 62 (team B) died: hit itself
+round 171: bot 70 (team B) died: hit itself
+round 175: bot 53 (team B) died: lost a head-to-head
+round 175: bot 75 (team A) died: lost a head-to-head
+round 178: bot 79 (team B) died: hit itself
+round 182: bot 47 (team B) died: hit itself
+round 183: bot 78 (team A) died: lost a head-to-head
+round 183: bot 42 (team B) died: lost a head-to-head
+round 187: bot 57 (team B) died: lost a head-to-head
+round 187: bot 86 (team A) died: lost a head-to-head
+round 187: bot 87 (team B) died: hit itself
+round 191: bot 89 (team A) died: lost a head-to-head
+round 191: bot 61 (team B) died: lost a head-to-head
+round 193: bot 72 (team A) died: lost a head-to-head
+round 193: bot 43 (team B) died: lost a head-to-head
+round 196: bot 59 (team B) died: lost a head-to-head
+round 196: bot 44 (team A) died: lost a head-to-head
+round 198: bot 50 (team A) died: lost a head-to-head
+round 198: bot 84 (team B) died: lost a head-to-head
+round 199: bot 76 (team B) died: lost a head-to-head
+round 199: bot 88 (team A) died: lost a head-to-head
+running round 201/500 --  last: 12ms  eta: 2.5s  dragons: 1 vs 33
+round 208: bot 34 (team A) died: lost a head-to-head
+round 208: bot 100 (team B) died: lost a head-to-head
+team B wins after 209 rounds (by elimination) (1.8s)
+wrote replay: /Users/kushagra/Desktop/UNSW_battlecode/Codehammer/replays/research-7820fb494e5c0fb3023094ed7ab585605e9444721632bf07284e4be8bad33385.replay

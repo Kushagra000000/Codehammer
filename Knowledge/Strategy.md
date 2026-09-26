@@ -588,3 +588,34 @@ HYPOTHESIS: active territory cooperation is most useful in rich, bounded
 chambers. Two Big Empty sandbox losses show that the current implementation
 has not established a large-open-map advantage. Do not extrapolate the
 Stronghold wins into a universal improvement claim.
+
+## 2026-09-26 v11 navigation research
+
+OBSERVED: a rectangular zigzag is not by itself a collision-safe Hamiltonian
+policy. The entire body's cyclic order matters; rebuilding or shortcutting
+without preserving that order invalidates the argument. The tail's currently
+occupied square is forbidden in this engine, even if it would vacate.
+TESTED: ordered patrol construction, 500 consecutive invariant-preserving moves,
+split-child visible body reconstruction, intermediate sprint history and
+bounded virtual-body dodges pass deterministic fixtures. Enemy interference
+and unseen occupancy remain UNKNOWN; no global survival guarantee is claimed.
+
+OBSERVED: the v10.2 4-bit claim tag overlaps legacy C8/CA/CB packets. TeamB can
+accept some old messages as false claims. Disjoint message tags plus a regression
+fixture fix this compatibility error. Sonar still has no authenticated sender.
+
+TESTED/REJECTED as defaults in the v11 screens: depth-eight lookahead, restricting
+claims to productive rectangles, universal early-grower specialisation, and a
+stronger short opening center pull. The early-grower prototype reached73 on
+Big Empty but regressed on other maps. None is a general strength result.
+
+OBSERVED: caching same-turn food distances and own-body occupancy reduced the
+observed sandbox peak from99.8M in the initial prototype to55.0M in subsequent
+Big Empty checks (different seeds/trajectories). Do not spend the entire judge
+budget on lookahead; keep bounded search and test exact source fingerprints.
+
+HYPOTHESIS: opening population and small head trades can dominate outcomes on
+compact arenas before long-snake navigation ever activates. Colosseum failures
+were mostly early head-to-head deaths. Final R8 tests relax only small-dragon
+trade restrictions while retaining large-grower and last-ally protection.
+The final report records whether this survives fresh-seed validation.

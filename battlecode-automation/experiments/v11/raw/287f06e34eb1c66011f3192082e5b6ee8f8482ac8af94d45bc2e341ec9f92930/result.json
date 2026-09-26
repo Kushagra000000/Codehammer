@@ -1,0 +1,143 @@
+{
+  "candidate": "bots/candidate/bot-v11",
+  "opponent": "bots/current/bot-v10.2",
+  "map": "maps/queen_of_spades.map",
+  "seed": 8102,
+  "reverse": false,
+  "sandbox": false,
+  "experiment": "v11-r2-validation",
+  "toolkit": "1.1.0",
+  "a_hash": "d26273832e8c9876fbc4eec02a6ad51521a6c3d940b07dba8e8553988e0004b0",
+  "b_hash": "cd1ad743f9ee286e3a45c4cccc3d74789756d4c755c0004c1a3908ed004f17a5",
+  "map_hash": "126d71b46443268596285918d910b7f8d875bf3028ca9c5ff6bad97b4e868938",
+  "id": "287f06e34eb1c66011f3192082e5b6ee8f8482ac8af94d45bc2e341ec9f92930",
+  "a": "bots/candidate/bot-v11",
+  "b": "bots/current/bot-v10.2",
+  "git_commit": "41098b5fe489d4f1d23087aaffec48e8a89f3d36",
+  "exit_code": 0,
+  "metrics": {
+    "metrics_schema": 5,
+    "result": {
+      "terminated": true,
+      "endReason": "teamEliminated",
+      "winner": "A",
+      "teamA": {
+        "dragonCount": 12,
+        "longestDragon": 4,
+        "totalLength": 32
+      },
+      "teamB": {
+        "dragonCount": 0,
+        "longestDragon": 0,
+        "totalLength": 0
+      }
+    },
+    "rounds": 128,
+    "seed": "8102",
+    "teams": {
+      "A": {
+        "first_split_round": 26,
+        "max_units": 14,
+        "portal_entries": 11,
+        "sacrifice_count": 0,
+        "runtime_failures": 0,
+        "max_turn_points": null,
+        "deaths": {
+          "H": 9,
+          "S": 10,
+          "O": 1
+        },
+        "longest_trajectory": [
+          [
+            0,
+            3
+          ],
+          [
+            25,
+            3
+          ],
+          [
+            50,
+            3
+          ],
+          [
+            75,
+            3
+          ],
+          [
+            100,
+            4
+          ],
+          [
+            125,
+            4
+          ],
+          [
+            128,
+            4
+          ]
+        ],
+        "unique_head_tiles": 300,
+        "exploration_coverage": 0.9188571428571428,
+        "king_length": null,
+        "portal_deaths": null,
+        "dragonCount": 12,
+        "longestDragon": 4,
+        "totalLength": 32
+      },
+      "B": {
+        "first_split_round": 57,
+        "max_units": 4,
+        "portal_entries": 0,
+        "sacrifice_count": 0,
+        "runtime_failures": 0,
+        "max_turn_points": null,
+        "deaths": {
+          "H": 5
+        },
+        "longest_trajectory": [
+          [
+            0,
+            3
+          ],
+          [
+            25,
+            3
+          ],
+          [
+            50,
+            3
+          ],
+          [
+            75,
+            2
+          ],
+          [
+            100,
+            2
+          ],
+          [
+            125,
+            3
+          ],
+          [
+            128,
+            0
+          ]
+        ],
+        "unique_head_tiles": 138,
+        "exploration_coverage": 0.5691428571428572,
+        "king_length": null,
+        "portal_deaths": null,
+        "dragonCount": 0,
+        "longestDragon": 0,
+        "totalLength": 0
+      }
+    }
+  },
+  "winner": "A",
+  "score": 1.0,
+  "status": "ok",
+  "replay": "replays/research-287f06e34eb1c66011f3192082e5b6ee8f8482ac8af94d45bc2e341ec9f92930.replay",
+  "seconds": 4.79
+}

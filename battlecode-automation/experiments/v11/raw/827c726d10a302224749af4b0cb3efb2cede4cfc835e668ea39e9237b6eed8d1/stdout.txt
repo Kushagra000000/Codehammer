@@ -1,0 +1,41 @@
+loaded c/c++ vs c/c++
+without --sandbox the seed repeats the pearls but not the bots' own random numbers
+seed 0x0000000000001fb1
+running round 2/500 --  last: 401ms  eta: 3m20s  dragons: 2 vs 2
+round 20: bot 5 (team A) died: lost a head-to-head
+round 20: bot 9 (team B) died: lost a head-to-head
+round 24: bot 6 (team B) died: lost a head-to-head
+round 24: bot 2 (team A) died: lost a head-to-head
+round 29: bot 12 (team B) died: lost a head-to-head
+round 29: bot 10 (team A) died: lost a head-to-head
+round 29: bot 23 (team B) died: lost a head-to-head
+round 29: bot 11 (team A) died: lost a head-to-head
+round 31: bot 14 (team B) died: lost a head-to-head
+round 31: bot 7 (team A) died: lost a head-to-head
+round 32: bot 8 (team A) died: lost a head-to-head
+round 32: bot 3 (team B) died: lost a head-to-head
+round 35: bot 16 (team B) died: lost a head-to-head
+round 35: bot 13 (team A) died: lost a head-to-head
+round 36: bot 26 (team A) died: lost a head-to-head
+round 36: bot 15 (team B) died: lost a head-to-head
+round 39: bot 17 (team A) died: lost a head-to-head
+round 39: bot 1 (team B) died: lost a head-to-head
+round 40: bot 19 (team B) died: lost a head-to-head
+round 40: bot 21 (team A) died: lost a head-to-head
+round 43: bot 29 (team A) died: lost a head-to-head
+round 43: bot 4 (team B) died: lost a head-to-head
+round 45: bot 37 (team B) died: lost a head-to-head
+round 45: bot 28 (team A) died: lost a head-to-head
+round 45: bot 31 (team B) died: lost a head-to-head
+round 45: bot 38 (team A) died: lost a head-to-head
+round 47: bot 30 (team B) died: lost a head-to-head
+round 47: bot 36 (team A) died: lost a head-to-head
+running round 51/500 --  last: 5ms  eta: 5.0s  dragons: 17 vs 2
+round 51: bot 44 (team A) died: lost a head-to-head
+round 51: bot 33 (team A) died: lost a head-to-head
+round 52: bot 24 (team B) died: lost a head-to-head
+round 52: bot 32 (team A) died: lost a head-to-head
+round 54: bot 41 (team B) died: lost a head-to-head
+round 54: bot 45 (team A) died: lost a head-to-head
+team A wins after 55 rounds (by elimination) (0.6s)
+wrote replay: /Users/kushagra/Desktop/UNSW_battlecode/Codehammer/replays/research-827c726d10a302224749af4b0cb3efb2cede4cfc835e668ea39e9237b6eed8d1.replay

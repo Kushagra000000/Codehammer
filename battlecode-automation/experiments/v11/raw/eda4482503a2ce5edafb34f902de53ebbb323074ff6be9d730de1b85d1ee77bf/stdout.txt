@@ -1,0 +1,40 @@
+loaded c/c++ vs c/c++
+without --sandbox the seed repeats the pearls but not the bots' own random numbers
+seed 0x0000000000001fa6
+running round 2/500 --  last: 358ms  eta: 2m58s  dragons: 2 vs 2
+round 18: bot 3 (team B) died: lost a head-to-head
+round 18: bot 2 (team A) died: lost a head-to-head
+round 31: bot 19 (team B) died: lost a head-to-head
+round 31: bot 4 (team A) died: lost a head-to-head
+round 49: bot 16 (team B) died: lost a head-to-head
+round 49: bot 0 (team A) died: lost a head-to-head
+running round 51/500 --  last: 6ms  eta: 6.1s  dragons: 3 vs 22
+round 66: bot 20 (team B) died: hit another dragon
+round 70: bot 18 (team A) died: lost a head-to-head
+round 70: bot 7 (team B) died: lost a head-to-head
+round 73: bot 23 (team B) died: lost a head-to-head
+round 73: bot 35 (team A) died: lost a head-to-head
+round 76: bot 38 (team A) died: lost a head-to-head
+round 76: bot 5 (team B) died: lost a head-to-head
+round 82: bot 31 (team A) died: lost a head-to-head
+round 82: bot 25 (team B) died: lost a head-to-head
+round 83: bot 43 (team A) died: lost a head-to-head
+round 83: bot 21 (team B) died: lost a head-to-head
+round 91: bot 55 (team A) died: lost a head-to-head
+round 91: bot 8 (team B) died: lost a head-to-head
+round 96: bot 6 (team A) died: lost a head-to-head
+round 96: bot 30 (team B) died: lost a head-to-head
+running round 101/500 --  last: 10ms  eta: 4.3s  dragons: 3 vs 42
+round 100: bot 57 (team A) died: lost a head-to-head
+round 100: bot 42 (team B) died: lost a head-to-head
+round 103: bot 63 (team A) died: lost a head-to-head
+round 103: bot 58 (team B) died: lost a head-to-head
+round 108: bot 66 (team B) died: lost a head-to-head
+round 108: bot 68 (team A) died: lost a head-to-head
+round 113: bot 29 (team A) died: lost a head-to-head
+round 113: bot 73 (team B) died: lost a head-to-head
+round 114: bot 11 (team B) died: hit itself
+round 115: bot 76 (team A) died: lost a head-to-head
+round 115: bot 79 (team B) died: lost a head-to-head
+team B wins after 116 rounds (by elimination) (1.3s)
+wrote replay: /Users/kushagra/Desktop/UNSW_battlecode/Codehammer/replays/research-eda4482503a2ce5edafb34f902de53ebbb323074ff6be9d730de1b85d1ee77bf.replay
