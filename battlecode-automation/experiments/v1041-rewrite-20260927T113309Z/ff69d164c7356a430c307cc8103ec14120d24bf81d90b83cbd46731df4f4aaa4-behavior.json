@@ -1,0 +1,7074 @@
+{
+  "schema": 1,
+  "replay": "replays/research-ff69d164c7356a430c307cc8103ec14120d24bf81d90b83cbd46731df4f4aaa4.replay",
+  "result": {
+    "terminated": true,
+    "endReason": "roundLimit",
+    "winner": "A",
+    "teamA": {
+      "dragonCount": 9,
+      "longestDragon": 52,
+      "totalLength": 305
+    },
+    "teamB": {
+      "dragonCount": 16,
+      "longestDragon": 44,
+      "totalLength": 470
+    }
+  },
+  "seed": "104401",
+  "checkedRoundSnapshots": 500,
+  "map": {
+    "width": 64,
+    "height": 64,
+    "spawnTiles": 4096,
+    "spawnTileFraction": 1,
+    "theoreticalRespawnsPerRound": 10.90812250332949
+  },
+  "caveats": [
+    "Respawn rate is theoretical: a tile already holding a pearl does not accumulate more.",
+    "Four-turn collection windows can overlap; their counts do not establish causal attribution.",
+    "Cycle-step counts compare the last logged eligible claim geometry; unlogged claim revocations cannot be reconstructed.",
+    "A visible nearby pearl can be blocked; visible-pearl counts do not imply a safe detour exists."
+  ],
+  "teams": {
+    "A": {
+      "peakLength": 52,
+      "peakDragon": 931,
+      "peakRound": 498,
+      "longestTrajectory": [
+        [
+          0,
+          6
+        ],
+        [
+          25,
+          4
+        ],
+        [
+          50,
+          4
+        ],
+        [
+          75,
+          4
+        ],
+        [
+          100,
+          3
+        ],
+        [
+          125,
+          6
+        ],
+        [
+          150,
+          4
+        ],
+        [
+          175,
+          6
+        ],
+        [
+          200,
+          5
+        ],
+        [
+          225,
+          6
+        ],
+        [
+          250,
+          8
+        ],
+        [
+          275,
+          6
+        ],
+        [
+          300,
+          7
+        ],
+        [
+          325,
+          11
+        ],
+        [
+          350,
+          16
+        ],
+        [
+          375,
+          20
+        ],
+        [
+          400,
+          23
+        ],
+        [
+          425,
+          27
+        ],
+        [
+          450,
+          32
+        ],
+        [
+          475,
+          40
+        ],
+        [
+          500,
+          52
+        ]
+      ],
+      "longDeaths": [
+        {
+          "round": 375,
+          "id": 648,
+          "length": 20,
+          "reason": "H",
+          "reasonName": "head_collision",
+          "deliberateFeed": false,
+          "action": {
+            "round": 375,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "W"
+              ]
+            }
+          },
+          "head": {
+            "x": 35,
+            "y": 57
+          }
+        },
+        {
+          "round": 386,
+          "id": 1046,
+          "length": 19,
+          "reason": "H",
+          "reasonName": "head_collision",
+          "deliberateFeed": false,
+          "head": {
+            "x": 28,
+            "y": 23
+          }
+        },
+        {
+          "round": 427,
+          "id": 726,
+          "length": 21,
+          "reason": "H",
+          "reasonName": "head_collision",
+          "deliberateFeed": false,
+          "action": {
+            "round": 427,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "N"
+              ]
+            }
+          },
+          "head": {
+            "x": 30,
+            "y": 19
+          }
+        },
+        {
+          "round": 456,
+          "id": 1047,
+          "length": 22,
+          "reason": "S",
+          "reasonName": "self_collision",
+          "deliberateFeed": true,
+          "action": {
+            "round": 456,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "S"
+              ]
+            }
+          },
+          "head": {
+            "x": 20,
+            "y": 61
+          }
+        },
+        {
+          "round": 460,
+          "id": 957,
+          "length": 16,
+          "reason": "S",
+          "reasonName": "self_collision",
+          "deliberateFeed": true,
+          "action": {
+            "round": 460,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "W"
+              ]
+            }
+          },
+          "head": {
+            "x": 18,
+            "y": 25
+          }
+        },
+        {
+          "round": 465,
+          "id": 1003,
+          "length": 24,
+          "reason": "H",
+          "reasonName": "head_collision",
+          "deliberateFeed": false,
+          "action": {
+            "round": 465,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "N"
+              ]
+            }
+          },
+          "head": {
+            "x": 41,
+            "y": 23
+          }
+        },
+        {
+          "round": 475,
+          "id": 792,
+          "length": 21,
+          "reason": "S",
+          "reasonName": "self_collision",
+          "deliberateFeed": true,
+          "action": {
+            "round": 475,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "E"
+              ]
+            }
+          },
+          "head": {
+            "x": 19,
+            "y": 52
+          }
+        },
+        {
+          "round": 482,
+          "id": 681,
+          "length": 17,
+          "reason": "S",
+          "reasonName": "self_collision",
+          "deliberateFeed": true,
+          "action": {
+            "round": 482,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "W"
+              ]
+            }
+          },
+          "head": {
+            "x": 37,
+            "y": 45
+          }
+        },
+        {
+          "round": 485,
+          "id": 825,
+          "length": 17,
+          "reason": "S",
+          "reasonName": "self_collision",
+          "deliberateFeed": true,
+          "action": {
+            "round": 485,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "E"
+              ]
+            }
+          },
+          "head": {
+            "x": 26,
+            "y": 33
+          }
+        },
+        {
+          "round": 485,
+          "id": 827,
+          "length": 18,
+          "reason": "S",
+          "reasonName": "self_collision",
+          "deliberateFeed": true,
+          "action": {
+            "round": 485,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "N"
+              ]
+            }
+          },
+          "head": {
+            "x": 24,
+            "y": 48
+          }
+        },
+        {
+          "round": 493,
+          "id": 987,
+          "length": 27,
+          "reason": "S",
+          "reasonName": "self_collision",
+          "deliberateFeed": true,
+          "action": {
+            "round": 493,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "N"
+              ]
+            }
+          },
+          "head": {
+            "x": 29,
+            "y": 49
+          }
+        },
+        {
+          "round": 495,
+          "id": 1048,
+          "length": 31,
+          "reason": "S",
+          "reasonName": "self_collision",
+          "deliberateFeed": true,
+          "action": {
+            "round": 495,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "N"
+              ]
+            }
+          },
+          "head": {
+            "x": 29,
+            "y": 47
+          }
+        }
+      ],
+      "allDeaths": {
+        "H": 498,
+        "S": 15
+      },
+      "claims": [
+        {
+          "round": 307,
+          "id": 648,
+          "length": 8,
+          "x": 27,
+          "y": 1,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 313,
+          "id": 830,
+          "length": 8,
+          "x": 16,
+          "y": 20,
+          "w": 12,
+          "h": 4,
+          "spawnTiles": 48,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.12782956058588554
+        },
+        {
+          "round": 330,
+          "id": 830,
+          "length": 11,
+          "x": 18,
+          "y": 17,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 337,
+          "id": 921,
+          "length": 8,
+          "x": 25,
+          "y": 52,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 345,
+          "id": 985,
+          "length": 8,
+          "x": 28,
+          "y": 31,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 347,
+          "id": 466,
+          "length": 8,
+          "x": 12,
+          "y": 55,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 347,
+          "id": 885,
+          "length": 8,
+          "x": 29,
+          "y": 38,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 348,
+          "id": 648,
+          "length": 15,
+          "x": 29,
+          "y": 56,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 350,
+          "id": 830,
+          "length": 13,
+          "x": 19,
+          "y": 12,
+          "w": 5,
+          "h": 16,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 351,
+          "id": 921,
+          "length": 9,
+          "x": 25,
+          "y": 52,
+          "w": 16,
+          "h": 4,
+          "spawnTiles": 64,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.17043941411451388
+        },
+        {
+          "round": 353,
+          "id": 329,
+          "length": 8,
+          "x": 10,
+          "y": 16,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 355,
+          "id": 726,
+          "length": 8,
+          "x": 25,
+          "y": 20,
+          "w": 5,
+          "h": 16,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 357,
+          "id": 960,
+          "length": 8,
+          "x": 1,
+          "y": 53,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 358,
+          "id": 885,
+          "length": 9,
+          "x": 37,
+          "y": 33,
+          "w": 7,
+          "h": 10,
+          "spawnTiles": 70,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.1864181091877495
+        },
+        {
+          "round": 360,
+          "id": 726,
+          "length": 8,
+          "x": 23,
+          "y": 15,
+          "w": 4,
+          "h": 20,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 361,
+          "id": 921,
+          "length": 11,
+          "x": 31,
+          "y": 48,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 364,
+          "id": 500,
+          "length": 8,
+          "x": 26,
+          "y": 42,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 365,
+          "id": 885,
+          "length": 10,
+          "x": 36,
+          "y": 33,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 366,
+          "id": 466,
+          "length": 10,
+          "x": 11,
+          "y": 3,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 375,
+          "id": 957,
+          "length": 8,
+          "x": 11,
+          "y": 16,
+          "w": 8,
+          "h": 4,
+          "spawnTiles": 32,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.085219707057257
+        },
+        {
+          "round": 375,
+          "id": 1007,
+          "length": 8,
+          "x": 19,
+          "y": 1,
+          "w": 14,
+          "h": 4,
+          "spawnTiles": 56,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.1491344873501997
+        },
+        {
+          "round": 379,
+          "id": 681,
+          "length": 8,
+          "x": 22,
+          "y": 42,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 385,
+          "id": 885,
+          "length": 14,
+          "x": 38,
+          "y": 35,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 386,
+          "id": 466,
+          "length": 14,
+          "x": 14,
+          "y": 6,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 387,
+          "id": 1007,
+          "length": 9,
+          "x": 19,
+          "y": 1,
+          "w": 15,
+          "h": 4,
+          "spawnTiles": 60,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.1597869507323568
+        },
+        {
+          "round": 389,
+          "id": 329,
+          "length": 11,
+          "x": 11,
+          "y": 11,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 391,
+          "id": 329,
+          "length": 12,
+          "x": 14,
+          "y": 14,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 395,
+          "id": 1030,
+          "length": 8,
+          "x": 5,
+          "y": 30,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 397,
+          "id": 944,
+          "length": 8,
+          "x": 29,
+          "y": 28,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 400,
+          "id": 500,
+          "length": 23,
+          "x": 26,
+          "y": 36,
+          "w": 15,
+          "h": 6,
+          "spawnTiles": 90,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.23968042609853493
+        },
+        {
+          "round": 400,
+          "id": 530,
+          "length": 17,
+          "x": 0,
+          "y": 43,
+          "w": 20,
+          "h": 4,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 400,
+          "id": 931,
+          "length": 19,
+          "x": 0,
+          "y": 21,
+          "w": 6,
+          "h": 12,
+          "spawnTiles": 72,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.19174434087882805
+        },
+        {
+          "round": 400,
+          "id": 955,
+          "length": 21,
+          "x": 2,
+          "y": 12,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 400,
+          "id": 971,
+          "length": 12,
+          "x": 23,
+          "y": 53,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 400,
+          "id": 987,
+          "length": 15,
+          "x": 37,
+          "y": 43,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 400,
+          "id": 1035,
+          "length": 10,
+          "x": 7,
+          "y": 2,
+          "w": 13,
+          "h": 4,
+          "spawnTiles": 52,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.13848202396804263
+        },
+        {
+          "round": 403,
+          "id": 885,
+          "length": 17,
+          "x": 44,
+          "y": 37,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 407,
+          "id": 987,
+          "length": 16,
+          "x": 36,
+          "y": 41,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 409,
+          "id": 329,
+          "length": 17,
+          "x": 7,
+          "y": 7,
+          "w": 4,
+          "h": 20,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 409,
+          "id": 726,
+          "length": 12,
+          "x": 25,
+          "y": 12,
+          "w": 5,
+          "h": 16,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 411,
+          "id": 931,
+          "length": 24,
+          "x": 0,
+          "y": 25,
+          "w": 12,
+          "h": 8,
+          "spawnTiles": 96,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.25565912117177064
+        },
+        {
+          "round": 411,
+          "id": 971,
+          "length": 15,
+          "x": 19,
+          "y": 53,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 413,
+          "id": 329,
+          "length": 18,
+          "x": 6,
+          "y": 14,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 420,
+          "id": 500,
+          "length": 24,
+          "x": 19,
+          "y": 29,
+          "w": 7,
+          "h": 12,
+          "spawnTiles": 84,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.2237017310252993
+        },
+        {
+          "round": 423,
+          "id": 1003,
+          "length": 10,
+          "x": 12,
+          "y": 20,
+          "w": 20,
+          "h": 4,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 426,
+          "id": 726,
+          "length": 21,
+          "x": 29,
+          "y": 14,
+          "w": 4,
+          "h": 20,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 429,
+          "id": 329,
+          "length": 19,
+          "x": 4,
+          "y": 7,
+          "w": 5,
+          "h": 16,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 430,
+          "id": 792,
+          "length": 14,
+          "x": 27,
+          "y": 47,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 431,
+          "id": 931,
+          "length": 30,
+          "x": 6,
+          "y": 27,
+          "w": 12,
+          "h": 8,
+          "spawnTiles": 96,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.25565912117177064
+        },
+        {
+          "round": 433,
+          "id": 969,
+          "length": 11,
+          "x": 6,
+          "y": 49,
+          "w": 20,
+          "h": 4,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 435,
+          "id": 955,
+          "length": 26,
+          "x": 14,
+          "y": 8,
+          "w": 6,
+          "h": 16,
+          "spawnTiles": 96,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.25565912117177064
+        },
+        {
+          "round": 442,
+          "id": 1047,
+          "length": 18,
+          "x": 10,
+          "y": 57,
+          "w": 7,
+          "h": 6,
+          "spawnTiles": 42,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.11185086551264985
+        },
+        {
+          "round": 443,
+          "id": 484,
+          "length": 12,
+          "x": 18,
+          "y": 23,
+          "w": 5,
+          "h": 16,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 444,
+          "id": 944,
+          "length": 25,
+          "x": 29,
+          "y": 22,
+          "w": 8,
+          "h": 12,
+          "spawnTiles": 96,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.25565912117177064
+        },
+        {
+          "round": 445,
+          "id": 885,
+          "length": 22,
+          "x": 36,
+          "y": 35,
+          "w": 14,
+          "h": 6,
+          "spawnTiles": 84,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.2237017310252993
+        },
+        {
+          "round": 447,
+          "id": 1047,
+          "length": 19,
+          "x": 10,
+          "y": 57,
+          "w": 10,
+          "h": 6,
+          "spawnTiles": 60,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.1597869507323568
+        },
+        {
+          "round": 450,
+          "id": 530,
+          "length": 21,
+          "x": 0,
+          "y": 41,
+          "w": 7,
+          "h": 12,
+          "spawnTiles": 84,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.2237017310252993
+        },
+        {
+          "round": 451,
+          "id": 931,
+          "length": 32,
+          "x": 0,
+          "y": 40,
+          "w": 15,
+          "h": 6,
+          "spawnTiles": 90,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.23968042609853493
+        },
+        {
+          "round": 452,
+          "id": 530,
+          "length": 21,
+          "x": 0,
+          "y": 46,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 454,
+          "id": 955,
+          "length": 28,
+          "x": 19,
+          "y": 17,
+          "w": 7,
+          "h": 12,
+          "spawnTiles": 84,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.2237017310252993
+        },
+        {
+          "round": 455,
+          "id": 1035,
+          "length": 17,
+          "x": 4,
+          "y": 0,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 457,
+          "id": 329,
+          "length": 22,
+          "x": 2,
+          "y": 7,
+          "w": 7,
+          "h": 12,
+          "spawnTiles": 84,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.2237017310252993
+        },
+        {
+          "round": 457,
+          "id": 1003,
+          "length": 21,
+          "x": 34,
+          "y": 25,
+          "w": 8,
+          "h": 8,
+          "spawnTiles": 64,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.17043941411451388
+        },
+        {
+          "round": 457,
+          "id": 1048,
+          "length": 24,
+          "x": 27,
+          "y": 34,
+          "w": 7,
+          "h": 6,
+          "spawnTiles": 42,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.11185086551264985
+        },
+        {
+          "round": 463,
+          "id": 1003,
+          "length": 23,
+          "x": 35,
+          "y": 21,
+          "w": 7,
+          "h": 12,
+          "spawnTiles": 84,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.2237017310252993
+        },
+        {
+          "round": 464,
+          "id": 825,
+          "length": 14,
+          "x": 32,
+          "y": 24,
+          "w": 5,
+          "h": 16,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 467,
+          "id": 987,
+          "length": 21,
+          "x": 33,
+          "y": 50,
+          "w": 20,
+          "h": 4,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 470,
+          "id": 530,
+          "length": 22,
+          "x": 0,
+          "y": 42,
+          "w": 22,
+          "h": 4,
+          "spawnTiles": 88,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.2343541944074564
+        },
+        {
+          "round": 475,
+          "id": 792,
+          "length": 21,
+          "x": 17,
+          "y": 43,
+          "w": 4,
+          "h": 20,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 475,
+          "id": 955,
+          "length": 33,
+          "x": 10,
+          "y": 8,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 477,
+          "id": 825,
+          "length": 16,
+          "x": 26,
+          "y": 25,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 487,
+          "id": 987,
+          "length": 24,
+          "x": 29,
+          "y": 47,
+          "w": 20,
+          "h": 4,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 488,
+          "id": 1048,
+          "length": 27,
+          "x": 30,
+          "y": 38,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 490,
+          "id": 530,
+          "length": 23,
+          "x": 53,
+          "y": 41,
+          "w": 11,
+          "h": 8,
+          "spawnTiles": 88,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.2343541944074564
+        },
+        {
+          "round": 491,
+          "id": 931,
+          "length": 47,
+          "x": 10,
+          "y": 45,
+          "w": 16,
+          "h": 8,
+          "spawnTiles": 128,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.3408788282290282
+        }
+      ],
+      "patrolFood": [
+        {
+          "round": 349,
+          "id": 648,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 37,
+            "y": 61
+          },
+          "nominalCycleNext": {
+            "x": 38,
+            "y": 62
+          },
+          "ownTurn": 134,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 16,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 37,
+            "y": 61
+          }
+        },
+        {
+          "round": 350,
+          "id": 648,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 37,
+            "y": 60
+          },
+          "nominalCycleNext": {
+            "x": 36,
+            "y": 61
+          },
+          "ownTurn": 135,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 16,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 37,
+            "y": 60
+          }
+        },
+        {
+          "round": 351,
+          "id": 648,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 37,
+            "y": 59
+          },
+          "nominalCycleNext": {
+            "x": 38,
+            "y": 60
+          },
+          "ownTurn": 136,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 17,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 37,
+            "y": 59
+          }
+        },
+        {
+          "round": 352,
+          "id": 648,
+          "length": 17,
+          "reportedLength": 17,
+          "selectedDestination": {
+            "x": 36,
+            "y": 59
+          },
+          "nominalCycleNext": {
+            "x": 36,
+            "y": 59
+          },
+          "ownTurn": 137,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 18,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 36,
+            "y": 59
+          }
+        },
+        {
+          "round": 357,
+          "id": 648,
+          "length": 18,
+          "reportedLength": 18,
+          "selectedDestination": {
+            "x": 32,
+            "y": 60
+          },
+          "nominalCycleNext": {
+            "x": 34,
+            "y": 60
+          },
+          "ownTurn": 142,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 18,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 32,
+            "y": 60
+          }
+        },
+        {
+          "round": 358,
+          "id": 648,
+          "length": 18,
+          "reportedLength": 18,
+          "selectedDestination": {
+            "x": 32,
+            "y": 59
+          },
+          "nominalCycleNext": {
+            "x": 33,
+            "y": 60
+          },
+          "ownTurn": 143,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 18,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 32,
+            "y": 59
+          }
+        },
+        {
+          "round": 359,
+          "id": 648,
+          "length": 18,
+          "reportedLength": 18,
+          "selectedDestination": {
+            "x": 31,
+            "y": 59
+          },
+          "nominalCycleNext": {
+            "x": 31,
+            "y": 59
+          },
+          "ownTurn": 144,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 19,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 31,
+            "y": 59
+          }
+        },
+        {
+          "round": 372,
+          "id": 648,
+          "length": 19,
+          "reportedLength": 19,
+          "selectedDestination": {
+            "x": 35,
+            "y": 56
+          },
+          "nominalCycleNext": {
+            "x": 35,
+            "y": 56
+          },
+          "ownTurn": 157,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 19,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 35,
+            "y": 56
+          }
+        },
+        {
+          "round": 373,
+          "id": 648,
+          "length": 19,
+          "reportedLength": 19,
+          "selectedDestination": {
+            "x": 36,
+            "y": 56
+          },
+          "nominalCycleNext": {
+            "x": 36,
+            "y": 56
+          },
+          "ownTurn": 158,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 19,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 36,
+            "y": 56
+          }
+        },
+        {
+          "round": 374,
+          "id": 648,
+          "length": 19,
+          "reportedLength": 19,
+          "selectedDestination": {
+            "x": 36,
+            "y": 57
+          },
+          "nominalCycleNext": {
+            "x": 37,
+            "y": 56
+          },
+          "ownTurn": 159,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 20,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 36,
+            "y": 57
+          }
+        },
+        {
+          "round": 383,
+          "id": 500,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 34,
+            "y": 42
+          },
+          "nominalCycleNext": {
+            "x": 35,
+            "y": 43
+          },
+          "ownTurn": 218,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 17,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 34,
+            "y": 42
+          }
+        },
+        {
+          "round": 384,
+          "id": 500,
+          "length": 17,
+          "reportedLength": 17,
+          "selectedDestination": {
+            "x": 34,
+            "y": 43
+          },
+          "nominalCycleNext": {
+            "x": 35,
+            "y": 42
+          },
+          "ownTurn": 219,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 17,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 34,
+            "y": 43
+          }
+        },
+        {
+          "round": 384,
+          "id": 830,
+          "length": 20,
+          "reportedLength": 20,
+          "selectedDestination": {
+            "x": 23,
+            "y": 19
+          },
+          "nominalCycleNext": {
+            "x": 23,
+            "y": 21
+          },
+          "ownTurn": 112,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 21,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 23,
+            "y": 19
+          }
+        },
+        {
+          "round": 385,
+          "id": 500,
+          "length": 17,
+          "reportedLength": 17,
+          "selectedDestination": {
+            "x": 34,
+            "y": 44
+          },
+          "nominalCycleNext": {
+            "x": 33,
+            "y": 43
+          },
+          "ownTurn": 220,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 17,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 34,
+            "y": 44
+          }
+        },
+        {
+          "round": 386,
+          "id": 500,
+          "length": 17,
+          "reportedLength": 17,
+          "selectedDestination": {
+            "x": 33,
+            "y": 44
+          },
+          "nominalCycleNext": {
+            "x": 35,
+            "y": 44
+          },
+          "ownTurn": 221,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 18,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 33,
+            "y": 44
+          }
+        },
+        {
+          "round": 387,
+          "id": 500,
+          "length": 18,
+          "reportedLength": 18,
+          "selectedDestination": {
+            "x": 33,
+            "y": 43
+          },
+          "nominalCycleNext": {
+            "x": 34,
+            "y": 44
+          },
+          "ownTurn": 222,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 18,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 33,
+            "y": 43
+          }
+        },
+        {
+          "round": 388,
+          "id": 500,
+          "length": 18,
+          "reportedLength": 18,
+          "selectedDestination": {
+            "x": 32,
+            "y": 43
+          },
+          "nominalCycleNext": {
+            "x": 32,
+            "y": 43
+          },
+          "ownTurn": 223,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 18,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 32,
+            "y": 43
+          }
+        },
+        {
+          "round": 389,
+          "id": 500,
+          "length": 18,
+          "reportedLength": 18,
+          "selectedDestination": {
+            "x": 31,
+            "y": 43
+          },
+          "nominalCycleNext": {
+            "x": 31,
+            "y": 43
+          },
+          "ownTurn": 224,
+          "pearlsNextFourOwnTurns": 3,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 19,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 31,
+            "y": 43
+          }
+        },
+        {
+          "round": 390,
+          "id": 500,
+          "length": 19,
+          "reportedLength": 19,
+          "selectedDestination": {
+            "x": 30,
+            "y": 43
+          },
+          "nominalCycleNext": {
+            "x": 30,
+            "y": 43
+          },
+          "ownTurn": 225,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 20,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 30,
+            "y": 43
+          }
+        },
+        {
+          "round": 392,
+          "id": 500,
+          "length": 20,
+          "reportedLength": 20,
+          "selectedDestination": {
+            "x": 29,
+            "y": 42
+          },
+          "nominalCycleNext": {
+            "x": 28,
+            "y": 43
+          },
+          "ownTurn": 227,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 1,
+          "differsFromCycle": true,
+          "afterTurnLength": 21,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 29,
+            "y": 42
+          }
+        },
+        {
+          "round": 393,
+          "id": 500,
+          "length": 21,
+          "reportedLength": 21,
+          "selectedDestination": {
+            "x": 29,
+            "y": 41
+          },
+          "nominalCycleNext": {
+            "x": 30,
+            "y": 42
+          },
+          "ownTurn": 228,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 2,
+          "differsFromCycle": true,
+          "afterTurnLength": 21,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 29,
+            "y": 41
+          }
+        },
+        {
+          "round": 395,
+          "id": 885,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 47,
+            "y": 41
+          },
+          "nominalCycleNext": {
+            "x": 46,
+            "y": 42
+          },
+          "ownTurn": 104,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 16,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 47,
+            "y": 41
+          }
+        },
+        {
+          "round": 396,
+          "id": 885,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 47,
+            "y": 40
+          },
+          "nominalCycleNext": {
+            "x": 47,
+            "y": 42
+          },
+          "ownTurn": 105,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 16,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 47,
+            "y": 40
+          }
+        },
+        {
+          "round": 397,
+          "id": 466,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 22,
+            "y": 13
+          },
+          "nominalCycleNext": {
+            "x": 22,
+            "y": 13
+          },
+          "ownTurn": 242,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 16,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 22,
+            "y": 13
+          }
+        },
+        {
+          "round": 397,
+          "id": 885,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 48,
+            "y": 40
+          },
+          "nominalCycleNext": {
+            "x": 46,
+            "y": 40
+          },
+          "ownTurn": 106,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 17,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 48,
+            "y": 40
+          }
+        },
+        {
+          "round": 398,
+          "id": 466,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 21,
+            "y": 13
+          },
+          "nominalCycleNext": {
+            "x": 21,
+            "y": 13
+          },
+          "ownTurn": 243,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 16,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 21,
+            "y": 13
+          }
+        },
+        {
+          "round": 399,
+          "id": 466,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 21,
+            "y": 12
+          },
+          "nominalCycleNext": {
+            "x": 20,
+            "y": 13
+          },
+          "ownTurn": 244,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 16,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 21,
+            "y": 12
+          }
+        },
+        {
+          "round": 400,
+          "id": 466,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 20,
+            "y": 12
+          },
+          "nominalCycleNext": {
+            "x": 22,
+            "y": 12
+          },
+          "ownTurn": 245,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 17,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 20,
+            "y": 12
+          }
+        },
+        {
+          "round": 400,
+          "id": 955,
+          "length": 21,
+          "reportedLength": 21,
+          "selectedDestination": {
+            "x": 5,
+            "y": 14
+          },
+          "nominalCycleNext": {
+            "x": 4,
+            "y": 15
+          },
+          "ownTurn": 88,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 21,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 5,
+            "y": 14
+          }
+        },
+        {
+          "round": 401,
+          "id": 955,
+          "length": 21,
+          "reportedLength": 21,
+          "selectedDestination": {
+            "x": 5,
+            "y": 13
+          },
+          "nominalCycleNext": {
+            "x": 6,
+            "y": 14
+          },
+          "ownTurn": 89,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 22,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 5,
+            "y": 13
+          }
+        },
+        {
+          "round": 402,
+          "id": 530,
+          "length": 17,
+          "reportedLength": 17,
+          "selectedDestination": {
+            "x": 5,
+            "y": 44
+          },
+          "nominalCycleNext": {
+            "x": 5,
+            "y": 44
+          },
+          "ownTurn": 225,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 17,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 5,
+            "y": 44
+          }
+        },
+        {
+          "round": 402,
+          "id": 955,
+          "length": 22,
+          "reportedLength": 22,
+          "selectedDestination": {
+            "x": 6,
+            "y": 13
+          },
+          "nominalCycleNext": {
+            "x": 4,
+            "y": 13
+          },
+          "ownTurn": 90,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 22,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 6,
+            "y": 13
+          }
+        },
+        {
+          "round": 403,
+          "id": 530,
+          "length": 17,
+          "reportedLength": 17,
+          "selectedDestination": {
+            "x": 4,
+            "y": 44
+          },
+          "nominalCycleNext": {
+            "x": 4,
+            "y": 44
+          },
+          "ownTurn": 226,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 17,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 4,
+            "y": 44
+          }
+        },
+        {
+          "round": 403,
+          "id": 955,
+          "length": 22,
+          "reportedLength": 22,
+          "selectedDestination": {
+            "x": 6,
+            "y": 14
+          },
+          "nominalCycleNext": {
+            "x": 5,
+            "y": 13
+          },
+          "ownTurn": 91,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 23,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 6,
+            "y": 14
+          }
+        },
+        {
+          "round": 404,
+          "id": 530,
+          "length": 17,
+          "reportedLength": 17,
+          "selectedDestination": {
+            "x": 3,
+            "y": 44
+          },
+          "nominalCycleNext": {
+            "x": 3,
+            "y": 44
+          },
+          "ownTurn": 227,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 18,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 3,
+            "y": 44
+          }
+        },
+        {
+          "round": 405,
+          "id": 466,
+          "length": 17,
+          "reportedLength": 17,
+          "selectedDestination": {
+            "x": 17,
+            "y": 10
+          },
+          "nominalCycleNext": {
+            "x": 16,
+            "y": 11
+          },
+          "ownTurn": 250,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 1,
+          "differsFromCycle": true,
+          "afterTurnLength": 17,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 17,
+            "y": 10
+          }
+        },
+        {
+          "round": 405,
+          "id": 530,
+          "length": 18,
+          "reportedLength": 18,
+          "selectedDestination": {
+            "x": 2,
+            "y": 44
+          },
+          "nominalCycleNext": {
+            "x": 2,
+            "y": 44
+          },
+          "ownTurn": 228,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 18,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 2,
+            "y": 44
+          }
+        },
+        {
+          "round": 406,
+          "id": 466,
+          "length": 17,
+          "reportedLength": 17,
+          "selectedDestination": {
+            "x": 17,
+            "y": 9
+          },
+          "nominalCycleNext": {
+            "x": 18,
+            "y": 10
+          },
+          "ownTurn": 251,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 2,
+          "differsFromCycle": true,
+          "afterTurnLength": 17,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 17,
+            "y": 9
+          }
+        },
+        {
+          "round": 406,
+          "id": 530,
+          "length": 18,
+          "reportedLength": 18,
+          "selectedDestination": {
+            "x": 1,
+            "y": 44
+          },
+          "nominalCycleNext": {
+            "x": 1,
+            "y": 44
+          },
+          "ownTurn": 229,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 19,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 1,
+            "y": 44
+          }
+        },
+        {
+          "round": 406,
+          "id": 885,
+          "length": 17,
+          "reportedLength": 17,
+          "selectedDestination": {
+            "x": 52,
+            "y": 45
+          },
+          "nominalCycleNext": {
+            "x": 51,
+            "y": 46
+          },
+          "ownTurn": 115,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 17,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 52,
+            "y": 45
+          }
+        },
+        {
+          "round": 407,
+          "id": 466,
+          "length": 17,
+          "reportedLength": 17,
+          "selectedDestination": {
+            "x": 17,
+            "y": 8
+          },
+          "nominalCycleNext": {
+            "x": 16,
+            "y": 9
+          },
+          "ownTurn": 252,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 2,
+          "differsFromCycle": true,
+          "afterTurnLength": 18,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 1,
+          "actualHeadAfterTurn": {
+            "x": 17,
+            "y": 8
+          }
+        },
+        {
+          "round": 408,
+          "id": 466,
+          "length": 18,
+          "reportedLength": 18,
+          "selectedDestination": {
+            "x": 17,
+            "y": 7
+          },
+          "nominalCycleNext": {
+            "x": 18,
+            "y": 8
+          },
+          "ownTurn": 253,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 1,
+          "differsFromCycle": true,
+          "afterTurnLength": 18,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 17,
+            "y": 7
+          }
+        },
+        {
+          "round": 409,
+          "id": 329,
+          "length": 17,
+          "reportedLength": 17,
+          "selectedDestination": {
+            "x": 10,
+            "y": 21
+          },
+          "nominalCycleNext": {
+            "x": 10,
+            "y": 21
+          },
+          "ownTurn": 292,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 17,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 10,
+            "y": 21
+          }
+        },
+        {
+          "round": 409,
+          "id": 466,
+          "length": 18,
+          "reportedLength": 18,
+          "selectedDestination": {
+            "x": 17,
+            "y": 6
+          },
+          "nominalCycleNext": {
+            "x": 16,
+            "y": 7
+          },
+          "ownTurn": 254,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 1,
+          "differsFromCycle": true,
+          "afterTurnLength": 19,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 1,
+          "actualHeadAfterTurn": {
+            "x": 17,
+            "y": 6
+          }
+        },
+        {
+          "round": 409,
+          "id": 500,
+          "length": 23,
+          "reportedLength": 23,
+          "selectedDestination": {
+            "x": 26,
+            "y": 38
+          },
+          "nominalCycleNext": {
+            "x": 26,
+            "y": 38
+          },
+          "ownTurn": 244,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 23,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 26,
+            "y": 38
+          }
+        },
+        {
+          "round": 410,
+          "id": 329,
+          "length": 17,
+          "reportedLength": 17,
+          "selectedDestination": {
+            "x": 10,
+            "y": 20
+          },
+          "nominalCycleNext": {
+            "x": 10,
+            "y": 22
+          },
+          "ownTurn": 293,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 17,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 10,
+            "y": 20
+          }
+        },
+        {
+          "round": 410,
+          "id": 466,
+          "length": 19,
+          "reportedLength": 19,
+          "selectedDestination": {
+            "x": 17,
+            "y": 5
+          },
+          "nominalCycleNext": {
+            "x": 18,
+            "y": 6
+          },
+          "ownTurn": 255,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 19,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 17,
+            "y": 5
+          }
+        },
+        {
+          "round": 410,
+          "id": 500,
+          "length": 23,
+          "reportedLength": 23,
+          "selectedDestination": {
+            "x": 25,
+            "y": 38
+          },
+          "nominalCycleNext": {
+            "x": 26,
+            "y": 37
+          },
+          "ownTurn": 245,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 24,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 25,
+            "y": 38
+          }
+        },
+        {
+          "round": 410,
+          "id": 955,
+          "length": 23,
+          "reportedLength": 23,
+          "selectedDestination": {
+            "x": 11,
+            "y": 16
+          },
+          "nominalCycleNext": {
+            "x": 10,
+            "y": 15
+          },
+          "ownTurn": 98,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 23,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 11,
+            "y": 16
+          }
+        },
+        {
+          "round": 411,
+          "id": 329,
+          "length": 17,
+          "reportedLength": 17,
+          "selectedDestination": {
+            "x": 11,
+            "y": 20
+          },
+          "nominalCycleNext": {
+            "x": 9,
+            "y": 20
+          },
+          "ownTurn": 294,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 18,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 11,
+            "y": 20
+          }
+        },
+        {
+          "round": 411,
+          "id": 955,
+          "length": 23,
+          "reportedLength": 23,
+          "selectedDestination": {
+            "x": 11,
+            "y": 17
+          },
+          "nominalCycleNext": {
+            "x": 11,
+            "y": 17
+          },
+          "ownTurn": 99,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 24,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 11,
+            "y": 17
+          }
+        },
+        {
+          "round": 412,
+          "id": 955,
+          "length": 24,
+          "reportedLength": 24,
+          "selectedDestination": {
+            "x": 12,
+            "y": 17
+          },
+          "nominalCycleNext": {
+            "x": 10,
+            "y": 17
+          },
+          "ownTurn": 100,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 25,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 12,
+            "y": 17
+          }
+        },
+        {
+          "round": 415,
+          "id": 931,
+          "length": 24,
+          "reportedLength": 24,
+          "selectedDestination": {
+            "x": 12,
+            "y": 26
+          },
+          "nominalCycleNext": {
+            "x": 10,
+            "y": 26
+          },
+          "ownTurn": 110,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 24,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 12,
+            "y": 26
+          }
+        },
+        {
+          "round": 418,
+          "id": 987,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 39,
+            "y": 46
+          },
+          "nominalCycleNext": {
+            "x": 40,
+            "y": 45
+          },
+          "ownTurn": 95,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 16,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 39,
+            "y": 46
+          }
+        },
+        {
+          "round": 419,
+          "id": 885,
+          "length": 19,
+          "reportedLength": 19,
+          "selectedDestination": {
+            "x": 50,
+            "y": 38
+          },
+          "nominalCycleNext": {
+            "x": 50,
+            "y": 38
+          },
+          "ownTurn": 128,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 20,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 50,
+            "y": 38
+          }
+        },
+        {
+          "round": 419,
+          "id": 987,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 39,
+            "y": 47
+          },
+          "nominalCycleNext": {
+            "x": 38,
+            "y": 46
+          },
+          "ownTurn": 96,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 16,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 39,
+            "y": 47
+          }
+        },
+        {
+          "round": 420,
+          "id": 987,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 39,
+            "y": 48
+          },
+          "nominalCycleNext": {
+            "x": 40,
+            "y": 47
+          },
+          "ownTurn": 97,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 16,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 39,
+            "y": 48
+          }
+        },
+        {
+          "round": 422,
+          "id": 500,
+          "length": 24,
+          "reportedLength": 24,
+          "selectedDestination": {
+            "x": 23,
+            "y": 30
+          },
+          "nominalCycleNext": {
+            "x": 24,
+            "y": 31
+          },
+          "ownTurn": 257,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 24,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 23,
+            "y": 30
+          }
+        },
+        {
+          "round": 423,
+          "id": 500,
+          "length": 24,
+          "reportedLength": 24,
+          "selectedDestination": {
+            "x": 23,
+            "y": 29
+          },
+          "nominalCycleNext": {
+            "x": 22,
+            "y": 30
+          },
+          "ownTurn": 258,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 24,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 23,
+            "y": 29
+          }
+        },
+        {
+          "round": 423,
+          "id": 530,
+          "length": 19,
+          "reportedLength": 19,
+          "selectedDestination": {
+            "x": 0,
+            "y": 44
+          },
+          "nominalCycleNext": {
+            "x": 0,
+            "y": 44
+          },
+          "ownTurn": 246,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 19,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 0,
+            "y": 44
+          }
+        },
+        {
+          "round": 424,
+          "id": 500,
+          "length": 24,
+          "reportedLength": 24,
+          "selectedDestination": {
+            "x": 24,
+            "y": 29
+          },
+          "nominalCycleNext": {
+            "x": 24,
+            "y": 29
+          },
+          "ownTurn": 259,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 24,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 24,
+            "y": 29
+          }
+        },
+        {
+          "round": 424,
+          "id": 530,
+          "length": 19,
+          "reportedLength": 19,
+          "selectedDestination": {
+            "x": 63,
+            "y": 44
+          },
+          "nominalCycleNext": {
+            "x": 0,
+            "y": 43
+          },
+          "ownTurn": 247,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 19,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 63,
+            "y": 44
+          }
+        },
+        {
+          "round": 424,
+          "id": 885,
+          "length": 20,
+          "reportedLength": 20,
+          "selectedDestination": {
+            "x": 46,
+            "y": 37
+          },
+          "nominalCycleNext": {
+            "x": 45,
+            "y": 38
+          },
+          "ownTurn": 133,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 20,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 46,
+            "y": 37
+          }
+        },
+        {
+          "round": 425,
+          "id": 500,
+          "length": 24,
+          "reportedLength": 24,
+          "selectedDestination": {
+            "x": 25,
+            "y": 29
+          },
+          "nominalCycleNext": {
+            "x": 25,
+            "y": 29
+          },
+          "ownTurn": 260,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 25,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 25,
+            "y": 29
+          }
+        },
+        {
+          "round": 425,
+          "id": 885,
+          "length": 20,
+          "reportedLength": 20,
+          "selectedDestination": {
+            "x": 45,
+            "y": 37
+          },
+          "nominalCycleNext": {
+            "x": 47,
+            "y": 37
+          },
+          "ownTurn": 134,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 20,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 45,
+            "y": 37
+          }
+        },
+        {
+          "round": 426,
+          "id": 726,
+          "length": 21,
+          "reportedLength": 21,
+          "selectedDestination": {
+            "x": 30,
+            "y": 20
+          },
+          "nominalCycleNext": {
+            "x": 32,
+            "y": 20
+          },
+          "ownTurn": 192,
+          "pearlsNextFourOwnTurns": 0,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 21,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 30,
+            "y": 20
+          }
+        },
+        {
+          "round": 426,
+          "id": 885,
+          "length": 20,
+          "reportedLength": 20,
+          "selectedDestination": {
+            "x": 44,
+            "y": 37
+          },
+          "nominalCycleNext": {
+            "x": 46,
+            "y": 37
+          },
+          "ownTurn": 135,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 20,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 44,
+            "y": 37
+          }
+        },
+        {
+          "round": 427,
+          "id": 885,
+          "length": 20,
+          "reportedLength": 20,
+          "selectedDestination": {
+            "x": 43,
+            "y": 37
+          },
+          "nominalCycleNext": {
+            "x": 45,
+            "y": 37
+          },
+          "ownTurn": 136,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 21,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 43,
+            "y": 37
+          }
+        },
+        {
+          "round": 428,
+          "id": 329,
+          "length": 19,
+          "reportedLength": 19,
+          "selectedDestination": {
+            "x": 5,
+            "y": 15
+          },
+          "nominalCycleNext": {
+            "x": 6,
+            "y": 14
+          },
+          "ownTurn": 311,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 19,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 5,
+            "y": 15
+          }
+        },
+        {
+          "round": 428,
+          "id": 931,
+          "length": 29,
+          "reportedLength": 29,
+          "selectedDestination": {
+            "x": 11,
+            "y": 32
+          },
+          "nominalCycleNext": {
+            "x": 11,
+            "y": 32
+          },
+          "ownTurn": 123,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 29,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 11,
+            "y": 32
+          }
+        },
+        {
+          "round": 429,
+          "id": 329,
+          "length": 19,
+          "reportedLength": 19,
+          "selectedDestination": {
+            "x": 4,
+            "y": 15
+          },
+          "nominalCycleNext": {
+            "x": 6,
+            "y": 15
+          },
+          "ownTurn": 312,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 19,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 4,
+            "y": 15
+          }
+        },
+        {
+          "round": 429,
+          "id": 931,
+          "length": 29,
+          "reportedLength": 29,
+          "selectedDestination": {
+            "x": 11,
+            "y": 33
+          },
+          "nominalCycleNext": {
+            "x": 10,
+            "y": 32
+          },
+          "ownTurn": 124,
+          "pearlsNextFourOwnTurns": 3,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 29,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 11,
+            "y": 33
+          }
+        },
+        {
+          "round": 430,
+          "id": 329,
+          "length": 19,
+          "reportedLength": 19,
+          "selectedDestination": {
+            "x": 3,
+            "y": 15
+          },
+          "nominalCycleNext": {
+            "x": 4,
+            "y": 14
+          },
+          "ownTurn": 313,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 20,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 3,
+            "y": 15
+          }
+        },
+        {
+          "round": 431,
+          "id": 885,
+          "length": 21,
+          "reportedLength": 21,
+          "selectedDestination": {
+            "x": 44,
+            "y": 40
+          },
+          "nominalCycleNext": {
+            "x": 44,
+            "y": 38
+          },
+          "ownTurn": 140,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 22,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 44,
+            "y": 40
+          }
+        },
+        {
+          "round": 431,
+          "id": 931,
+          "length": 30,
+          "reportedLength": 30,
+          "selectedDestination": {
+            "x": 10,
+            "y": 34
+          },
+          "nominalCycleNext": {
+            "x": 10,
+            "y": 34
+          },
+          "ownTurn": 126,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 31,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 10,
+            "y": 34
+          }
+        },
+        {
+          "round": 432,
+          "id": 931,
+          "length": 31,
+          "reportedLength": 31,
+          "selectedDestination": {
+            "x": 10,
+            "y": 35
+          },
+          "nominalCycleNext": {
+            "x": 9,
+            "y": 34
+          },
+          "ownTurn": 127,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 32,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 10,
+            "y": 35
+          }
+        },
+        {
+          "round": 433,
+          "id": 987,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 40,
+            "y": 45
+          },
+          "nominalCycleNext": {
+            "x": 39,
+            "y": 46
+          },
+          "ownTurn": 110,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 16,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 40,
+            "y": 45
+          }
+        },
+        {
+          "round": 434,
+          "id": 987,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 39,
+            "y": 45
+          },
+          "nominalCycleNext": {
+            "x": 41,
+            "y": 45
+          },
+          "ownTurn": 111,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 16,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 39,
+            "y": 45
+          }
+        },
+        {
+          "round": 435,
+          "id": 955,
+          "length": 26,
+          "reportedLength": 26,
+          "selectedDestination": {
+            "x": 20,
+            "y": 20
+          },
+          "nominalCycleNext": {
+            "x": 19,
+            "y": 21
+          },
+          "ownTurn": 123,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 26,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 20,
+            "y": 20
+          }
+        },
+        {
+          "round": 439,
+          "id": 792,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 29,
+            "y": 51
+          },
+          "nominalCycleNext": {
+            "x": 28,
+            "y": 52
+          },
+          "ownTurn": 177,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 16,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 29,
+            "y": 51
+          }
+        },
+        {
+          "round": 440,
+          "id": 792,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 29,
+            "y": 50
+          },
+          "nominalCycleNext": {
+            "x": 30,
+            "y": 51
+          },
+          "ownTurn": 178,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 16,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 29,
+            "y": 50
+          }
+        },
+        {
+          "round": 441,
+          "id": 500,
+          "length": 25,
+          "reportedLength": 25,
+          "selectedDestination": {
+            "x": 24,
+            "y": 36
+          },
+          "nominalCycleNext": {
+            "x": 22,
+            "y": 36
+          },
+          "ownTurn": 276,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 25,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 24,
+            "y": 36
+          }
+        },
+        {
+          "round": 441,
+          "id": 792,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 29,
+            "y": 49
+          },
+          "nominalCycleNext": {
+            "x": 28,
+            "y": 50
+          },
+          "ownTurn": 179,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 16,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 29,
+            "y": 49
+          }
+        },
+        {
+          "round": 442,
+          "id": 500,
+          "length": 25,
+          "reportedLength": 25,
+          "selectedDestination": {
+            "x": 25,
+            "y": 36
+          },
+          "nominalCycleNext": {
+            "x": 23,
+            "y": 36
+          },
+          "ownTurn": 277,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 25,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 25,
+            "y": 36
+          }
+        },
+        {
+          "round": 442,
+          "id": 792,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 30,
+            "y": 49
+          },
+          "nominalCycleNext": {
+            "x": 30,
+            "y": 49
+          },
+          "ownTurn": 180,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 17,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 30,
+            "y": 49
+          }
+        },
+        {
+          "round": 443,
+          "id": 500,
+          "length": 25,
+          "reportedLength": 25,
+          "selectedDestination": {
+            "x": 26,
+            "y": 36
+          },
+          "nominalCycleNext": {
+            "x": 24,
+            "y": 36
+          },
+          "ownTurn": 278,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 26,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 26,
+            "y": 36
+          }
+        },
+        {
+          "round": 444,
+          "id": 944,
+          "length": 25,
+          "reportedLength": 25,
+          "selectedDestination": {
+            "x": 33,
+            "y": 23
+          },
+          "nominalCycleNext": {
+            "x": 34,
+            "y": 24
+          },
+          "ownTurn": 134,
+          "pearlsNextFourOwnTurns": 0,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 25,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 33,
+            "y": 23
+          }
+        },
+        {
+          "round": 452,
+          "id": 931,
+          "length": 32,
+          "reportedLength": 32,
+          "selectedDestination": {
+            "x": 8,
+            "y": 46
+          },
+          "nominalCycleNext": {
+            "x": 7,
+            "y": 45
+          },
+          "ownTurn": 147,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 33,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 8,
+            "y": 46
+          }
+        },
+        {
+          "round": 454,
+          "id": 530,
+          "length": 21,
+          "reportedLength": 21,
+          "selectedDestination": {
+            "x": 5,
+            "y": 48
+          },
+          "nominalCycleNext": {
+            "x": 5,
+            "y": 48
+          },
+          "ownTurn": 277,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 1,
+          "differsFromCycle": false,
+          "afterTurnLength": 21,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 5,
+            "y": 48
+          }
+        },
+        {
+          "round": 455,
+          "id": 500,
+          "length": 30,
+          "reportedLength": 30,
+          "selectedDestination": {
+            "x": 23,
+            "y": 39
+          },
+          "nominalCycleNext": {
+            "x": 22,
+            "y": 40
+          },
+          "ownTurn": 290,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 30,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 23,
+            "y": 39
+          }
+        },
+        {
+          "round": 455,
+          "id": 987,
+          "length": 18,
+          "reportedLength": 18,
+          "selectedDestination": {
+            "x": 42,
+            "y": 47
+          },
+          "nominalCycleNext": {
+            "x": 42,
+            "y": 47
+          },
+          "ownTurn": 132,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 18,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 42,
+            "y": 47
+          }
+        },
+        {
+          "round": 455,
+          "id": 1035,
+          "length": 17,
+          "reportedLength": 17,
+          "selectedDestination": {
+            "x": 6,
+            "y": 6
+          },
+          "nominalCycleNext": {
+            "x": 8,
+            "y": 6
+          },
+          "ownTurn": 111,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 18,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 6,
+            "y": 6
+          }
+        },
+        {
+          "round": 456,
+          "id": 500,
+          "length": 30,
+          "reportedLength": 30,
+          "selectedDestination": {
+            "x": 22,
+            "y": 39
+          },
+          "nominalCycleNext": {
+            "x": 24,
+            "y": 39
+          },
+          "ownTurn": 291,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 31,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 22,
+            "y": 39
+          }
+        },
+        {
+          "round": 456,
+          "id": 987,
+          "length": 18,
+          "reportedLength": 18,
+          "selectedDestination": {
+            "x": 43,
+            "y": 47
+          },
+          "nominalCycleNext": {
+            "x": 43,
+            "y": 47
+          },
+          "ownTurn": 133,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 18,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 43,
+            "y": 47
+          }
+        },
+        {
+          "round": 457,
+          "id": 329,
+          "length": 22,
+          "reportedLength": 22,
+          "selectedDestination": {
+            "x": 5,
+            "y": 17
+          },
+          "nominalCycleNext": {
+            "x": 4,
+            "y": 16
+          },
+          "ownTurn": 340,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 23,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 5,
+            "y": 17
+          }
+        },
+        {
+          "round": 457,
+          "id": 885,
+          "length": 19,
+          "reportedLength": 19,
+          "selectedDestination": {
+            "x": 42,
+            "y": 41
+          },
+          "nominalCycleNext": {
+            "x": 41,
+            "y": 40
+          },
+          "ownTurn": 166,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 19,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 42,
+            "y": 41
+          }
+        },
+        {
+          "round": 457,
+          "id": 955,
+          "length": 28,
+          "reportedLength": 28,
+          "selectedDestination": {
+            "x": 19,
+            "y": 27
+          },
+          "nominalCycleNext": {
+            "x": 19,
+            "y": 27
+          },
+          "ownTurn": 145,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 2,
+          "differsFromCycle": false,
+          "afterTurnLength": 28,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 19,
+            "y": 27
+          }
+        },
+        {
+          "round": 457,
+          "id": 987,
+          "length": 18,
+          "reportedLength": 18,
+          "selectedDestination": {
+            "x": 44,
+            "y": 47
+          },
+          "nominalCycleNext": {
+            "x": 43,
+            "y": 48
+          },
+          "ownTurn": 134,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 18,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 44,
+            "y": 47
+          }
+        },
+        {
+          "round": 458,
+          "id": 329,
+          "length": 23,
+          "reportedLength": 23,
+          "selectedDestination": {
+            "x": 6,
+            "y": 17
+          },
+          "nominalCycleNext": {
+            "x": 6,
+            "y": 17
+          },
+          "ownTurn": 341,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 23,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 6,
+            "y": 17
+          }
+        },
+        {
+          "round": 458,
+          "id": 955,
+          "length": 28,
+          "reportedLength": 28,
+          "selectedDestination": {
+            "x": 20,
+            "y": 27
+          },
+          "nominalCycleNext": {
+            "x": 19,
+            "y": 26
+          },
+          "ownTurn": 146,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 2,
+          "differsFromCycle": true,
+          "afterTurnLength": 29,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 1,
+          "actualHeadAfterTurn": {
+            "x": 20,
+            "y": 27
+          }
+        },
+        {
+          "round": 459,
+          "id": 329,
+          "length": 23,
+          "reportedLength": 23,
+          "selectedDestination": {
+            "x": 7,
+            "y": 17
+          },
+          "nominalCycleNext": {
+            "x": 7,
+            "y": 17
+          },
+          "ownTurn": 342,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 24,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 7,
+            "y": 17
+          }
+        },
+        {
+          "round": 459,
+          "id": 955,
+          "length": 29,
+          "reportedLength": 29,
+          "selectedDestination": {
+            "x": 20,
+            "y": 26
+          },
+          "nominalCycleNext": {
+            "x": 21,
+            "y": 27
+          },
+          "ownTurn": 147,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 2,
+          "differsFromCycle": true,
+          "afterTurnLength": 29,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 20,
+            "y": 26
+          }
+        },
+        {
+          "round": 460,
+          "id": 329,
+          "length": 24,
+          "reportedLength": 24,
+          "selectedDestination": {
+            "x": 7,
+            "y": 18
+          },
+          "nominalCycleNext": {
+            "x": 8,
+            "y": 17
+          },
+          "ownTurn": 343,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 24,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 7,
+            "y": 18
+          }
+        },
+        {
+          "round": 460,
+          "id": 955,
+          "length": 29,
+          "reportedLength": 29,
+          "selectedDestination": {
+            "x": 20,
+            "y": 25
+          },
+          "nominalCycleNext": {
+            "x": 20,
+            "y": 27
+          },
+          "ownTurn": 148,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 2,
+          "differsFromCycle": true,
+          "afterTurnLength": 30,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 1,
+          "actualHeadAfterTurn": {
+            "x": 20,
+            "y": 25
+          }
+        },
+        {
+          "round": 461,
+          "id": 329,
+          "length": 24,
+          "reportedLength": 24,
+          "selectedDestination": {
+            "x": 6,
+            "y": 18
+          },
+          "nominalCycleNext": {
+            "x": 6,
+            "y": 18
+          },
+          "ownTurn": 344,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 25,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 6,
+            "y": 18
+          }
+        },
+        {
+          "round": 461,
+          "id": 955,
+          "length": 30,
+          "reportedLength": 30,
+          "selectedDestination": {
+            "x": 20,
+            "y": 24
+          },
+          "nominalCycleNext": {
+            "x": 21,
+            "y": 25
+          },
+          "ownTurn": 149,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 1,
+          "differsFromCycle": true,
+          "afterTurnLength": 30,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 20,
+            "y": 24
+          }
+        },
+        {
+          "round": 461,
+          "id": 987,
+          "length": 20,
+          "reportedLength": 20,
+          "selectedDestination": {
+            "x": 43,
+            "y": 50
+          },
+          "nominalCycleNext": {
+            "x": 43,
+            "y": 50
+          },
+          "ownTurn": 138,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 20,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 43,
+            "y": 50
+          }
+        },
+        {
+          "round": 462,
+          "id": 329,
+          "length": 25,
+          "reportedLength": 25,
+          "selectedDestination": {
+            "x": 6,
+            "y": 19
+          },
+          "nominalCycleNext": {
+            "x": 5,
+            "y": 18
+          },
+          "ownTurn": 345,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 25,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 6,
+            "y": 19
+          }
+        },
+        {
+          "round": 462,
+          "id": 955,
+          "length": 30,
+          "reportedLength": 30,
+          "selectedDestination": {
+            "x": 20,
+            "y": 23
+          },
+          "nominalCycleNext": {
+            "x": 20,
+            "y": 25
+          },
+          "ownTurn": 150,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 1,
+          "differsFromCycle": true,
+          "afterTurnLength": 31,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 1,
+          "actualHeadAfterTurn": {
+            "x": 20,
+            "y": 23
+          }
+        },
+        {
+          "round": 462,
+          "id": 987,
+          "length": 20,
+          "reportedLength": 20,
+          "selectedDestination": {
+            "x": 42,
+            "y": 50
+          },
+          "nominalCycleNext": {
+            "x": 42,
+            "y": 50
+          },
+          "ownTurn": 139,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 21,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 42,
+            "y": 50
+          }
+        },
+        {
+          "round": 463,
+          "id": 955,
+          "length": 31,
+          "reportedLength": 31,
+          "selectedDestination": {
+            "x": 21,
+            "y": 23
+          },
+          "nominalCycleNext": {
+            "x": 21,
+            "y": 23
+          },
+          "ownTurn": 151,
+          "pearlsNextFourOwnTurns": 0,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 31,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 21,
+            "y": 23
+          }
+        },
+        {
+          "round": 463,
+          "id": 1003,
+          "length": 23,
+          "reportedLength": 23,
+          "selectedDestination": {
+            "x": 40,
+            "y": 24
+          },
+          "nominalCycleNext": {
+            "x": 38,
+            "y": 24
+          },
+          "ownTurn": 135,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 23,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 40,
+            "y": 24
+          }
+        },
+        {
+          "round": 464,
+          "id": 1003,
+          "length": 23,
+          "reportedLength": 23,
+          "selectedDestination": {
+            "x": 41,
+            "y": 24
+          },
+          "nominalCycleNext": {
+            "x": 39,
+            "y": 24
+          },
+          "ownTurn": 136,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 24,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 41,
+            "y": 24
+          }
+        },
+        {
+          "round": 465,
+          "id": 1003,
+          "length": 24,
+          "reportedLength": 24,
+          "selectedDestination": {
+            "x": 41,
+            "y": 23
+          },
+          "nominalCycleNext": {
+            "x": 40,
+            "y": 24
+          },
+          "ownTurn": 137,
+          "pearlsNextFourOwnTurns": 0,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 24,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 41,
+            "y": 23
+          }
+        },
+        {
+          "round": 466,
+          "id": 329,
+          "length": 26,
+          "reportedLength": 26,
+          "selectedDestination": {
+            "x": 4,
+            "y": 17
+          },
+          "nominalCycleNext": {
+            "x": 3,
+            "y": 18
+          },
+          "ownTurn": 349,
+          "pearlsNextFourOwnTurns": 0,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 26,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 4,
+            "y": 17
+          }
+        },
+        {
+          "round": 466,
+          "id": 955,
+          "length": 31,
+          "reportedLength": 31,
+          "selectedDestination": {
+            "x": 20,
+            "y": 21
+          },
+          "nominalCycleNext": {
+            "x": 20,
+            "y": 23
+          },
+          "ownTurn": 154,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 31,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 20,
+            "y": 21
+          }
+        },
+        {
+          "round": 467,
+          "id": 955,
+          "length": 31,
+          "reportedLength": 31,
+          "selectedDestination": {
+            "x": 20,
+            "y": 20
+          },
+          "nominalCycleNext": {
+            "x": 21,
+            "y": 21
+          },
+          "ownTurn": 155,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 31,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 20,
+            "y": 20
+          }
+        },
+        {
+          "round": 467,
+          "id": 987,
+          "length": 21,
+          "reportedLength": 21,
+          "selectedDestination": {
+            "x": 39,
+            "y": 52
+          },
+          "nominalCycleNext": {
+            "x": 38,
+            "y": 51
+          },
+          "ownTurn": 144,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 2,
+          "differsFromCycle": true,
+          "afterTurnLength": 22,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 1,
+          "actualHeadAfterTurn": {
+            "x": 39,
+            "y": 52
+          }
+        },
+        {
+          "round": 468,
+          "id": 500,
+          "length": 31,
+          "reportedLength": 31,
+          "selectedDestination": {
+            "x": 19,
+            "y": 32
+          },
+          "nominalCycleNext": {
+            "x": 19,
+            "y": 32
+          },
+          "ownTurn": 303,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 1,
+          "differsFromCycle": false,
+          "afterTurnLength": 31,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 19,
+            "y": 32
+          }
+        },
+        {
+          "round": 468,
+          "id": 955,
+          "length": 31,
+          "reportedLength": 31,
+          "selectedDestination": {
+            "x": 20,
+            "y": 19
+          },
+          "nominalCycleNext": {
+            "x": 20,
+            "y": 21
+          },
+          "ownTurn": 156,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 31,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 20,
+            "y": 19
+          }
+        },
+        {
+          "round": 469,
+          "id": 500,
+          "length": 31,
+          "reportedLength": 31,
+          "selectedDestination": {
+            "x": 19,
+            "y": 31
+          },
+          "nominalCycleNext": {
+            "x": 19,
+            "y": 31
+          },
+          "ownTurn": 304,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 2,
+          "differsFromCycle": false,
+          "afterTurnLength": 31,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 19,
+            "y": 31
+          }
+        },
+        {
+          "round": 469,
+          "id": 530,
+          "length": 22,
+          "reportedLength": 22,
+          "selectedDestination": {
+            "x": 7,
+            "y": 45
+          },
+          "nominalCycleNext": {
+            "x": 8,
+            "y": 46
+          },
+          "ownTurn": 292,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 22,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 7,
+            "y": 45
+          }
+        },
+        {
+          "round": 469,
+          "id": 955,
+          "length": 31,
+          "reportedLength": 31,
+          "selectedDestination": {
+            "x": 19,
+            "y": 19
+          },
+          "nominalCycleNext": {
+            "x": 21,
+            "y": 19
+          },
+          "ownTurn": 157,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 32,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 19,
+            "y": 19
+          }
+        },
+        {
+          "round": 470,
+          "id": 500,
+          "length": 31,
+          "reportedLength": 31,
+          "selectedDestination": {
+            "x": 19,
+            "y": 30
+          },
+          "nominalCycleNext": {
+            "x": 19,
+            "y": 30
+          },
+          "ownTurn": 305,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 2,
+          "differsFromCycle": false,
+          "afterTurnLength": 32,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 1,
+          "actualHeadAfterTurn": {
+            "x": 19,
+            "y": 30
+          }
+        },
+        {
+          "round": 470,
+          "id": 530,
+          "length": 22,
+          "reportedLength": 22,
+          "selectedDestination": {
+            "x": 7,
+            "y": 44
+          },
+          "nominalCycleNext": {
+            "x": 6,
+            "y": 45
+          },
+          "ownTurn": 293,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 22,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 7,
+            "y": 44
+          }
+        },
+        {
+          "round": 470,
+          "id": 987,
+          "length": 22,
+          "reportedLength": 22,
+          "selectedDestination": {
+            "x": 37,
+            "y": 52
+          },
+          "nominalCycleNext": {
+            "x": 36,
+            "y": 51
+          },
+          "ownTurn": 147,
+          "pearlsNextFourOwnTurns": 0,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 22,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 37,
+            "y": 52
+          }
+        },
+        {
+          "round": 471,
+          "id": 500,
+          "length": 32,
+          "reportedLength": 32,
+          "selectedDestination": {
+            "x": 19,
+            "y": 29
+          },
+          "nominalCycleNext": {
+            "x": 19,
+            "y": 29
+          },
+          "ownTurn": 306,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 1,
+          "differsFromCycle": false,
+          "afterTurnLength": 32,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 19,
+            "y": 29
+          }
+        },
+        {
+          "round": 471,
+          "id": 530,
+          "length": 22,
+          "reportedLength": 22,
+          "selectedDestination": {
+            "x": 8,
+            "y": 44
+          },
+          "nominalCycleNext": {
+            "x": 8,
+            "y": 44
+          },
+          "ownTurn": 294,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 22,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 8,
+            "y": 44
+          }
+        },
+        {
+          "round": 471,
+          "id": 955,
+          "length": 32,
+          "reportedLength": 32,
+          "selectedDestination": {
+            "x": 19,
+            "y": 17
+          },
+          "nominalCycleNext": {
+            "x": 19,
+            "y": 17
+          },
+          "ownTurn": 159,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 32,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 19,
+            "y": 17
+          }
+        },
+        {
+          "round": 472,
+          "id": 500,
+          "length": 32,
+          "reportedLength": 32,
+          "selectedDestination": {
+            "x": 20,
+            "y": 29
+          },
+          "nominalCycleNext": {
+            "x": 20,
+            "y": 29
+          },
+          "ownTurn": 307,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 1,
+          "differsFromCycle": false,
+          "afterTurnLength": 33,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 1,
+          "actualHeadAfterTurn": {
+            "x": 20,
+            "y": 29
+          }
+        },
+        {
+          "round": 472,
+          "id": 530,
+          "length": 22,
+          "reportedLength": 22,
+          "selectedDestination": {
+            "x": 9,
+            "y": 44
+          },
+          "nominalCycleNext": {
+            "x": 9,
+            "y": 44
+          },
+          "ownTurn": 295,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 23,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 9,
+            "y": 44
+          }
+        },
+        {
+          "round": 472,
+          "id": 955,
+          "length": 32,
+          "reportedLength": 32,
+          "selectedDestination": {
+            "x": 19,
+            "y": 16
+          },
+          "nominalCycleNext": {
+            "x": 20,
+            "y": 17
+          },
+          "ownTurn": 160,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 32,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 19,
+            "y": 16
+          }
+        },
+        {
+          "round": 473,
+          "id": 500,
+          "length": 33,
+          "reportedLength": 33,
+          "selectedDestination": {
+            "x": 21,
+            "y": 29
+          },
+          "nominalCycleNext": {
+            "x": 21,
+            "y": 29
+          },
+          "ownTurn": 308,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 33,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 21,
+            "y": 29
+          }
+        },
+        {
+          "round": 473,
+          "id": 987,
+          "length": 21,
+          "reportedLength": 21,
+          "selectedDestination": {
+            "x": 36,
+            "y": 49
+          },
+          "nominalCycleNext": {
+            "x": 37,
+            "y": 50
+          },
+          "ownTurn": 150,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 21,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 36,
+            "y": 49
+          }
+        },
+        {
+          "round": 474,
+          "id": 500,
+          "length": 33,
+          "reportedLength": 33,
+          "selectedDestination": {
+            "x": 22,
+            "y": 29
+          },
+          "nominalCycleNext": {
+            "x": 22,
+            "y": 29
+          },
+          "ownTurn": 309,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 33,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 22,
+            "y": 29
+          }
+        },
+        {
+          "round": 475,
+          "id": 500,
+          "length": 33,
+          "reportedLength": 33,
+          "selectedDestination": {
+            "x": 22,
+            "y": 30
+          },
+          "nominalCycleNext": {
+            "x": 23,
+            "y": 29
+          },
+          "ownTurn": 310,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 34,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 22,
+            "y": 30
+          }
+        },
+        {
+          "round": 475,
+          "id": 955,
+          "length": 33,
+          "reportedLength": 33,
+          "selectedDestination": {
+            "x": 20,
+            "y": 14
+          },
+          "nominalCycleNext": {
+            "x": 19,
+            "y": 15
+          },
+          "ownTurn": 163,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 34,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 20,
+            "y": 14
+          }
+        },
+        {
+          "round": 476,
+          "id": 530,
+          "length": 23,
+          "reportedLength": 23,
+          "selectedDestination": {
+            "x": 9,
+            "y": 42
+          },
+          "nominalCycleNext": {
+            "x": 8,
+            "y": 43
+          },
+          "ownTurn": 299,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 23,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 9,
+            "y": 42
+          }
+        },
+        {
+          "round": 477,
+          "id": 530,
+          "length": 23,
+          "reportedLength": 23,
+          "selectedDestination": {
+            "x": 8,
+            "y": 42
+          },
+          "nominalCycleNext": {
+            "x": 10,
+            "y": 42
+          },
+          "ownTurn": 300,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 23,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 8,
+            "y": 42
+          }
+        },
+        {
+          "round": 477,
+          "id": 825,
+          "length": 16,
+          "reportedLength": 16,
+          "selectedDestination": {
+            "x": 31,
+            "y": 31
+          },
+          "nominalCycleNext": {
+            "x": 30,
+            "y": 32
+          },
+          "ownTurn": 206,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 16,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 31,
+            "y": 31
+          }
+        },
+        {
+          "round": 477,
+          "id": 1035,
+          "length": 19,
+          "reportedLength": 19,
+          "selectedDestination": {
+            "x": 9,
+            "y": 7
+          },
+          "nominalCycleNext": {
+            "x": 10,
+            "y": 6
+          },
+          "ownTurn": 133,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 19,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 9,
+            "y": 7
+          }
+        },
+        {
+          "round": 478,
+          "id": 530,
+          "length": 23,
+          "reportedLength": 23,
+          "selectedDestination": {
+            "x": 7,
+            "y": 42
+          },
+          "nominalCycleNext": {
+            "x": 9,
+            "y": 42
+          },
+          "ownTurn": 301,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 23,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 7,
+            "y": 42
+          }
+        },
+        {
+          "round": 478,
+          "id": 1035,
+          "length": 19,
+          "reportedLength": 19,
+          "selectedDestination": {
+            "x": 8,
+            "y": 7
+          },
+          "nominalCycleNext": {
+            "x": 8,
+            "y": 7
+          },
+          "ownTurn": 134,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 20,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 8,
+            "y": 7
+          }
+        },
+        {
+          "round": 479,
+          "id": 530,
+          "length": 23,
+          "reportedLength": 23,
+          "selectedDestination": {
+            "x": 6,
+            "y": 42
+          },
+          "nominalCycleNext": {
+            "x": 8,
+            "y": 42
+          },
+          "ownTurn": 302,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 24,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 6,
+            "y": 42
+          }
+        },
+        {
+          "round": 479,
+          "id": 1035,
+          "length": 20,
+          "reportedLength": 20,
+          "selectedDestination": {
+            "x": 8,
+            "y": 8
+          },
+          "nominalCycleNext": {
+            "x": 7,
+            "y": 7
+          },
+          "ownTurn": 135,
+          "pearlsNextFourOwnTurns": 0,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 20,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 8,
+            "y": 8
+          }
+        },
+        {
+          "round": 480,
+          "id": 530,
+          "length": 24,
+          "reportedLength": 24,
+          "selectedDestination": {
+            "x": 6,
+            "y": 43
+          },
+          "nominalCycleNext": {
+            "x": 7,
+            "y": 42
+          },
+          "ownTurn": 303,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 24,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 6,
+            "y": 43
+          }
+        },
+        {
+          "round": 481,
+          "id": 500,
+          "length": 34,
+          "reportedLength": 34,
+          "selectedDestination": {
+            "x": 23,
+            "y": 31
+          },
+          "nominalCycleNext": {
+            "x": 23,
+            "y": 31
+          },
+          "ownTurn": 316,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 34,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 23,
+            "y": 31
+          }
+        },
+        {
+          "round": 481,
+          "id": 530,
+          "length": 24,
+          "reportedLength": 24,
+          "selectedDestination": {
+            "x": 6,
+            "y": 44
+          },
+          "nominalCycleNext": {
+            "x": 5,
+            "y": 43
+          },
+          "ownTurn": 304,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 24,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 6,
+            "y": 44
+          }
+        },
+        {
+          "round": 482,
+          "id": 530,
+          "length": 24,
+          "reportedLength": 24,
+          "selectedDestination": {
+            "x": 5,
+            "y": 44
+          },
+          "nominalCycleNext": {
+            "x": 7,
+            "y": 44
+          },
+          "ownTurn": 305,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 25,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 5,
+            "y": 44
+          }
+        },
+        {
+          "round": 483,
+          "id": 329,
+          "length": 28,
+          "reportedLength": 28,
+          "selectedDestination": {
+            "x": 5,
+            "y": 9
+          },
+          "nominalCycleNext": {
+            "x": 4,
+            "y": 8
+          },
+          "ownTurn": 366,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 28,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 5,
+            "y": 9
+          }
+        },
+        {
+          "round": 484,
+          "id": 329,
+          "length": 28,
+          "reportedLength": 28,
+          "selectedDestination": {
+            "x": 4,
+            "y": 9
+          },
+          "nominalCycleNext": {
+            "x": 6,
+            "y": 9
+          },
+          "ownTurn": 367,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 28,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 4,
+            "y": 9
+          }
+        },
+        {
+          "round": 484,
+          "id": 500,
+          "length": 34,
+          "reportedLength": 34,
+          "selectedDestination": {
+            "x": 23,
+            "y": 34
+          },
+          "nominalCycleNext": {
+            "x": 24,
+            "y": 33
+          },
+          "ownTurn": 319,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 35,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 23,
+            "y": 34
+          }
+        },
+        {
+          "round": 485,
+          "id": 329,
+          "length": 28,
+          "reportedLength": 28,
+          "selectedDestination": {
+            "x": 3,
+            "y": 9
+          },
+          "nominalCycleNext": {
+            "x": 5,
+            "y": 9
+          },
+          "ownTurn": 368,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 28,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 3,
+            "y": 9
+          }
+        },
+        {
+          "round": 485,
+          "id": 500,
+          "length": 35,
+          "reportedLength": 35,
+          "selectedDestination": {
+            "x": 24,
+            "y": 34
+          },
+          "nominalCycleNext": {
+            "x": 22,
+            "y": 34
+          },
+          "ownTurn": 320,
+          "pearlsNextFourOwnTurns": 0,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 35,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 24,
+            "y": 34
+          }
+        },
+        {
+          "round": 486,
+          "id": 329,
+          "length": 28,
+          "reportedLength": 28,
+          "selectedDestination": {
+            "x": 2,
+            "y": 9
+          },
+          "nominalCycleNext": {
+            "x": 4,
+            "y": 9
+          },
+          "ownTurn": 369,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 29,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 2,
+            "y": 9
+          }
+        },
+        {
+          "round": 487,
+          "id": 329,
+          "length": 29,
+          "reportedLength": 29,
+          "selectedDestination": {
+            "x": 2,
+            "y": 10
+          },
+          "nominalCycleNext": {
+            "x": 2,
+            "y": 8
+          },
+          "ownTurn": 370,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 29,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 2,
+            "y": 10
+          }
+        },
+        {
+          "round": 488,
+          "id": 329,
+          "length": 29,
+          "reportedLength": 29,
+          "selectedDestination": {
+            "x": 2,
+            "y": 11
+          },
+          "nominalCycleNext": {
+            "x": 2,
+            "y": 9
+          },
+          "ownTurn": 371,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 29,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 2,
+            "y": 11
+          }
+        },
+        {
+          "round": 488,
+          "id": 1048,
+          "length": 27,
+          "reportedLength": 27,
+          "selectedDestination": {
+            "x": 33,
+            "y": 45
+          },
+          "nominalCycleNext": {
+            "x": 34,
+            "y": 44
+          },
+          "ownTurn": 43,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 1,
+          "differsFromCycle": true,
+          "afterTurnLength": 28,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 1,
+          "actualHeadAfterTurn": {
+            "x": 33,
+            "y": 45
+          }
+        },
+        {
+          "round": 489,
+          "id": 329,
+          "length": 29,
+          "reportedLength": 29,
+          "selectedDestination": {
+            "x": 2,
+            "y": 12
+          },
+          "nominalCycleNext": {
+            "x": 2,
+            "y": 10
+          },
+          "ownTurn": 372,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 30,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 2,
+            "y": 12
+          }
+        },
+        {
+          "round": 489,
+          "id": 500,
+          "length": 35,
+          "reportedLength": 35,
+          "selectedDestination": {
+            "x": 26,
+            "y": 32
+          },
+          "nominalCycleNext": {
+            "x": 24,
+            "y": 32
+          },
+          "ownTurn": 324,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 1,
+          "differsFromCycle": true,
+          "afterTurnLength": 35,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 26,
+            "y": 32
+          }
+        },
+        {
+          "round": 490,
+          "id": 329,
+          "length": 30,
+          "reportedLength": 30,
+          "selectedDestination": {
+            "x": 2,
+            "y": 13
+          },
+          "nominalCycleNext": {
+            "x": 2,
+            "y": 11
+          },
+          "ownTurn": 373,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 30,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 2,
+            "y": 13
+          }
+        },
+        {
+          "round": 490,
+          "id": 530,
+          "length": 23,
+          "reportedLength": 23,
+          "selectedDestination": {
+            "x": 63,
+            "y": 49
+          },
+          "nominalCycleNext": {
+            "x": 62,
+            "y": 48
+          },
+          "ownTurn": 313,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 1,
+          "differsFromCycle": true,
+          "afterTurnLength": 24,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 1,
+          "actualHeadAfterTurn": {
+            "x": 63,
+            "y": 49
+          }
+        },
+        {
+          "round": 490,
+          "id": 1048,
+          "length": 28,
+          "reportedLength": 28,
+          "selectedDestination": {
+            "x": 31,
+            "y": 45
+          },
+          "nominalCycleNext": {
+            "x": 31,
+            "y": 45
+          },
+          "ownTurn": 45,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 1,
+          "differsFromCycle": false,
+          "afterTurnLength": 28,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 31,
+            "y": 45
+          }
+        },
+        {
+          "round": 491,
+          "id": 329,
+          "length": 30,
+          "reportedLength": 30,
+          "selectedDestination": {
+            "x": 2,
+            "y": 14
+          },
+          "nominalCycleNext": {
+            "x": 2,
+            "y": 12
+          },
+          "ownTurn": 374,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 31,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 2,
+            "y": 14
+          }
+        },
+        {
+          "round": 491,
+          "id": 931,
+          "length": 47,
+          "reportedLength": 47,
+          "selectedDestination": {
+            "x": 26,
+            "y": 51
+          },
+          "nominalCycleNext": {
+            "x": 25,
+            "y": 52
+          },
+          "ownTurn": 186,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 2,
+          "differsFromCycle": true,
+          "afterTurnLength": 47,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 26,
+            "y": 51
+          }
+        },
+        {
+          "round": 492,
+          "id": 329,
+          "length": 31,
+          "reportedLength": 31,
+          "selectedDestination": {
+            "x": 3,
+            "y": 14
+          },
+          "nominalCycleNext": {
+            "x": 2,
+            "y": 13
+          },
+          "ownTurn": 375,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 31,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 3,
+            "y": 14
+          }
+        },
+        {
+          "round": 493,
+          "id": 329,
+          "length": 31,
+          "reportedLength": 31,
+          "selectedDestination": {
+            "x": 3,
+            "y": 15
+          },
+          "nominalCycleNext": {
+            "x": 3,
+            "y": 15
+          },
+          "ownTurn": 376,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 31,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 3,
+            "y": 15
+          }
+        },
+        {
+          "round": 494,
+          "id": 329,
+          "length": 31,
+          "reportedLength": 31,
+          "selectedDestination": {
+            "x": 3,
+            "y": 16
+          },
+          "nominalCycleNext": {
+            "x": 4,
+            "y": 15
+          },
+          "ownTurn": 377,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 31,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 3,
+            "y": 16
+          }
+        },
+        {
+          "round": 494,
+          "id": 500,
+          "length": 38,
+          "reportedLength": 38,
+          "selectedDestination": {
+            "x": 25,
+            "y": 36
+          },
+          "nominalCycleNext": {
+            "x": 25,
+            "y": 36
+          },
+          "ownTurn": 329,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 38,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 25,
+            "y": 36
+          }
+        },
+        {
+          "round": 495,
+          "id": 329,
+          "length": 31,
+          "reportedLength": 31,
+          "selectedDestination": {
+            "x": 3,
+            "y": 17
+          },
+          "nominalCycleNext": {
+            "x": 3,
+            "y": 17
+          },
+          "ownTurn": 378,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 32,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 3,
+            "y": 17
+          }
+        },
+        {
+          "round": 498,
+          "id": 931,
+          "length": 51,
+          "reportedLength": 51,
+          "selectedDestination": {
+            "x": 25,
+            "y": 47
+          },
+          "nominalCycleNext": {
+            "x": 24,
+            "y": 48
+          },
+          "ownTurn": 193,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 1,
+          "differsFromCycle": true,
+          "afterTurnLength": 52,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 1,
+          "actualHeadAfterTurn": {
+            "x": 25,
+            "y": 47
+          }
+        },
+        {
+          "round": 499,
+          "id": 931,
+          "length": 52,
+          "reportedLength": 52,
+          "selectedDestination": {
+            "x": 24,
+            "y": 47
+          },
+          "nominalCycleNext": {
+            "x": 25,
+            "y": 48
+          },
+          "ownTurn": 194,
+          "pearlsNextFourOwnTurns": 0,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 52,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 24,
+            "y": 47
+          }
+        }
+      ],
+      "escapeSplits": [
+        {
+          "round": 386,
+          "id": 830,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 21,
+          "requestedChildLength": 19,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 391,
+            "reason": "H",
+            "length": 3
+          },
+          "tailInsideParentVision": false,
+          "childId": 1046,
+          "childLength": 19,
+          "childHead": {
+            "x": 28,
+            "y": 23
+          },
+          "childFacing": "W",
+          "parentLength": 2,
+          "childFirstAction": null,
+          "childDeath": {
+            "round": 386,
+            "reason": "H",
+            "length": 19
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": false,
+          "childSurvivedFiveRounds": false
+        },
+        {
+          "round": 442,
+          "id": 971,
+          "kind": "WORKER_REVERSE",
+          "originalLength": 20,
+          "requestedChildLength": 18,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 443,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 1047,
+          "childLength": 18,
+          "childHead": {
+            "x": 13,
+            "y": 60
+          },
+          "childFacing": "S",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 442,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "E"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 456,
+            "reason": "S",
+            "length": 22
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 446,
+          "id": 944,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 25,
+          "requestedChildLength": 23,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 447,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 1048,
+          "childLength": 23,
+          "childHead": {
+            "x": 29,
+            "y": 26
+          },
+          "childFacing": "E",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 446,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "E"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 495,
+            "reason": "S",
+            "length": 31
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        }
+      ],
+      "cycleSteps": 233,
+      "cycleDeviations": 265,
+      "cycleTurnsWithVisiblePearls": 300,
+      "pearlsCollected": 2240,
+      "fedPearlsCollected": 53,
+      "runtimeFailures": [],
+      "final": {
+        "dragonCount": 9,
+        "longestDragon": 52,
+        "totalLength": 305
+      },
+      "summary": {
+        "patrolFoodDecisions": 172,
+        "foodDecisionsOffCycle": 122,
+        "foodDecisionsEatingSameTurn": 60,
+        "foodDecisionsEatingWithinFourOwnTurns": 163,
+        "foodDecisionsDyingSameTurn": 0,
+        "foodDecisionsEatingFeedDrops": 26,
+        "escapeSplitIntents": 3,
+        "actualEscapeSplits": 3,
+        "escapeChildrenSurvivedBirthRound": 2,
+        "escapeChildrenSurvivedFiveRounds": 2
+      }
+    },
+    "B": {
+      "peakLength": 44,
+      "peakDragon": 903,
+      "peakRound": 498,
+      "longestTrajectory": [
+        [
+          0,
+          6
+        ],
+        [
+          25,
+          4
+        ],
+        [
+          50,
+          4
+        ],
+        [
+          75,
+          3
+        ],
+        [
+          100,
+          4
+        ],
+        [
+          125,
+          4
+        ],
+        [
+          150,
+          5
+        ],
+        [
+          175,
+          6
+        ],
+        [
+          200,
+          11
+        ],
+        [
+          225,
+          4
+        ],
+        [
+          250,
+          5
+        ],
+        [
+          275,
+          6
+        ],
+        [
+          300,
+          6
+        ],
+        [
+          325,
+          10
+        ],
+        [
+          350,
+          14
+        ],
+        [
+          375,
+          17
+        ],
+        [
+          400,
+          21
+        ],
+        [
+          425,
+          28
+        ],
+        [
+          450,
+          32
+        ],
+        [
+          475,
+          33
+        ],
+        [
+          500,
+          44
+        ]
+      ],
+      "longDeaths": [
+        {
+          "round": 385,
+          "id": 778,
+          "length": 19,
+          "reason": "H",
+          "reasonName": "head_collision",
+          "deliberateFeed": false,
+          "action": {
+            "round": 384,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "S"
+              ]
+            }
+          },
+          "head": {
+            "x": 33,
+            "y": 34
+          }
+        },
+        {
+          "round": 403,
+          "id": 906,
+          "length": 18,
+          "reason": "H",
+          "reasonName": "head_collision",
+          "deliberateFeed": false,
+          "action": {
+            "round": 403,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "S",
+                "E",
+                "E"
+              ]
+            }
+          },
+          "head": {
+            "x": 10,
+            "y": 34
+          }
+        },
+        {
+          "round": 465,
+          "id": 701,
+          "length": 19,
+          "reason": "S",
+          "reasonName": "self_collision",
+          "deliberateFeed": true,
+          "action": {
+            "round": 465,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "N"
+              ]
+            }
+          },
+          "head": {
+            "x": 2,
+            "y": 22
+          }
+        },
+        {
+          "round": 479,
+          "id": 1028,
+          "length": 22,
+          "reason": "S",
+          "reasonName": "self_collision",
+          "deliberateFeed": true,
+          "action": {
+            "round": 479,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "E"
+              ]
+            }
+          },
+          "head": {
+            "x": 33,
+            "y": 56
+          }
+        },
+        {
+          "round": 480,
+          "id": 967,
+          "length": 18,
+          "reason": "S",
+          "reasonName": "self_collision",
+          "deliberateFeed": true,
+          "action": {
+            "round": 480,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "W"
+              ]
+            }
+          },
+          "head": {
+            "x": 63,
+            "y": 41
+          }
+        },
+        {
+          "round": 485,
+          "id": 918,
+          "length": 29,
+          "reason": "S",
+          "reasonName": "self_collision",
+          "deliberateFeed": true,
+          "action": {
+            "round": 485,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "W"
+              ]
+            }
+          },
+          "head": {
+            "x": 63,
+            "y": 1
+          }
+        }
+      ],
+      "allDeaths": {
+        "H": 498,
+        "S": 13
+      },
+      "claims": [
+        {
+          "round": 307,
+          "id": 778,
+          "length": 8,
+          "x": 23,
+          "y": 6,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 330,
+          "id": 906,
+          "length": 8,
+          "x": 0,
+          "y": 26,
+          "w": 9,
+          "h": 6,
+          "spawnTiles": 54,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.14380825565912117
+        },
+        {
+          "round": 339,
+          "id": 859,
+          "length": 8,
+          "x": 56,
+          "y": 15,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 340,
+          "id": 903,
+          "length": 8,
+          "x": 0,
+          "y": 48,
+          "w": 6,
+          "h": 12,
+          "spawnTiles": 72,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.19174434087882805
+        },
+        {
+          "round": 341,
+          "id": 959,
+          "length": 8,
+          "x": 36,
+          "y": 2,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 343,
+          "id": 903,
+          "length": 10,
+          "x": 59,
+          "y": 46,
+          "w": 5,
+          "h": 16,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 346,
+          "id": 906,
+          "length": 9,
+          "x": 1,
+          "y": 23,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 353,
+          "id": 758,
+          "length": 8,
+          "x": 29,
+          "y": 10,
+          "w": 20,
+          "h": 4,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 356,
+          "id": 918,
+          "length": 8,
+          "x": 59,
+          "y": 0,
+          "w": 5,
+          "h": 16,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 361,
+          "id": 898,
+          "length": 8,
+          "x": 40,
+          "y": 50,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 363,
+          "id": 901,
+          "length": 8,
+          "x": 48,
+          "y": 13,
+          "w": 4,
+          "h": 20,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 365,
+          "id": 758,
+          "length": 14,
+          "x": 24,
+          "y": 16,
+          "w": 17,
+          "h": 4,
+          "spawnTiles": 68,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.18109187749667097
+        },
+        {
+          "round": 366,
+          "id": 934,
+          "length": 8,
+          "x": 0,
+          "y": 43,
+          "w": 6,
+          "h": 12,
+          "spawnTiles": 72,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.19174434087882805
+        },
+        {
+          "round": 369,
+          "id": 936,
+          "length": 8,
+          "x": 55,
+          "y": 32,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 373,
+          "id": 701,
+          "length": 8,
+          "x": 41,
+          "y": 28,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 375,
+          "id": 701,
+          "length": 9,
+          "x": 41,
+          "y": 33,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 378,
+          "id": 758,
+          "length": 18,
+          "x": 24,
+          "y": 12,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 381,
+          "id": 1028,
+          "length": 8,
+          "x": 41,
+          "y": 49,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 389,
+          "id": 1045,
+          "length": 20,
+          "x": 25,
+          "y": 11,
+          "w": 7,
+          "h": 8,
+          "spawnTiles": 56,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.1491344873501997
+        },
+        {
+          "round": 390,
+          "id": 989,
+          "length": 8,
+          "x": 25,
+          "y": 8,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 400,
+          "id": 928,
+          "length": 11,
+          "x": 44,
+          "y": 0,
+          "w": 20,
+          "h": 4,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 400,
+          "id": 954,
+          "length": 13,
+          "x": 35,
+          "y": 17,
+          "w": 4,
+          "h": 20,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 400,
+          "id": 967,
+          "length": 15,
+          "x": 3,
+          "y": 48,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 400,
+          "id": 975,
+          "length": 10,
+          "x": 57,
+          "y": 22,
+          "w": 5,
+          "h": 16,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 400,
+          "id": 989,
+          "length": 10,
+          "x": 20,
+          "y": 5,
+          "w": 9,
+          "h": 6,
+          "spawnTiles": 54,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.14380825565912117
+        },
+        {
+          "round": 405,
+          "id": 1045,
+          "length": 21,
+          "x": 25,
+          "y": 7,
+          "w": 7,
+          "h": 12,
+          "spawnTiles": 84,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.2237017310252993
+        },
+        {
+          "round": 409,
+          "id": 989,
+          "length": 11,
+          "x": 17,
+          "y": 5,
+          "w": 12,
+          "h": 6,
+          "spawnTiles": 72,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.19174434087882805
+        },
+        {
+          "round": 415,
+          "id": 911,
+          "length": 9,
+          "x": 33,
+          "y": 10,
+          "w": 13,
+          "h": 6,
+          "spawnTiles": 78,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.20772303595206368
+        },
+        {
+          "round": 418,
+          "id": 975,
+          "length": 17,
+          "x": 0,
+          "y": 31,
+          "w": 5,
+          "h": 12,
+          "spawnTiles": 60,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.1597869507323568
+        },
+        {
+          "round": 421,
+          "id": 1034,
+          "length": 10,
+          "x": 41,
+          "y": 13,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 425,
+          "id": 928,
+          "length": 15,
+          "x": 55,
+          "y": 45,
+          "w": 4,
+          "h": 18,
+          "spawnTiles": 72,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.19174434087882805
+        },
+        {
+          "round": 426,
+          "id": 989,
+          "length": 17,
+          "x": 32,
+          "y": 0,
+          "w": 4,
+          "h": 20,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 428,
+          "id": 928,
+          "length": 15,
+          "x": 54,
+          "y": 45,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 428,
+          "id": 946,
+          "length": 13,
+          "x": 44,
+          "y": 43,
+          "w": 13,
+          "h": 6,
+          "spawnTiles": 78,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.20772303595206368
+        },
+        {
+          "round": 433,
+          "id": 938,
+          "length": 9,
+          "x": 28,
+          "y": 50,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 434,
+          "id": 540,
+          "length": 11,
+          "x": 47,
+          "y": 0,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 434,
+          "id": 954,
+          "length": 21,
+          "x": 41,
+          "y": 23,
+          "w": 7,
+          "h": 12,
+          "spawnTiles": 84,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.2237017310252993
+        },
+        {
+          "round": 435,
+          "id": 975,
+          "length": 26,
+          "x": 2,
+          "y": 31,
+          "w": 10,
+          "h": 10,
+          "spawnTiles": 100,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.26631158455392784
+        },
+        {
+          "round": 436,
+          "id": 936,
+          "length": 21,
+          "x": 49,
+          "y": 29,
+          "w": 14,
+          "h": 6,
+          "spawnTiles": 84,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.2237017310252993
+        },
+        {
+          "round": 437,
+          "id": 701,
+          "length": 17,
+          "x": 54,
+          "y": 21,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 440,
+          "id": 647,
+          "length": 10,
+          "x": 32,
+          "y": 2,
+          "w": 4,
+          "h": 20,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 443,
+          "id": 903,
+          "length": 29,
+          "x": 0,
+          "y": 47,
+          "w": 7,
+          "h": 16,
+          "spawnTiles": 112,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.2982689747003994
+        },
+        {
+          "round": 445,
+          "id": 1045,
+          "length": 23,
+          "x": 22,
+          "y": 7,
+          "w": 9,
+          "h": 10,
+          "spawnTiles": 90,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.23968042609853493
+        },
+        {
+          "round": 449,
+          "id": 989,
+          "length": 26,
+          "x": 30,
+          "y": 56,
+          "w": 11,
+          "h": 8,
+          "spawnTiles": 88,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.2343541944074564
+        },
+        {
+          "round": 451,
+          "id": 647,
+          "length": 12,
+          "x": 32,
+          "y": 20,
+          "w": 20,
+          "h": 4,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 454,
+          "id": 990,
+          "length": 13,
+          "x": 43,
+          "y": 8,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 454,
+          "id": 1043,
+          "length": 8,
+          "x": 55,
+          "y": 8,
+          "w": 5,
+          "h": 16,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 455,
+          "id": 967,
+          "length": 17,
+          "x": 54,
+          "y": 51,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 455,
+          "id": 975,
+          "length": 26,
+          "x": 0,
+          "y": 27,
+          "w": 13,
+          "h": 8,
+          "spawnTiles": 104,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.27696404793608503
+        },
+        {
+          "round": 456,
+          "id": 936,
+          "length": 28,
+          "x": 0,
+          "y": 26,
+          "w": 5,
+          "h": 22,
+          "spawnTiles": 110,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.2929427430093208
+        },
+        {
+          "round": 457,
+          "id": 859,
+          "length": 14,
+          "x": 54,
+          "y": 3,
+          "w": 5,
+          "h": 16,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 458,
+          "id": 918,
+          "length": 27,
+          "x": 55,
+          "y": 0,
+          "w": 9,
+          "h": 12,
+          "spawnTiles": 108,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.28761651131824223
+        },
+        {
+          "round": 459,
+          "id": 959,
+          "length": 22,
+          "x": 43,
+          "y": 52,
+          "w": 11,
+          "h": 8,
+          "spawnTiles": 88,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.2343541944074564
+        },
+        {
+          "round": 461,
+          "id": 901,
+          "length": 23,
+          "x": 44,
+          "y": 14,
+          "w": 9,
+          "h": 10,
+          "spawnTiles": 90,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.23968042609853493
+        },
+        {
+          "round": 462,
+          "id": 954,
+          "length": 21,
+          "x": 45,
+          "y": 29,
+          "w": 6,
+          "h": 14,
+          "spawnTiles": 84,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.2237017310252993
+        },
+        {
+          "round": 464,
+          "id": 975,
+          "length": 26,
+          "x": 0,
+          "y": 22,
+          "w": 6,
+          "h": 4,
+          "spawnTiles": 24,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.06391478029294272
+        },
+        {
+          "round": 465,
+          "id": 1028,
+          "length": 21,
+          "x": 39,
+          "y": 45,
+          "w": 4,
+          "h": 18,
+          "spawnTiles": 72,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.19174434087882805
+        },
+        {
+          "round": 465,
+          "id": 1045,
+          "length": 27,
+          "x": 18,
+          "y": 7,
+          "w": 9,
+          "h": 12,
+          "spawnTiles": 108,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.28761651131824223
+        },
+        {
+          "round": 468,
+          "id": 1028,
+          "length": 23,
+          "x": 37,
+          "y": 45,
+          "w": 5,
+          "h": 18,
+          "spawnTiles": 90,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.23968042609853493
+        },
+        {
+          "round": 469,
+          "id": 990,
+          "length": 16,
+          "x": 49,
+          "y": 5,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 474,
+          "id": 954,
+          "length": 23,
+          "x": 44,
+          "y": 34,
+          "w": 15,
+          "h": 6,
+          "spawnTiles": 90,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.23968042609853493
+        },
+        {
+          "round": 475,
+          "id": 664,
+          "length": 12,
+          "x": 38,
+          "y": 5,
+          "w": 4,
+          "h": 20,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 475,
+          "id": 975,
+          "length": 32,
+          "x": 60,
+          "y": 16,
+          "w": 4,
+          "h": 24,
+          "spawnTiles": 96,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.25565912117177064
+        },
+        {
+          "round": 477,
+          "id": 647,
+          "length": 16,
+          "x": 29,
+          "y": 2,
+          "w": 5,
+          "h": 16,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 478,
+          "id": 918,
+          "length": 29,
+          "x": 54,
+          "y": 0,
+          "w": 8,
+          "h": 14,
+          "spawnTiles": 112,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.2982689747003994
+        },
+        {
+          "round": 479,
+          "id": 959,
+          "length": 25,
+          "x": 37,
+          "y": 52,
+          "w": 10,
+          "h": 10,
+          "spawnTiles": 100,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.26631158455392784
+        },
+        {
+          "round": 481,
+          "id": 901,
+          "length": 27,
+          "x": 40,
+          "y": 17,
+          "w": 9,
+          "h": 12,
+          "spawnTiles": 108,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.28761651131824223
+        },
+        {
+          "round": 482,
+          "id": 959,
+          "length": 26,
+          "x": 34,
+          "y": 52,
+          "w": 19,
+          "h": 4,
+          "spawnTiles": 76,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.20239680426098514
+        },
+        {
+          "round": 483,
+          "id": 903,
+          "length": 37,
+          "x": 0,
+          "y": 52,
+          "w": 10,
+          "h": 12,
+          "spawnTiles": 120,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.3195739014647138
+        },
+        {
+          "round": 485,
+          "id": 1012,
+          "length": 16,
+          "x": 40,
+          "y": 0,
+          "w": 4,
+          "h": 20,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 486,
+          "id": 946,
+          "length": 17,
+          "x": 46,
+          "y": 36,
+          "w": 5,
+          "h": 16,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.21304926764314222
+        },
+        {
+          "round": 489,
+          "id": 989,
+          "length": 32,
+          "x": 27,
+          "y": 52,
+          "w": 10,
+          "h": 12,
+          "spawnTiles": 120,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.3195739014647138
+        },
+        {
+          "round": 494,
+          "id": 954,
+          "length": 30,
+          "x": 45,
+          "y": 23,
+          "w": 6,
+          "h": 20,
+          "spawnTiles": 120,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.3195739014647138
+        },
+        {
+          "round": 495,
+          "id": 975,
+          "length": 39,
+          "x": 51,
+          "y": 22,
+          "w": 13,
+          "h": 12,
+          "spawnTiles": 156,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.4154460719041286
+        },
+        {
+          "round": 496,
+          "id": 936,
+          "length": 34,
+          "x": 53,
+          "y": 34,
+          "w": 11,
+          "h": 12,
+          "spawnTiles": 132,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.3515312916111854
+        }
+      ],
+      "patrolFood": [],
+      "escapeSplits": [
+        {
+          "round": 386,
+          "id": 758,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 22,
+          "requestedChildLength": 20,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 404,
+            "reason": "H",
+            "length": 7
+          },
+          "tailInsideParentVision": true,
+          "childId": 1045,
+          "childLength": 20,
+          "childHead": {
+            "x": 28,
+            "y": 16
+          },
+          "childFacing": "W",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 386,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "N"
+              ]
+            }
+          },
+          "childDeath": null,
+          "childAliveAtFinish": true,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        }
+      ],
+      "cycleSteps": 374,
+      "cycleDeviations": 259,
+      "cycleTurnsWithVisiblePearls": 444,
+      "pearlsCollected": 2287,
+      "fedPearlsCollected": 45,
+      "runtimeFailures": [],
+      "final": {
+        "dragonCount": 16,
+        "longestDragon": 44,
+        "totalLength": 470
+      },
+      "summary": {
+        "patrolFoodDecisions": 0,
+        "foodDecisionsOffCycle": 0,
+        "foodDecisionsEatingSameTurn": 0,
+        "foodDecisionsEatingWithinFourOwnTurns": 0,
+        "foodDecisionsDyingSameTurn": 0,
+        "foodDecisionsEatingFeedDrops": 0,
+        "escapeSplitIntents": 1,
+        "actualEscapeSplits": 1,
+        "escapeChildrenSurvivedBirthRound": 1,
+        "escapeChildrenSurvivedFiveRounds": 1
+      }
+    }
+  }
+}

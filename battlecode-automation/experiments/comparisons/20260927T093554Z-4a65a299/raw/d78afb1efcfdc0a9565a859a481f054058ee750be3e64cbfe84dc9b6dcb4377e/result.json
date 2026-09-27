@@ -1,0 +1,255 @@
+{
+  "candidate": "battlecode-automation/experiments/comparisons/20260927T093554Z-4a65a299/sources/bot-v10.4",
+  "opponent": "battlecode-automation/experiments/comparisons/20260927T093554Z-4a65a299/sources/bot-v10.3.1",
+  "map": "battlecode-automation/experiments/comparisons/20260927T093554Z-4a65a299/maps/big_empty.map",
+  "seed": 10400,
+  "reverse": true,
+  "sandbox": false,
+  "experiment": "20260927T093554Z-4a65a299",
+  "toolkit": "1.1.0",
+  "a_hash": "fab0ffdea6ce4d3f323b08a433fc97ad9cbc9fe3dbd18d8c54b833b45c221cc8",
+  "b_hash": "37b3fe2888df383c531fda93c46b99ead2dcb7c832372b35caf13f6b4527facd",
+  "map_hash": "6cb3b7be72a4e27ed19363e9009d46742851709f701e61d73b56437314fdd827",
+  "id": "d78afb1efcfdc0a9565a859a481f054058ee750be3e64cbfe84dc9b6dcb4377e",
+  "a": "battlecode-automation/experiments/comparisons/20260927T093554Z-4a65a299/sources/bot-v10.3.1",
+  "b": "battlecode-automation/experiments/comparisons/20260927T093554Z-4a65a299/sources/bot-v10.4",
+  "git_commit": "d74ba6a38c240e95b9ba81d884e05b258d82d8ed",
+  "exit_code": 0,
+  "metrics": {
+    "metrics_schema": 5,
+    "result": {
+      "terminated": true,
+      "endReason": "roundLimit",
+      "winner": "A",
+      "teamA": {
+        "dragonCount": 22,
+        "longestDragon": 45,
+        "totalLength": 690
+      },
+      "teamB": {
+        "dragonCount": 3,
+        "longestDragon": 43,
+        "totalLength": 112
+      }
+    },
+    "rounds": 500,
+    "seed": "10400",
+    "teams": {
+      "A": {
+        "first_split_round": 0,
+        "max_units": 64,
+        "portal_entries": 0,
+        "sacrifice_count": 34,
+        "runtime_failures": 0,
+        "max_turn_points": null,
+        "deaths": {
+          "H": 466,
+          "S": 43
+        },
+        "longest_trajectory": [
+          [
+            0,
+            6
+          ],
+          [
+            25,
+            4
+          ],
+          [
+            50,
+            4
+          ],
+          [
+            75,
+            4
+          ],
+          [
+            100,
+            4
+          ],
+          [
+            125,
+            4
+          ],
+          [
+            150,
+            4
+          ],
+          [
+            175,
+            4
+          ],
+          [
+            200,
+            4
+          ],
+          [
+            225,
+            3
+          ],
+          [
+            250,
+            4
+          ],
+          [
+            275,
+            9
+          ],
+          [
+            300,
+            10
+          ],
+          [
+            325,
+            11
+          ],
+          [
+            350,
+            13
+          ],
+          [
+            375,
+            20
+          ],
+          [
+            400,
+            22
+          ],
+          [
+            425,
+            28
+          ],
+          [
+            450,
+            37
+          ],
+          [
+            475,
+            41
+          ],
+          [
+            500,
+            45
+          ]
+        ],
+        "unique_head_tiles": 3621,
+        "exploration_coverage": 0.994384765625,
+        "king_length": null,
+        "portal_deaths": null,
+        "dragonCount": 22,
+        "longestDragon": 45,
+        "totalLength": 690
+      },
+      "B": {
+        "first_split_round": 0,
+        "max_units": 64,
+        "portal_entries": 0,
+        "sacrifice_count": 1,
+        "runtime_failures": 0,
+        "max_turn_points": null,
+        "deaths": {
+          "H": 466,
+          "S": 4
+        },
+        "longest_trajectory": [
+          [
+            0,
+            6
+          ],
+          [
+            25,
+            4
+          ],
+          [
+            50,
+            4
+          ],
+          [
+            75,
+            4
+          ],
+          [
+            100,
+            4
+          ],
+          [
+            125,
+            4
+          ],
+          [
+            150,
+            4
+          ],
+          [
+            175,
+            4
+          ],
+          [
+            200,
+            7
+          ],
+          [
+            225,
+            7
+          ],
+          [
+            250,
+            7
+          ],
+          [
+            275,
+            13
+          ],
+          [
+            300,
+            9
+          ],
+          [
+            325,
+            15
+          ],
+          [
+            350,
+            18
+          ],
+          [
+            375,
+            19
+          ],
+          [
+            400,
+            25
+          ],
+          [
+            425,
+            26
+          ],
+          [
+            450,
+            28
+          ],
+          [
+            475,
+            31
+          ],
+          [
+            500,
+            43
+          ]
+        ],
+        "unique_head_tiles": 3206,
+        "exploration_coverage": 0.927978515625,
+        "king_length": null,
+        "portal_deaths": null,
+        "dragonCount": 3,
+        "longestDragon": 43,
+        "totalLength": 112
+      }
+    }
+  },
+  "winner": "A",
+  "score": 0.0,
+  "status": "ok",
+  "replay": "replays/research-d78afb1efcfdc0a9565a859a481f054058ee750be3e64cbfe84dc9b6dcb4377e.replay",
+  "seconds": 22.74
+}

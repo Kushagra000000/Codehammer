@@ -1,0 +1,2115 @@
+{
+  "schema": 1,
+  "replay": "replays/research-9701ba2c76be95bf27f41f31953ba5653d82629bfefb612825c74f5b277a6818.replay",
+  "result": {
+    "terminated": true,
+    "endReason": "roundLimit",
+    "winner": "B",
+    "teamA": {
+      "dragonCount": 10,
+      "longestDragon": 27,
+      "totalLength": 98
+    },
+    "teamB": {
+      "dragonCount": 8,
+      "longestDragon": 29,
+      "totalLength": 76
+    }
+  },
+  "seed": "104101",
+  "checkedRoundSnapshots": 500,
+  "map": {
+    "width": 48,
+    "height": 24,
+    "spawnTiles": 210,
+    "spawnTileFraction": 0.18229166666666666,
+    "theoreticalRespawnsPerRound": 13.970149253731359
+  },
+  "caveats": [
+    "Respawn rate is theoretical: a tile already holding a pearl does not accumulate more.",
+    "Four-turn collection windows can overlap; their counts do not establish causal attribution.",
+    "Cycle-step counts compare the last logged eligible claim geometry; unlogged claim revocations cannot be reconstructed.",
+    "A visible nearby pearl can be blocked; visible-pearl counts do not imply a safe detour exists."
+  ],
+  "teams": {
+    "A": {
+      "peakLength": 27,
+      "peakDragon": 288,
+      "peakRound": 495,
+      "longestTrajectory": [
+        [
+          0,
+          4
+        ],
+        [
+          25,
+          3
+        ],
+        [
+          50,
+          3
+        ],
+        [
+          75,
+          3
+        ],
+        [
+          100,
+          4
+        ],
+        [
+          125,
+          3
+        ],
+        [
+          150,
+          4
+        ],
+        [
+          175,
+          4
+        ],
+        [
+          200,
+          4
+        ],
+        [
+          225,
+          4
+        ],
+        [
+          250,
+          4
+        ],
+        [
+          275,
+          3
+        ],
+        [
+          300,
+          3
+        ],
+        [
+          325,
+          4
+        ],
+        [
+          350,
+          5
+        ],
+        [
+          375,
+          6
+        ],
+        [
+          400,
+          6
+        ],
+        [
+          425,
+          10
+        ],
+        [
+          450,
+          17
+        ],
+        [
+          475,
+          21
+        ],
+        [
+          500,
+          27
+        ]
+      ],
+      "longDeaths": [],
+      "allDeaths": {
+        "S": 218,
+        "H": 12,
+        "O": 1
+      },
+      "claims": [
+        {
+          "round": 411,
+          "id": 431,
+          "length": 8,
+          "x": 1,
+          "y": 14,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 70,
+          "spawnTileFraction": 0.875,
+          "theoreticalRespawnsPerRound": 0.6965174129353229
+        },
+        {
+          "round": 412,
+          "id": 288,
+          "length": 8,
+          "x": 1,
+          "y": 16,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.7960199004975115
+        },
+        {
+          "round": 453,
+          "id": 16,
+          "length": 8,
+          "x": 0,
+          "y": 8,
+          "w": 5,
+          "h": 16,
+          "spawnTiles": 45,
+          "spawnTileFraction": 0.5625,
+          "theoreticalRespawnsPerRound": 0.44776119402985104
+        },
+        {
+          "round": 459,
+          "id": 466,
+          "length": 10,
+          "x": 3,
+          "y": 6,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 8,
+          "spawnTileFraction": 0.1,
+          "theoreticalRespawnsPerRound": 0.07960199004975123
+        },
+        {
+          "round": 459,
+          "id": 478,
+          "length": 8,
+          "x": 0,
+          "y": 17,
+          "w": 7,
+          "h": 6,
+          "spawnTiles": 42,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.4179104477611943
+        },
+        {
+          "round": 461,
+          "id": 114,
+          "length": 8,
+          "x": 1,
+          "y": 16,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.7960199004975115
+        },
+        {
+          "round": 462,
+          "id": 463,
+          "length": 8,
+          "x": 1,
+          "y": 16,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.7960199004975115
+        },
+        {
+          "round": 473,
+          "id": 0,
+          "length": 8,
+          "x": 1,
+          "y": 14,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 70,
+          "spawnTileFraction": 0.875,
+          "theoreticalRespawnsPerRound": 0.6965174129353229
+        },
+        {
+          "round": 480,
+          "id": 486,
+          "length": 8,
+          "x": 5,
+          "y": 16,
+          "w": 6,
+          "h": 6,
+          "spawnTiles": 36,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.3582089552238808
+        },
+        {
+          "round": 482,
+          "id": 0,
+          "length": 8,
+          "x": 1,
+          "y": 8,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 10,
+          "spawnTileFraction": 0.125,
+          "theoreticalRespawnsPerRound": 0.09950248756218903
+        },
+        {
+          "round": 483,
+          "id": 463,
+          "length": 9,
+          "x": 1,
+          "y": 16,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.7960199004975115
+        },
+        {
+          "round": 486,
+          "id": 466,
+          "length": 17,
+          "x": 0,
+          "y": 4,
+          "w": 4,
+          "h": 20,
+          "spawnTiles": 36,
+          "spawnTileFraction": 0.45,
+          "theoreticalRespawnsPerRound": 0.3582089552238808
+        },
+        {
+          "round": 486,
+          "id": 486,
+          "length": 9,
+          "x": 5,
+          "y": 16,
+          "w": 6,
+          "h": 8,
+          "spawnTiles": 48,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.4776119402985078
+        },
+        {
+          "round": 487,
+          "id": 488,
+          "length": 12,
+          "x": 0,
+          "y": 19,
+          "w": 6,
+          "h": 4,
+          "spawnTiles": 24,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.2388059701492538
+        },
+        {
+          "round": 496,
+          "id": 160,
+          "length": 8,
+          "x": 0,
+          "y": 7,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 16,
+          "spawnTileFraction": 0.2,
+          "theoreticalRespawnsPerRound": 0.15920398009950248
+        }
+      ],
+      "patrolFood": [
+        {
+          "round": 448,
+          "id": 288,
+          "length": 17,
+          "reportedLength": 17,
+          "selectedDestination": {
+            "x": 4,
+            "y": 20
+          },
+          "nominalCycleNext": {
+            "x": 4,
+            "y": 20
+          },
+          "ownTurn": 199,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 17,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 4,
+            "y": 20
+          }
+        },
+        {
+          "round": 450,
+          "id": 288,
+          "length": 17,
+          "reportedLength": 17,
+          "selectedDestination": {
+            "x": 5,
+            "y": 19
+          },
+          "nominalCycleNext": {
+            "x": 6,
+            "y": 20
+          },
+          "ownTurn": 201,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 17,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 5,
+            "y": 19
+          }
+        },
+        {
+          "round": 451,
+          "id": 288,
+          "length": 17,
+          "reportedLength": 17,
+          "selectedDestination": {
+            "x": 4,
+            "y": 19
+          },
+          "nominalCycleNext": {
+            "x": 4,
+            "y": 19
+          },
+          "ownTurn": 202,
+          "pearlsNextFourOwnTurns": 1,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 18,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 4,
+            "y": 19
+          }
+        },
+        {
+          "round": 460,
+          "id": 288,
+          "length": 18,
+          "reportedLength": 18,
+          "selectedDestination": {
+            "x": 4,
+            "y": 16
+          },
+          "nominalCycleNext": {
+            "x": 3,
+            "y": 17
+          },
+          "ownTurn": 211,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 2,
+          "differsFromCycle": true,
+          "afterTurnLength": 18,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 4,
+            "y": 16
+          }
+        },
+        {
+          "round": 477,
+          "id": 288,
+          "length": 21,
+          "reportedLength": 21,
+          "selectedDestination": {
+            "x": 7,
+            "y": 18
+          },
+          "nominalCycleNext": {
+            "x": 7,
+            "y": 18
+          },
+          "ownTurn": 228,
+          "pearlsNextFourOwnTurns": 0,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 21,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 7,
+            "y": 18
+          }
+        },
+        {
+          "round": 479,
+          "id": 288,
+          "length": 21,
+          "reportedLength": 21,
+          "selectedDestination": {
+            "x": 7,
+            "y": 16
+          },
+          "nominalCycleNext": {
+            "x": 6,
+            "y": 17
+          },
+          "ownTurn": 230,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 21,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 7,
+            "y": 16
+          }
+        },
+        {
+          "round": 480,
+          "id": 288,
+          "length": 21,
+          "reportedLength": 21,
+          "selectedDestination": {
+            "x": 7,
+            "y": 15
+          },
+          "nominalCycleNext": {
+            "x": 8,
+            "y": 16
+          },
+          "ownTurn": 231,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 21,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 7,
+            "y": 15
+          }
+        },
+        {
+          "round": 485,
+          "id": 288,
+          "length": 23,
+          "reportedLength": 23,
+          "selectedDestination": {
+            "x": 4,
+            "y": 17
+          },
+          "nominalCycleNext": {
+            "x": 5,
+            "y": 16
+          },
+          "ownTurn": 236,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": true,
+          "afterTurnLength": 23,
+          "survivedTurn": true,
+          "pearlsSameTurn": 0,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 4,
+            "y": 17
+          }
+        },
+        {
+          "round": 486,
+          "id": 288,
+          "length": 23,
+          "reportedLength": 23,
+          "selectedDestination": {
+            "x": 3,
+            "y": 17
+          },
+          "nominalCycleNext": {
+            "x": 3,
+            "y": 17
+          },
+          "ownTurn": 237,
+          "pearlsNextFourOwnTurns": 2,
+          "fedPearlsNextFourOwnTurns": 0,
+          "differsFromCycle": false,
+          "afterTurnLength": 24,
+          "survivedTurn": true,
+          "pearlsSameTurn": 1,
+          "fedPearlsSameTurn": 0,
+          "actualHeadAfterTurn": {
+            "x": 3,
+            "y": 17
+          }
+        }
+      ],
+      "escapeSplits": [
+        {
+          "round": 309,
+          "id": 390,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 4,
+          "requestedChildLength": 2,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 310,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 393,
+          "childLength": 2,
+          "childHead": {
+            "x": 11,
+            "y": 12
+          },
+          "childFacing": "N",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 309,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "N"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 334,
+            "reason": "S",
+            "length": 2
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 319,
+          "id": 401,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 4,
+          "requestedChildLength": 2,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 320,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 407,
+          "childLength": 2,
+          "childHead": {
+            "x": 11,
+            "y": 9
+          },
+          "childFacing": "S",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 319,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "S"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 328,
+            "reason": "S",
+            "length": 2
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 360,
+          "id": 425,
+          "kind": "WORKER_REVERSE",
+          "originalLength": 4,
+          "requestedChildLength": 2,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 362,
+            "reason": "S",
+            "length": 3
+          },
+          "tailInsideParentVision": true,
+          "childId": 460,
+          "childLength": 2,
+          "childHead": {
+            "x": 16,
+            "y": 9
+          },
+          "childFacing": "E",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 360,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "N"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 362,
+            "reason": "O",
+            "length": 2
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": false
+        },
+        {
+          "round": 369,
+          "id": 114,
+          "kind": "WORKER_REVERSE",
+          "originalLength": 5,
+          "requestedChildLength": 3,
+          "actualSplit": true,
+          "parentDeath": null,
+          "tailInsideParentVision": true,
+          "childId": 461,
+          "childLength": 3,
+          "childHead": {
+            "x": 9,
+            "y": 17
+          },
+          "childFacing": "N",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 369,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "E"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 424,
+            "reason": "S",
+            "length": 4
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 369,
+          "id": 144,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 5,
+          "requestedChildLength": 3,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 371,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 462,
+          "childLength": 3,
+          "childHead": {
+            "x": 8,
+            "y": 20
+          },
+          "childFacing": "N",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 369,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "N"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 428,
+            "reason": "S",
+            "length": 3
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 382,
+          "id": 154,
+          "kind": "WORKER_REVERSE",
+          "originalLength": 4,
+          "requestedChildLength": 2,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 397,
+            "reason": "S",
+            "length": 4
+          },
+          "tailInsideParentVision": true,
+          "childId": 463,
+          "childLength": 2,
+          "childHead": {
+            "x": 4,
+            "y": 23
+          },
+          "childFacing": "S",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 382,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "W"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 487,
+            "reason": "S",
+            "length": 11
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 384,
+          "id": 179,
+          "kind": "WORKER_REVERSE",
+          "originalLength": 7,
+          "requestedChildLength": 5,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 419,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 464,
+          "childLength": 5,
+          "childHead": {
+            "x": 14,
+            "y": 8
+          },
+          "childFacing": "E",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 384,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "E"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 386,
+            "reason": "S",
+            "length": 2
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": false
+        },
+        {
+          "round": 385,
+          "id": 464,
+          "kind": "WORKER_REVERSE",
+          "originalLength": 5,
+          "requestedChildLength": 3,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 386,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 465,
+          "childLength": 3,
+          "childHead": {
+            "x": 12,
+            "y": 9
+          },
+          "childFacing": "S",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 385,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "S"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 401,
+            "reason": "S",
+            "length": 2
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 387,
+          "id": 154,
+          "kind": "WORKER_REVERSE",
+          "originalLength": 4,
+          "requestedChildLength": 2,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 397,
+            "reason": "S",
+            "length": 4
+          },
+          "tailInsideParentVision": true,
+          "childId": 466,
+          "childLength": 2,
+          "childHead": {
+            "x": 3,
+            "y": 20
+          },
+          "childFacing": "S",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 387,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "S"
+              ]
+            }
+          },
+          "childDeath": null,
+          "childAliveAtFinish": true,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 387,
+          "id": 344,
+          "kind": "WORKER_REVERSE",
+          "originalLength": 4,
+          "requestedChildLength": 2,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 388,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 467,
+          "childLength": 2,
+          "childHead": {
+            "x": 0,
+            "y": 21
+          },
+          "childFacing": "W",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 387,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "S"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 452,
+            "reason": "S",
+            "length": 3
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 397,
+          "id": 197,
+          "kind": "WORKER_REVERSE",
+          "originalLength": 4,
+          "requestedChildLength": 2,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 421,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 468,
+          "childLength": 2,
+          "childHead": {
+            "x": 1,
+            "y": 8
+          },
+          "childFacing": "E",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 397,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "S"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 465,
+            "reason": "S",
+            "length": 3
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 400,
+          "id": 465,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 4,
+          "requestedChildLength": 2,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 401,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 469,
+          "childLength": 2,
+          "childHead": {
+            "x": 18,
+            "y": 7
+          },
+          "childFacing": "S",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 400,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "S"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 423,
+            "reason": "S",
+            "length": 2
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 408,
+          "id": 454,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 4,
+          "requestedChildLength": 2,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 462,
+            "reason": "S",
+            "length": 5
+          },
+          "tailInsideParentVision": true,
+          "childId": 470,
+          "childLength": 2,
+          "childHead": {
+            "x": 6,
+            "y": 15
+          },
+          "childFacing": "S",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 408,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "S"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 431,
+            "reason": "S",
+            "length": 4
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 413,
+          "id": 423,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 4,
+          "requestedChildLength": 2,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 435,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 471,
+          "childLength": 2,
+          "childHead": {
+            "x": 1,
+            "y": 20
+          },
+          "childFacing": "S",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 413,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "S"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 432,
+            "reason": "S",
+            "length": 3
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 418,
+          "id": 179,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 4,
+          "requestedChildLength": 2,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 419,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 472,
+          "childLength": 2,
+          "childHead": {
+            "x": 12,
+            "y": 2
+          },
+          "childFacing": "S",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 418,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "E"
+              ]
+            }
+          },
+          "childDeath": null,
+          "childAliveAtFinish": true,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 420,
+          "id": 469,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 4,
+          "requestedChildLength": 2,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 423,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 473,
+          "childLength": 2,
+          "childHead": {
+            "x": 15,
+            "y": 9
+          },
+          "childFacing": "W",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 420,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "N"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 432,
+            "reason": "S",
+            "length": 9
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 423,
+          "id": 431,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 9,
+          "requestedChildLength": 7,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 441,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 474,
+          "childLength": 7,
+          "childHead": {
+            "x": 7,
+            "y": 17
+          },
+          "childFacing": "W",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 423,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "W"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 427,
+            "reason": "S",
+            "length": 9
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": false
+        },
+        {
+          "round": 423,
+          "id": 463,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 9,
+          "requestedChildLength": 7,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 487,
+            "reason": "S",
+            "length": 11
+          },
+          "tailInsideParentVision": true,
+          "childId": 475,
+          "childLength": 7,
+          "childHead": {
+            "x": 7,
+            "y": 23
+          },
+          "childFacing": "W",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 423,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "W"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 434,
+            "reason": "S",
+            "length": 2
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 432,
+          "id": 475,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 8,
+          "requestedChildLength": 6,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 434,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 476,
+          "childLength": 6,
+          "childHead": {
+            "x": 5,
+            "y": 23
+          },
+          "childFacing": "S",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 432,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "E"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 437,
+            "reason": "S",
+            "length": 2
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": false
+        },
+        {
+          "round": 436,
+          "id": 476,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 7,
+          "requestedChildLength": 5,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 437,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 478,
+          "childLength": 5,
+          "childHead": {
+            "x": 4,
+            "y": 22
+          },
+          "childFacing": "W",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 436,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "W"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 488,
+            "reason": "S",
+            "length": 2
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 453,
+          "id": 16,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 8,
+          "requestedChildLength": 6,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 454,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 480,
+          "childLength": 6,
+          "childHead": {
+            "x": 0,
+            "y": 5
+          },
+          "childFacing": "N",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 453,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "N"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 474,
+            "reason": "S",
+            "length": 2
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 453,
+          "id": 282,
+          "kind": "WORKER_REVERSE",
+          "originalLength": 4,
+          "requestedChildLength": 2,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 454,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 481,
+          "childLength": 2,
+          "childHead": {
+            "x": 9,
+            "y": 11
+          },
+          "childFacing": "W",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 453,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "S"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 467,
+            "reason": "S",
+            "length": 2
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 455,
+          "id": 377,
+          "kind": "WORKER_REVERSE",
+          "originalLength": 7,
+          "requestedChildLength": 5,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 456,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 482,
+          "childLength": 5,
+          "childHead": {
+            "x": 9,
+            "y": 17
+          },
+          "childFacing": "N",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 455,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "N"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 456,
+            "reason": "S",
+            "length": 5
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": false
+        },
+        {
+          "round": 455,
+          "id": 456,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 5,
+          "requestedChildLength": 3,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 462,
+            "reason": "S",
+            "length": 3
+          },
+          "tailInsideParentVision": true,
+          "childId": 483,
+          "childLength": 3,
+          "childHead": {
+            "x": 0,
+            "y": 17
+          },
+          "childFacing": "W",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 455,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "N"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 459,
+            "reason": "S",
+            "length": 3
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": false
+        },
+        {
+          "round": 473,
+          "id": 480,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 6,
+          "requestedChildLength": 4,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 474,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 485,
+          "childLength": 4,
+          "childHead": {
+            "x": 4,
+            "y": 8
+          },
+          "childFacing": "W",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 473,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "N"
+              ]
+            }
+          },
+          "childDeath": null,
+          "childAliveAtFinish": true,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 480,
+          "id": 114,
+          "kind": "WORKER_REVERSE",
+          "originalLength": 10,
+          "requestedChildLength": 8,
+          "actualSplit": true,
+          "parentDeath": null,
+          "tailInsideParentVision": true,
+          "childId": 486,
+          "childLength": 8,
+          "childHead": {
+            "x": 8,
+            "y": 19
+          },
+          "childFacing": "S",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 480,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "S"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 491,
+            "reason": "S",
+            "length": 10
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 487,
+          "id": 478,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 14,
+          "requestedChildLength": 12,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 488,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 488,
+          "childLength": 12,
+          "childHead": {
+            "x": 2,
+            "y": 22
+          },
+          "childFacing": "S",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 487,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "S"
+              ]
+            }
+          },
+          "childDeath": null,
+          "childAliveAtFinish": true,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        }
+      ],
+      "cycleSteps": 28,
+      "cycleDeviations": 29,
+      "cycleTurnsWithVisiblePearls": 50,
+      "pearlsCollected": 708,
+      "fedPearlsCollected": 37,
+      "runtimeFailures": [],
+      "final": {
+        "dragonCount": 10,
+        "longestDragon": 27,
+        "totalLength": 98
+      },
+      "summary": {
+        "patrolFoodDecisions": 9,
+        "foodDecisionsOffCycle": 5,
+        "foodDecisionsEatingSameTurn": 2,
+        "foodDecisionsEatingWithinFourOwnTurns": 8,
+        "foodDecisionsDyingSameTurn": 0,
+        "foodDecisionsEatingFeedDrops": 1,
+        "escapeSplitIntents": 27,
+        "actualEscapeSplits": 27,
+        "escapeChildrenSurvivedBirthRound": 27,
+        "escapeChildrenSurvivedFiveRounds": 21
+      }
+    },
+    "B": {
+      "peakLength": 29,
+      "peakDragon": 484,
+      "peakRound": 498,
+      "longestTrajectory": [
+        [
+          0,
+          4
+        ],
+        [
+          25,
+          3
+        ],
+        [
+          50,
+          3
+        ],
+        [
+          75,
+          4
+        ],
+        [
+          100,
+          3
+        ],
+        [
+          125,
+          3
+        ],
+        [
+          150,
+          4
+        ],
+        [
+          175,
+          4
+        ],
+        [
+          200,
+          3
+        ],
+        [
+          225,
+          3
+        ],
+        [
+          250,
+          3
+        ],
+        [
+          275,
+          4
+        ],
+        [
+          300,
+          4
+        ],
+        [
+          325,
+          4
+        ],
+        [
+          350,
+          4
+        ],
+        [
+          375,
+          8
+        ],
+        [
+          400,
+          12
+        ],
+        [
+          425,
+          13
+        ],
+        [
+          450,
+          18
+        ],
+        [
+          475,
+          15
+        ],
+        [
+          500,
+          29
+        ]
+      ],
+      "longDeaths": [
+        {
+          "round": 454,
+          "id": 311,
+          "length": 18,
+          "reason": "S",
+          "reasonName": "self_collision",
+          "deliberateFeed": false,
+          "action": {
+            "round": 454,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "E"
+              ]
+            }
+          },
+          "head": {
+            "x": 46,
+            "y": 8
+          }
+        }
+      ],
+      "allDeaths": {
+        "S": 232,
+        "H": 8
+      },
+      "claims": [
+        {
+          "round": 400,
+          "id": 346,
+          "length": 12,
+          "x": 37,
+          "y": 0,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.7960199004975115
+        },
+        {
+          "round": 405,
+          "id": 311,
+          "length": 8,
+          "x": 38,
+          "y": 0,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.7960199004975115
+        },
+        {
+          "round": 419,
+          "id": 311,
+          "length": 11,
+          "x": 38,
+          "y": 8,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 10,
+          "spawnTileFraction": 0.125,
+          "theoreticalRespawnsPerRound": 0.09950248756218903
+        },
+        {
+          "round": 424,
+          "id": 360,
+          "length": 8,
+          "x": 37,
+          "y": 0,
+          "w": 7,
+          "h": 8,
+          "spawnTiles": 56,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.5572139303482588
+        },
+        {
+          "round": 428,
+          "id": 286,
+          "length": 9,
+          "x": 37,
+          "y": 0,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.7960199004975115
+        },
+        {
+          "round": 428,
+          "id": 400,
+          "length": 8,
+          "x": 37,
+          "y": 0,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.7960199004975115
+        },
+        {
+          "round": 436,
+          "id": 477,
+          "length": 10,
+          "x": 39,
+          "y": 3,
+          "w": 7,
+          "h": 6,
+          "spawnTiles": 42,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.4179104477611943
+        },
+        {
+          "round": 437,
+          "id": 477,
+          "length": 10,
+          "x": 39,
+          "y": 3,
+          "w": 7,
+          "h": 8,
+          "spawnTiles": 42,
+          "spawnTileFraction": 0.75,
+          "theoreticalRespawnsPerRound": 0.4179104477611943
+        },
+        {
+          "round": 438,
+          "id": 477,
+          "length": 10,
+          "x": 39,
+          "y": 4,
+          "w": 8,
+          "h": 4,
+          "spawnTiles": 32,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.31840796019900514
+        },
+        {
+          "round": 439,
+          "id": 479,
+          "length": 12,
+          "x": 37,
+          "y": 0,
+          "w": 6,
+          "h": 6,
+          "spawnTiles": 36,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.3582089552238808
+        },
+        {
+          "round": 445,
+          "id": 78,
+          "length": 8,
+          "x": 37,
+          "y": 0,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.7960199004975115
+        },
+        {
+          "round": 464,
+          "id": 479,
+          "length": 12,
+          "x": 37,
+          "y": 8,
+          "w": 6,
+          "h": 10,
+          "spawnTiles": 6,
+          "spawnTileFraction": 0.1,
+          "theoreticalRespawnsPerRound": 0.059701492537313425
+        },
+        {
+          "round": 467,
+          "id": 322,
+          "length": 8,
+          "x": 38,
+          "y": 0,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.7960199004975115
+        },
+        {
+          "round": 475,
+          "id": 484,
+          "length": 15,
+          "x": 38,
+          "y": 1,
+          "w": 9,
+          "h": 8,
+          "spawnTiles": 72,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.7164179104477606
+        },
+        {
+          "round": 479,
+          "id": 479,
+          "length": 13,
+          "x": 37,
+          "y": 0,
+          "w": 5,
+          "h": 16,
+          "spawnTiles": 45,
+          "spawnTileFraction": 0.5625,
+          "theoreticalRespawnsPerRound": 0.44776119402985104
+        },
+        {
+          "round": 484,
+          "id": 487,
+          "length": 10,
+          "x": 42,
+          "y": 2,
+          "w": 6,
+          "h": 6,
+          "spawnTiles": 36,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.3582089552238808
+        },
+        {
+          "round": 487,
+          "id": 310,
+          "length": 8,
+          "x": 38,
+          "y": 8,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 10,
+          "spawnTileFraction": 0.125,
+          "theoreticalRespawnsPerRound": 0.09950248756218903
+        },
+        {
+          "round": 497,
+          "id": 479,
+          "length": 21,
+          "x": 37,
+          "y": 0,
+          "w": 6,
+          "h": 14,
+          "spawnTiles": 54,
+          "spawnTileFraction": 0.6428571428571429,
+          "theoreticalRespawnsPerRound": 0.5373134328358211
+        }
+      ],
+      "patrolFood": [],
+      "escapeSplits": [
+        {
+          "round": 436,
+          "id": 360,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 12,
+          "requestedChildLength": 10,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 440,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 477,
+          "childLength": 10,
+          "childHead": {
+            "x": 42,
+            "y": 6
+          },
+          "childFacing": "S",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 436,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "S"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 447,
+            "reason": "S",
+            "length": 11
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 439,
+          "id": 286,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 14,
+          "requestedChildLength": 12,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 442,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 479,
+          "childLength": 12,
+          "childHead": {
+            "x": 39,
+            "y": 3
+          },
+          "childFacing": "N",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 439,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "N"
+              ]
+            }
+          },
+          "childDeath": null,
+          "childAliveAtFinish": true,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 467,
+          "id": 78,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 14,
+          "requestedChildLength": 12,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 492,
+            "reason": "S",
+            "length": 5
+          },
+          "tailInsideParentVision": true,
+          "childId": 484,
+          "childLength": 12,
+          "childHead": {
+            "x": 43,
+            "y": 7
+          },
+          "childFacing": "E",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 467,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "N"
+              ]
+            }
+          },
+          "childDeath": null,
+          "childAliveAtFinish": true,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 484,
+          "id": 322,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 12,
+          "requestedChildLength": 10,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 486,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 487,
+          "childLength": 10,
+          "childHead": {
+            "x": 45,
+            "y": 5
+          },
+          "childFacing": "N",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 484,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "W"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 486,
+            "reason": "S",
+            "length": 11
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": false
+        }
+      ],
+      "cycleSteps": 4,
+      "cycleDeviations": 10,
+      "cycleTurnsWithVisiblePearls": 15,
+      "pearlsCollected": 764,
+      "fedPearlsCollected": 33,
+      "runtimeFailures": [],
+      "final": {
+        "dragonCount": 8,
+        "longestDragon": 29,
+        "totalLength": 76
+      },
+      "summary": {
+        "patrolFoodDecisions": 0,
+        "foodDecisionsOffCycle": 0,
+        "foodDecisionsEatingSameTurn": 0,
+        "foodDecisionsEatingWithinFourOwnTurns": 0,
+        "foodDecisionsDyingSameTurn": 0,
+        "foodDecisionsEatingFeedDrops": 0,
+        "escapeSplitIntents": 4,
+        "actualEscapeSplits": 4,
+        "escapeChildrenSurvivedBirthRound": 4,
+        "escapeChildrenSurvivedFiveRounds": 3
+      }
+    }
+  }
+}

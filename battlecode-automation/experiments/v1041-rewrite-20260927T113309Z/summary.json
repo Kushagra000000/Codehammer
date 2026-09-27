@@ -1,0 +1,72 @@
+{
+  "v1041-parent-smoke": {
+    "games": 1,
+    "wins": 1,
+    "draws": 0,
+    "losses": 0,
+    "errors": 0
+  },
+  "v1041-r1-smoke": {
+    "games": 1,
+    "wins": 0,
+    "draws": 0,
+    "losses": 1,
+    "errors": 0
+  },
+  "v1041-r1-screen": {
+    "games": 11,
+    "wins": 8,
+    "draws": 0,
+    "losses": 3,
+    "errors": 0
+  },
+  "v1041-r1-stronghold-validation": {
+    "games": 3,
+    "wins": 1,
+    "draws": 0,
+    "losses": 2,
+    "errors": 0
+  },
+  "v1041-r1-sandbox": {
+    "games": 1,
+    "wins": 1,
+    "draws": 0,
+    "losses": 0,
+    "errors": 0
+  },
+  "v1041-r2-diagnostic": {
+    "games": 4,
+    "wins": 1,
+    "draws": 0,
+    "losses": 3,
+    "errors": 0
+  },
+  "v1041-r3-screen": {
+    "games": 11,
+    "wins": 6,
+    "draws": 0,
+    "losses": 5,
+    "errors": 0
+  },
+  "v1041-r4-diagnostic": {
+    "games": 3,
+    "wins": 0,
+    "draws": 0,
+    "losses": 3,
+    "errors": 0
+  },
+  "v1041-final-screen": {
+    "games": 11,
+    "wins": 6,
+    "draws": 0,
+    "losses": 5,
+    "errors": 0
+  },
+  "v1041-final-sandbox": {
+    "games": 2,
+    "wins": 2,
+    "draws": 0,
+    "losses": 0,
+    "errors": 0
+  }
+}

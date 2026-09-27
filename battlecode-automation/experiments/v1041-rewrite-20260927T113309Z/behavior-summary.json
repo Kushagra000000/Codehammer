@@ -1,0 +1,1979 @@
+[
+  {
+    "experiment": "v1041-parent-smoke",
+    "map": "maps/stronghold.map",
+    "seed": 104101,
+    "reverse": false,
+    "score": 1,
+    "peak": 45,
+    "final": 45,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 4,
+      "actualEscapeSplits": 4,
+      "escapeChildrenSurvivedBirthRound": 4,
+      "escapeChildrenSurvivedFiveRounds": 3
+    },
+    "cycleSteps": 49,
+    "cycleDeviations": 26,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/780cde247c95ba370f7bfb7291eded4ef75ecf89412411faf5c2328049f61ede-behavior.json"
+  },
+  {
+    "experiment": "v1041-r1-smoke",
+    "map": "maps/stronghold.map",
+    "seed": 104101,
+    "reverse": false,
+    "score": 0,
+    "peak": 26,
+    "final": 26,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 6,
+      "foodDecisionsOffCycle": 5,
+      "foodDecisionsEatingSameTurn": 1,
+      "foodDecisionsEatingWithinFourOwnTurns": 6,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 6,
+      "escapeSplitIntents": 39,
+      "actualEscapeSplits": 39,
+      "escapeChildrenSurvivedBirthRound": 39,
+      "escapeChildrenSurvivedFiveRounds": 32
+    },
+    "cycleSteps": 4,
+    "cycleDeviations": 12,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/abec6f875436dd1d50c33ba365cdaa48d3b36d905cfc6db019a69c9bc429bc2a-behavior.json"
+  },
+  {
+    "experiment": "v1041-r1-screen",
+    "map": "maps/Colosseum.map",
+    "seed": 104102,
+    "reverse": false,
+    "score": 0,
+    "peak": 4,
+    "final": 0,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 0,
+      "actualEscapeSplits": 0,
+      "escapeChildrenSurvivedBirthRound": 0,
+      "escapeChildrenSurvivedFiveRounds": 0
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/e57d7042a3cdedecc3d4f0d5686e7fea95822c2bfd8ae400a6237632202131ff-behavior.json"
+  },
+  {
+    "experiment": "v1041-r1-screen",
+    "map": "maps/arena.map",
+    "seed": 104102,
+    "reverse": true,
+    "score": 1,
+    "peak": 4,
+    "final": 4,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 0,
+      "actualEscapeSplits": 0,
+      "escapeChildrenSurvivedBirthRound": 0,
+      "escapeChildrenSurvivedFiveRounds": 0
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/79e2de518b27338234dc13a0dfba088458790cac3f387845c890f29be8b397aa-behavior.json"
+  },
+  {
+    "experiment": "v1041-r1-screen",
+    "map": "maps/big_empty.map",
+    "seed": 104102,
+    "reverse": false,
+    "score": 1,
+    "peak": 50,
+    "final": 49,
+    "longDeaths": [
+      {
+        "round": 467,
+        "id": 960,
+        "length": 47,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": false,
+        "action": {
+          "round": 467,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "W"
+            ]
+          }
+        },
+        "head": {
+          "x": 4,
+          "y": 43
+        }
+      },
+      {
+        "round": 476,
+        "id": 751,
+        "length": 16,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 476,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "E"
+            ]
+          }
+        },
+        "head": {
+          "x": 29,
+          "y": 25
+        }
+      },
+      {
+        "round": 488,
+        "id": 473,
+        "length": 26,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 488,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "W"
+            ]
+          }
+        },
+        "head": {
+          "x": 20,
+          "y": 25
+        }
+      },
+      {
+        "round": 492,
+        "id": 1020,
+        "length": 25,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 492,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "S"
+            ]
+          }
+        },
+        "head": {
+          "x": 24,
+          "y": 12
+        }
+      },
+      {
+        "round": 495,
+        "id": 1046,
+        "length": 22,
+        "reason": "H",
+        "reasonName": "head_collision",
+        "deliberateFeed": false,
+        "action": {
+          "round": 495,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "N",
+              "W",
+              "W",
+              "W"
+            ]
+          }
+        },
+        "head": {
+          "x": 16,
+          "y": 54
+        }
+      },
+      {
+        "round": 495,
+        "id": 1065,
+        "length": 28,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 495,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "E"
+            ]
+          }
+        },
+        "head": {
+          "x": 24,
+          "y": 26
+        }
+      }
+    ],
+    "summary": {
+      "patrolFoodDecisions": 172,
+      "foodDecisionsOffCycle": 118,
+      "foodDecisionsEatingSameTurn": 69,
+      "foodDecisionsEatingWithinFourOwnTurns": 164,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 25,
+      "escapeSplitIntents": 2,
+      "actualEscapeSplits": 2,
+      "escapeChildrenSurvivedBirthRound": 2,
+      "escapeChildrenSurvivedFiveRounds": 2
+    },
+    "cycleSteps": 119,
+    "cycleDeviations": 163,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/9eb1ea5c096a991c11f50788568f1ac14fd5fa366aed36e6f3e33485a69c199e-behavior.json"
+  },
+  {
+    "experiment": "v1041-r1-screen",
+    "map": "maps/default.map",
+    "seed": 104102,
+    "reverse": true,
+    "score": 1,
+    "peak": 7,
+    "final": 7,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 3,
+      "actualEscapeSplits": 3,
+      "escapeChildrenSurvivedBirthRound": 3,
+      "escapeChildrenSurvivedFiveRounds": 3
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/80c3f9c63bcd9eb7ececa1ded6f99605389d112a92b6173d734e0a1c062487f4-behavior.json"
+  },
+  {
+    "experiment": "v1041-r1-screen",
+    "map": "maps/default_small.map",
+    "seed": 104102,
+    "reverse": false,
+    "score": 1,
+    "peak": 4,
+    "final": 3,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 0,
+      "actualEscapeSplits": 0,
+      "escapeChildrenSurvivedBirthRound": 0,
+      "escapeChildrenSurvivedFiveRounds": 0
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/e7498b69b88ffd29f4e2630e3647373c1222586a4a78ab3312c952b41fc84237-behavior.json"
+  },
+  {
+    "experiment": "v1041-r1-screen",
+    "map": "maps/devil.map",
+    "seed": 104102,
+    "reverse": true,
+    "score": 1,
+    "peak": 4,
+    "final": 4,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 0,
+      "actualEscapeSplits": 0,
+      "escapeChildrenSurvivedBirthRound": 0,
+      "escapeChildrenSurvivedFiveRounds": 0
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/84bef74e63a854ad5ca77aca2e5343ed5c9f71465631e4c35a9288d0256129af-behavior.json"
+  },
+  {
+    "experiment": "v1041-r1-screen",
+    "map": "maps/queen_of_spades.map",
+    "seed": 104102,
+    "reverse": false,
+    "score": 1,
+    "peak": 8,
+    "final": 8,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 3,
+      "actualEscapeSplits": 3,
+      "escapeChildrenSurvivedBirthRound": 3,
+      "escapeChildrenSurvivedFiveRounds": 3
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/63f827b2123ccf900d5a76926256a31710a7f12a90e51fb313ed2118b0495c24-behavior.json"
+  },
+  {
+    "experiment": "v1041-r1-screen",
+    "map": "maps/schooltime.map",
+    "seed": 104102,
+    "reverse": true,
+    "score": 1,
+    "peak": 50,
+    "final": 50,
+    "longDeaths": [
+      {
+        "round": 475,
+        "id": 830,
+        "length": 28,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": false,
+        "action": {
+          "round": 475,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "E"
+            ]
+          }
+        },
+        "head": {
+          "x": 43,
+          "y": 10
+        }
+      },
+      {
+        "round": 476,
+        "id": 336,
+        "length": 18,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 476,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "E"
+            ]
+          }
+        },
+        "head": {
+          "x": 20,
+          "y": 37
+        }
+      },
+      {
+        "round": 488,
+        "id": 382,
+        "length": 19,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 488,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "N"
+            ]
+          }
+        },
+        "head": {
+          "x": 13,
+          "y": 38
+        }
+      }
+    ],
+    "summary": {
+      "patrolFoodDecisions": 30,
+      "foodDecisionsOffCycle": 25,
+      "foodDecisionsEatingSameTurn": 11,
+      "foodDecisionsEatingWithinFourOwnTurns": 28,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 13,
+      "escapeSplitIntents": 27,
+      "actualEscapeSplits": 27,
+      "escapeChildrenSurvivedBirthRound": 27,
+      "escapeChildrenSurvivedFiveRounds": 21
+    },
+    "cycleSteps": 14,
+    "cycleDeviations": 37,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/5e34ec633e3cdbc2d4f85f0aacbc980f8b0ac3c8a81b11292052ad2ca92785e0-behavior.json"
+  },
+  {
+    "experiment": "v1041-r1-screen",
+    "map": "maps/stronghold.map",
+    "seed": 104102,
+    "reverse": false,
+    "score": 0,
+    "peak": 29,
+    "final": 29,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 4,
+      "foodDecisionsOffCycle": 3,
+      "foodDecisionsEatingSameTurn": 2,
+      "foodDecisionsEatingWithinFourOwnTurns": 4,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 4,
+      "escapeSplitIntents": 43,
+      "actualEscapeSplits": 43,
+      "escapeChildrenSurvivedBirthRound": 43,
+      "escapeChildrenSurvivedFiveRounds": 37
+    },
+    "cycleSteps": 3,
+    "cycleDeviations": 11,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/933914b25f6abffb2465eff17fa9d701316c1b8acfa28bf6bb4e242205c2ddea-behavior.json"
+  },
+  {
+    "experiment": "v1041-r1-screen",
+    "map": "maps/trauma.map",
+    "seed": 104102,
+    "reverse": true,
+    "score": 1,
+    "peak": 10,
+    "final": 9,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 23,
+      "actualEscapeSplits": 23,
+      "escapeChildrenSurvivedBirthRound": 23,
+      "escapeChildrenSurvivedFiveRounds": 19
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/939f5ca988d5e9bbd51820a344264d8e4a5636a95fc629040007cacaaf9b3719-behavior.json"
+  },
+  {
+    "experiment": "v1041-r1-screen",
+    "map": "maps/trophy.map",
+    "seed": 104102,
+    "reverse": false,
+    "score": 0,
+    "peak": 4,
+    "final": 0,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 0,
+      "actualEscapeSplits": 0,
+      "escapeChildrenSurvivedBirthRound": 0,
+      "escapeChildrenSurvivedFiveRounds": 0
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/afff4faa5c77cb563a990347553379ca436c88cf4e64cca42259259e78fbb66c-behavior.json"
+  },
+  {
+    "experiment": "v1041-r1-stronghold-validation",
+    "map": "maps/stronghold.map",
+    "seed": 104103,
+    "reverse": true,
+    "score": 0,
+    "peak": 17,
+    "final": 17,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 3,
+      "foodDecisionsOffCycle": 2,
+      "foodDecisionsEatingSameTurn": 1,
+      "foodDecisionsEatingWithinFourOwnTurns": 3,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 30,
+      "actualEscapeSplits": 30,
+      "escapeChildrenSurvivedBirthRound": 30,
+      "escapeChildrenSurvivedFiveRounds": 21
+    },
+    "cycleSteps": 1,
+    "cycleDeviations": 2,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/22f909e6b8ffabcd2ff94292206c01b17a82ed8dafe13664d4f0029ecdfc31a9-behavior.json"
+  },
+  {
+    "experiment": "v1041-r1-stronghold-validation",
+    "map": "maps/stronghold.map",
+    "seed": 104104,
+    "reverse": false,
+    "score": 1,
+    "peak": 29,
+    "final": 29,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 1,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 1,
+      "foodDecisionsEatingWithinFourOwnTurns": 1,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 1,
+      "escapeSplitIntents": 50,
+      "actualEscapeSplits": 50,
+      "escapeChildrenSurvivedBirthRound": 50,
+      "escapeChildrenSurvivedFiveRounds": 45
+    },
+    "cycleSteps": 1,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 3,
+    "distantLongTailEscapes": 1,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/cbd33349d37ceeb8ecafd4d7b095db05f28010634d1eb9e85f77ab24a422b846-behavior.json"
+  },
+  {
+    "experiment": "v1041-r1-stronghold-validation",
+    "map": "maps/stronghold.map",
+    "seed": 104105,
+    "reverse": true,
+    "score": 0,
+    "peak": 12,
+    "final": 12,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 33,
+      "actualEscapeSplits": 33,
+      "escapeChildrenSurvivedBirthRound": 33,
+      "escapeChildrenSurvivedFiveRounds": 28
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/ebe42c9bacea797756ed8d47d4442002f8405ac0843b171c712d5dcef5efe715-behavior.json"
+  },
+  {
+    "experiment": "v1041-r1-sandbox",
+    "map": "maps/schooltime.map",
+    "seed": 104106,
+    "reverse": false,
+    "score": 1,
+    "peak": 36,
+    "final": 36,
+    "longDeaths": [
+      {
+        "round": 265,
+        "id": 372,
+        "length": 17,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": false,
+        "action": {
+          "round": 265,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "E"
+            ]
+          }
+        },
+        "head": {
+          "x": 4,
+          "y": 21
+        }
+      },
+      {
+        "round": 429,
+        "id": 705,
+        "length": 22,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": false,
+        "action": {
+          "round": 429,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "W"
+            ]
+          }
+        },
+        "head": {
+          "x": 33,
+          "y": 36
+        }
+      },
+      {
+        "round": 459,
+        "id": 690,
+        "length": 17,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": false,
+        "action": {
+          "round": 459,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "E"
+            ]
+          }
+        },
+        "head": {
+          "x": 16,
+          "y": 16
+        }
+      },
+      {
+        "round": 475,
+        "id": 485,
+        "length": 17,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 475,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "W"
+            ]
+          }
+        },
+        "head": {
+          "x": 57,
+          "y": 20
+        }
+      },
+      {
+        "round": 486,
+        "id": 694,
+        "length": 21,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 486,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "S"
+            ]
+          }
+        },
+        "head": {
+          "x": 49,
+          "y": 20
+        }
+      },
+      {
+        "round": 491,
+        "id": 708,
+        "length": 21,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 491,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "N"
+            ]
+          }
+        },
+        "head": {
+          "x": 35,
+          "y": 36
+        }
+      },
+      {
+        "round": 495,
+        "id": 370,
+        "length": 20,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 495,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "N"
+            ]
+          }
+        },
+        "head": {
+          "x": 0,
+          "y": 39
+        }
+      }
+    ],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 42,
+      "actualEscapeSplits": 42,
+      "escapeChildrenSurvivedBirthRound": 42,
+      "escapeChildrenSurvivedFiveRounds": 32
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 2,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/32a8ce82d4cf98ef7471269460f643620804cd6d40221c29fd1511fe23fa3f0d-behavior.json"
+  },
+  {
+    "experiment": "v1041-r2-diagnostic",
+    "map": "maps/stronghold.map",
+    "seed": 104101,
+    "reverse": false,
+    "score": 0,
+    "peak": 27,
+    "final": 27,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 9,
+      "foodDecisionsOffCycle": 5,
+      "foodDecisionsEatingSameTurn": 2,
+      "foodDecisionsEatingWithinFourOwnTurns": 8,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 1,
+      "escapeSplitIntents": 27,
+      "actualEscapeSplits": 27,
+      "escapeChildrenSurvivedBirthRound": 27,
+      "escapeChildrenSurvivedFiveRounds": 21
+    },
+    "cycleSteps": 28,
+    "cycleDeviations": 29,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/9701ba2c76be95bf27f41f31953ba5653d82629bfefb612825c74f5b277a6818-behavior.json"
+  },
+  {
+    "experiment": "v1041-r2-diagnostic",
+    "map": "maps/stronghold.map",
+    "seed": 104102,
+    "reverse": false,
+    "score": 1,
+    "peak": 37,
+    "final": 37,
+    "longDeaths": [
+      {
+        "round": 489,
+        "id": 193,
+        "length": 20,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 489,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "N"
+            ]
+          }
+        },
+        "head": {
+          "x": 6,
+          "y": 14
+        }
+      },
+      {
+        "round": 491,
+        "id": 446,
+        "length": 18,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 491,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "E"
+            ]
+          }
+        },
+        "head": {
+          "x": 6,
+          "y": 12
+        }
+      }
+    ],
+    "summary": {
+      "patrolFoodDecisions": 25,
+      "foodDecisionsOffCycle": 17,
+      "foodDecisionsEatingSameTurn": 13,
+      "foodDecisionsEatingWithinFourOwnTurns": 25,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 16,
+      "escapeSplitIntents": 21,
+      "actualEscapeSplits": 21,
+      "escapeChildrenSurvivedBirthRound": 21,
+      "escapeChildrenSurvivedFiveRounds": 18
+    },
+    "cycleSteps": 9,
+    "cycleDeviations": 23,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/e98e3bdc6ca4d148d94f8982883f2c3744056cf5030af70c8fa54e0e8ed47fd6-behavior.json"
+  },
+  {
+    "experiment": "v1041-r2-diagnostic",
+    "map": "maps/stronghold.map",
+    "seed": 104103,
+    "reverse": true,
+    "score": 0,
+    "peak": 27,
+    "final": 14,
+    "longDeaths": [
+      {
+        "round": 471,
+        "id": 8,
+        "length": 18,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": false,
+        "action": {
+          "round": 471,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "N"
+            ]
+          }
+        },
+        "head": {
+          "x": 46,
+          "y": 2
+        }
+      },
+      {
+        "round": 488,
+        "id": 229,
+        "length": 27,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": false,
+        "action": {
+          "round": 488,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "W"
+            ]
+          }
+        },
+        "head": {
+          "x": 41,
+          "y": 0
+        }
+      }
+    ],
+    "summary": {
+      "patrolFoodDecisions": 17,
+      "foodDecisionsOffCycle": 11,
+      "foodDecisionsEatingSameTurn": 8,
+      "foodDecisionsEatingWithinFourOwnTurns": 14,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 25,
+      "actualEscapeSplits": 25,
+      "escapeChildrenSurvivedBirthRound": 25,
+      "escapeChildrenSurvivedFiveRounds": 20
+    },
+    "cycleSteps": 26,
+    "cycleDeviations": 21,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/58f4a6864860aef6db3bb94d26a797bfec8e55592eaf83dd04bcc1fa98671eaf-behavior.json"
+  },
+  {
+    "experiment": "v1041-r2-diagnostic",
+    "map": "maps/stronghold.map",
+    "seed": 104104,
+    "reverse": false,
+    "score": 0,
+    "peak": 10,
+    "final": 8,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 35,
+      "actualEscapeSplits": 35,
+      "escapeChildrenSurvivedBirthRound": 35,
+      "escapeChildrenSurvivedFiveRounds": 32
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 1,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/416c1be7e370e2ad6967aa42efd1794ad4f13555ccba78b01aaaceb4e62b528b-behavior.json"
+  },
+  {
+    "experiment": "v1041-r3-screen",
+    "map": "maps/Colosseum.map",
+    "seed": 104301,
+    "reverse": false,
+    "score": 1,
+    "peak": 4,
+    "final": 4,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 0,
+      "actualEscapeSplits": 0,
+      "escapeChildrenSurvivedBirthRound": 0,
+      "escapeChildrenSurvivedFiveRounds": 0
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/a9202a0c0bcacce1d412600f90fa411c529fd9daed383baee569757531e18e25-behavior.json"
+  },
+  {
+    "experiment": "v1041-r3-screen",
+    "map": "maps/arena.map",
+    "seed": 104301,
+    "reverse": true,
+    "score": 0,
+    "peak": 4,
+    "final": 0,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 0,
+      "actualEscapeSplits": 0,
+      "escapeChildrenSurvivedBirthRound": 0,
+      "escapeChildrenSurvivedFiveRounds": 0
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/23b94772b07b19b020906ec0c322453c27686908bf080bea05217ab5c2d78ddc-behavior.json"
+  },
+  {
+    "experiment": "v1041-r3-screen",
+    "map": "maps/big_empty.map",
+    "seed": 104301,
+    "reverse": false,
+    "score": 1,
+    "peak": 48,
+    "final": 48,
+    "longDeaths": [
+      {
+        "round": 382,
+        "id": 926,
+        "length": 16,
+        "reason": "H",
+        "reasonName": "head_collision",
+        "deliberateFeed": false,
+        "action": {
+          "round": 381,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "N"
+            ]
+          }
+        },
+        "head": {
+          "x": 10,
+          "y": 57
+        }
+      },
+      {
+        "round": 471,
+        "id": 973,
+        "length": 28,
+        "reason": "H",
+        "reasonName": "head_collision",
+        "deliberateFeed": false,
+        "action": {
+          "round": 470,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "N"
+            ]
+          }
+        },
+        "head": {
+          "x": 61,
+          "y": 29
+        }
+      },
+      {
+        "round": 485,
+        "id": 643,
+        "length": 28,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 485,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "W"
+            ]
+          }
+        },
+        "head": {
+          "x": 14,
+          "y": 23
+        }
+      },
+      {
+        "round": 485,
+        "id": 922,
+        "length": 18,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 485,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "N"
+            ]
+          }
+        },
+        "head": {
+          "x": 14,
+          "y": 3
+        }
+      }
+    ],
+    "summary": {
+      "patrolFoodDecisions": 185,
+      "foodDecisionsOffCycle": 127,
+      "foodDecisionsEatingSameTurn": 56,
+      "foodDecisionsEatingWithinFourOwnTurns": 173,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 10,
+      "escapeSplitIntents": 1,
+      "actualEscapeSplits": 1,
+      "escapeChildrenSurvivedBirthRound": 1,
+      "escapeChildrenSurvivedFiveRounds": 1
+    },
+    "cycleSteps": 194,
+    "cycleDeviations": 287,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/0c3479979dab01b32d64beea7d13113b089931a97f1f3e2d392335fc354fff83-behavior.json"
+  },
+  {
+    "experiment": "v1041-r3-screen",
+    "map": "maps/default.map",
+    "seed": 104301,
+    "reverse": true,
+    "score": 0,
+    "peak": 4,
+    "final": 0,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 0,
+      "actualEscapeSplits": 0,
+      "escapeChildrenSurvivedBirthRound": 0,
+      "escapeChildrenSurvivedFiveRounds": 0
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/3a8046e45dbd3f0f8886f78810444210e6a1f62657e86c7999192378fdadd2de-behavior.json"
+  },
+  {
+    "experiment": "v1041-r3-screen",
+    "map": "maps/default_small.map",
+    "seed": 104301,
+    "reverse": false,
+    "score": 1,
+    "peak": 4,
+    "final": 3,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 0,
+      "actualEscapeSplits": 0,
+      "escapeChildrenSurvivedBirthRound": 0,
+      "escapeChildrenSurvivedFiveRounds": 0
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/8318283c6bac0fc34125f02a80c4c57a232df37edabe4b2cb284b7aa2f092ac3-behavior.json"
+  },
+  {
+    "experiment": "v1041-r3-screen",
+    "map": "maps/devil.map",
+    "seed": 104301,
+    "reverse": true,
+    "score": 0,
+    "peak": 4,
+    "final": 0,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 0,
+      "actualEscapeSplits": 0,
+      "escapeChildrenSurvivedBirthRound": 0,
+      "escapeChildrenSurvivedFiveRounds": 0
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/e4b7aabb05878763c906d70f7316a7229dae1b934f42d2a79452fa95a4b821da-behavior.json"
+  },
+  {
+    "experiment": "v1041-r3-screen",
+    "map": "maps/queen_of_spades.map",
+    "seed": 104301,
+    "reverse": false,
+    "score": 1,
+    "peak": 4,
+    "final": 3,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 0,
+      "actualEscapeSplits": 0,
+      "escapeChildrenSurvivedBirthRound": 0,
+      "escapeChildrenSurvivedFiveRounds": 0
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/dc42d1faea29a4b1ef915c245bad5b2a3b96fbb44f91987fe17b5a573c6eb703-behavior.json"
+  },
+  {
+    "experiment": "v1041-r3-screen",
+    "map": "maps/schooltime.map",
+    "seed": 104301,
+    "reverse": true,
+    "score": 1,
+    "peak": 38,
+    "final": 38,
+    "longDeaths": [
+      {
+        "round": 392,
+        "id": 682,
+        "length": 17,
+        "reason": "H",
+        "reasonName": "head_collision",
+        "deliberateFeed": false,
+        "action": {
+          "round": 391,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "E"
+            ]
+          }
+        },
+        "head": {
+          "x": 58,
+          "y": 31
+        }
+      },
+      {
+        "round": 448,
+        "id": 680,
+        "length": 21,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": false,
+        "action": {
+          "round": 448,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "W"
+            ]
+          }
+        },
+        "head": {
+          "x": 15,
+          "y": 10
+        }
+      },
+      {
+        "round": 492,
+        "id": 800,
+        "length": 22,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 492,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "E"
+            ]
+          }
+        },
+        "head": {
+          "x": 6,
+          "y": 10
+        }
+      }
+    ],
+    "summary": {
+      "patrolFoodDecisions": 1,
+      "foodDecisionsOffCycle": 1,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 1,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 84,
+      "actualEscapeSplits": 84,
+      "escapeChildrenSurvivedBirthRound": 83,
+      "escapeChildrenSurvivedFiveRounds": 67
+    },
+    "cycleSteps": 21,
+    "cycleDeviations": 2,
+    "distantTailEscapes": 36,
+    "distantLongTailEscapes": 8,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/cc60d05639b097b5c8698624d02d973d4547f26013c2d43fbd5434635d1ed1db-behavior.json"
+  },
+  {
+    "experiment": "v1041-r3-screen",
+    "map": "maps/stronghold.map",
+    "seed": 104301,
+    "reverse": false,
+    "score": 0,
+    "peak": 10,
+    "final": 8,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 53,
+      "actualEscapeSplits": 53,
+      "escapeChildrenSurvivedBirthRound": 52,
+      "escapeChildrenSurvivedFiveRounds": 43
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 10,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/fe056409d1aff60c67a8d20253ecb2b4a5cf5b5efd009bf558b2af0cd44695a9-behavior.json"
+  },
+  {
+    "experiment": "v1041-r3-screen",
+    "map": "maps/trauma.map",
+    "seed": 104301,
+    "reverse": true,
+    "score": 1,
+    "peak": 8,
+    "final": 7,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 42,
+      "actualEscapeSplits": 42,
+      "escapeChildrenSurvivedBirthRound": 41,
+      "escapeChildrenSurvivedFiveRounds": 35
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 5,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/94d982bee1655ccab7d329e45fcf82de636aa4d0f160706053047db6a3246beb-behavior.json"
+  },
+  {
+    "experiment": "v1041-r3-screen",
+    "map": "maps/trophy.map",
+    "seed": 104301,
+    "reverse": false,
+    "score": 0,
+    "peak": 4,
+    "final": 0,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 0,
+      "actualEscapeSplits": 0,
+      "escapeChildrenSurvivedBirthRound": 0,
+      "escapeChildrenSurvivedFiveRounds": 0
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/32190e9de4b878662a5463c3402182c772392d0efe6026c19846adef7d529f74-behavior.json"
+  },
+  {
+    "experiment": "v1041-r4-diagnostic",
+    "map": "maps/stronghold.map",
+    "seed": 104101,
+    "reverse": false,
+    "score": 0,
+    "peak": 23,
+    "final": 23,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 7,
+      "foodDecisionsOffCycle": 5,
+      "foodDecisionsEatingSameTurn": 2,
+      "foodDecisionsEatingWithinFourOwnTurns": 4,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 4,
+      "escapeSplitIntents": 72,
+      "actualEscapeSplits": 72,
+      "escapeChildrenSurvivedBirthRound": 72,
+      "escapeChildrenSurvivedFiveRounds": 42
+    },
+    "cycleSteps": 5,
+    "cycleDeviations": 8,
+    "distantTailEscapes": 43,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/45378e8d74bdd8d85abef92b11546d62e157db673e76ee860a158f2a4723c499-behavior.json"
+  },
+  {
+    "experiment": "v1041-r4-diagnostic",
+    "map": "maps/stronghold.map",
+    "seed": 104102,
+    "reverse": false,
+    "score": 0,
+    "peak": 22,
+    "final": 22,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 1,
+      "foodDecisionsOffCycle": 1,
+      "foodDecisionsEatingSameTurn": 1,
+      "foodDecisionsEatingWithinFourOwnTurns": 1,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 1,
+      "escapeSplitIntents": 38,
+      "actualEscapeSplits": 38,
+      "escapeChildrenSurvivedBirthRound": 38,
+      "escapeChildrenSurvivedFiveRounds": 30
+    },
+    "cycleSteps": 7,
+    "cycleDeviations": 4,
+    "distantTailEscapes": 7,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/86d372db120cc07768e5e1499f7b715cf8350eea381eae2ad71a4b4f76a7b262-behavior.json"
+  },
+  {
+    "experiment": "v1041-r4-diagnostic",
+    "map": "maps/stronghold.map",
+    "seed": 104301,
+    "reverse": false,
+    "score": 0,
+    "peak": 26,
+    "final": 26,
+    "longDeaths": [
+      {
+        "round": 492,
+        "id": 265,
+        "length": 18,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 492,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "W"
+            ]
+          }
+        },
+        "head": {
+          "x": 1,
+          "y": 13
+        }
+      }
+    ],
+    "summary": {
+      "patrolFoodDecisions": 6,
+      "foodDecisionsOffCycle": 5,
+      "foodDecisionsEatingSameTurn": 3,
+      "foodDecisionsEatingWithinFourOwnTurns": 5,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 4,
+      "escapeSplitIntents": 59,
+      "actualEscapeSplits": 59,
+      "escapeChildrenSurvivedBirthRound": 58,
+      "escapeChildrenSurvivedFiveRounds": 29
+    },
+    "cycleSteps": 10,
+    "cycleDeviations": 7,
+    "distantTailEscapes": 42,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/2eff96675e4568d4c7c826f16fecf780e8b56d68cc1311d6786e6fe6cbf59b2f-behavior.json"
+  },
+  {
+    "experiment": "v1041-final-screen",
+    "map": "maps/Colosseum.map",
+    "seed": 104401,
+    "reverse": false,
+    "score": 0,
+    "peak": 4,
+    "final": 0,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 0,
+      "actualEscapeSplits": 0,
+      "escapeChildrenSurvivedBirthRound": 0,
+      "escapeChildrenSurvivedFiveRounds": 0
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/ac360cf14c356ade3aac0eadb8e6eac08633f78a3a1c83e4f5ae4920f9ccd1f1-behavior.json"
+  },
+  {
+    "experiment": "v1041-final-screen",
+    "map": "maps/arena.map",
+    "seed": 104401,
+    "reverse": true,
+    "score": 0,
+    "peak": 4,
+    "final": 0,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 0,
+      "actualEscapeSplits": 0,
+      "escapeChildrenSurvivedBirthRound": 0,
+      "escapeChildrenSurvivedFiveRounds": 0
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/f7696f91d0eba0e0b7dec457ff778c87ee4ca761048ebca7a41f3d5de6b0b0bd-behavior.json"
+  },
+  {
+    "experiment": "v1041-final-screen",
+    "map": "maps/big_empty.map",
+    "seed": 104401,
+    "reverse": false,
+    "score": 1,
+    "peak": 52,
+    "final": 52,
+    "longDeaths": [
+      {
+        "round": 375,
+        "id": 648,
+        "length": 20,
+        "reason": "H",
+        "reasonName": "head_collision",
+        "deliberateFeed": false,
+        "action": {
+          "round": 375,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "W"
+            ]
+          }
+        },
+        "head": {
+          "x": 35,
+          "y": 57
+        }
+      },
+      {
+        "round": 386,
+        "id": 1046,
+        "length": 19,
+        "reason": "H",
+        "reasonName": "head_collision",
+        "deliberateFeed": false,
+        "head": {
+          "x": 28,
+          "y": 23
+        }
+      },
+      {
+        "round": 427,
+        "id": 726,
+        "length": 21,
+        "reason": "H",
+        "reasonName": "head_collision",
+        "deliberateFeed": false,
+        "action": {
+          "round": 427,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "N"
+            ]
+          }
+        },
+        "head": {
+          "x": 30,
+          "y": 19
+        }
+      },
+      {
+        "round": 456,
+        "id": 1047,
+        "length": 22,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 456,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "S"
+            ]
+          }
+        },
+        "head": {
+          "x": 20,
+          "y": 61
+        }
+      },
+      {
+        "round": 460,
+        "id": 957,
+        "length": 16,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 460,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "W"
+            ]
+          }
+        },
+        "head": {
+          "x": 18,
+          "y": 25
+        }
+      },
+      {
+        "round": 465,
+        "id": 1003,
+        "length": 24,
+        "reason": "H",
+        "reasonName": "head_collision",
+        "deliberateFeed": false,
+        "action": {
+          "round": 465,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "N"
+            ]
+          }
+        },
+        "head": {
+          "x": 41,
+          "y": 23
+        }
+      },
+      {
+        "round": 475,
+        "id": 792,
+        "length": 21,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 475,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "E"
+            ]
+          }
+        },
+        "head": {
+          "x": 19,
+          "y": 52
+        }
+      },
+      {
+        "round": 482,
+        "id": 681,
+        "length": 17,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 482,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "W"
+            ]
+          }
+        },
+        "head": {
+          "x": 37,
+          "y": 45
+        }
+      },
+      {
+        "round": 485,
+        "id": 825,
+        "length": 17,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 485,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "E"
+            ]
+          }
+        },
+        "head": {
+          "x": 26,
+          "y": 33
+        }
+      },
+      {
+        "round": 485,
+        "id": 827,
+        "length": 18,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 485,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "N"
+            ]
+          }
+        },
+        "head": {
+          "x": 24,
+          "y": 48
+        }
+      },
+      {
+        "round": 493,
+        "id": 987,
+        "length": 27,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 493,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "N"
+            ]
+          }
+        },
+        "head": {
+          "x": 29,
+          "y": 49
+        }
+      },
+      {
+        "round": 495,
+        "id": 1048,
+        "length": 31,
+        "reason": "S",
+        "reasonName": "self_collision",
+        "deliberateFeed": true,
+        "action": {
+          "round": 495,
+          "action": {
+            "kind": "move",
+            "steps": [
+              "N"
+            ]
+          }
+        },
+        "head": {
+          "x": 29,
+          "y": 47
+        }
+      }
+    ],
+    "summary": {
+      "patrolFoodDecisions": 172,
+      "foodDecisionsOffCycle": 122,
+      "foodDecisionsEatingSameTurn": 60,
+      "foodDecisionsEatingWithinFourOwnTurns": 163,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 26,
+      "escapeSplitIntents": 3,
+      "actualEscapeSplits": 3,
+      "escapeChildrenSurvivedBirthRound": 2,
+      "escapeChildrenSurvivedFiveRounds": 2
+    },
+    "cycleSteps": 233,
+    "cycleDeviations": 265,
+    "distantTailEscapes": 1,
+    "distantLongTailEscapes": 1,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/ff69d164c7356a430c307cc8103ec14120d24bf81d90b83cbd46731df4f4aaa4-behavior.json"
+  },
+  {
+    "experiment": "v1041-final-screen",
+    "map": "maps/default.map",
+    "seed": 104401,
+    "reverse": true,
+    "score": 0,
+    "peak": 18,
+    "final": 18,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 5,
+      "actualEscapeSplits": 5,
+      "escapeChildrenSurvivedBirthRound": 5,
+      "escapeChildrenSurvivedFiveRounds": 4
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 2,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/d2321c4e8d7e21880438e1410a940e145e4d7b2ae7c72669a6461c8fa3e6ad1d-behavior.json"
+  },
+  {
+    "experiment": "v1041-final-screen",
+    "map": "maps/default_small.map",
+    "seed": 104401,
+    "reverse": false,
+    "score": 1,
+    "peak": 4,
+    "final": 3,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 0,
+      "actualEscapeSplits": 0,
+      "escapeChildrenSurvivedBirthRound": 0,
+      "escapeChildrenSurvivedFiveRounds": 0
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/9b42f9a90ce74310b565a70dbd6695b5dc77330741ed24d9b8a4faf7a87de285-behavior.json"
+  },
+  {
+    "experiment": "v1041-final-screen",
+    "map": "maps/devil.map",
+    "seed": 104401,
+    "reverse": true,
+    "score": 1,
+    "peak": 4,
+    "final": 4,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 0,
+      "actualEscapeSplits": 0,
+      "escapeChildrenSurvivedBirthRound": 0,
+      "escapeChildrenSurvivedFiveRounds": 0
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/e6428a375eb65bc1aab83041337ef0012971ea7b01f23855a4b07066ebc98ee7-behavior.json"
+  },
+  {
+    "experiment": "v1041-final-screen",
+    "map": "maps/queen_of_spades.map",
+    "seed": 104401,
+    "reverse": false,
+    "score": 1,
+    "peak": 4,
+    "final": 3,
+    "longDeaths": [],
+    "summary": {
+      "patrolFoodDecisions": 0,
+      "foodDecisionsOffCycle": 0,
+      "foodDecisionsEatingSameTurn": 0,
+      "foodDecisionsEatingWithinFourOwnTurns": 0,
+      "foodDecisionsDyingSameTurn": 0,
+      "foodDecisionsEatingFeedDrops": 0,
+      "escapeSplitIntents": 0,
+      "actualEscapeSplits": 0,
+      "escapeChildrenSurvivedBirthRound": 0,
+      "escapeChildrenSurvivedFiveRounds": 0
+    },
+    "cycleSteps": 0,
+    "cycleDeviations": 0,
+    "distantTailEscapes": 0,
+    "distantLongTailEscapes": 0,
+    "analysis": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/81e7bb4e37ad56b73ddd12c43b6b275cb37426c5045927c9a0ba22ca1d25f61d-behavior.json"
+  }
+]

@@ -1,0 +1,160 @@
+{
+  "schema": 1,
+  "replay": "replays/research-068141acc46a45b152c65b70327b5980dfa49322510403bd8c118081f0a8f05a.replay",
+  "result": {
+    "terminated": true,
+    "endReason": "teamEliminated",
+    "winner": "A",
+    "teamA": {
+      "dragonCount": 40,
+      "longestDragon": 4,
+      "totalLength": 99
+    },
+    "teamB": {
+      "dragonCount": 0,
+      "longestDragon": 0,
+      "totalLength": 0
+    }
+  },
+  "seed": "104401",
+  "checkedRoundSnapshots": 107,
+  "map": {
+    "width": 25,
+    "height": 25,
+    "spawnTiles": 625,
+    "spawnTileFraction": 1,
+    "theoreticalRespawnsPerRound": 2.425071957745247
+  },
+  "caveats": [
+    "Respawn rate is theoretical: a tile already holding a pearl does not accumulate more.",
+    "Four-turn collection windows can overlap; their counts do not establish causal attribution.",
+    "Cycle-step counts compare the last logged eligible claim geometry; unlogged claim revocations cannot be reconstructed.",
+    "A visible nearby pearl can be blocked; visible-pearl counts do not imply a safe detour exists."
+  ],
+  "teams": {
+    "A": {
+      "peakLength": 4,
+      "peakDragon": 2,
+      "peakRound": 8,
+      "longestTrajectory": [
+        [
+          0,
+          3
+        ],
+        [
+          25,
+          3
+        ],
+        [
+          50,
+          3
+        ],
+        [
+          75,
+          4
+        ],
+        [
+          100,
+          4
+        ],
+        [
+          107,
+          4
+        ]
+      ],
+      "longDeaths": [],
+      "allDeaths": {
+        "H": 12,
+        "S": 4
+      },
+      "claims": [],
+      "patrolFood": [],
+      "escapeSplits": [],
+      "cycleSteps": 0,
+      "cycleDeviations": 0,
+      "cycleTurnsWithVisiblePearls": 0,
+      "pearlsCollected": 130,
+      "fedPearlsCollected": 0,
+      "runtimeFailures": [],
+      "final": {
+        "dragonCount": 40,
+        "longestDragon": 4,
+        "totalLength": 99
+      },
+      "summary": {
+        "patrolFoodDecisions": 0,
+        "foodDecisionsOffCycle": 0,
+        "foodDecisionsEatingSameTurn": 0,
+        "foodDecisionsEatingWithinFourOwnTurns": 0,
+        "foodDecisionsDyingSameTurn": 0,
+        "foodDecisionsEatingFeedDrops": 0,
+        "escapeSplitIntents": 0,
+        "actualEscapeSplits": 0,
+        "escapeChildrenSurvivedBirthRound": 0,
+        "escapeChildrenSurvivedFiveRounds": 0
+      }
+    },
+    "B": {
+      "peakLength": 4,
+      "peakDragon": 1,
+      "peakRound": 13,
+      "longestTrajectory": [
+        [
+          0,
+          3
+        ],
+        [
+          25,
+          3
+        ],
+        [
+          50,
+          3
+        ],
+        [
+          75,
+          3
+        ],
+        [
+          100,
+          3
+        ],
+        [
+          107,
+          0
+        ]
+      ],
+      "longDeaths": [],
+      "allDeaths": {
+        "H": 12,
+        "S": 1
+      },
+      "claims": [],
+      "patrolFood": [],
+      "escapeSplits": [],
+      "cycleSteps": 0,
+      "cycleDeviations": 0,
+      "cycleTurnsWithVisiblePearls": 0,
+      "pearlsCollected": 25,
+      "fedPearlsCollected": 0,
+      "runtimeFailures": [],
+      "final": {
+        "dragonCount": 0,
+        "longestDragon": 0,
+        "totalLength": 0
+      },
+      "summary": {
+        "patrolFoodDecisions": 0,
+        "foodDecisionsOffCycle": 0,
+        "foodDecisionsEatingSameTurn": 0,
+        "foodDecisionsEatingWithinFourOwnTurns": 0,
+        "foodDecisionsDyingSameTurn": 0,
+        "foodDecisionsEatingFeedDrops": 0,
+        "escapeSplitIntents": 0,
+        "actualEscapeSplits": 0,
+        "escapeChildrenSurvivedBirthRound": 0,
+        "escapeChildrenSurvivedFiveRounds": 0
+      }
+    }
+  }
+}

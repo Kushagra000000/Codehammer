@@ -79,3 +79,21 @@ ending by38–81. Losses were dominated by head-to-head deaths with small swarms
 That motivated the isolated opening-trade diagnostic; it was not attributed to
 Hamiltonian self-collision. Original replays and all failed candidate replays
 are preserved unchanged.
+
+## OBSERVED — v10.4.1 rewrite validation (2026-09-27)
+
+The supplied M237041 replay and local stronghold.map have identical terrain,
+portal, starting-position and spawn-range data (map-name case differs).
+Final native-screen analysis reconstructed bodies and checked against toolkit
+snapshots:176 patrol-food actions,125 departures from the nominal cycle,167
+food collections within four own turns,30 windows including sacrifice drops.
+No same-turn food-action deaths; this does not imply future safety.135 reverse
+splits produced134 birth-round survivors and112 five-round survivors. One
+distant-tail child on BigEmpty was head-killed before its first move.
+Detailed exact event rows and per-game summaries: `battlecode-automation/experiments/v1041-rewrite-20260927T113309Z`.
+
+OBSERVED final sandbox example: Stronghold round497, trapped length38 dragon158
+split a36-length child438 at an offscreen tail. Child438 moved north immediately,
+survived, regrew to38 and was the final longest dragon in a38-vs35 win. This is
+behavioral evidence, not an isolated causal win attribution. Final13-game
+screen/sandbox totals:51 offscreen-tail escapes,50 birth-round survivors.

@@ -1,6 +1,33 @@
 # CodeHammer
 UNSW battleCode
 
+## Manual comparison and v10.4
+
+The user-designated best is `bots/current/bot-v10.3.1`. New derivative
+`bots/current/bot-v10.4` is **untested**; see its `NOTES.md` for changes and knobs.
+
+From the repository root:
+
+```bash
+.battlecode-codex/bin/python battlecode-automation/scripts/compare_bot.py --bot bot-v10.4
+```
+
+Select any current bot name or project path with `--bot`. All opponents in
+`bots/current` and all maps under `maps` are discovered recursively. Self and
+identical-source aliases are excluded. There is **one game per opponent/map**;
+sides alternate across maps without scheduling reversed duplicates.
+Options: `--dry-run` lists the schedule, `--workers 2` controls concurrency,
+`--seed 10401` selects another seed, and `--sandbox` uses judge-like execution.
+
+Requires the existing `.battlecode-codex` environment with `unswbc==1.1.0` and
+Node.js on PATH. The existing strict CLI/replay parser is reused. Each run saves
+`results.md`, `summary.json`, `matches.jsonl`, source/map snapshots, a manifest,
+and raw logs under `battlecode-automation/experiments/comparisons/<run-id>/`.
+Replays go in `replays/`. Errors are separate from W/D/L and cause a nonzero exit
+status. Tables update after each completed game. No automatic promotion occurs.
+One game per map is a screening comparison, not statistical proof of superiority.
+Neither the new bot nor the new script was executed during creation.
+
 ## Latest v11 result
 
 528 local games completed. Final v11.1 scored62W/16D/32L over110 fresh games:

@@ -1,0 +1,37 @@
+loaded c/c++ vs c/c++
+without --sandbox the seed repeats the pearls but not the bots' own random numbers
+seed 0x00000000000028a0
+running round 2/500 --  last: 376ms  eta: 3m08s  dragons: 2 vs 2
+round 18: bot 6 (team B) died: lost a head-to-head
+round 18: bot 2 (team A) died: lost a head-to-head
+round 28: bot 9 (team B) died: lost a head-to-head
+round 28: bot 7 (team A) died: lost a head-to-head
+round 30: bot 10 (team A) died: hit another dragon
+round 32: bot 12 (team B) died: lost a head-to-head
+round 32: bot 4 (team A) died: lost a head-to-head
+round 36: bot 1 (team B) died: hit itself
+round 36: bot 8 (team A) died: lost a head-to-head
+round 36: bot 5 (team B) died: lost a head-to-head
+round 36: bot 14 (team B) died: lost a head-to-head
+round 36: bot 11 (team A) died: lost a head-to-head
+round 39: bot 19 (team B) died: lost a head-to-head
+round 39: bot 15 (team A) died: lost a head-to-head
+round 44: bot 33 (team B) died: hit another dragon
+round 46: bot 16 (team B) died: lost a head-to-head
+round 46: bot 29 (team A) died: lost a head-to-head
+round 47: bot 34 (team B) died: lost a head-to-head
+round 47: bot 18 (team A) died: lost a head-to-head
+round 48: bot 13 (team B) died: lost a head-to-head
+round 48: bot 23 (team A) died: lost a head-to-head
+round 48: bot 3 (team B) died: lost a head-to-head
+round 48: bot 32 (team A) died: lost a head-to-head
+running round 51/500 --  last: 1ms  eta: 4.8s  dragons: 3 vs 11
+round 51: bot 36 (team B) died: lost a head-to-head
+round 51: bot 20 (team A) died: lost a head-to-head
+round 53: bot 25 (team B) died: lost a head-to-head
+round 53: bot 0 (team A) died: lost a head-to-head
+round 53: bot 30 (team B) died: hit another dragon
+round 56: bot 26 (team A) died: lost a head-to-head
+round 56: bot 45 (team B) died: lost a head-to-head
+team B wins after 57 rounds (by elimination) (0.6s)
+wrote replay: /Users/kushagra/Desktop/UNSW_battlecode/Codehammer/replays/research-1ceebd5ced9103007f541900a0e73ad8cd610c2b86732c5c607c1054e7cddebe.replay

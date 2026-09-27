@@ -1,5 +1,26 @@
 # Experiment Log
 
+## 2026-09-27 — v10.4 implementation, deliberately UNTESTED
+
+Parent: bots/current/bot-v10.3.1, user-designated current best. Candidate:
+bots/current/bot-v10.4. Original parent and historical results preserved.
+HYPOTHESIS: stop ordinary splitting at 350 instead of 380, then concentrate
+resources through explicit sonar feeding requests. Feeding starts at 380;
+from 475 even growers may approach a strictly larger fresh requester.
+Changed modules: main.cpp configuration/status packet and coordination.hpp
+recipient selection, approach scoring and sacrifice safeguards. Existing
+emergency escape splitting and movement architecture remain.
+
+UNKNOWN: whether this improves wins or final longest length. Large donations
+lose roughly half their length and scatter pearls along the body; sonar does
+not guarantee global alpha discovery. No build, tests, matches or promotion:
+the user explicitly requested manual testing later. Games: 0. W/D/L, maps,
+Elo and performance comparisons: unavailable. No official submission.
+
+Added compare_bot.py for chosen-bot versus current-folder opponents on all
+discovered maps, one orientation per opponent/map, with strict existing parser,
+separate errors, source snapshots and per-run W/D/L tables. Script unexecuted.
+
 ## 2026-09-26 research batch
 
 Current user acceptance requirement is **five** statistically positive v5 maps;
@@ -856,3 +877,50 @@ seeds were added to turn the unfavorable v10.2/mutual result positive.
 The untested high-food-score × early-small-trade interaction is a concrete
 next hypothesis, not a claimed discovery. All failures, raw outputs, replays,
 source snapshots, packages and decision metadata remain in experiments/v11.
+
+## 2026-09-27 — v10.4.1 implementation, UNTESTED
+
+Parent: current local bots/current/bot-v10.4 (SPLIT_CUTOFF=300 preserved).
+Candidate: bots/current/bot-v10.4.1. HYPOTHESIS: productive patrol placement,
+round-475 bounded pearl detours with planned rejoin, and escape splitting for
+cornered workers as well as growers improve final longest length. Detours are
+ordinary moves, compare against the normal patrol's visible food, account for
+body growth/release, and revalidate every turn. Emergency children retain L-2
+segments and inherit existing role logic. Only main.cpp, coordination.hpp and
+new patrol_growth.hpp change implementation. Exact source hashes are in the
+candidate's SOURCE_STATE.json; parent code is preserved.
+
+Validation: static source review only. The user explicitly requested no tests.
+Games: 0; W/D/L, map results, longest length, Elo, runtime cost: UNKNOWN.
+No promotion or official submission. Plausible benefits are not measured wins.
+
+## 2026-09-27 — v10.4.1 rewrite from v10.4, TESTED
+
+The user rejected the earlier implementation and authorized actual simulations.
+Its complete source is preserved under `battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/rejected-v10.4.1`.
+Final implementation changes only main.cpp and coordination.hpp from v10.4:
+known productive patrol placement, nearby visible pearl deviations without a475
+gate, and last-resort escape splits for any eligible trapped snake.
+
+TESTED: C++20/O2 build and behavioral fixtures pass, including a trapped length28
+snake splitting26 outside head vision and the fresh child moving safely. The
+fixture also checks incomplete body memory, minimum size, unit cap, sealed tails,
+food/threat priority, spawn rate learning and avoiding premature splits.
+
+OBSERVED:48 engine games across this development batch, including one parent
+smoke;16 games use finalR4 code. Final totals8W/0D/8L vs v10.4:14 native6W/8L,
+2 sandbox2W. Fresh all11-map screen6W/5L. No parse/runtime failures. Final
+maximum longest52; Stronghold sandbox38vs35 but four final native Stronghold
+losses. No universal superiority or reference-length151 claim.
+
+A replay-proven defect blocked tail rescues when the tail was outside the old
+head's7x7 vision: length47/28 forced self-deaths with legal45/26 children and
+clear tail exits. The final implementation allows uncertain-tail rescue only
+when no safe known legal head action remains, instead of requiring visibility
+that long snakes cannot provide. It still cannot rescue every trap.
+
+Final native replay evidence:176 patrol-food decisions,167 followed by a pearl
+within four own turns;135 actual reverse splits,134 children survive birth round.
+These overlapping windows measure behavior, not causal performance uplift.
+Promotion: NOT PROMOTED. v5 acceptance not evaluated in this limited rewrite.
+Report, all revisions, fingerprints, raw logs and schedules: `battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/REPORT.md`.

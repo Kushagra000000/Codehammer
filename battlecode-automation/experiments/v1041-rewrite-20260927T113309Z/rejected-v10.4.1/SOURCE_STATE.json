@@ -1,0 +1,26 @@
+{
+  "parent": "bots/current/bot-v10.4",
+  "candidate": "bots/current/bot-v10.4.1",
+  "validation": "static review only; no builds/tests/matches",
+  "files": {
+    "main.cpp": {
+      "candidate_sha256": "5d097c2689a558a53b0851d5401fde79e2e65769f1a1b9ad41ea2f15d109da28",
+      "parent_sha256": "85afcd337d83e8290dbaace4343750ccec0b5efebb16163c7c132b832b12fead"
+    },
+    "coordination.hpp": {
+      "candidate_sha256": "816e9af208aeb1d9778aedc682013ea86182a2a8e307f8aff0d042d41d79223b",
+      "parent_sha256": "548ae9b20ec0e39c7d3939d69520147cca080cd86056ba5b565acdd2e68c393d"
+    },
+    "patrol_growth.hpp": {
+      "candidate_sha256": "41b6c43d67cd9d7007a6ab0b83c3e903817fa38a30e38200ab650766523c128d"
+    },
+    "helper.hpp": {
+      "candidate_sha256": "6bd3b258ad4db850bd209279db0d8a836e3ed4fb1589190cfeda0012bbae7bcc",
+      "parent_sha256": "6bd3b258ad4db850bd209279db0d8a836e3ed4fb1589190cfeda0012bbae7bcc"
+    },
+    "bot.toml": {
+      "candidate_sha256": "d56d20b38e5961083cba1d7e00ff47397f567bf55c2b4a4748ac0f32fcba9cd5",
+      "parent_sha256": "d56d20b38e5961083cba1d7e00ff47397f567bf55c2b4a4748ac0f32fcba9cd5"
+    }
+  }
+}
