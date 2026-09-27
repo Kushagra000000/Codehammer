@@ -1,0 +1,31 @@
+loaded c/c++ vs c/c++
+without --sandbox the seed repeats the pearls but not the bots' own random numbers
+seed 0x0000000000019dad
+running round 2/500 --  last: 143ms  eta: 1m11s  dragons: 2 vs 2
+round 24: bot 0 (team A) died: lost a head-to-head
+round 24: bot 7 (team B) died: lost a head-to-head
+round 32: bot 2 (team A) died: lost a head-to-head
+round 32: bot 3 (team B) died: lost a head-to-head
+round 36: bot 11 (team A) died: lost a head-to-head
+round 36: bot 1 (team B) died: lost a head-to-head
+running round 51/500 --  last: 48ms  eta: 3.5s  dragons: 20 vs 3
+round 54: bot 29 (team B) died: lost a head-to-head
+round 54: bot 22 (team A) died: lost a head-to-head
+round 61: bot 20 (team A) died: hit itself
+round 63: bot 21 (team A) died: hit itself
+round 66: bot 10 (team A) died: lost a head-to-head
+round 66: bot 9 (team B) died: lost a head-to-head
+round 69: bot 5 (team B) died: lost a head-to-head
+round 69: bot 28 (team A) died: lost a head-to-head
+round 69: bot 38 (team A) died: lost a head-to-head
+round 69: bot 34 (team B) died: lost a head-to-head
+round 75: bot 16 (team A) died: lost a head-to-head
+round 75: bot 24 (team B) died: lost a head-to-head
+round 80: bot 39 (team B) died: lost a head-to-head
+round 80: bot 43 (team A) died: lost a head-to-head
+round 90: bot 25 (team A) died: lost a head-to-head
+round 90: bot 26 (team A) died: lost a head-to-head
+round 93: bot 46 (team B) died: lost a head-to-head
+round 93: bot 19 (team A) died: lost a head-to-head
+team A wins after 94 rounds (by elimination) (0.8s)
+wrote replay: /Users/kushagra/Desktop/UNSW_battlecode/Codehammer/replays/research-c5ee6b9fc3ac177ff405306f5fef024ffca8420d12f4e40eda545d9c55181a50.replay

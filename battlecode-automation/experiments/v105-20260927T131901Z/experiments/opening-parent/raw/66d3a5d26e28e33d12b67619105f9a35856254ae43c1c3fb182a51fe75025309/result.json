@@ -1,0 +1,143 @@
+{
+  "candidate": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.4.1-04d66cc757c7796741312980e878e7483280d0b83eeb246b7a58efb13dfc5cbe",
+  "opponent": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.3.1-fab0ffdea6ce4d3f323b08a433fc97ad9cbc9fe3dbd18d8c54b833b45c221cc8",
+  "map": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/8ac4b2eedcf19f8544ab1866acfcbc628b3cb5ff2df87d80aa682dcb5aa9df19/default_small.map",
+  "seed": 105101,
+  "reverse": false,
+  "sandbox": false,
+  "experiment": "opening-parent",
+  "toolkit": "1.1.0",
+  "a_hash": "04d66cc757c7796741312980e878e7483280d0b83eeb246b7a58efb13dfc5cbe",
+  "b_hash": "fab0ffdea6ce4d3f323b08a433fc97ad9cbc9fe3dbd18d8c54b833b45c221cc8",
+  "map_hash": "8ac4b2eedcf19f8544ab1866acfcbc628b3cb5ff2df87d80aa682dcb5aa9df19",
+  "id": "66d3a5d26e28e33d12b67619105f9a35856254ae43c1c3fb182a51fe75025309",
+  "a": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.4.1-04d66cc757c7796741312980e878e7483280d0b83eeb246b7a58efb13dfc5cbe",
+  "b": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.3.1-fab0ffdea6ce4d3f323b08a433fc97ad9cbc9fe3dbd18d8c54b833b45c221cc8",
+  "git_commit": "5b0902aeaa0500047cb4b57da64d01ac5c74a53e",
+  "exit_code": 0,
+  "metrics": {
+    "metrics_schema": 5,
+    "result": {
+      "terminated": true,
+      "endReason": "teamEliminated",
+      "winner": "B",
+      "teamA": {
+        "dragonCount": 0,
+        "longestDragon": 0,
+        "totalLength": 0
+      },
+      "teamB": {
+        "dragonCount": 18,
+        "longestDragon": 4,
+        "totalLength": 45
+      }
+    },
+    "rounds": 132,
+    "seed": "105101",
+    "teams": {
+      "A": {
+        "first_split_round": 14,
+        "max_units": 11,
+        "portal_entries": 0,
+        "sacrifice_count": 0,
+        "runtime_failures": 0,
+        "max_turn_points": null,
+        "deaths": {
+          "S": 3,
+          "H": 34
+        },
+        "longest_trajectory": [
+          [
+            0,
+            3
+          ],
+          [
+            25,
+            3
+          ],
+          [
+            50,
+            3
+          ],
+          [
+            75,
+            4
+          ],
+          [
+            100,
+            4
+          ],
+          [
+            125,
+            3
+          ],
+          [
+            132,
+            0
+          ]
+        ],
+        "unique_head_tiles": 207,
+        "exploration_coverage": 1,
+        "king_length": null,
+        "portal_deaths": null,
+        "dragonCount": 0,
+        "longestDragon": 0,
+        "totalLength": 0
+      },
+      "B": {
+        "first_split_round": 14,
+        "max_units": 19,
+        "portal_entries": 0,
+        "sacrifice_count": 0,
+        "runtime_failures": 0,
+        "max_turn_points": null,
+        "deaths": {
+          "S": 3,
+          "H": 34
+        },
+        "longest_trajectory": [
+          [
+            0,
+            3
+          ],
+          [
+            25,
+            3
+          ],
+          [
+            50,
+            3
+          ],
+          [
+            75,
+            3
+          ],
+          [
+            100,
+            4
+          ],
+          [
+            125,
+            4
+          ],
+          [
+            132,
+            4
+          ]
+        ],
+        "unique_head_tiles": 254,
+        "exploration_coverage": 1,
+        "king_length": null,
+        "portal_deaths": null,
+        "dragonCount": 18,
+        "longestDragon": 4,
+        "totalLength": 45
+      }
+    }
+  },
+  "winner": "B",
+  "score": 0.0,
+  "status": "ok",
+  "replay": "replays/research-66d3a5d26e28e33d12b67619105f9a35856254ae43c1c3fb182a51fe75025309.replay",
+  "seconds": 4.89
+}

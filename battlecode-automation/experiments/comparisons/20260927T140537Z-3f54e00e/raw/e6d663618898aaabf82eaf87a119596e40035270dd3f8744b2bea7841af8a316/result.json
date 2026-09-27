@@ -1,0 +1,184 @@
+{
+  "candidate": "battlecode-automation/experiments/comparisons/20260927T140537Z-3f54e00e/sources/bot-v10.5",
+  "opponent": "battlecode-automation/experiments/comparisons/20260927T140537Z-3f54e00e/sources/bot-v10",
+  "map": "battlecode-automation/experiments/comparisons/20260927T140537Z-3f54e00e/maps/trophy.map",
+  "seed": 10400,
+  "reverse": false,
+  "sandbox": false,
+  "experiment": "20260927T140537Z-3f54e00e",
+  "toolkit": "1.1.0",
+  "a_hash": "5b3a1910a23e76454fb228eedbaf16f757b96f7cd7bbfd8279563941e6f0da32",
+  "b_hash": "528c355b5cc850be539b98f48ba1badbce1f7ce1fcdf4ce0faf55dbd6616d2e3",
+  "map_hash": "5f1f6b23d6edb944954a9a31b95f229fd9966bec0875a9f04bca680aa3de33f5",
+  "id": "e6d663618898aaabf82eaf87a119596e40035270dd3f8744b2bea7841af8a316",
+  "a": "battlecode-automation/experiments/comparisons/20260927T140537Z-3f54e00e/sources/bot-v10.5",
+  "b": "battlecode-automation/experiments/comparisons/20260927T140537Z-3f54e00e/sources/bot-v10",
+  "git_commit": "5b0902aeaa0500047cb4b57da64d01ac5c74a53e",
+  "exit_code": 0,
+  "metrics": {
+    "metrics_schema": 5,
+    "result": {
+      "terminated": true,
+      "endReason": "teamEliminated",
+      "winner": "A",
+      "teamA": {
+        "dragonCount": 54,
+        "longestDragon": 4,
+        "totalLength": 124
+      },
+      "teamB": {
+        "dragonCount": 0,
+        "longestDragon": 0,
+        "totalLength": 0
+      }
+    },
+    "rounds": 253,
+    "seed": "10400",
+    "teams": {
+      "A": {
+        "first_split_round": 5,
+        "max_units": 55,
+        "portal_entries": 30,
+        "sacrifice_count": 0,
+        "runtime_failures": 0,
+        "max_turn_points": null,
+        "deaths": {
+          "H": 77,
+          "O": 3,
+          "S": 7
+        },
+        "longest_trajectory": [
+          [
+            0,
+            3
+          ],
+          [
+            25,
+            3
+          ],
+          [
+            50,
+            3
+          ],
+          [
+            75,
+            4
+          ],
+          [
+            100,
+            3
+          ],
+          [
+            125,
+            3
+          ],
+          [
+            150,
+            3
+          ],
+          [
+            175,
+            3
+          ],
+          [
+            200,
+            4
+          ],
+          [
+            225,
+            4
+          ],
+          [
+            250,
+            4
+          ],
+          [
+            253,
+            4
+          ]
+        ],
+        "unique_head_tiles": 596,
+        "exploration_coverage": 1,
+        "king_length": null,
+        "portal_deaths": null,
+        "dragonCount": 54,
+        "longestDragon": 4,
+        "totalLength": 124
+      },
+      "B": {
+        "first_split_round": 5,
+        "max_units": 16,
+        "portal_entries": 0,
+        "sacrifice_count": 0,
+        "runtime_failures": 0,
+        "max_turn_points": null,
+        "deaths": {
+          "H": 71,
+          "S": 2
+        },
+        "longest_trajectory": [
+          [
+            0,
+            3
+          ],
+          [
+            25,
+            3
+          ],
+          [
+            50,
+            3
+          ],
+          [
+            75,
+            3
+          ],
+          [
+            100,
+            4
+          ],
+          [
+            125,
+            3
+          ],
+          [
+            150,
+            3
+          ],
+          [
+            175,
+            3
+          ],
+          [
+            200,
+            3
+          ],
+          [
+            225,
+            3
+          ],
+          [
+            250,
+            3
+          ],
+          [
+            253,
+            0
+          ]
+        ],
+        "unique_head_tiles": 368,
+        "exploration_coverage": 0.944,
+        "king_length": null,
+        "portal_deaths": null,
+        "dragonCount": 0,
+        "longestDragon": 0,
+        "totalLength": 0
+      }
+    }
+  },
+  "winner": "A",
+  "score": 1.0,
+  "status": "ok",
+  "replay": "replays/research-e6d663618898aaabf82eaf87a119596e40035270dd3f8744b2bea7841af8a316.replay",
+  "seconds": 6.07
+}

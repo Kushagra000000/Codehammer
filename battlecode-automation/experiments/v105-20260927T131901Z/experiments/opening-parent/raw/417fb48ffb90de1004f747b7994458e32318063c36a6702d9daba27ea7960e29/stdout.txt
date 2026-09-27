@@ -1,0 +1,75 @@
+loaded c/c++ vs c/c++
+without --sandbox the seed repeats the pearls but not the bots' own random numbers
+seed 0x0000000000019a8d
+running round 2/500 --  last: 177ms  eta: 1m28s  dragons: 2 vs 2
+round 8: bot 0 (team A) died: lost a head-to-head
+round 8: bot 1 (team B) died: lost a head-to-head
+round 15: bot 2 (team A) died: lost a head-to-head
+round 15: bot 3 (team B) died: lost a head-to-head
+running round 51/500 --  last: 4ms  eta: 2.2s  dragons: 7 vs 7
+round 56: bot 6 (team B) died: lost a head-to-head
+round 56: bot 9 (team A) died: lost a head-to-head
+round 57: bot 20 (team A) died: hit itself
+round 65: bot 10 (team B) died: lost a head-to-head
+round 65: bot 12 (team A) died: lost a head-to-head
+round 65: bot 18 (team A) died: lost a head-to-head
+round 65: bot 22 (team B) died: lost a head-to-head
+round 67: bot 7 (team A) died: lost a head-to-head
+round 67: bot 5 (team B) died: lost a head-to-head
+round 69: bot 24 (team B) died: lost a head-to-head
+round 69: bot 25 (team A) died: lost a head-to-head
+round 73: bot 4 (team A) died: lost a head-to-head
+round 73: bot 23 (team B) died: lost a head-to-head
+round 78: bot 8 (team B) died: lost a head-to-head
+round 78: bot 27 (team A) died: lost a head-to-head
+round 82: bot 15 (team A) died: lost a head-to-head
+round 82: bot 36 (team B) died: lost a head-to-head
+round 91: bot 33 (team B) died: lost a head-to-head
+round 91: bot 14 (team A) died: lost a head-to-head
+round 91: bot 42 (team A) died: lost a head-to-head
+round 91: bot 21 (team B) died: lost a head-to-head
+round 92: bot 39 (team B) died: lost a head-to-head
+round 92: bot 31 (team A) died: lost a head-to-head
+round 96: bot 30 (team A) died: lost a head-to-head
+round 96: bot 38 (team B) died: lost a head-to-head
+running round 101/500 --  last: 4ms  eta: 1.9s  dragons: 6 vs 22
+round 101: bot 13 (team B) died: lost a head-to-head
+round 101: bot 16 (team A) died: lost a head-to-head
+round 102: bot 45 (team A) died: lost a head-to-head
+round 102: bot 34 (team B) died: lost a head-to-head
+round 102: bot 46 (team A) died: lost a head-to-head
+round 102: bot 37 (team B) died: lost a head-to-head
+round 113: bot 62 (team A) died: lost a head-to-head
+round 113: bot 44 (team B) died: lost a head-to-head
+round 114: bot 59 (team A) died: lost a head-to-head
+round 114: bot 28 (team B) died: lost a head-to-head
+round 120: bot 52 (team A) died: lost a head-to-head
+round 120: bot 11 (team B) died: lost a head-to-head
+round 125: bot 47 (team B) died: lost a head-to-head
+round 125: bot 66 (team B) died: lost a head-to-head
+round 128: bot 72 (team A) died: lost a head-to-head
+round 128: bot 53 (team B) died: lost a head-to-head
+round 132: bot 17 (team B) died: lost a head-to-head
+round 132: bot 65 (team B) died: lost a head-to-head
+round 134: bot 50 (team A) died: lost a head-to-head
+round 134: bot 64 (team B) died: lost a head-to-head
+round 140: bot 81 (team B) died: hit itself
+round 142: bot 70 (team A) died: lost a head-to-head
+round 142: bot 32 (team B) died: lost a head-to-head
+round 145: bot 92 (team B) died: hit itself
+round 147: bot 84 (team B) died: lost a head-to-head
+round 147: bot 87 (team B) died: lost a head-to-head
+running round 151/500 --  last: 8ms  eta: 2.0s  dragons: 3 vs 40
+round 154: bot 76 (team A) died: lost a head-to-head
+round 154: bot 19 (team B) died: lost a head-to-head
+round 160: bot 29 (team A) died: lost a head-to-head
+round 160: bot 61 (team B) died: lost a head-to-head
+round 167: bot 107 (team A) died: lost a head-to-head
+round 167: bot 106 (team B) died: lost a head-to-head
+round 171: bot 95 (team A) died: lost a head-to-head
+round 171: bot 109 (team B) died: lost a head-to-head
+round 179: bot 111 (team A) died: lost a head-to-head
+round 179: bot 115 (team B) died: lost a head-to-head
+round 179: bot 118 (team A) died: hit itself
+team B wins after 180 rounds (by elimination) (1.2s)
+wrote replay: /Users/kushagra/Desktop/UNSW_battlecode/Codehammer/replays/research-417fb48ffb90de1004f747b7994458e32318063c36a6702d9daba27ea7960e29.replay

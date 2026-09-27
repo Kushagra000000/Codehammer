@@ -1,0 +1,151 @@
+{
+  "candidate": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.4.1-04d66cc757c7796741312980e878e7483280d0b83eeb246b7a58efb13dfc5cbe",
+  "opponent": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.3.1-fab0ffdea6ce4d3f323b08a433fc97ad9cbc9fe3dbd18d8c54b833b45c221cc8",
+  "map": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/8ac4b2eedcf19f8544ab1866acfcbc628b3cb5ff2df87d80aa682dcb5aa9df19/default_small.map",
+  "seed": 105902,
+  "reverse": true,
+  "sandbox": false,
+  "experiment": "validation-parent",
+  "toolkit": "1.1.0",
+  "a_hash": "fab0ffdea6ce4d3f323b08a433fc97ad9cbc9fe3dbd18d8c54b833b45c221cc8",
+  "b_hash": "04d66cc757c7796741312980e878e7483280d0b83eeb246b7a58efb13dfc5cbe",
+  "map_hash": "8ac4b2eedcf19f8544ab1866acfcbc628b3cb5ff2df87d80aa682dcb5aa9df19",
+  "id": "38231ad82a837416442492102413412f22dab611d55f5370ecc65c99aef81ce5",
+  "a": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.3.1-fab0ffdea6ce4d3f323b08a433fc97ad9cbc9fe3dbd18d8c54b833b45c221cc8",
+  "b": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.4.1-04d66cc757c7796741312980e878e7483280d0b83eeb246b7a58efb13dfc5cbe",
+  "git_commit": "5b0902aeaa0500047cb4b57da64d01ac5c74a53e",
+  "exit_code": 0,
+  "metrics": {
+    "metrics_schema": 5,
+    "result": {
+      "terminated": true,
+      "endReason": "teamEliminated",
+      "winner": "A",
+      "teamA": {
+        "dragonCount": 23,
+        "longestDragon": 3,
+        "totalLength": 57
+      },
+      "teamB": {
+        "dragonCount": 0,
+        "longestDragon": 0,
+        "totalLength": 0
+      }
+    },
+    "rounds": 151,
+    "seed": "105902",
+    "teams": {
+      "A": {
+        "first_split_round": 9,
+        "max_units": 25,
+        "portal_entries": 0,
+        "sacrifice_count": 0,
+        "runtime_failures": 0,
+        "max_turn_points": null,
+        "deaths": {
+          "S": 7,
+          "H": 30
+        },
+        "longest_trajectory": [
+          [
+            0,
+            3
+          ],
+          [
+            25,
+            3
+          ],
+          [
+            50,
+            4
+          ],
+          [
+            75,
+            3
+          ],
+          [
+            100,
+            4
+          ],
+          [
+            125,
+            4
+          ],
+          [
+            150,
+            3
+          ],
+          [
+            151,
+            3
+          ]
+        ],
+        "unique_head_tiles": 247,
+        "exploration_coverage": 1,
+        "king_length": null,
+        "portal_deaths": null,
+        "dragonCount": 23,
+        "longestDragon": 3,
+        "totalLength": 57
+      },
+      "B": {
+        "first_split_round": 9,
+        "max_units": 9,
+        "portal_entries": 0,
+        "sacrifice_count": 0,
+        "runtime_failures": 0,
+        "max_turn_points": null,
+        "deaths": {
+          "S": 4,
+          "H": 30
+        },
+        "longest_trajectory": [
+          [
+            0,
+            3
+          ],
+          [
+            25,
+            3
+          ],
+          [
+            50,
+            3
+          ],
+          [
+            75,
+            4
+          ],
+          [
+            100,
+            3
+          ],
+          [
+            125,
+            3
+          ],
+          [
+            150,
+            2
+          ],
+          [
+            151,
+            0
+          ]
+        ],
+        "unique_head_tiles": 185,
+        "exploration_coverage": 1,
+        "king_length": null,
+        "portal_deaths": null,
+        "dragonCount": 0,
+        "longestDragon": 0,
+        "totalLength": 0
+      }
+    }
+  },
+  "winner": "A",
+  "score": 0.0,
+  "status": "ok",
+  "replay": "replays/research-38231ad82a837416442492102413412f22dab611d55f5370ecc65c99aef81ce5.replay",
+  "seconds": 6.65
+}

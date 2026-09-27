@@ -1,0 +1,25 @@
+{
+  "unit": "map blocks, all ten paired opponent/seed games retained together",
+  "maps": 11,
+  "games_per_map": 10,
+  "bootstrap_seed": 1052026,
+  "bootstrap_samples": 20000,
+  "mean_score_delta": 0.009090909090909096,
+  "bootstrap_95_score_delta": [
+    -0.10909090909090909,
+    0.13636363636363638
+  ],
+  "map_score_deltas": {
+    "Colosseum.map": 0.2,
+    "arena.map": 0.0,
+    "big_empty.map": 0.1,
+    "default.map": -0.1,
+    "default_small.map": 0.2,
+    "devil.map": 0.4,
+    "queen_of_spades.map": -0.3,
+    "schooltime.map": -0.2,
+    "stronghold.map": 0.1,
+    "trauma.map": -0.3,
+    "trophy.map": 0.0
+  }
+}

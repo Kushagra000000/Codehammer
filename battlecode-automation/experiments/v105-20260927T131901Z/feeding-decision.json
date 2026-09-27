@@ -1,0 +1,14 @@
+{
+  "selected": "late-alpha450",
+  "reason": "11W5L versus9W7L on16pairedlate-game matches. Modest aggregate benefit; not isolated statistical proof.",
+  "changed_parameter": {
+    "ALPHA_FEED_START_ROUND": [
+      475,
+      450
+    ]
+  },
+  "grower_reduction_tests": [
+    "growers16",
+    "growers32"
+  ]
+}

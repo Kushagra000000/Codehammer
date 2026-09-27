@@ -1,0 +1,39 @@
+loaded c/c++ vs c/c++
+without --sandbox the seed repeats the pearls but not the bots' own random numbers
+seed 0x0000000000019a8d
+running round 2/500 --  last: 95ms  eta: 47.7s  dragons: 2 vs 2
+round 36: bot 6 (team A) died: hit itself
+round 44: bot 12 (team A) died: hit itself
+round 46: bot 15 (team A) died: hit itself
+running round 51/500 --  last: 3ms  eta: 1.9s  dragons: 7 vs 6
+round 50: bot 0 (team A) died: lost a head-to-head
+round 50: bot 3 (team B) died: lost a head-to-head
+round 50: bot 4 (team B) died: lost a head-to-head
+round 50: bot 13 (team A) died: lost a head-to-head
+round 54: bot 16 (team A) died: hit itself
+round 59: bot 2 (team A) died: lost a head-to-head
+round 59: bot 7 (team B) died: lost a head-to-head
+round 69: bot 8 (team B) died: lost a head-to-head
+round 69: bot 10 (team A) died: lost a head-to-head
+round 73: bot 24 (team A) died: lost a head-to-head
+round 73: bot 5 (team B) died: lost a head-to-head
+round 76: bot 28 (team A) died: hit itself
+round 77: bot 1 (team B) died: lost a head-to-head
+round 77: bot 20 (team A) died: lost a head-to-head
+round 82: bot 32 (team B) died: lost a head-to-head
+round 82: bot 11 (team A) died: lost a head-to-head
+round 89: bot 43 (team A) died: lost a head-to-head
+round 89: bot 19 (team B) died: lost a head-to-head
+round 89: bot 23 (team B) died: lost a head-to-head
+round 89: bot 40 (team A) died: lost a head-to-head
+round 91: bot 46 (team B) died: lost a head-to-head
+round 91: bot 41 (team A) died: lost a head-to-head
+round 96: bot 39 (team B) died: lost a head-to-head
+round 96: bot 21 (team A) died: lost a head-to-head
+round 99: bot 27 (team B) died: lost a head-to-head
+round 99: bot 44 (team A) died: lost a head-to-head
+running round 101/500 --  last: 7ms  eta: 2.7s  dragons: 26 vs 1
+round 100: bot 18 (team B) died: lost a head-to-head
+round 100: bot 9 (team A) died: lost a head-to-head
+team A wins after 101 rounds (by elimination) (0.7s)
+wrote replay: /Users/kushagra/Desktop/UNSW_battlecode/Codehammer/replays/research-119be923199c8417d6a1e0ebc7f18c37476d2d29c3042b285ce75fea387ce054.replay

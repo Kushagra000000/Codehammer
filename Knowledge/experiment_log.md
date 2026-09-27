@@ -924,3 +924,94 @@ within four own turns;135 actual reverse splits,134 children survive birth round
 These overlapping windows measure behavior, not causal performance uplift.
 Promotion: NOT PROMOTED. v5 acceptance not evaluated in this limited rewrite.
 Report, all revisions, fingerprints, raw logs and schedules: `battlecode-automation/experiments/v1041-rewrite-20260927T113309Z/REPORT.md`.
+
+## 2026-09-27 — v10.5 opening screen (scoped changes only)
+
+HYPOTHESIS: stronger, temporary center control can reduce early elimination while
+retaining v10.4.1 navigation, split timing, combat and patrol behavior. The center
+score in v10.3.1 and v10.4.1 is identical, so there is no older routine to restore.
+
+TESTED: unswbc1.1.0, seed105101, three opponents(v10.1,v10.3.1,v11.1), seven maps
+(Colosseum,Arena,Default,DefaultSmall,Devil,Queen,Trophy), alternating side per
+opponent/map;21games per source,105games total,all parsed,zero errors. Extra
+center attraction yields to a known food objective within4cost steps,3 central
+allied heads,or at least24 sampled central tiles with less than25% spawn coverage.
+
+| Variant | W/D/L | Elimination W/L | Decision |
+|---|---|---|---|
+| Frozen v10.4.1 |8/2/11|8/10|Reference|
+| Point300,rounds0–39 |14/2/5|13/5|Inferior to region variant|
+| Radius3 region300,rounds0–39 |16/2/3|14/3|Selected for next stage|
+| Point200,rounds0–39 |12/3/6|12/5|Rejected|
+| Radius3 region300,rounds0–79 |12/2/7|12/7|Rejected: longer center phase hurt|
+
+OBSERVED: on paired DefaultSmall vs10.1,selected route entered center at round2
+versus46;first split9vs12;first40 pearls14vs10;game changed loss86→win133. Unit
+counts were not uniformly higher. This single replay supports the mechanism,not
+proof of general superiority. Arena draws include actual mutual head kills.
+
+UNKNOWN: generalization to fresh seeds and the full requested opponent pool.
+Round450 alpha feeding and fewer growers are tested next,in that order. All
+source snapshots,logs,replays,manifests and dashboards are preserved at
+`battlecode-automation/experiments/v105-20260927T131901Z/`. No submission or
+champion promotion.
+
+### v10.5 alpha timing screen
+
+TESTED: selected40round center-region opening,alpha475vs450 only;16games each,
+BigEmpty/Schooltime/Stronghold/Trauma againstv10.3.1/v11.1,seeds105201/105202,
+one game on each side across the two seeds,all32parsed. Every game reached500.
+475 yielded9W0D7L;450 yielded11W0D5L. Mean final longest29.50→29.75;maximum
+62→57. Kept450 for the scoped candidate;this small screen does not establish
+the feeding change alone as statistically superior. All existing recipient
+freshness,length and safe-sacrifice checks remain byte-identical.
+
+Next and last tuning stage: reduce hash growers1/8to1/16or1/32;founders,heirs
+and round400 top-two logic remain unchanged. These are nested subsets of the
+original hash selection,so reducing count does not replace it with different
+modulo cohorts. Fresh full-pool validation remains pending.
+
+### v10.5 fewer-grower screen and source freeze
+
+TESTED LAST: hash grower denominators8(control),16,and32 with the selected
+opening and450alpha feeding;same16late-game match schedule per setting.
+Each scored11W0D5L. Mean final longest was29.75(control),28.3125(16),27.875(32).
+REJECTED reductions: no win gain and lower mean final longest. Kept1-in-8.
+
+OBSERVED from32timing replays: all16paired action/state prefixes identical before
+round450. Donations450–474 increased59→79;donors length>=10 increased15→26.
+Recipient families collected137→166 donated pearls. There is a tradeoff: a
+Stronghold second-longest length13 donor died at453 to a length14 recipient,
+which collected only2of7 pearls and lost24vs29;in475control that donor survived
+and reached35,winning. Earlier feeding is not uniformly beneficial. Full
+provenance is in `late-feeding-evidence.md` and `.json` in the experiment root.
+
+Frozen `selected-source` before reading fresh-validation outcomes. Final
+implementation differs fromv10.4.1 only in opening center constants/helper/score
+and ALPHA_FEED_START_ROUND475→450. Coordination,helper,and bot.toml are identical.
+Both the new opening/feeding fixtures and inherited patrol/escape fixtures pass.
+Validation is110games against5requested opponents on all11maps and two fresh
+seeds105901/105902,with an identically scheduled110-game parent reference,plus
+22direct parent games. No promotion or official submission.
+
+### v10.5 final validation and bounded follow-up — completed
+
+TESTED: fresh matched 110-game schedules yielded v10.5 74W/6D/30L versus
+v10.4.1 73W/6D/31L. Elimination W/L improved 41/22→44/18, but round-limit W/L
+fell 32/9→30/12. Direct parent comparison was 11W/11L. Zero errors/runtime
+failures. Four sandbox games finished 3W/1L; max candidate turn cost14.3M.
+
+UNKNOWN overall superiority: paired sign-test p=1.0; 11-map cluster-bootstrap
+95% score-difference interval −10.91 to +13.64 percentage points. Queen, Trauma,
+Schooltime and Default regressions remain. V9 results fell17W/2D/3L→15W/2D/5L.
+No claim of a substantial or statistically established overall improvement.
+
+A predeclared follow-up tested shorter center windows, keeping all else fixed:
+cutoff40 control16W/2D/3L; cutoff15 13W/2D/6L; cutoff25 12W/2D/7L. REJECTED
+both. The selected source remained unchanged; no extra fresh cohort was needed.
+
+Total478games in16experiments, all fully parsed and zero candidate runtime
+failures. All candidates/results preserved. Stopped at a local plateau within
+the user's three allowed strategy areas. Current bot path: `bots/current/bot-v10.5`.
+No v5 promotion test, champion registry change or official submission. Full
+evidence: `battlecode-automation/experiments/v105-20260927T131901Z/FINAL_REPORT.md`.

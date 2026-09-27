@@ -1,0 +1,81 @@
+loaded c/c++ vs c/c++
+without --sandbox the seed repeats the pearls but not the bots' own random numbers
+seed 0x0000000000019a8d
+running round 2/500 --  last: 162ms  eta: 1m21s  dragons: 2 vs 2
+running round 51/500 --  last: 1ms  eta: 1.9s  dragons: 4 vs 2
+round 70: bot 9 (team A) died: hit itself
+round 71: bot 4 (team A) died: hit itself
+round 73: bot 10 (team A) died: hit itself
+round 75: bot 12 (team A) died: lost a head-to-head
+round 75: bot 13 (team A) died: lost a head-to-head
+round 85: bot 3 (team B) died: lost a head-to-head
+round 85: bot 8 (team A) died: lost a head-to-head
+round 89: bot 23 (team A) died: hit itself
+round 91: bot 11 (team A) died: hit itself
+round 91: bot 6 (team B) died: lost a head-to-head
+round 91: bot 27 (team A) died: lost a head-to-head
+round 92: bot 14 (team A) died: hit another dragon
+round 92: bot 28 (team A) died: hit itself
+round 96: bot 26 (team A) died: hit itself
+round 98: bot 20 (team A) died: lost a head-to-head
+round 98: bot 24 (team A) died: lost a head-to-head
+round 98: bot 31 (team A) died: hit itself
+running round 101/500 --  last: 2ms  eta: 1.4s  dragons: 15 vs 2
+round 104: bot 17 (team A) died: hit itself
+round 104: bot 29 (team A) died: hit itself
+round 104: bot 35 (team A) died: hit itself
+round 106: bot 5 (team A) died: hit itself
+round 107: bot 38 (team A) died: hit itself
+round 110: bot 37 (team A) died: hit itself
+round 111: bot 34 (team A) died: hit itself
+round 112: bot 40 (team B) died: lost a head-to-head
+round 112: bot 7 (team A) died: lost a head-to-head
+round 112: bot 36 (team A) died: hit itself
+round 114: bot 43 (team A) died: hit itself
+round 118: bot 47 (team A) died: hit itself
+round 120: bot 33 (team A) died: hit itself
+round 121: bot 48 (team A) died: hit itself
+round 124: bot 41 (team A) died: hit itself
+round 128: bot 53 (team A) died: hit itself
+round 129: bot 19 (team A) died: hit itself
+round 129: bot 56 (team A) died: hit itself
+round 131: bot 45 (team A) died: hit itself
+round 132: bot 2 (team A) died: hit itself
+round 135: bot 1 (team B) died: lost a head-to-head
+round 135: bot 15 (team A) died: lost a head-to-head
+round 139: bot 57 (team A) died: hit itself
+round 142: bot 52 (team A) died: hit itself
+round 143: bot 16 (team A) died: hit itself
+round 145: bot 0 (team A) died: hit itself
+round 147: bot 54 (team B) died: lost a head-to-head
+round 147: bot 18 (team A) died: lost a head-to-head
+round 147: bot 60 (team A) died: lost a head-to-head
+round 147: bot 44 (team A) died: lost a head-to-head
+round 149: bot 39 (team A) died: hit itself
+round 149: bot 55 (team A) died: hit itself
+running round 151/500 --  last: 3ms  eta: 1.4s  dragons: 14 vs 4
+round 150: bot 42 (team B) died: lost a head-to-head
+round 150: bot 62 (team A) died: lost a head-to-head
+round 151: bot 59 (team A) died: lost a head-to-head
+round 151: bot 61 (team A) died: lost a head-to-head
+round 155: bot 58 (team A) died: hit itself
+round 155: bot 65 (team A) died: lost a head-to-head
+round 155: bot 67 (team A) died: lost a head-to-head
+round 157: bot 68 (team A) died: hit itself
+round 158: bot 66 (team A) died: hit itself
+round 159: bot 22 (team B) died: lost a head-to-head
+round 159: bot 51 (team A) died: lost a head-to-head
+round 161: bot 77 (team A) died: hit itself
+round 162: bot 70 (team A) died: hit itself
+round 165: bot 81 (team A) died: hit itself
+round 169: bot 80 (team A) died: hit another dragon
+round 170: bot 79 (team A) died: hit itself
+round 172: bot 49 (team B) died: lost a head-to-head
+round 172: bot 64 (team A) died: lost a head-to-head
+round 175: bot 71 (team B) died: lost a head-to-head
+round 175: bot 73 (team A) died: lost a head-to-head
+round 180: bot 85 (team A) died: hit itself
+round 185: bot 63 (team B) died: lost a head-to-head
+round 185: bot 89 (team A) died: lost a head-to-head
+team A wins after 186 rounds (by elimination) (0.7s)
+wrote replay: /Users/kushagra/Desktop/UNSW_battlecode/Codehammer/replays/research-55d717fa7a74595018b451087c26da4b814a6d483db1300e1762703e9322be17.replay

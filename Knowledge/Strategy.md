@@ -633,3 +633,26 @@ SUPPORTED as implemented behavior, not strength: local pearl BFS can temporarily
 redirect an established patrol while preserving normal threat checks. Final
 all-map screen6W/5L and all final-code games8W/8L do not establish an overall
 upgrade. Stronghold longest-length concentration remains UNKNOWN/unresolved.
+
+## 2026-09-27 — v10.5 scoped opening and feeding evidence
+
+TESTED: a food-aware center attraction toward a radius-3 area during rounds0–39
+beat midpoint-only, weaker and longer-window variants in the selected opening
+screen. Shorter15/25-round windows also lost to40 in a follow-up. Extra attraction
+yields to nearby food, visible ally congestion, and sampled barren central terrain.
+The inherited baseline center routine in v10.3.1 and v10.4.1 was identical.
+
+OBSERVED: fresh paired110-game tests improved elimination wins/losses41/22→44/18
+but overall wins only73→74, with six draws in both. Direct parent test tied11–11.
+Overall superiority remains UNKNOWN; do not label the opening universally better.
+Queen, Trauma and Schooltime regressions deserve particular attention.
+
+SUPPORTED only within the late-map screen: moving alpha consolidation475→450
+raised wins9/16→11/16 and confirmed pre475 donations59→79. Earlier donation can
+remove a productive backup: one length13 donor would have reached35 in the later
+control, whereas the early recipient collected only2of7 pearls and lost at24.
+
+REJECTED for this candidate: reducing the pre400 hash-grower fraction1/8→1/16
+or1/32 gave the same11/16wins and lower mean final longest length. This does not
+test reducing the post400 top-two rule. All other role, pathfinding, combat, patrol,
+sonar and split logic remained inherited. Evidence: v105-20260927T131901Z/FINAL_REPORT.md.

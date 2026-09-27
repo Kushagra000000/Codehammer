@@ -1,0 +1,8 @@
+{
+  "parent": "bots/current/bot-v10.4.1",
+  "candidate": "bots/current/bot-v10.5",
+  "stage": "scoped experimentation",
+  "toolkit": "1.1.0",
+  "experiment_directory": "battlecode-automation/experiments/v105-20260927T131901Z",
+  "note": "Each experiment manifest references an immutable SHA-256 source snapshot. The final implementation manifest is recorded before validation."
+}
