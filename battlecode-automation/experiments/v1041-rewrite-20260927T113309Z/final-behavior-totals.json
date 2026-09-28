@@ -1,0 +1,18 @@
+{
+  "games": 13,
+  "wins": 8,
+  "losses": 5,
+  "peak": 52,
+  "distantEscapes": 51,
+  "distantBirthSurvivals": 50,
+  "patrolFoodDecisions": 416,
+  "foodDecisionsOffCycle": 295,
+  "foodDecisionsEatingSameTurn": 153,
+  "foodDecisionsEatingWithinFourOwnTurns": 395,
+  "foodDecisionsDyingSameTurn": 0,
+  "foodDecisionsEatingFeedDrops": 69,
+  "escapeSplitIntents": 161,
+  "actualEscapeSplits": 161,
+  "escapeChildrenSurvivedBirthRound": 160,
+  "escapeChildrenSurvivedFiveRounds": 136
+}

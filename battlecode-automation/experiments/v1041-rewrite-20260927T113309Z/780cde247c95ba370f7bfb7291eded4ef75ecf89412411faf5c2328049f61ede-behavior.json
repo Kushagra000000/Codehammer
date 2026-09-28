@@ -1,0 +1,794 @@
+{
+  "schema": 1,
+  "replay": "replays/research-780cde247c95ba370f7bfb7291eded4ef75ecf89412411faf5c2328049f61ede.replay",
+  "result": {
+    "terminated": true,
+    "endReason": "roundLimit",
+    "winner": "A",
+    "teamA": {
+      "dragonCount": 9,
+      "longestDragon": 45,
+      "totalLength": 85
+    },
+    "teamB": {
+      "dragonCount": 10,
+      "longestDragon": 27,
+      "totalLength": 76
+    }
+  },
+  "seed": "104101",
+  "checkedRoundSnapshots": 500,
+  "map": {
+    "width": 48,
+    "height": 24,
+    "spawnTiles": 210,
+    "spawnTileFraction": 0.18229166666666666,
+    "theoreticalRespawnsPerRound": 13.970149253731359
+  },
+  "caveats": [
+    "Respawn rate is theoretical: a tile already holding a pearl does not accumulate more.",
+    "Four-turn collection windows can overlap; their counts do not establish causal attribution.",
+    "Cycle-step counts compare the last logged eligible claim geometry; unlogged claim revocations cannot be reconstructed.",
+    "A visible nearby pearl can be blocked; visible-pearl counts do not imply a safe detour exists."
+  ],
+  "teams": {
+    "A": {
+      "peakLength": 45,
+      "peakDragon": 331,
+      "peakRound": 493,
+      "longestTrajectory": [
+        [
+          0,
+          4
+        ],
+        [
+          25,
+          3
+        ],
+        [
+          50,
+          3
+        ],
+        [
+          75,
+          3
+        ],
+        [
+          100,
+          4
+        ],
+        [
+          125,
+          3
+        ],
+        [
+          150,
+          4
+        ],
+        [
+          175,
+          4
+        ],
+        [
+          200,
+          4
+        ],
+        [
+          225,
+          4
+        ],
+        [
+          250,
+          4
+        ],
+        [
+          275,
+          3
+        ],
+        [
+          300,
+          4
+        ],
+        [
+          325,
+          5
+        ],
+        [
+          350,
+          6
+        ],
+        [
+          375,
+          8
+        ],
+        [
+          400,
+          12
+        ],
+        [
+          425,
+          19
+        ],
+        [
+          450,
+          27
+        ],
+        [
+          475,
+          36
+        ],
+        [
+          500,
+          45
+        ]
+      ],
+      "longDeaths": [],
+      "allDeaths": {
+        "S": 181,
+        "H": 10,
+        "O": 1
+      },
+      "claims": [
+        {
+          "round": 375,
+          "id": 331,
+          "length": 8,
+          "x": 0,
+          "y": 16,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.7960199004975115
+        },
+        {
+          "round": 417,
+          "id": 385,
+          "length": 8,
+          "x": 6,
+          "y": 6,
+          "w": 5,
+          "h": 16,
+          "spawnTiles": 35,
+          "spawnTileFraction": 0.4375,
+          "theoreticalRespawnsPerRound": 0.3482587064676619
+        },
+        {
+          "round": 419,
+          "id": 146,
+          "length": 11,
+          "x": 0,
+          "y": 10,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 40,
+          "spawnTileFraction": 0.5,
+          "theoreticalRespawnsPerRound": 0.39800995024875646
+        },
+        {
+          "round": 429,
+          "id": 34,
+          "length": 9,
+          "x": 6,
+          "y": 1,
+          "w": 4,
+          "h": 20,
+          "spawnTiles": 24,
+          "spawnTileFraction": 0.3,
+          "theoreticalRespawnsPerRound": 0.2388059701492538
+        },
+        {
+          "round": 435,
+          "id": 437,
+          "length": 10,
+          "x": 4,
+          "y": 20,
+          "w": 7,
+          "h": 4,
+          "spawnTiles": 28,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.2786069651741295
+        },
+        {
+          "round": 441,
+          "id": 438,
+          "length": 11,
+          "x": 4,
+          "y": 16,
+          "w": 7,
+          "h": 6,
+          "spawnTiles": 42,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.4179104477611943
+        },
+        {
+          "round": 449,
+          "id": 438,
+          "length": 13,
+          "x": 4,
+          "y": 12,
+          "w": 7,
+          "h": 4,
+          "spawnTiles": 7,
+          "spawnTileFraction": 0.25,
+          "theoreticalRespawnsPerRound": 0.06965174129353233
+        },
+        {
+          "round": 451,
+          "id": 331,
+          "length": 27,
+          "x": 2,
+          "y": 9,
+          "w": 9,
+          "h": 12,
+          "spawnTiles": 54,
+          "spawnTileFraction": 0.5,
+          "theoreticalRespawnsPerRound": 0.5373134328358211
+        },
+        {
+          "round": 458,
+          "id": 156,
+          "length": 8,
+          "x": 6,
+          "y": 0,
+          "w": 4,
+          "h": 20,
+          "spawnTiles": 20,
+          "spawnTileFraction": 0.25,
+          "theoreticalRespawnsPerRound": 0.19900497512437815
+        },
+        {
+          "round": 468,
+          "id": 439,
+          "length": 10,
+          "x": 4,
+          "y": 17,
+          "w": 7,
+          "h": 6,
+          "spawnTiles": 42,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.4179104477611943
+        },
+        {
+          "round": 471,
+          "id": 331,
+          "length": 36,
+          "x": 0,
+          "y": 12,
+          "w": 11,
+          "h": 12,
+          "spawnTiles": 99,
+          "spawnTileFraction": 0.75,
+          "theoreticalRespawnsPerRound": 0.9850746268656698
+        }
+      ],
+      "patrolFood": [],
+      "escapeSplits": [
+        {
+          "round": 425,
+          "id": 146,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 12,
+          "requestedChildLength": 10,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 431,
+            "reason": "S",
+            "length": 3
+          },
+          "tailInsideParentVision": true,
+          "childId": 436,
+          "childLength": 10,
+          "childHead": {
+            "x": 6,
+            "y": 21
+          },
+          "childFacing": "S",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 425,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "E"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 426,
+            "reason": "S",
+            "length": 10
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": false
+        },
+        {
+          "round": 435,
+          "id": 34,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 12,
+          "requestedChildLength": 10,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 438,
+            "reason": "S",
+            "length": 3
+          },
+          "tailInsideParentVision": true,
+          "childId": 437,
+          "childLength": 10,
+          "childHead": {
+            "x": 7,
+            "y": 23
+          },
+          "childFacing": "E",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 435,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "E"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 443,
+            "reason": "S",
+            "length": 2
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 441,
+          "id": 437,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 13,
+          "requestedChildLength": 11,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 443,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 438,
+          "childLength": 11,
+          "childHead": {
+            "x": 7,
+            "y": 19
+          },
+          "childFacing": "N",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 441,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "W"
+              ]
+            }
+          },
+          "childDeath": {
+            "round": 451,
+            "reason": "S",
+            "length": 14
+          },
+          "childAliveAtFinish": false,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        },
+        {
+          "round": 468,
+          "id": 156,
+          "kind": "GROWER_REVERSE",
+          "originalLength": 12,
+          "requestedChildLength": 10,
+          "actualSplit": true,
+          "parentDeath": {
+            "round": 469,
+            "reason": "S",
+            "length": 2
+          },
+          "tailInsideParentVision": true,
+          "childId": 439,
+          "childLength": 10,
+          "childHead": {
+            "x": 7,
+            "y": 20
+          },
+          "childFacing": "S",
+          "parentLength": 2,
+          "childFirstAction": {
+            "round": 468,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "W"
+              ]
+            }
+          },
+          "childDeath": null,
+          "childAliveAtFinish": true,
+          "childSurvivedBirthRound": true,
+          "childSurvivedFiveRounds": true
+        }
+      ],
+      "cycleSteps": 49,
+      "cycleDeviations": 26,
+      "cycleTurnsWithVisiblePearls": 69,
+      "pearlsCollected": 607,
+      "fedPearlsCollected": 25,
+      "runtimeFailures": [],
+      "final": {
+        "dragonCount": 9,
+        "longestDragon": 45,
+        "totalLength": 85
+      },
+      "summary": {
+        "patrolFoodDecisions": 0,
+        "foodDecisionsOffCycle": 0,
+        "foodDecisionsEatingSameTurn": 0,
+        "foodDecisionsEatingWithinFourOwnTurns": 0,
+        "foodDecisionsDyingSameTurn": 0,
+        "foodDecisionsEatingFeedDrops": 0,
+        "escapeSplitIntents": 4,
+        "actualEscapeSplits": 4,
+        "escapeChildrenSurvivedBirthRound": 4,
+        "escapeChildrenSurvivedFiveRounds": 3
+      }
+    },
+    "B": {
+      "peakLength": 27,
+      "peakDragon": 106,
+      "peakRound": 496,
+      "longestTrajectory": [
+        [
+          0,
+          4
+        ],
+        [
+          25,
+          3
+        ],
+        [
+          50,
+          3
+        ],
+        [
+          75,
+          4
+        ],
+        [
+          100,
+          3
+        ],
+        [
+          125,
+          3
+        ],
+        [
+          150,
+          4
+        ],
+        [
+          175,
+          4
+        ],
+        [
+          200,
+          3
+        ],
+        [
+          225,
+          3
+        ],
+        [
+          250,
+          3
+        ],
+        [
+          275,
+          3
+        ],
+        [
+          300,
+          4
+        ],
+        [
+          325,
+          4
+        ],
+        [
+          350,
+          6
+        ],
+        [
+          375,
+          5
+        ],
+        [
+          400,
+          8
+        ],
+        [
+          425,
+          12
+        ],
+        [
+          450,
+          19
+        ],
+        [
+          475,
+          16
+        ],
+        [
+          500,
+          27
+        ]
+      ],
+      "longDeaths": [
+        {
+          "round": 465,
+          "id": 427,
+          "length": 23,
+          "reason": "S",
+          "reasonName": "self_collision",
+          "deliberateFeed": false,
+          "action": {
+            "round": 465,
+            "action": {
+              "kind": "move",
+              "steps": [
+                "W"
+              ]
+            }
+          },
+          "head": {
+            "x": 43,
+            "y": 0
+          }
+        }
+      ],
+      "allDeaths": {
+        "S": 219,
+        "H": 10
+      },
+      "claims": [
+        {
+          "round": 399,
+          "id": 427,
+          "length": 8,
+          "x": 43,
+          "y": 6,
+          "w": 4,
+          "h": 18,
+          "spawnTiles": 12,
+          "spawnTileFraction": 0.16666666666666666,
+          "theoreticalRespawnsPerRound": 0.11940298507462684
+        },
+        {
+          "round": 421,
+          "id": 120,
+          "length": 8,
+          "x": 37,
+          "y": 0,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.7960199004975115
+        },
+        {
+          "round": 427,
+          "id": 427,
+          "length": 12,
+          "x": 43,
+          "y": 5,
+          "w": 5,
+          "h": 16,
+          "spawnTiles": 20,
+          "spawnTileFraction": 0.25,
+          "theoreticalRespawnsPerRound": 0.19900497512437815
+        },
+        {
+          "round": 429,
+          "id": 120,
+          "length": 8,
+          "x": 37,
+          "y": 0,
+          "w": 11,
+          "h": 4,
+          "spawnTiles": 44,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.4378109452736321
+        },
+        {
+          "round": 437,
+          "id": 106,
+          "length": 8,
+          "x": 39,
+          "y": 0,
+          "w": 9,
+          "h": 4,
+          "spawnTiles": 36,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.3582089552238808
+        },
+        {
+          "round": 440,
+          "id": 430,
+          "length": 8,
+          "x": 37,
+          "y": 0,
+          "w": 8,
+          "h": 10,
+          "spawnTiles": 72,
+          "spawnTileFraction": 0.9,
+          "theoreticalRespawnsPerRound": 0.7164179104477606
+        },
+        {
+          "round": 442,
+          "id": 120,
+          "length": 9,
+          "x": 37,
+          "y": 4,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 50,
+          "spawnTileFraction": 0.625,
+          "theoreticalRespawnsPerRound": 0.4975124378109456
+        },
+        {
+          "round": 443,
+          "id": 430,
+          "length": 9,
+          "x": 37,
+          "y": 0,
+          "w": 11,
+          "h": 4,
+          "spawnTiles": 44,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.4378109452736321
+        },
+        {
+          "round": 455,
+          "id": 120,
+          "length": 11,
+          "x": 37,
+          "y": 1,
+          "w": 11,
+          "h": 4,
+          "spawnTiles": 44,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.4378109452736321
+        },
+        {
+          "round": 466,
+          "id": 106,
+          "length": 11,
+          "x": 37,
+          "y": 1,
+          "w": 11,
+          "h": 4,
+          "spawnTiles": 44,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.4378109452736321
+        },
+        {
+          "round": 470,
+          "id": 120,
+          "length": 11,
+          "x": 38,
+          "y": 5,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 40,
+          "spawnTileFraction": 0.5,
+          "theoreticalRespawnsPerRound": 0.39800995024875646
+        },
+        {
+          "round": 470,
+          "id": 430,
+          "length": 15,
+          "x": 37,
+          "y": 0,
+          "w": 6,
+          "h": 12,
+          "spawnTiles": 54,
+          "spawnTileFraction": 0.75,
+          "theoreticalRespawnsPerRound": 0.5373134328358211
+        },
+        {
+          "round": 472,
+          "id": 310,
+          "length": 8,
+          "x": 37,
+          "y": 5,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 40,
+          "spawnTileFraction": 0.5,
+          "theoreticalRespawnsPerRound": 0.39800995024875646
+        },
+        {
+          "round": 476,
+          "id": 106,
+          "length": 16,
+          "x": 37,
+          "y": 0,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 80,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.7960199004975115
+        },
+        {
+          "round": 478,
+          "id": 310,
+          "length": 10,
+          "x": 38,
+          "y": 8,
+          "w": 10,
+          "h": 8,
+          "spawnTiles": 10,
+          "spawnTileFraction": 0.125,
+          "theoreticalRespawnsPerRound": 0.09950248756218903
+        },
+        {
+          "round": 486,
+          "id": 106,
+          "length": 22,
+          "x": 37,
+          "y": 0,
+          "w": 11,
+          "h": 8,
+          "spawnTiles": 88,
+          "spawnTileFraction": 1,
+          "theoreticalRespawnsPerRound": 0.8756218905472624
+        },
+        {
+          "round": 488,
+          "id": 430,
+          "length": 20,
+          "x": 37,
+          "y": 8,
+          "w": 9,
+          "h": 4,
+          "spawnTiles": 9,
+          "spawnTileFraction": 0.25,
+          "theoreticalRespawnsPerRound": 0.08955223880597013
+        }
+      ],
+      "patrolFood": [],
+      "escapeSplits": [],
+      "cycleSteps": 17,
+      "cycleDeviations": 11,
+      "cycleTurnsWithVisiblePearls": 27,
+      "pearlsCollected": 715,
+      "fedPearlsCollected": 22,
+      "runtimeFailures": [],
+      "final": {
+        "dragonCount": 10,
+        "longestDragon": 27,
+        "totalLength": 76
+      },
+      "summary": {
+        "patrolFoodDecisions": 0,
+        "foodDecisionsOffCycle": 0,
+        "foodDecisionsEatingSameTurn": 0,
+        "foodDecisionsEatingWithinFourOwnTurns": 0,
+        "foodDecisionsDyingSameTurn": 0,
+        "foodDecisionsEatingFeedDrops": 0,
+        "escapeSplitIntents": 0,
+        "actualEscapeSplits": 0,
+        "escapeChildrenSurvivedBirthRound": 0,
+        "escapeChildrenSurvivedFiveRounds": 0
+      }
+    }
+  }
+}

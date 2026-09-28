@@ -619,3 +619,17 @@ compact arenas before long-snake navigation ever activates. Colosseum failures
 were mostly early head-to-head deaths. Final R8 tests relax only small-dragon
 trade restrictions while retaining large-grower and last-ally protection.
 The final report records whether this survives fresh-seed validation.
+
+## 2026-09-27 — tested tail-rescue constraint
+
+OBSERVED in engine replays: a trapped long snake can have a clear tail exit far
+outside its head's7x7 vision. Requiring that exit to be currently visible blocked
+legal rescue splits and caused avoidable forced self-deaths at lengths47/28.
+TESTED in v10.4.1 rewrite: legal L-2 tail splits with fresh child vision work for
+both workers and growers, including incomplete parent body memory. Known sealed
+ends and unit caps remain real limitations; an unseen enemy can kill the child.
+
+SUPPORTED as implemented behavior, not strength: local pearl BFS can temporarily
+redirect an established patrol while preserving normal threat checks. Final
+all-map screen6W/5L and all final-code games8W/8L do not establish an overall
+upgrade. Stronghold longest-length concentration remains UNKNOWN/unresolved.
