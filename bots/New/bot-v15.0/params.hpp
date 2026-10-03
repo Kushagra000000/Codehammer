@@ -70,7 +70,7 @@ namespace Config
     // --- v11: pearl collection ---
     // Pull per step of path distance to the nearest pearl we can still win, out to
     // PEARL_PULL_RADIUS. Must beat the straight-ahead bias (235) and the centre pull.
-    constexpr int PEARL_PULL = 450, GROWER_PEARL_PULL = 700, PEARL_PULL_RADIUS = 12;  // linear pull per step (active when GRAVITY_SCORES is false); objective map radius
+    constexpr int PEARL_PULL = 450, GROWER_PEARL_PULL = 700, PEARL_PULL_RADIUS = 12;  // legacy linear pull (unused since v15 layer 2); objective map radius
     // A remembered pearl we can no longer see costs age/DIV extra steps, and is
     // forgotten after MAX_AGE rounds.
     constexpr int REMEMBERED_PEARL_AGE_DIV = 10, REMEMBERED_PEARL_MAX_AGE = 50;  // remembered pearl: age divisor for extra cost; forget after this age
@@ -161,6 +161,4 @@ namespace Config
     constexpr int PANIC_SPLIT_MIN_LENGTH = 4;     // shortest dragon that may split-escape in a panic
     // --- v15 rev2 ---
     constexpr int OTHER_HIDDEN_TAIL = 10;         // DFS: segments assumed behind another dragon's chain that leaves our view
-    constexpr bool GRAVITY_SCORES = false;        // fix 4: false = score food with v10.3.3's linear pull, gravity only triggers layer 4
-    constexpr bool QUEEN_ALWAYS_VALUABLE = false; // fix 4: false = queen uses v10.3.3's valuable rule (retaining or long)
 }
