@@ -227,6 +227,7 @@ namespace
 
             build_objective_map();
             build_food_field();
+            build_other_clear(); // v15 rev2 fix 2
             std::vector<Candidate> candidates = single_step_candidates(false);
             if (candidates.empty())
                 candidates = single_step_candidates(true);

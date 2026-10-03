@@ -159,4 +159,6 @@ namespace Config
     // --- v15 layer 5: panic escapes ---
     constexpr bool PANIC_ENABLED = true;          // re-check the chosen move and fall back if it is fatal
     constexpr int PANIC_SPLIT_MIN_LENGTH = 4;     // shortest dragon that may split-escape in a panic
+    // --- v15 rev2 ---
+    constexpr int OTHER_HIDDEN_TAIL = 10;         // DFS: segments assumed behind another dragon's chain that leaves our view
 }
