@@ -254,3 +254,87 @@
                 c.score -= std::min(Config::KNOWN_SPACE_PENALTY_CAP, deficit * Config::KNOWN_SPACE_WEIGHT);
             }
         }
+
+// ---------------------------------------------------------------------------
+// v15 layer 3: forward DFS lookahead with an explicit operations budget
+// ---------------------------------------------------------------------------
+// Walks future head paths from the post-move state. Our own segments clear as the
+// tail moves (segment i of the post-move body frees on move L - i + 1), and every
+// pearl eaten on the simulated path delays that by one move. Other dragons' visible
+// segments, and recently seen ones out of sight, are walls. An unknown portal exit
+// counts as success (optimistic). Returns the deepest depth reached.
+int dfs_rec(PostMove const &pm, int depth, int eaten, int required,
+            std::array<int, Config::LOOKAHEAD_MAX_DEPTH + 1> &path,
+            int &ops, int budget, bool &cut) const
+{
+    if (depth >= required)
+        return depth;
+    if (ops >= budget)
+    {
+        cut = true;
+        return depth;
+    }
+    ++ops;
+    int const now = game_.get_round_num();
+    int best = depth;
+    Position const p = position_of(path[static_cast<std::size_t>(depth)]);
+    for (Direction d : Direction::get_direction_list())
+    {
+        Step const s = step_from(p, d);
+        if (!s.passable)
+            continue;
+        if (!s.destination_known)
+            return required;
+        int const n = index(s.destination);
+        if (other_occ_[static_cast<std::size_t>(n)])
+            continue;
+        CellMemory const &m = memory_[static_cast<std::size_t>(n)];
+        if (m.last_seen != now && m.seen && m.other_seen && now - m.last_seen <= Config::OCCUPIED_MEMORY)
+            continue;
+        int const arrive = depth + 1;
+        bool body = false;
+        int oi = 0;
+        for (int k = depth; k >= 0; --k)
+            if (path[static_cast<std::size_t>(k)] == n)
+            {
+                body = true;
+                oi = -k; // entered k moves after pm: index -k relative to pm
+                break;
+            }
+        if (!body)
+        {
+            oi = post_index(pm, n);
+            body = oi >= 0;
+        }
+        if (body && arrive < pm.length - oi + 1 + eaten)
+            continue;
+        path[static_cast<std::size_t>(arrive)] = n;
+        int const next_eaten = eaten + (m.pearl && m.last_seen == now ? 1 : 0);
+        best = std::max(best, dfs_rec(pm, arrive, next_eaten, required, path, ops, budget, cut));
+        if (best >= required)
+            return best;
+    }
+    return best;
+}
+
+// Fractional dead-end penalty: a fully searched shortfall is a fatal trap and costs
+// DEAD_END_PENALTY scaled by the missing depth; a shortfall caused by the budget is a
+// temporary jam and costs only JAM_PENALTY scaled the same way.
+int lookahead_penalty(PostMove const &pm, int budget, int &reached, bool &dead_end) const
+{
+    int const required = std::min(Config::LOOKAHEAD_MAX_DEPTH,
+                                  std::max(Config::LOOKAHEAD_MIN_DEPTH, pm.length));
+    std::array<int, Config::LOOKAHEAD_MAX_DEPTH + 1> path{};
+    path[0] = index(pm.head);
+    int ops = 0;
+    bool cut = false;
+    reached = dfs_rec(pm, 0, 0, required, path, ops, budget, cut);
+    dead_end = false;
+    if (reached >= required)
+        return 0;
+    int const missing = required - reached;
+    if (cut)
+        return Config::JAM_PENALTY * missing / required;
+    dead_end = true;
+    return Config::DEAD_END_PENALTY * missing / required;
+}

@@ -119,6 +119,9 @@ namespace
         int known_space = -1;
         int new_length = 0;
         int gravity = 0;   // v15 layer 2 food pull
+        int dfs_depth = -1; // v15 layer 3 depth reached
+        int dfs_penalty = 0;
+        bool dead_end = false;
         int score = -INF;
     };
 
@@ -1070,6 +1073,8 @@ namespace
                 {
                     candidate.exits = post_exits(pm);
                     candidate.space = timed_space(pm, space_cap(pm.length));
+                    candidate.dfs_penalty = lookahead_penalty(pm, Config::LOOKAHEAD_BUDGET_PER_MOVE,
+                                                              candidate.dfs_depth, candidate.dead_end);
                 }
             }
 
@@ -1128,6 +1133,7 @@ namespace
                 if (!candidate.head_trade)
                 {
                     score += candidate.exits * 55;
+                    score -= candidate.dfs_penalty; // v15 layer 3
                     score += std::min(pm.length + 5, candidate.space) * (grow ? 13 : 8);
                     if (candidate.exits == 0)
                         score -= 5000;

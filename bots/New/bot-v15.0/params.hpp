@@ -132,4 +132,11 @@ namespace Config
     constexpr int GRAVITY_CONTEST_DIV = 8;        // divide pull of a pearl a rival reaches strictly first
     constexpr int GRAVITY_TIE_DIV = 2;            // divide pull of a pearl a rival reaches at the same time
     constexpr int RIVAL_ETA_RADIUS = 14;          // depth of the rival-head ETA BFS
+
+    // --- v15 layer 3: budgeted DFS lookahead ---
+    constexpr int LOOKAHEAD_MAX_DEPTH = 10;          // deepest future move the DFS must reach
+    constexpr int LOOKAHEAD_MIN_DEPTH = 4;           // required depth for short dragons
+    constexpr int LOOKAHEAD_BUDGET_PER_MOVE = 6000;  // DFS node expansions per candidate move
+    constexpr int DEAD_END_PENALTY = 20000;          // fully searched shortfall (fatal trap), scaled by missing depth
+    constexpr int JAM_PENALTY = 1500;                // budget-cut shortfall (temporary jam), scaled by missing depth
 }
