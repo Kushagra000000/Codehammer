@@ -107,6 +107,9 @@ int king_min_length() const
 // Total order used by everyone: longer wins, ties go to the lower id.
 static bool king_beats(int length_a, int id_a, int length_b, int id_b)
 {
+    // v15: our queen (ID 0 or 1) wins every election; the tiebreak compares queens first.
+    if ((id_a <= 1) != (id_b <= 1))
+        return id_a <= 1;
     return length_a > length_b || (length_a == length_b && id_a < id_b);
 }
 

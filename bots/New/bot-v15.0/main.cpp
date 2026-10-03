@@ -219,21 +219,11 @@ namespace
                                        controller_.get_length(), king_.id == controller_.get_id() ? "king" : "notking");
 #endif
 
-            if (play_clear_remnant())
+            if (clear_remnant_v15())
                 return;
-            if (play_feeder_strategy())
+            // Layer 1: priority cascade (assassination, sacrificial feeding, mitosis).
+            if (run_cascade())
                 return;
-
-            CellMemory &current = cell(controller_.get_position());
-            ++current.visits;
-
-            if (should_split())
-            {
-                int const child_size = worker_child_size();
-                controller_.do_split(child_size);
-                send_status(controller_.get_position(), controller_.get_length() - child_size);
-                return;
-            }
 
             build_objective_map();
             build_food_field();
@@ -244,7 +234,7 @@ namespace
             add_escape_sprints(candidates);
             apply_known_space_penalties(candidates);
             apply_route_boost(candidates); // v15 layer 4
-            if (play_split_escape(candidates))
+            if (panic_split_escape(candidates))
                 return;
 
             if (candidates.empty())
@@ -274,6 +264,11 @@ namespace
                     candidates.begin(), candidates.end(),
                     [](Candidate const &a, Candidate const &b)
                     { return a.score < b.score; });
+            // Layer 5: panic escapes when the chosen move is fatal.
+            Candidate chosen = *best;
+            if (panic_escape(chosen, candidates))
+                return;
+            best = &chosen;
 
 #ifdef BOT_DEBUG
             if (valuable_now_)
@@ -541,6 +536,8 @@ namespace
         // team converges on one. No margin, so near-equals always resolve.
         bool elected_king() const
         {
+            if (is_queen())
+                return true; // v15: the queen is always the king
             int const L = controller_.get_length();
             if (L < Config::LATE_KING_MIN_LENGTH)
                 return false;
@@ -613,7 +610,7 @@ namespace
         void compute_roles()
         {
             retaining_now_ = compute_retaining();
-            valuable_now_ = retaining_now_ || controller_.get_length() >= Config::VALUABLE_LENGTH;
+            valuable_now_ = retaining_now_ || is_queen() || controller_.get_length() >= Config::VALUABLE_LENGTH;
         }
 
         // Cached once per turn, after sonar and vision are read.

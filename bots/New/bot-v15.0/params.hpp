@@ -147,4 +147,16 @@ namespace Config
     constexpr int FRONTIER_STALE_ROUNDS = 40;   // a seen cell unseen for this long counts as frontier
     constexpr int ROUTE_PEARL_BOOST = 700;      // bonus for the first step towards a remembered pearl
     constexpr int ROUTE_FRONTIER_BOOST = 350;   // bonus for the first step towards the frontier
+
+    // --- v15 layer 1: priority cascade ---
+    constexpr bool ASSASSINATION_ENABLED = true;  // ram a visible enemy queen head when an exact sprint reaches it
+    constexpr int ASSASSIN_MAX_STEPS = 6;         // longest assassination sprint, including the ramming step
+    constexpr int QUEEN_FEED_ROUND = 350;         // from this round short dragons may die beside our queen
+    constexpr int QUEEN_FEED_MAX_LENGTH = 6;      // only dragons this short sacrifice themselves to the queen
+    constexpr int QUEEN_FEED_RADIUS = 3;          // our queen's head must be this close (Manhattan)
+    constexpr int QUEEN_FEED_ENEMY_RADIUS = 3;    // no sacrifice with an enemy head this close
+    constexpr int QUEEN_NO_SPLIT_ROUND = 200;     // the queen never worker-splits from this round
+    // --- v15 layer 5: panic escapes ---
+    constexpr bool PANIC_ENABLED = true;          // re-check the chosen move and fall back if it is fatal
+    constexpr int PANIC_SPLIT_MIN_LENGTH = 4;     // shortest dragon that may split-escape in a panic
 }
