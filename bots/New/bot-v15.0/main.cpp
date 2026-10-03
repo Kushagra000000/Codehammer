@@ -118,6 +118,7 @@ namespace
         int space = 0;
         int known_space = -1;
         int new_length = 0;
+        int gravity = 0;   // v15 layer 2 food pull
         int score = -INF;
     };
 
@@ -232,6 +233,7 @@ namespace
             }
 
             build_objective_map();
+            build_food_field();
             std::vector<Candidate> candidates = single_step_candidates(false);
             if (candidates.empty())
                 candidates = single_step_candidates(true);
@@ -433,6 +435,9 @@ namespace
 #include "food.hpp"
 #include "lookahead.hpp"
 #include "tactics.hpp"
+
+        // Our queen decides the round-500 tiebreak (ID 0 for team A, ID 1 for team B).
+        bool is_queen() const { return controller_.get_id() <= 1; }
 
         int wrap(int value, int size) const
         {
@@ -1098,13 +1103,9 @@ namespace
             }
 
             {
-                // Pull towards the nearest pearl objective, measured as path distance.
-                int const radius = Config::PEARL_PULL_RADIUS;
-                int const before = std::min(radius, objective_dist_[static_cast<std::size_t>(index(origin))]);
-                int const after = step.destination_known
-                                      ? std::min(radius, objective_dist_[static_cast<std::size_t>(index(step.destination))])
-                                      : before;
-                score += (before - after) * (grow ? Config::GROWER_PEARL_PULL : Config::PEARL_PULL);
+                // v15 layer 2: inverse-square gravity towards pearls we can win.
+                candidate.gravity = step.destination_known ? food_gravity(step.destination, grow) : 0;
+                score += candidate.gravity;
             }
             if (candidate.direct_pearl)
                 score += grow ? 3800 : 2500; // NEW: Was 2800 and 850.

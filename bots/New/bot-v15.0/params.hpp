@@ -123,4 +123,13 @@ namespace Config
     // head can step into this round, and thin surroundings.
     constexpr int NO_ROBUST_EXIT_PENALTY = 2500, ONE_ROBUST_EXIT_PENALTY = 700;
     constexpr int CROWD_PENALTY_PER_SEGMENT = 40, CROWD_RADIUS = 2;
+
+    // --- v15 layer 2: food gravity field ---
+    constexpr int GRAVITY_WEIGHT = 12000;         // worker pull numerator: pearl at ETA e adds W/(e+1)^2
+    constexpr int GROWER_GRAVITY_WEIGHT = 18000;  // retaining-dragon pull numerator
+    constexpr int GRAVITY_RADIUS = 12;            // BFS depth from a candidate when summing pearls
+    constexpr int GRAVITY_CAP = 9000;             // upper bound on one candidate's total gravity
+    constexpr int GRAVITY_CONTEST_DIV = 8;        // divide pull of a pearl a rival reaches strictly first
+    constexpr int GRAVITY_TIE_DIV = 2;            // divide pull of a pearl a rival reaches at the same time
+    constexpr int RIVAL_ETA_RADIUS = 14;          // depth of the rival-head ETA BFS
 }
