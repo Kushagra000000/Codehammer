@@ -66,6 +66,7 @@ These are BLOCKED until v15.0 exists and has been merged into the lane branches.
 Build bot-v15.0 per `knowledge/v15_design.md`. Keep: it builds, plays, no timeouts under `--sandbox`.
 Not required: beating v10.3.3.
 Result (B-001): builds, 9 full games without errors, sandbox max 6.7M points/turn. Strength unproven (2-0-6 in 8 games).
+Note (B-002 rev2): fix 2 kept (DFS bodies clear tail-first); fixes 1 and 4 reverted; fix 3 not needed (head-on always mutual). Still 2-0-6, devil turns ~15% of v10.3.3; growth gap is not the food score. See B-002.
 
 ## H-010 | lane: pearls | priority: 1 | status: blocked | owner: -
 Claim: the gravity field's falloff (power and ETA scaling) and the rival-ETA damping in `food.hpp` set food-gathering speed. Test two or three falloff variants.
