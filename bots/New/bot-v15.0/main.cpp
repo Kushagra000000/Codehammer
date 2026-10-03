@@ -611,7 +611,8 @@ namespace
         void compute_roles()
         {
             retaining_now_ = compute_retaining();
-            valuable_now_ = retaining_now_ || is_queen() || controller_.get_length() >= Config::VALUABLE_LENGTH;
+            valuable_now_ = retaining_now_ || (Config::QUEEN_ALWAYS_VALUABLE && is_queen()) ||
+                            controller_.get_length() >= Config::VALUABLE_LENGTH;
         }
 
         // Cached once per turn, after sonar and vision are read.
@@ -1108,8 +1109,20 @@ namespace
 
             {
                 // v15 layer 2: inverse-square gravity towards pearls we can win.
+                // v15 rev2 fix 4: growth policy is v10.3.3's linear pull. Gravity is still
+                // computed (it drives the layer 4 trigger) but no longer scores the move.
                 candidate.gravity = step.destination_known ? food_gravity(step.destination, grow) : 0;
-                score += candidate.gravity;
+                if (Config::GRAVITY_SCORES)
+                    score += candidate.gravity;
+                else
+                {
+                    int const radius = Config::PEARL_PULL_RADIUS;
+                    int const before = std::min(radius, objective_dist_[static_cast<std::size_t>(index(origin))]);
+                    int const after = step.destination_known
+                                          ? std::min(radius, objective_dist_[static_cast<std::size_t>(index(step.destination))])
+                                          : before;
+                    score += (before - after) * (grow ? Config::GROWER_PEARL_PULL : Config::PEARL_PULL);
+                }
             }
             if (candidate.direct_pearl)
                 score += grow ? 3800 : 2500; // NEW: Was 2800 and 850.
