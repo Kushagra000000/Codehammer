@@ -1,0 +1,58 @@
+# Hypotheses queue
+
+How this works (see `AGENTS.md` for the full process):
+1. The lead adds ideas here. Each has an id, a lane, a priority and a test.
+2. An agent claims one by setting `owner` and `status: claimed` in a commit on its
+   own lane branch **before** starting work.
+3. One hypothesis = one bot version = one logged result in `knowledge/experiment_log.md`.
+4. When done, set `status: done-keep`, `done-reject` or `done-inconclusive` and link the log entry.
+
+Lanes: `pearls` (growth and routing), `combat` (fights, splitting, escapes),
+`endgame` (late game, queen, tiebreaks), `infra` (tooling, lead only).
+
+Context: since 2026-10-02 the 500-round tiebreak checks **the queen's length first**
+(queen = team A's dragon ID 0 or team B's dragon ID 1, observed 2026-10-03; our queen is whichever matches our side). A dead queen counts as
+length 0. No existing bot was written with this rule. These ideas are guesses to test,
+not facts.
+
+---
+
+## H-001 | lane: infra | priority: 1 | status: open | owner: -
+Claim: all earlier ratings are invalid; we need a new baseline on the new engine.
+Test: build the env from `requirements.txt` (unswbc 1.2.9), run `unswbc maps`, then
+round-robin every bot in `battlecode-automation/panel.json` on every map in `maps/`,
+both sides, several seeds. Record per game whether it ended by elimination or at
+round 500, and for round-500 games which tiebreak decided it (the engine prints it
+with `unswbc run -v`).
+Output: a table in `knowledge/experiment_log.md`; proposed champion for the human.
+
+## H-002 | lane: endgame | priority: 1 | status: open | owner: -
+Claim: how often games reach round 500, and how often the queen decides them, tells us
+how much the new rule matters. If it is rare, queen work is low value.
+Test: from the H-001 data, count round-500 finishes and deciding tiebreak per bot and map.
+
+## H-003 | lane: endgame | priority: 2 | status: open | owner: -
+Claim: our bots' "king" (the dragon the team feeds) should be the queen, so the
+queen is the longest dragon at round 500.
+Test: new bot where pearl donation targets and growth priority favour dragon ID 0/1.
+Keep if: gate passes vs champion and the panel.
+
+## H-004 | lane: endgame | priority: 2 | status: open | owner: -
+Claim: the queen should never split, never take a sacrificial/worker role, and never
+risk a head-on collision, because splitting shortens the parent and a dead queen
+loses the tiebreak outright.
+Test: queen-protection rules added to the champion; measure queen deaths and length.
+
+## H-005 | lane: combat | priority: 2 | status: open | owner: -
+Claim: attacking the enemy queen is worth more than attacking other dragons, since
+a dead queen loses the tiebreak. The enemy queen is the enemy dragon with ID 0 or 1 (ID 1 if we are team A, ID 0 if we are team B).
+Test: bias fight/collision decisions toward the enemy queen when it is in vision.
+
+## H-006 | lane: pearls | priority: 3 | status: open | owner: -
+Claim: routing toward the soonest-spawning pearl beats nearest-pearl on large maps.
+Test: new bot version; gate on the 7 maps added in unswbc 1.2.x (australia, islands,
+maze, stripes, tower_defense, unsw, weakhold) as well as the old set.
+
+## H-007 | lane: infra | priority: 3 | status: open | owner: -
+Claim: constants in the champion can be tuned automatically for gains.
+Test: move 8-15 magic numbers into one `params.hpp`; tune with SPSA on the Pi/Mac.

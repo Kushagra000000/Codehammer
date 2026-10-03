@@ -1,3 +1,44 @@
+# RULE CHANGE LOG (read this first)
+
+## 2026-10-02: tiebreak now checks the QUEEN first
+Sources: https://game.battlecode.au/docs/structure (read 2026-10-03); engine `unswbc` 1.2.9
+(`run.py` explains results as "longer queen", "longest dragon", "total length"; the engine
+reports each team's queen length).
+
+OLD rule (until 2026-10-01). After 500 rounds without elimination:
+1. the team with the longest living dragon wins; 2. else the greatest total length; 3. else draw.
+
+NEW rule (from 2026-10-02). After 500 rounds without elimination:
+1. the team with the longer **queen dragon** wins (each team's queen is its dragon with ID 0 or 1: ID 0 for team A, ID 1 for team B, observed 2026-10-03);
+2. else the team with the longest living dragon; 3. else the greatest total length; 4. else draw.
+A dead queen has length 0, so a team whose queen dies loses to a team whose queen lives.
+
+UNCHANGED (per the docs page): at most 500 rounds; a team is eliminated when all its dragons
+die; if one team is eliminated the other wins; if both are eliminated in the same round it is a draw.
+
+OBSERVED 2026-10-03 (unswbc 1.2.9, seed 1, bot-v10.3.3 vs alan-v2.1, maps arena and default, `-v` log):
+dragon IDs are handed out in turn order, alternating team A then team B. ID 0 is team A's first
+dragon and ID 1 is team B's first dragon, so team A's queen is ID 0 and team B's queen is ID 1. Which
+side we get varies, so our queen is whichever of ID 0 or 1 matches our side: a bot is its own queen when
+`ct.get_id() <= 1`, and an enemy dragon with ID 0 or 1 is the enemy queen. On default.map each team
+starts with 6 dragons (IDs 0 to 11 alternating A, B); only IDs 0 and 1 are queens, IDs 2 to 11 are ordinary.
+Dragons created by splitting get new, higher IDs (seen on arena: IDs 2 and 3 appear at round 8).
+STILL UNVERIFIED: whether anything besides the tiebreak changed, and the ID rule on maps other than
+arena and default (check once on each new map and record it here).
+
+ENGINE: `unswbc` 1.1.0 (the repo's old pin) does NOT implement this. Use 1.2.9 (`requirements.txt`).
+The helper protocol is still major version 3 and `get_id()` is available on a dragon.
+`unswbc` 1.2.x also ships 22 maps; this repo's `maps/` had 15. New: australia, islands, maze,
+stripes, tower_defense, unsw, weakhold. Run `unswbc maps` to add them (it keeps existing files).
+
+STRATEGY IMPLICATIONS (hypotheses, see `knowledge/Strategy.md` and `HYPOTHESES.md`): protect and
+grow the queen; do not let it split or take risks late; consider hunting the enemy queen.
+
+All text below this line was copied from the docs before the change. Where it lists the
+tiebreaks it is **superseded** by the rule above.
+
+---
+
 ## Current protocol verification — 2026-09-26
 
 OBSERVED: isolated toolkit `unswbc 1.1.0`; its bundled C++ helper differs from
@@ -10,6 +51,8 @@ Own-body sonar can emerge from the tail; echoes do not identify which ray hit.
 Engine SHA-256: `12e58ad88650da698a4b70c25f4d2c1b0341898787eca60fa95d219fc91ab566`.
 
 The rules and documentations are:
+
+[SUPERSEDED on 2026-10-02: the tiebreak list in this excerpt is the OLD rule. See the rule change log at the top of this file.]
 
 https://game.battlecode.au/docs/structure "Rounds and Turns
 Each game lasts at most 500 rounds. Within each round, every currently living dragon will perform some number of actions. One of these time steps is known as a turn.

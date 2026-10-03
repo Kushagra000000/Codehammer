@@ -1,0 +1,14 @@
+{
+  "_note": "PROVISIONAL frozen opponent panel (2026-10-03). Never edit a bot listed here. Re-baseline on unswbc 1.2.9, then prune weak or redundant entries. Only the human or lead edits this file.",
+  "engine": "unswbc==1.2.9",
+  "champion": "bots/Old/current/bot-v10.3.3",
+  "opponents": [
+    "bots/Old/alan/alan-v2.1",
+    "bots/Old/alan/alan-v2.4",
+    "bots/Old/Kushagra/bot-v12.2-Kushagra",
+    "bots/Old/archive/bot-v11.1"
+  ],
+  "maps": "all .map files in maps/",
+  "sides": "both",
+  "gate": {"h0_score": 0.50, "h1_score": 0.60, "alpha": 0.05, "beta": 0.05, "min_panel_opponent_score": 0.40, "max_games": 300}
+}
