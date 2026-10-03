@@ -56,3 +56,30 @@ maze, stripes, tower_defense, unsw, weakhold) as well as the old set.
 ## H-007 | lane: infra | priority: 3 | status: open | owner: -
 Claim: constants in the champion can be tuned automatically for gains.
 Test: move 8-15 magic numbers into one `params.hpp`; tune with SPSA on the Pi/Mac.
+
+---
+# bot-v15.0 hypotheses (added 2026-10-03)
+`bots/New/bot-v15.0` is the new base (design: `knowledge/v15_design.md`), built from v10.3.3.
+These are BLOCKED until v15.0 exists and has been merged into the lane branches.
+
+## H-008 | lane: infra | priority: 1 | status: claimed | owner: claude-base
+Build bot-v15.0 per `knowledge/v15_design.md`. Keep: it builds, plays, no timeouts under `--sandbox`.
+Not required: beating v10.3.3.
+
+## H-010 | lane: pearls | priority: 1 | status: blocked | owner: -
+Claim: the gravity field's falloff (power and ETA scaling) and the rival-ETA damping in `food.hpp` set food-gathering speed. Test two or three falloff variants.
+
+## H-011 | lane: pearls | priority: 2 | status: blocked | owner: -
+Claim: the BFS planner in `route.hpp` fires too late or too early. Test the "local score below threshold" trigger and the size of the directional boost.
+
+## H-012 | lane: pearls | priority: 3 | status: blocked | owner: -
+Claim: lookahead depth versus the CPU budget is mis-set. Measure CPU use under `--sandbox` and test one deeper or cheaper setting.
+
+## H-020 | lane: combat | priority: 1 | status: blocked | owner: -
+Claim: `tactics.hpp` assassination should prioritise the enemy queen and only fire when the sprint is provably safe. Test sprint length limit and queen priority.
+
+## H-021 | lane: combat | priority: 2 | status: blocked | owner: -
+Claim: panic-escape ordering (sprint, split escape, reverse split) matters. Test one reordered cascade.
+
+## H-022 | lane: combat | priority: 2 | status: blocked | owner: -
+Claim: sacrificial feeding and mitosis should favour our queen (`get_id() <= 1`). Test a rule that feeds the queen first and never splits the queen late.

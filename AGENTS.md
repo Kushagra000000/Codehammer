@@ -19,7 +19,7 @@ The old engine pin (`unswbc` 1.1.0) does not implement the new rule. Use 1.2.9.
 2. `CHAMPION.md`: the bot to beat and how promotion works.
 3. `HYPOTHESES.md`: the work queue.
 4. `knowledge/experiment_log.md`: what has been tried (only post-2026-10-02 entries count).
-5. `knowledge/Strategy.md`: reusable lessons.
+5. `knowledge/Strategy.md`: reusable lessons. Also `knowledge/v15_design.md` (architecture of the new base bot).
 6. `battlecode-automation/README.md`: how to run matches.
 
 ## Repo map
@@ -62,7 +62,7 @@ The `.battlecode-codex` folder is per machine and gitignored. In a git worktree,
 ## Workflow for a lane agent
 1. Pull, then pick the highest-priority `open` hypothesis in your lane in `HYPOTHESES.md`.
 2. Claim it: set `owner` and `status: claimed`, commit on your lane branch.
-3. Copy the champion project to `bots/New/bot-v13.<n>-hNNN/` (never edit a bot in `bots/Old/`).
+3. Copy the base bot (`bots/New/bot-v15.0`; its design is in `knowledge/v15_design.md`) to `bots/New/bot-v15.<n>-hNNN/` (never edit a bot in `bots/Old/`).
    Make the smallest change that tests the hypothesis. Keep it C++20 and within the
    judge limits (100M CPU points per dragon per turn, 48 MB per dragon).
 4. Build and smoke-test: run one match against the champion; fix any crash or timeout.
