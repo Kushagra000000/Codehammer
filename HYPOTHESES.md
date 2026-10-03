@@ -62,9 +62,10 @@ Test: move 8-15 magic numbers into one `params.hpp`; tune with SPSA on the Pi/Ma
 `bots/New/bot-v15.0` is the new base (design: `knowledge/v15_design.md`), built from v10.3.3.
 These are BLOCKED until v15.0 exists and has been merged into the lane branches.
 
-## H-008 | lane: infra | priority: 1 | status: claimed | owner: claude-base
+## H-008 | lane: infra | priority: 1 | status: done-keep | owner: claude-base
 Build bot-v15.0 per `knowledge/v15_design.md`. Keep: it builds, plays, no timeouts under `--sandbox`.
 Not required: beating v10.3.3.
+Result (B-001): builds, 9 full games without errors, sandbox max 6.7M points/turn. Strength unproven (2-0-6 in 8 games).
 
 ## H-010 | lane: pearls | priority: 1 | status: blocked | owner: -
 Claim: the gravity field's falloff (power and ETA scaling) and the rival-ETA damping in `food.hpp` set food-gathering speed. Test two or three falloff variants.
