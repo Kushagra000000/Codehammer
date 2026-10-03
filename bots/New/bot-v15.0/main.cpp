@@ -243,6 +243,7 @@ namespace
             add_tactical_sprints(candidates);
             add_escape_sprints(candidates);
             apply_known_space_penalties(candidates);
+            apply_route_boost(candidates); // v15 layer 4
             if (play_split_escape(candidates))
                 return;
 

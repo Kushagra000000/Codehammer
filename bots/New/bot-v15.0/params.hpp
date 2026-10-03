@@ -139,4 +139,12 @@ namespace Config
     constexpr int LOOKAHEAD_BUDGET_PER_MOVE = 6000;  // DFS node expansions per candidate move
     constexpr int DEAD_END_PENALTY = 20000;          // fully searched shortfall (fatal trap), scaled by missing depth
     constexpr int JAM_PENALTY = 1500;                // budget-cut shortfall (temporary jam), scaled by missing depth
+
+    // --- v15 layer 4: global BFS route planner ---
+    constexpr int ROUTE_MIN_GRAVITY = 300;      // plan a route only when the best local gravity is below this
+    constexpr int ROUTE_MAX_DIST = 80;          // BFS depth limit (cells)
+    constexpr int ROUTE_PEARL_MAX_AGE = 60;     // remembered pearls older than this are not route targets
+    constexpr int FRONTIER_STALE_ROUNDS = 40;   // a seen cell unseen for this long counts as frontier
+    constexpr int ROUTE_PEARL_BOOST = 700;      // bonus for the first step towards a remembered pearl
+    constexpr int ROUTE_FRONTIER_BOOST = 350;   // bonus for the first step towards the frontier
 }
