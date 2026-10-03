@@ -1109,17 +1109,6 @@ namespace
                 // v15 layer 2: inverse-square gravity towards pearls we can win.
                 candidate.gravity = step.destination_known ? food_gravity(step.destination, grow) : 0;
                 score += candidate.gravity;
-                // v15 rev2 fix 1: far field. Beyond FAR_FIELD_START steps the inverse-square pull
-                // is flat, so add v10.3.3's linear pull (per step of path distance) there.
-                {
-                    int const radius = Config::PEARL_PULL_RADIUS;
-                    int const before = std::min(radius, objective_dist_[static_cast<std::size_t>(index(origin))]);
-                    int const after = step.destination_known
-                                          ? std::min(radius, objective_dist_[static_cast<std::size_t>(index(step.destination))])
-                                          : before;
-                    if (before > Config::FAR_FIELD_START)
-                        score += (before - after) * (grow ? Config::GROWER_PEARL_PULL : Config::PEARL_PULL);
-                }
             }
             if (candidate.direct_pearl)
                 score += grow ? 3800 : 2500; // NEW: Was 2800 and 850.

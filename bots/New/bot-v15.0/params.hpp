@@ -70,7 +70,7 @@ namespace Config
     // --- v11: pearl collection ---
     // Pull per step of path distance to the nearest pearl we can still win, out to
     // PEARL_PULL_RADIUS. Must beat the straight-ahead bias (235) and the centre pull.
-    constexpr int PEARL_PULL = 450, GROWER_PEARL_PULL = 700, PEARL_PULL_RADIUS = 12;  // linear pull per step (far field only since v15 rev2); objective map radius
+    constexpr int PEARL_PULL = 450, GROWER_PEARL_PULL = 700, PEARL_PULL_RADIUS = 12;  // legacy linear pull (unused since v15 layer 2); objective map radius
     // A remembered pearl we can no longer see costs age/DIV extra steps, and is
     // forgotten after MAX_AGE rounds.
     constexpr int REMEMBERED_PEARL_AGE_DIV = 10, REMEMBERED_PEARL_MAX_AGE = 50;  // remembered pearl: age divisor for extra cost; forget after this age
@@ -159,6 +159,4 @@ namespace Config
     // --- v15 layer 5: panic escapes ---
     constexpr bool PANIC_ENABLED = true;          // re-check the chosen move and fall back if it is fatal
     constexpr int PANIC_SPLIT_MIN_LENGTH = 4;     // shortest dragon that may split-escape in a panic
-    // --- v15 rev2 ---
-    constexpr int FAR_FIELD_START = 4;            // nearest pearl objective farther than this: add the v10.3.3 linear pull
 }
