@@ -38,3 +38,6 @@ analysis*.txt
 **/raw_logs/
 **/.unswbc-build/
 __pycache__/
+
+# Random
+random/
