@@ -27,3 +27,14 @@ battlecode-automation/data/raw_logs/
 # Editor junk
 .vscode/*
 !.vscode/extensions.json
+
+# Contest key / tokens
+.env*
+*.key
+.claude/settings.local.json
+.codex*/
+battlecode-automation/data/raw_logs/
+analysis*.txt
+**/raw_logs/
+**/.unswbc-build/
+__pycache__/

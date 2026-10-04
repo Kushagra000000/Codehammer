@@ -1,0 +1,11 @@
+{
+  "reason": "First fresh110pairedgames improvedoverallbyonly1win (74vs73),though elimination44/18vs41/22. Do not claim significant overall improvement. Test two shorter phase boundaries to see if reduced commitment helps.",
+  "candidates": [
+    15,
+    25
+  ],
+  "control": 40,
+  "screen": "Same21map/opponent/seed105101schedule;allhavealpha450andgrowers8. Onlycutoffvaries.",
+  "selection": "Keep current40unless alternative strictly improves screening score; ties prefercurrent. If a shorter alternative wins, run a new predeclared fresh cohort seed105903 on all11maps and5opponents versus parent (55each). Retain only if positive pairedscore and eliminationbalance; otherwise revert frozen40.",
+  "preservation": "Do not overwrite initial validation or source snapshots. No other strategy families. No statistical claim from adaptive selection."
+}

@@ -1,0 +1,47 @@
+{
+  "parent": "bots/current/bot-v10.4",
+  "candidate": "bots/current/bot-v10.4.1",
+  "revision": "rewrite-r4",
+  "toolkit": "1.1.0",
+  "implementation_files": {
+    "main.cpp": {
+      "sha256": "c685184950d845a1d880965df4e51634307dd4e19d9a1589a1aa639b7fdc4d0e",
+      "parent_sha256": "85afcd337d83e8290dbaace4343750ccec0b5efebb16163c7c132b832b12fead",
+      "matches_tested_snapshot": true
+    },
+    "coordination.hpp": {
+      "sha256": "7408f9aa59b70661e9c06249efa64ad3a1f1a0209c0a63e45974ec7106bfbc9e",
+      "parent_sha256": "548ae9b20ec0e39c7d3939d69520147cca080cd86056ba5b565acdd2e68c393d",
+      "matches_tested_snapshot": true
+    },
+    "helper.hpp": {
+      "sha256": "6bd3b258ad4db850bd209279db0d8a836e3ed4fb1589190cfeda0012bbae7bcc",
+      "parent_sha256": "6bd3b258ad4db850bd209279db0d8a836e3ed4fb1589190cfeda0012bbae7bcc",
+      "matches_tested_snapshot": true
+    },
+    "bot.toml": {
+      "sha256": "d56d20b38e5961083cba1d7e00ff47397f567bf55c2b4a4748ac0f32fcba9cd5",
+      "parent_sha256": "d56d20b38e5961083cba1d7e00ff47397f567bf55c2b4a4748ac0f32fcba9cd5",
+      "matches_tested_snapshot": true
+    }
+  },
+  "matching_game_ids": [
+    "45378e8d74bdd8d85abef92b11546d62e157db673e76ee860a158f2a4723c499",
+    "86d372db120cc07768e5e1499f7b715cf8350eea381eae2ad71a4b4f76a7b262",
+    "2eff96675e4568d4c7c826f16fecf780e8b56d68cc1311d6786e6fe6cbf59b2f",
+    "ac360cf14c356ade3aac0eadb8e6eac08633f78a3a1c83e4f5ae4920f9ccd1f1",
+    "f7696f91d0eba0e0b7dec457ff778c87ee4ca761048ebca7a41f3d5de6b0b0bd",
+    "ff69d164c7356a430c307cc8103ec14120d24bf81d90b83cbd46731df4f4aaa4",
+    "d2321c4e8d7e21880438e1410a940e145e4d7b2ae7c72669a6461c8fa3e6ad1d",
+    "9b42f9a90ce74310b565a70dbd6695b5dc77330741ed24d9b8a4faf7a87de285",
+    "e6428a375eb65bc1aab83041337ef0012971ea7b01f23855a4b07066ebc98ee7",
+    "81e7bb4e37ad56b73ddd12c43b6b275cb37426c5045927c9a0ba22ca1d25f61d",
+    "e768bc07996e29a13be9298393d19efad88b566766ed763617d61222b0a89663",
+    "43e4df8e257c12f514ea4e10d45214cffde1f20c4e3578fc4f93e1516fd72022",
+    "c44124441ee03e9c1a32a28a78fd1ac2eadf13f334b29551c4977852f5c6751c",
+    "068141acc46a45b152c65b70327b5980dfa49322510403bd8c118081f0a8f05a",
+    "67b9f3da5868c7b608a615a1c01165a4190d1be60c6f0d916c0ed3aad63c4c8f",
+    "0b9baf304ba1b7faab7bdb2ae01bed3b9eca8bc93cc40dd4cd5ea5a9c2c3c02b"
+  ],
+  "note": "Documentation changed after matches; implementation bytes match r4-source exactly. Match fingerprints include documentation."
+}

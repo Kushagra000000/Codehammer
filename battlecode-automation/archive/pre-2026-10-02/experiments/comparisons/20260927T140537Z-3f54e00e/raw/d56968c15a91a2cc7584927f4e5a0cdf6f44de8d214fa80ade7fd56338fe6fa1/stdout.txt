@@ -1,0 +1,41 @@
+loaded c/c++ vs c/c++
+without --sandbox the seed repeats the pearls but not the bots' own random numbers
+seed 0x00000000000028a0
+running round 2/500 --  last: 178ms  eta: 1m28s  dragons: 2 vs 2
+round 33: bot 13 (team B) died: lost a head-to-head
+round 33: bot 2 (team A) died: lost a head-to-head
+round 34: bot 1 (team B) died: lost a head-to-head
+round 34: bot 6 (team A) died: lost a head-to-head
+round 40: bot 9 (team B) died: lost a head-to-head
+round 40: bot 19 (team A) died: lost a head-to-head
+round 47: bot 16 (team B) died: lost a head-to-head
+round 47: bot 0 (team A) died: lost a head-to-head
+running round 51/500 --  last: 2ms  eta: 2.6s  dragons: 4 vs 12
+round 52: bot 12 (team B) died: lost a head-to-head
+round 52: bot 22 (team A) died: lost a head-to-head
+round 55: bot 10 (team A) died: lost a head-to-head
+round 55: bot 5 (team B) died: lost a head-to-head
+round 56: bot 15 (team B) died: lost a head-to-head
+round 56: bot 8 (team A) died: lost a head-to-head
+round 61: bot 17 (team B) died: lost a head-to-head
+round 61: bot 21 (team A) died: lost a head-to-head
+round 65: bot 7 (team B) died: lost a head-to-head
+round 65: bot 25 (team A) died: lost a head-to-head
+round 75: bot 32 (team A) died: lost a head-to-head
+round 75: bot 23 (team B) died: lost a head-to-head
+round 79: bot 38 (team B) died: lost a head-to-head
+round 79: bot 39 (team A) died: lost a head-to-head
+round 81: bot 37 (team B) died: hit itself
+round 84: bot 35 (team A) died: lost a head-to-head
+round 84: bot 24 (team B) died: lost a head-to-head
+round 87: bot 27 (team B) died: lost a head-to-head
+round 87: bot 42 (team A) died: lost a head-to-head
+round 89: bot 28 (team A) died: lost a head-to-head
+round 89: bot 30 (team B) died: lost a head-to-head
+round 90: bot 4 (team B) died: hit itself
+round 95: bot 14 (team B) died: lost a head-to-head
+round 95: bot 40 (team A) died: lost a head-to-head
+round 95: bot 48 (team B) died: lost a head-to-head
+round 95: bot 45 (team A) died: lost a head-to-head
+team B wins after 96 rounds (by elimination) (0.5s)
+wrote replay: /Users/kushagra/Desktop/UNSW_battlecode/Codehammer/replays/research-d56968c15a91a2cc7584927f4e5a0cdf6f44de8d214fa80ade7fd56338fe6fa1.replay

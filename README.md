@@ -1,96 +1,25 @@
-# CodeHammer
-UNSW battleCode
+# Codehammer
 
-## Manual comparison and v10.4
+Our UNSW Battlecode bot (C++) and the tooling for improving it with AI agents.
+Competition: https://battlecode.au (Qualifier 2026-10-10, Grand Final 2026-10-17).
 
-The user-designated best is `bots/current/bot-v10.3.1`. New derivative
-`bots/current/bot-v10.4` is **untested**; see its `NOTES.md` for changes and knobs.
+**New here? Read `AGENTS.md`.** It is the working manual for people and AI agents.
 
-From the repository root:
-
+## Quickstart
 ```bash
-.battlecode-codex/bin/python battlecode-automation/scripts/compare_bot.py --bot bot-v10.4
+git clone https://github.com/Kushagra000000/Codehammer.git && cd Codehammer
+uv venv --python 3.13 .battlecode-codex
+uv pip install --python .battlecode-codex/bin/python -r requirements.txt
+.battlecode-codex/bin/unswbc maps
+.battlecode-codex/bin/unswbc run maps/arena.map bots/Old/alan/alan-v2.1 bots/Old/alan/alan-v2.1
 ```
+Replays open in VS Code (the viewer is installed by `unswbc`) or at https://game.battlecode.au/visualiser.
+Contest key: `unswbc auth set bc_...` (get it at https://game.battlecode.au/team). Never commit it.
 
-Select any current bot name or project path with `--bot`. All opponents in
-`bots/current` and all maps under `maps` are discovered recursively. Self and
-identical-source aliases are excluded. There is **one game per opponent/map**;
-sides alternate across maps without scheduling reversed duplicates.
-Options: `--dry-run` lists the schedule, `--workers 2` controls concurrency,
-`--seed 10401` selects another seed, and `--sandbox` uses judge-like execution.
+## What changed on 2026-10-02
+The tiebreak at round 500 now checks the queen dragon's length first. Earlier results
+are archived under `battlecode-automation/archive/pre-2026-10-02/`. See `knowledge/game_rules.md`.
 
-Requires the existing `.battlecode-codex` environment with `unswbc==1.1.0` and
-Node.js on PATH. The existing strict CLI/replay parser is reused. Each run saves
-`results.md`, `summary.json`, `matches.jsonl`, source/map snapshots, a manifest,
-and raw logs under `battlecode-automation/experiments/comparisons/<run-id>/`.
-Replays go in `replays/`. Errors are separate from W/D/L and cause a nonzero exit
-status. Tables update after each completed game. No automatic promotion occurs.
-One game per map is a screening comparison, not statistical proof of superiority.
-Neither the new bot nor the new script was executed during creation.
-
-## Latest v11 result
-
-528 local games completed. Final v11.1 scored62W/16D/32L over110 fresh games:
-positive against v10.1/v10/v9/v8, but8W/4D/10L against v10.2. No promotion or
-official submission. Keep existing competition bots; both new projects remain
-reversible research candidates. See `battlecode-automation/experiments/v11/REPORT.md`
-and `battlecode-automation/reports/v11.html`. Exact source ZIPs are beside the report.
-
-## Active development: v11
-
-The current research slots are `bots/candidate/bot-v11` and `bot-v11.1`.
-Frozen opponents are v8, v9, v10, v10.1 and v10.2. Both sides and every map
-are discovered by the bounded evaluator; source snapshots and results are
-append-only. Development slots are not automatically promoted.
-
-```bash
-.battlecode-codex/bin/python battlecode-automation/scripts/v11_matches.py --candidate bot-v11 --opponents bot-v11.1 bot-v10.2 bot-v10.1 bot-v10 bot-v9 bot-v8 --seeds 8201 --experiment v11-manual-replication --dry-run
-```
-
-Dashboard: `battlecode-automation/reports/v11.html`.
-Design and research: `Knowledge/v11_design.md`.
-
-## Historical development: v10
-
-The broad candidate search is retired from the active workflow. Only `bot-v10`
-and `bot-v10.1` are developed, with frozen `bot-v8` and `bot-v9` as opponents.
-The default ladder respects this four-bot allowlist. Historical experiments
-remain available for audit; no candidate generation or promotion runs automatically.
-
-```bash
-.battlecode-codex/bin/python battlecode-automation/scripts/v10_matches.py --candidate bot-v10.1 --opponents bot-v10 bot-v8 bot-v9 --seeds 7201 --experiment v10-manual-validation --dry-run
-```
-
-Remove `--dry-run` to run that bounded schedule on every discovered map.
-Results: `battlecode-automation/reports/v10.html`; design: `Knowledge/v10_design.md`.
-
-## Setup
-1. Install uv: https://docs.astral.sh/uv/
-2. `uv tool install unswbc`
-3. `unswbc auth set bc_...` (get your own key from https://game.battlecode.au/team)
-4. `git clone https://github.com/Kushagra000000/Codehammer.git`
-
-## Run a match
-`unswbc run maps/arena.map mybot mybot`
-
-## Replay
-Open the `.replay` file in VS Code (viewer auto-installed) or at https://game.battlecode.au/visualiser
-
-## Historical research environment and records
-
-The 2026-09-26 research environment is `.battlecode-codex` (Python 3.13,
-`unswbc==1.1.0`). Use its CLI explicitly; do not silently substitute a global
-engine. Existing helpers already support Protocol 3.
-
-```bash
-.battlecode-codex/bin/python battlecode-automation/scripts/research.py --candidate bot-v9-exp003 --opponents bot-v5 bot-v8 --maps default.map stronghold.map --seeds 202 --experiment EXP003-replication --dry-run
-.battlecode-codex/bin/python battlecode-automation/scripts/research_report.py
-.battlecode-codex/bin/python battlecode-automation/scripts/analyse_maps.py
-```
-
-Remove `--dry-run` to execute a declared experiment. Matches use two workers,
-isolated bot copies, explicit seeds, complete raw logs and replay/CLI agreement.
-The append-only research ledger is separate from historical ladder results.
-The dashboard is `battlecode-automation/reports/research.html`. Replays stay local.
-Promotion is gated by the preregistered plan in the research experiment directory;
-the normal ladder no longer replaces the champion solely because of Elo.
+## Layout
+`bots/New` (active work) · `bots/Old` (frozen history and opponents) · `knowledge/` (rules, strategy,
+experiment log) · `battlecode-automation/` (tools, panel, outputs) · `maps/` · `CHAMPION.md` · `HYPOTHESES.md`.

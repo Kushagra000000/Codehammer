@@ -1,0 +1,350 @@
+{
+  "experiment": "extension-opening25",
+  "candidate": "opening25",
+  "candidate_hash": "54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+  "parent": "bot-v10.4.1",
+  "hypothesis": "Only end of center push changes40to25;alpha450andgrowers8unchanged",
+  "scheduled": 21,
+  "completed": 21,
+  "games": 21,
+  "wins": 12,
+  "draws": 2,
+  "losses": 7,
+  "errors": 0,
+  "elimination_wins": 11,
+  "elimination_draws": 2,
+  "elimination_losses": 7,
+  "round_limit_wins": 1,
+  "round_limit_draws": 0,
+  "round_limit_losses": 0,
+  "other_end_reasons": {},
+  "runtime_failures": 0,
+  "win_rate": 0.5714285714285714,
+  "score_rate": 0.6190476190476191,
+  "mean_final_longest": 2.9523809523809526,
+  "maximum_final_longest": 25,
+  "mean_elimination_win_round": 133.8181818181818,
+  "mean_elimination_loss_round": 224.28571428571428,
+  "elimination_win_rounds": [
+    51,
+    128,
+    110,
+    105,
+    68,
+    235,
+    173,
+    226,
+    184,
+    71,
+    121
+  ],
+  "elimination_loss_rounds": [
+    156,
+    395,
+    112,
+    220,
+    214,
+    260,
+    213
+  ],
+  "mean_seconds": 8.269047619047619,
+  "opponents": {
+    "bot-v10.1": {
+      "games": 7,
+      "wins": 4,
+      "draws": 1,
+      "losses": 2,
+      "errors": 0,
+      "elimination_wins": 4,
+      "elimination_draws": 1,
+      "elimination_losses": 2,
+      "round_limit_wins": 0,
+      "round_limit_draws": 0,
+      "round_limit_losses": 0,
+      "other_end_reasons": {},
+      "runtime_failures": 0,
+      "win_rate": 0.5714285714285714,
+      "score_rate": 0.6428571428571429,
+      "mean_final_longest": 1.8571428571428572,
+      "maximum_final_longest": 4,
+      "mean_elimination_win_round": 98.5,
+      "mean_elimination_loss_round": 275.5,
+      "elimination_win_rounds": [
+        51,
+        128,
+        110,
+        105
+      ],
+      "elimination_loss_rounds": [
+        156,
+        395
+      ],
+      "mean_seconds": 7.588571428571429
+    },
+    "bot-v10.3.1": {
+      "games": 7,
+      "wins": 6,
+      "draws": 0,
+      "losses": 1,
+      "errors": 0,
+      "elimination_wins": 5,
+      "elimination_draws": 0,
+      "elimination_losses": 1,
+      "round_limit_wins": 1,
+      "round_limit_draws": 0,
+      "round_limit_losses": 0,
+      "other_end_reasons": {},
+      "runtime_failures": 0,
+      "win_rate": 0.8571428571428571,
+      "score_rate": 0.8571428571428571,
+      "mean_final_longest": 5.857142857142857,
+      "maximum_final_longest": 25,
+      "mean_elimination_win_round": 177.2,
+      "mean_elimination_loss_round": 112,
+      "elimination_win_rounds": [
+        68,
+        235,
+        173,
+        226,
+        184
+      ],
+      "elimination_loss_rounds": [
+        112
+      ],
+      "mean_seconds": 10.555714285714286
+    },
+    "bot-v11.1": {
+      "games": 7,
+      "wins": 2,
+      "draws": 1,
+      "losses": 4,
+      "errors": 0,
+      "elimination_wins": 2,
+      "elimination_draws": 1,
+      "elimination_losses": 4,
+      "round_limit_wins": 0,
+      "round_limit_draws": 0,
+      "round_limit_losses": 0,
+      "other_end_reasons": {},
+      "runtime_failures": 0,
+      "win_rate": 0.2857142857142857,
+      "score_rate": 0.35714285714285715,
+      "mean_final_longest": 1.1428571428571428,
+      "maximum_final_longest": 4,
+      "mean_elimination_win_round": 96,
+      "mean_elimination_loss_round": 226.75,
+      "elimination_win_rounds": [
+        71,
+        121
+      ],
+      "elimination_loss_rounds": [
+        220,
+        214,
+        260,
+        213
+      ],
+      "mean_seconds": 6.662857142857143
+    }
+  },
+  "maps": {
+    "Colosseum.map": {
+      "games": 3,
+      "wins": 2,
+      "draws": 0,
+      "losses": 1,
+      "errors": 0,
+      "elimination_wins": 2,
+      "elimination_draws": 0,
+      "elimination_losses": 1,
+      "round_limit_wins": 0,
+      "round_limit_draws": 0,
+      "round_limit_losses": 0,
+      "other_end_reasons": {},
+      "runtime_failures": 0,
+      "win_rate": 0.6666666666666666,
+      "score_rate": 0.6666666666666666,
+      "mean_final_longest": 2.6666666666666665,
+      "maximum_final_longest": 4,
+      "mean_elimination_win_round": 61,
+      "mean_elimination_loss_round": 112,
+      "elimination_win_rounds": [
+        51,
+        71
+      ],
+      "elimination_loss_rounds": [
+        112
+      ],
+      "mean_seconds": 7.1466666666666665
+    },
+    "arena.map": {
+      "games": 3,
+      "wins": 1,
+      "draws": 2,
+      "losses": 0,
+      "errors": 0,
+      "elimination_wins": 1,
+      "elimination_draws": 2,
+      "elimination_losses": 0,
+      "round_limit_wins": 0,
+      "round_limit_draws": 0,
+      "round_limit_losses": 0,
+      "other_end_reasons": {},
+      "runtime_failures": 0,
+      "win_rate": 0.3333333333333333,
+      "score_rate": 0.6666666666666666,
+      "mean_final_longest": 1,
+      "maximum_final_longest": 3,
+      "mean_elimination_win_round": 68,
+      "mean_elimination_loss_round": null,
+      "elimination_win_rounds": [
+        68
+      ],
+      "elimination_loss_rounds": [],
+      "mean_seconds": 6.673333333333334
+    },
+    "default.map": {
+      "games": 3,
+      "wins": 2,
+      "draws": 0,
+      "losses": 1,
+      "errors": 0,
+      "elimination_wins": 1,
+      "elimination_draws": 0,
+      "elimination_losses": 1,
+      "round_limit_wins": 1,
+      "round_limit_draws": 0,
+      "round_limit_losses": 0,
+      "other_end_reasons": {},
+      "runtime_failures": 0,
+      "win_rate": 0.6666666666666666,
+      "score_rate": 0.6666666666666666,
+      "mean_final_longest": 9.333333333333334,
+      "maximum_final_longest": 25,
+      "mean_elimination_win_round": 128,
+      "mean_elimination_loss_round": 220,
+      "elimination_win_rounds": [
+        128
+      ],
+      "elimination_loss_rounds": [
+        220
+      ],
+      "mean_seconds": 11.013333333333334
+    },
+    "default_small.map": {
+      "games": 3,
+      "wins": 2,
+      "draws": 0,
+      "losses": 1,
+      "errors": 0,
+      "elimination_wins": 2,
+      "elimination_draws": 0,
+      "elimination_losses": 1,
+      "round_limit_wins": 0,
+      "round_limit_draws": 0,
+      "round_limit_losses": 0,
+      "other_end_reasons": {},
+      "runtime_failures": 0,
+      "win_rate": 0.6666666666666666,
+      "score_rate": 0.6666666666666666,
+      "mean_final_longest": 2,
+      "maximum_final_longest": 3,
+      "mean_elimination_win_round": 172.5,
+      "mean_elimination_loss_round": 214,
+      "elimination_win_rounds": [
+        110,
+        235
+      ],
+      "elimination_loss_rounds": [
+        214
+      ],
+      "mean_seconds": 8.116666666666667
+    },
+    "devil.map": {
+      "games": 3,
+      "wins": 2,
+      "draws": 0,
+      "losses": 1,
+      "errors": 0,
+      "elimination_wins": 2,
+      "elimination_draws": 0,
+      "elimination_losses": 1,
+      "round_limit_wins": 0,
+      "round_limit_draws": 0,
+      "round_limit_losses": 0,
+      "other_end_reasons": {},
+      "runtime_failures": 0,
+      "win_rate": 0.6666666666666666,
+      "score_rate": 0.6666666666666666,
+      "mean_final_longest": 2.3333333333333335,
+      "maximum_final_longest": 4,
+      "mean_elimination_win_round": 147,
+      "mean_elimination_loss_round": 156,
+      "elimination_win_rounds": [
+        173,
+        121
+      ],
+      "elimination_loss_rounds": [
+        156
+      ],
+      "mean_seconds": 8.833333333333334
+    },
+    "queen_of_spades.map": {
+      "games": 3,
+      "wins": 1,
+      "draws": 0,
+      "losses": 2,
+      "errors": 0,
+      "elimination_wins": 1,
+      "elimination_draws": 0,
+      "elimination_losses": 2,
+      "round_limit_wins": 0,
+      "round_limit_draws": 0,
+      "round_limit_losses": 0,
+      "other_end_reasons": {},
+      "runtime_failures": 0,
+      "win_rate": 0.3333333333333333,
+      "score_rate": 0.3333333333333333,
+      "mean_final_longest": 1.3333333333333333,
+      "maximum_final_longest": 4,
+      "mean_elimination_win_round": 226,
+      "mean_elimination_loss_round": 327.5,
+      "elimination_win_rounds": [
+        226
+      ],
+      "elimination_loss_rounds": [
+        395,
+        260
+      ],
+      "mean_seconds": 8.893333333333334
+    },
+    "trophy.map": {
+      "games": 3,
+      "wins": 2,
+      "draws": 0,
+      "losses": 1,
+      "errors": 0,
+      "elimination_wins": 2,
+      "elimination_draws": 0,
+      "elimination_losses": 1,
+      "round_limit_wins": 0,
+      "round_limit_draws": 0,
+      "round_limit_losses": 0,
+      "other_end_reasons": {},
+      "runtime_failures": 0,
+      "win_rate": 0.6666666666666666,
+      "score_rate": 0.6666666666666666,
+      "mean_final_longest": 2,
+      "maximum_final_longest": 3,
+      "mean_elimination_win_round": 144.5,
+      "mean_elimination_loss_round": 213,
+      "elimination_win_rounds": [
+        105,
+        184
+      ],
+      "elimination_loss_rounds": [
+        213
+      ],
+      "mean_seconds": 7.206666666666666
+    }
+  }
+}

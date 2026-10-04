@@ -1,0 +1,29 @@
+{
+  "name": "bot-v12.0-kushagra",
+  "base": "bots/current/bot-v10.3.3",
+  "base_sha256": {
+    "main.cpp": "d82a7ea28a103ca9c143fc3a44a464e121d4fc067ede65510ac46672999e9584",
+    "endgame.hpp": "6735cab1164e5bc3c503368eae0f015c283511a5765ea14f246eaf812715b899",
+    "coordination.hpp": "3e4c52c42e92fe02e6faf16f5d08d65cbec02147b07152c0d651e9bd1fd7b44b",
+    "helper.hpp": "6bd3b258ad4db850bd209279db0d8a836e3ed4fb1589190cfeda0012bbae7bcc"
+  },
+  "sha256": {
+    "bot.toml": "d56d20b38e5961083cba1d7e00ff47397f567bf55c2b4a4748ac0f32fcba9cd5",
+    "coordination.hpp": "43593d4401605a233306c01caa866043abb7b1333b21a1142d6be334500f144b",
+    "endgame.hpp": "57f53a998317257ea9aad0594aa7aa87bbea5e3fa1265c3fe30dcfce00a5ac55",
+    "helper.hpp": "6bd3b258ad4db850bd209279db0d8a836e3ed4fb1589190cfeda0012bbae7bcc",
+    "main.cpp": "6ce78f3849bd4778795c401da23c356bd68be42b0242d267b5b0adb983b14995"
+  },
+  "toolkit": "unswbc 1.1.0",
+  "config": {
+    "V12_DONATION_RULES": true,
+    "V12_DONATION_STRICT_LENGTH": true,
+    "V12_DONATION_DROP_CHECK": false,
+    "V12_FRESHNESS": true,
+    "V12_LATE_WORKER_ESCAPE": true,
+    "KING_FOOD_RADIUS": 0,
+    "NEAR_SOFT_PENALTY": 0
+  },
+  "evaluated_as": "battlecode-automation/experiments/v12 (holdout-v1033, diverse-*)",
+  "submitted": false
+}

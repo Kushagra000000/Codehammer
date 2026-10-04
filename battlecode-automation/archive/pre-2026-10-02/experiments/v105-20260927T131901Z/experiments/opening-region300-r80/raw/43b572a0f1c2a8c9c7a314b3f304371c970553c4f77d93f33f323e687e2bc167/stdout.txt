@@ -1,0 +1,55 @@
+loaded c/c++ vs c/c++
+without --sandbox the seed repeats the pearls but not the bots' own random numbers
+seed 0x0000000000019a8d
+running round 2/500 --  last: 131ms  eta: 1m05s  dragons: 2 vs 2
+round 43: bot 3 (team B) died: hit itself
+running round 51/500 --  last: 5ms  eta: 2.9s  dragons: 10 vs 6
+round 51: bot 9 (team B) died: lost a head-to-head
+round 51: bot 13 (team A) died: lost a head-to-head
+round 52: bot 11 (team B) died: lost a head-to-head
+round 52: bot 7 (team A) died: lost a head-to-head
+round 53: bot 14 (team B) died: lost a head-to-head
+round 53: bot 0 (team A) died: lost a head-to-head
+round 61: bot 10 (team B) died: lost a head-to-head
+round 61: bot 8 (team A) died: lost a head-to-head
+round 68: bot 23 (team A) died: lost a head-to-head
+round 68: bot 1 (team B) died: lost a head-to-head
+round 70: bot 25 (team B) died: lost a head-to-head
+round 70: bot 6 (team A) died: lost a head-to-head
+round 76: bot 18 (team B) died: lost a head-to-head
+round 76: bot 17 (team A) died: lost a head-to-head
+round 77: bot 27 (team B) died: lost a head-to-head
+round 77: bot 22 (team A) died: lost a head-to-head
+round 83: bot 26 (team B) died: lost a head-to-head
+round 83: bot 35 (team A) died: lost a head-to-head
+round 86: bot 34 (team A) died: hit itself
+round 90: bot 30 (team B) died: lost a head-to-head
+round 90: bot 20 (team A) died: lost a head-to-head
+round 96: bot 37 (team B) died: lost a head-to-head
+round 96: bot 36 (team A) died: lost a head-to-head
+round 97: bot 29 (team B) died: lost a head-to-head
+round 97: bot 44 (team A) died: lost a head-to-head
+running round 101/500 --  last: 3ms  eta: 2.8s  dragons: 17 vs 2
+round 110: bot 54 (team B) died: hit itself
+round 111: bot 45 (team B) died: lost a head-to-head
+round 111: bot 48 (team A) died: lost a head-to-head
+round 122: bot 5 (team B) died: lost a head-to-head
+round 122: bot 16 (team A) died: lost a head-to-head
+round 122: bot 53 (team B) died: hit itself
+round 124: bot 40 (team B) died: lost a head-to-head
+round 124: bot 21 (team A) died: lost a head-to-head
+round 125: bot 51 (team A) died: hit itself
+round 126: bot 50 (team A) died: hit itself
+round 132: bot 59 (team B) died: hit itself
+round 132: bot 62 (team A) died: hit itself
+round 133: bot 55 (team A) died: hit itself
+round 134: bot 65 (team B) died: lost a head-to-head
+round 134: bot 4 (team A) died: lost a head-to-head
+round 139: bot 68 (team B) died: lost a head-to-head
+round 139: bot 61 (team A) died: lost a head-to-head
+round 143: bot 57 (team A) died: hit itself
+round 145: bot 67 (team B) died: lost a head-to-head
+round 145: bot 58 (team A) died: lost a head-to-head
+round 145: bot 70 (team A) died: hit itself
+team A wins after 146 rounds (by elimination) (1.0s)
+wrote replay: /Users/kushagra/Desktop/UNSW_battlecode/Codehammer/replays/research-43b572a0f1c2a8c9c7a314b3f304371c970553c4f77d93f33f323e687e2bc167.replay

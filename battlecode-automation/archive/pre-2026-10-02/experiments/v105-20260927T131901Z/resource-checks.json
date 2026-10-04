@@ -1,0 +1,38 @@
+[
+  {
+    "id": "e422e1ab2ea81c1cf52d7df7564104ee476b236c2d94e9ed2fa061b211b016aa",
+    "map": "big_empty.map",
+    "side": "A",
+    "outcome": "W",
+    "longest": 48,
+    "runtime_failures": 0,
+    "point_summary": "team A points per turn: p50 5.4M  p99 7.0M  mean 5.4M  max 13.3M  (23963 turns)"
+  },
+  {
+    "id": "be8019e0cfc5bdbf0aec95e221b79d6fe41ef4f230bb3fde53e2b39d15fc5f04",
+    "map": "big_empty.map",
+    "side": "B",
+    "outcome": "W",
+    "longest": 58,
+    "runtime_failures": 0,
+    "point_summary": "team B points per turn: p50 5.4M  p99 7.1M  mean 5.5M  max 14.3M  (23996 turns)"
+  },
+  {
+    "id": "b002f9d481fa9957b4573d655c1628b822b409fa6e0581e4c3ec1473a74e4b10",
+    "map": "stronghold.map",
+    "side": "A",
+    "outcome": "L",
+    "longest": 18,
+    "runtime_failures": 0,
+    "point_summary": "team A points per turn: p50 5.0M  p99 5.5M  mean 4.9M  max 5.9M  (17677 turns)"
+  },
+  {
+    "id": "548172b4701b65aed99c30121ab965e2a565c6adf4b282c9b647fb443d6afc9d",
+    "map": "stronghold.map",
+    "side": "B",
+    "outcome": "W",
+    "longest": 36,
+    "runtime_failures": 0,
+    "point_summary": "team B points per turn: p50 5.0M  p99 5.5M  mean 5.0M  max 6.0M  (16820 turns)"
+  }
+]

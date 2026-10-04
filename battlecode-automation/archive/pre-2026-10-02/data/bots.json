@@ -1,0 +1,77 @@
+[
+  {
+    "label": "alan-v1",
+    "path": "bots\\alan\\alan-v1",
+    "uid": "alan-v1@071dc2555e",
+    "fingerprint": "071dc2555e53f440680820095e57fa1ab1705ac867dc53bad3d51b0718f5699f",
+    "version": [
+      1
+    ]
+  },
+  {
+    "label": "bot-v8",
+    "path": "bots\\archive\\bot-v8",
+    "uid": "bot-v8@94a7c0a71c",
+    "fingerprint": "94a7c0a71c2be963aa9a265997d3c2d296011543e8337e3ebf3f057533401828",
+    "version": [
+      8
+    ]
+  },
+  {
+    "label": "bot-v9",
+    "path": "bots\\archive\\bot-v9",
+    "uid": "bot-v9@9651d569f0",
+    "fingerprint": "9651d569f0aba92108111567cb5336c25f575865a794ead67853faf9465a2311",
+    "version": [
+      9
+    ]
+  },
+  {
+    "label": "bot-v10",
+    "path": "bots\\archive\\bot-v10",
+    "uid": "bot-v10@fb64d35af4",
+    "fingerprint": "fb64d35af43cc970604422dbce9a221c4aaaa660a3429fcc2f85915d902cbb3b",
+    "version": [
+      10
+    ]
+  },
+  {
+    "label": "bot-v10.1",
+    "path": "bots\\archive\\bot-v10.1",
+    "uid": "bot-v10.1@328ba0ec40",
+    "fingerprint": "328ba0ec407a8b93c1b4233f64a4b5479a2ead31c5a70b38aefd7849c634ff63",
+    "version": [
+      10,
+      1
+    ]
+  },
+  {
+    "label": "bot-v10.2",
+    "path": "bots\\archive\\bot-v10.2",
+    "uid": "bot-v10.2@a7417a2b2d",
+    "fingerprint": "a7417a2b2d03a78b8a4de9ff3567afe93cb9db5b6e5b518a94b2ab45a25c3863",
+    "version": [
+      10,
+      2
+    ]
+  },
+  {
+    "label": "bot-v11",
+    "path": "bots\\archive\\bot-v11",
+    "uid": "bot-v11@967188af32",
+    "fingerprint": "967188af3299b0cee2f9f7c09b46b4c886bbf7159cc4ada370587e762da86683",
+    "version": [
+      11
+    ]
+  },
+  {
+    "label": "bot-v11.1",
+    "path": "bots\\archive\\bot-v11.1",
+    "uid": "bot-v11.1@a7a64292f4",
+    "fingerprint": "a7a64292f4be14d222b0616c96b209a55c22404ba66c6a498ab3607d9f0fe199",
+    "version": [
+      11,
+      1
+    ]
+  }
+]

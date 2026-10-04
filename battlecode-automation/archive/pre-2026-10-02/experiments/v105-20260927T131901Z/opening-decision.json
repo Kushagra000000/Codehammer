@@ -1,0 +1,52 @@
+{
+  "selected": "opening-region300",
+  "parameters": {
+    "center_weight": 300,
+    "radius": 3,
+    "end_round": 40,
+    "food_priority_radius": 4
+  },
+  "reason": "Best screening score16W2D3L and elimination14W3L. Final fresh-seed validation still pending.",
+  "screen_results": [
+    {
+      "experiment": "opening-parent",
+      "wins": 8,
+      "draws": 2,
+      "losses": 11,
+      "elimination_wins": 8,
+      "elimination_losses": 10
+    },
+    {
+      "experiment": "opening-point300",
+      "wins": 14,
+      "draws": 2,
+      "losses": 5,
+      "elimination_wins": 13,
+      "elimination_losses": 5
+    },
+    {
+      "experiment": "opening-region300",
+      "wins": 16,
+      "draws": 2,
+      "losses": 3,
+      "elimination_wins": 14,
+      "elimination_losses": 3
+    },
+    {
+      "experiment": "opening-point200",
+      "wins": 12,
+      "draws": 3,
+      "losses": 6,
+      "elimination_wins": 12,
+      "elimination_losses": 5
+    },
+    {
+      "experiment": "opening-region300-r80",
+      "wins": 12,
+      "draws": 2,
+      "losses": 7,
+      "elimination_wins": 12,
+      "elimination_losses": 7
+    }
+  ]
+}

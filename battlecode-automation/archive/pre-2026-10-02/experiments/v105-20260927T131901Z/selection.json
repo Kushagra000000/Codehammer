@@ -1,0 +1,21 @@
+{
+  "selected_parameters": {
+    "OPENING_CENTER_END_ROUND": 40,
+    "OPENING_CENTER_WEIGHT": 300,
+    "OPENING_CENTER_RADIUS": 3,
+    "OPENING_FOOD_PRIORITY_RADIUS": 4,
+    "OPENING_CENTER_CROWD_LIMIT": 3,
+    "ALPHA_FEED_START_ROUND": 450,
+    "GROWER_NUMERATOR": 1,
+    "GROWER_DENOMINATOR": 8
+  },
+  "parent": "bot-v10.4.1",
+  "opening": "opening-region300",
+  "feeding": "late-alpha450",
+  "growers": "retain1in8",
+  "reason": "growers16 finished11W5L, tying11W5L baseline;growers32 already5losses with3gamesleft, mathematically cannot beat11wins. Complete its remaining schedule but do not tune from validation.",
+  "validation_seeds": [
+    105901,
+    105902
+  ]
+}

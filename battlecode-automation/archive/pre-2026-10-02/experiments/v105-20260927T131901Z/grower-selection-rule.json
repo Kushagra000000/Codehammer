@@ -1,0 +1,9 @@
+{
+  "baseline": "late-alpha450",
+  "rule": "Choose a reduced grower fraction only if score is strictly greater than baseline11/16; otherwise retain1/8. Reject an unexplained map collapse. If reduced fractions tie, prefer1/16 as smaller change. Do not use fresh-validation results to choose parameters.",
+  "choices": [
+    8,
+    16,
+    32
+  ]
+}

@@ -1,0 +1,272 @@
+{
+  "experiment": "extension-opening25",
+  "candidate": {
+    "name": "opening25",
+    "original": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/candidates/opening25",
+    "snapshot": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+    "sha256": "54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3"
+  },
+  "parent": "bot-v10.4.1",
+  "opponents": [
+    {
+      "name": "bot-v10.1",
+      "original": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/bots/current/bot-v10.1",
+      "snapshot": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.1-60e1a9b2adb8640501d1a52c04d76b77023100ab360a95b03ffe907b1fdb156e",
+      "sha256": "60e1a9b2adb8640501d1a52c04d76b77023100ab360a95b03ffe907b1fdb156e"
+    },
+    {
+      "name": "bot-v10.3.1",
+      "original": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/bots/current/bot-v10.3.1",
+      "snapshot": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.3.1-fab0ffdea6ce4d3f323b08a433fc97ad9cbc9fe3dbd18d8c54b833b45c221cc8",
+      "sha256": "fab0ffdea6ce4d3f323b08a433fc97ad9cbc9fe3dbd18d8c54b833b45c221cc8"
+    },
+    {
+      "name": "bot-v11.1",
+      "original": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/bots/current/bot-v11.1",
+      "snapshot": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v11.1-860e7ea84e5571907632bd51de196e0935576d7fc930f3aef2b66dcd4413ac30",
+      "sha256": "860e7ea84e5571907632bd51de196e0935576d7fc930f3aef2b66dcd4413ac30"
+    }
+  ],
+  "maps": [
+    {
+      "name": "Colosseum.map",
+      "original": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/maps/Colosseum.map",
+      "snapshot": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/c7549a41ea26600f613a7d906e5c73e90303f3bc037b28d8aa2751cd17819772/Colosseum.map",
+      "sha256": "c7549a41ea26600f613a7d906e5c73e90303f3bc037b28d8aa2751cd17819772"
+    },
+    {
+      "name": "arena.map",
+      "original": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/maps/arena.map",
+      "snapshot": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/b4bab09603289c2d186ca94d6cf5362e5cc8f24637736c497d9651c0dd921937/arena.map",
+      "sha256": "b4bab09603289c2d186ca94d6cf5362e5cc8f24637736c497d9651c0dd921937"
+    },
+    {
+      "name": "default.map",
+      "original": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/maps/default.map",
+      "snapshot": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/6bd7abf2ed51a7f667552c243ad038f4177e450cf2f9dd9be52f826f9e526f95/default.map",
+      "sha256": "6bd7abf2ed51a7f667552c243ad038f4177e450cf2f9dd9be52f826f9e526f95"
+    },
+    {
+      "name": "default_small.map",
+      "original": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/maps/default_small.map",
+      "snapshot": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/8ac4b2eedcf19f8544ab1866acfcbc628b3cb5ff2df87d80aa682dcb5aa9df19/default_small.map",
+      "sha256": "8ac4b2eedcf19f8544ab1866acfcbc628b3cb5ff2df87d80aa682dcb5aa9df19"
+    },
+    {
+      "name": "devil.map",
+      "original": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/maps/devil.map",
+      "snapshot": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/a09e8f2d3bdd1e40fad31a0ecdf00166cd1090c232c56dcc2557729de737f6aa/devil.map",
+      "sha256": "a09e8f2d3bdd1e40fad31a0ecdf00166cd1090c232c56dcc2557729de737f6aa"
+    },
+    {
+      "name": "queen_of_spades.map",
+      "original": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/maps/queen_of_spades.map",
+      "snapshot": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/126d71b46443268596285918d910b7f8d875bf3028ca9c5ff6bad97b4e868938/queen_of_spades.map",
+      "sha256": "126d71b46443268596285918d910b7f8d875bf3028ca9c5ff6bad97b4e868938"
+    },
+    {
+      "name": "trophy.map",
+      "original": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/maps/trophy.map",
+      "snapshot": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/5f1f6b23d6edb944954a9a31b95f229fd9966bec0875a9f04bca680aa3de33f5/trophy.map",
+      "sha256": "5f1f6b23d6edb944954a9a31b95f229fd9966bec0875a9f04bca680aa3de33f5"
+    }
+  ],
+  "toolkit": "1.1.0",
+  "seeds": [
+    105101
+  ],
+  "both_sides": false,
+  "sandbox": false,
+  "hypothesis": "Only end of center push changes40to25;alpha450andgrowers8unchanged",
+  "schedule": [
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.1-60e1a9b2adb8640501d1a52c04d76b77023100ab360a95b03ffe907b1fdb156e",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/c7549a41ea26600f613a7d906e5c73e90303f3bc037b28d8aa2751cd17819772/Colosseum.map",
+      105101,
+      false,
+      false,
+      "extension-opening25"
+    ],
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.1-60e1a9b2adb8640501d1a52c04d76b77023100ab360a95b03ffe907b1fdb156e",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/b4bab09603289c2d186ca94d6cf5362e5cc8f24637736c497d9651c0dd921937/arena.map",
+      105101,
+      true,
+      false,
+      "extension-opening25"
+    ],
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.1-60e1a9b2adb8640501d1a52c04d76b77023100ab360a95b03ffe907b1fdb156e",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/6bd7abf2ed51a7f667552c243ad038f4177e450cf2f9dd9be52f826f9e526f95/default.map",
+      105101,
+      false,
+      false,
+      "extension-opening25"
+    ],
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.1-60e1a9b2adb8640501d1a52c04d76b77023100ab360a95b03ffe907b1fdb156e",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/8ac4b2eedcf19f8544ab1866acfcbc628b3cb5ff2df87d80aa682dcb5aa9df19/default_small.map",
+      105101,
+      true,
+      false,
+      "extension-opening25"
+    ],
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.1-60e1a9b2adb8640501d1a52c04d76b77023100ab360a95b03ffe907b1fdb156e",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/a09e8f2d3bdd1e40fad31a0ecdf00166cd1090c232c56dcc2557729de737f6aa/devil.map",
+      105101,
+      false,
+      false,
+      "extension-opening25"
+    ],
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.1-60e1a9b2adb8640501d1a52c04d76b77023100ab360a95b03ffe907b1fdb156e",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/126d71b46443268596285918d910b7f8d875bf3028ca9c5ff6bad97b4e868938/queen_of_spades.map",
+      105101,
+      true,
+      false,
+      "extension-opening25"
+    ],
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.1-60e1a9b2adb8640501d1a52c04d76b77023100ab360a95b03ffe907b1fdb156e",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/5f1f6b23d6edb944954a9a31b95f229fd9966bec0875a9f04bca680aa3de33f5/trophy.map",
+      105101,
+      false,
+      false,
+      "extension-opening25"
+    ],
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.3.1-fab0ffdea6ce4d3f323b08a433fc97ad9cbc9fe3dbd18d8c54b833b45c221cc8",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/c7549a41ea26600f613a7d906e5c73e90303f3bc037b28d8aa2751cd17819772/Colosseum.map",
+      105101,
+      true,
+      false,
+      "extension-opening25"
+    ],
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.3.1-fab0ffdea6ce4d3f323b08a433fc97ad9cbc9fe3dbd18d8c54b833b45c221cc8",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/b4bab09603289c2d186ca94d6cf5362e5cc8f24637736c497d9651c0dd921937/arena.map",
+      105101,
+      false,
+      false,
+      "extension-opening25"
+    ],
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.3.1-fab0ffdea6ce4d3f323b08a433fc97ad9cbc9fe3dbd18d8c54b833b45c221cc8",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/6bd7abf2ed51a7f667552c243ad038f4177e450cf2f9dd9be52f826f9e526f95/default.map",
+      105101,
+      true,
+      false,
+      "extension-opening25"
+    ],
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.3.1-fab0ffdea6ce4d3f323b08a433fc97ad9cbc9fe3dbd18d8c54b833b45c221cc8",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/8ac4b2eedcf19f8544ab1866acfcbc628b3cb5ff2df87d80aa682dcb5aa9df19/default_small.map",
+      105101,
+      false,
+      false,
+      "extension-opening25"
+    ],
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.3.1-fab0ffdea6ce4d3f323b08a433fc97ad9cbc9fe3dbd18d8c54b833b45c221cc8",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/a09e8f2d3bdd1e40fad31a0ecdf00166cd1090c232c56dcc2557729de737f6aa/devil.map",
+      105101,
+      true,
+      false,
+      "extension-opening25"
+    ],
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.3.1-fab0ffdea6ce4d3f323b08a433fc97ad9cbc9fe3dbd18d8c54b833b45c221cc8",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/126d71b46443268596285918d910b7f8d875bf3028ca9c5ff6bad97b4e868938/queen_of_spades.map",
+      105101,
+      false,
+      false,
+      "extension-opening25"
+    ],
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v10.3.1-fab0ffdea6ce4d3f323b08a433fc97ad9cbc9fe3dbd18d8c54b833b45c221cc8",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/5f1f6b23d6edb944954a9a31b95f229fd9966bec0875a9f04bca680aa3de33f5/trophy.map",
+      105101,
+      true,
+      false,
+      "extension-opening25"
+    ],
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v11.1-860e7ea84e5571907632bd51de196e0935576d7fc930f3aef2b66dcd4413ac30",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/c7549a41ea26600f613a7d906e5c73e90303f3bc037b28d8aa2751cd17819772/Colosseum.map",
+      105101,
+      false,
+      false,
+      "extension-opening25"
+    ],
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v11.1-860e7ea84e5571907632bd51de196e0935576d7fc930f3aef2b66dcd4413ac30",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/b4bab09603289c2d186ca94d6cf5362e5cc8f24637736c497d9651c0dd921937/arena.map",
+      105101,
+      true,
+      false,
+      "extension-opening25"
+    ],
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v11.1-860e7ea84e5571907632bd51de196e0935576d7fc930f3aef2b66dcd4413ac30",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/6bd7abf2ed51a7f667552c243ad038f4177e450cf2f9dd9be52f826f9e526f95/default.map",
+      105101,
+      false,
+      false,
+      "extension-opening25"
+    ],
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v11.1-860e7ea84e5571907632bd51de196e0935576d7fc930f3aef2b66dcd4413ac30",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/8ac4b2eedcf19f8544ab1866acfcbc628b3cb5ff2df87d80aa682dcb5aa9df19/default_small.map",
+      105101,
+      true,
+      false,
+      "extension-opening25"
+    ],
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v11.1-860e7ea84e5571907632bd51de196e0935576d7fc930f3aef2b66dcd4413ac30",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/a09e8f2d3bdd1e40fad31a0ecdf00166cd1090c232c56dcc2557729de737f6aa/devil.map",
+      105101,
+      false,
+      false,
+      "extension-opening25"
+    ],
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v11.1-860e7ea84e5571907632bd51de196e0935576d7fc930f3aef2b66dcd4413ac30",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/126d71b46443268596285918d910b7f8d875bf3028ca9c5ff6bad97b4e868938/queen_of_spades.map",
+      105101,
+      true,
+      false,
+      "extension-opening25"
+    ],
+    [
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/opening25-54e937c445c704c6ac80d123b2332ef81605370d42069e2e44db9d572b4e1ed3",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/sources/bot-v11.1-860e7ea84e5571907632bd51de196e0935576d7fc930f3aef2b66dcd4413ac30",
+      "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v105-20260927T131901Z/maps/5f1f6b23d6edb944954a9a31b95f229fd9966bec0875a9f04bca680aa3de33f5/trophy.map",
+      105101,
+      false,
+      false,
+      "extension-opening25"
+    ]
+  ]
+}

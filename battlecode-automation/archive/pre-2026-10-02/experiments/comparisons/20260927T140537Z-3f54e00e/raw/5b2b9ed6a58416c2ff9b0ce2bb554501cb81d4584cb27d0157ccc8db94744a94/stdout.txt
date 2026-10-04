@@ -1,0 +1,12 @@
+loaded c/c++ vs c/c++
+without --sandbox the seed repeats the pearls but not the bots' own random numbers
+seed 0x00000000000028a0
+running round 2/500 --  last: 369ms  eta: 3m04s  dragons: 2 vs 2
+round 13: bot 6 (team A) died: lost a head-to-head
+round 13: bot 3 (team B) died: lost a head-to-head
+round 20: bot 4 (team A) died: lost a head-to-head
+round 20: bot 5 (team B) died: lost a head-to-head
+round 21: bot 2 (team A) died: lost a head-to-head
+round 21: bot 1 (team B) died: lost a head-to-head
+team A wins after 22 rounds (by elimination) (0.4s)
+wrote replay: /Users/kushagra/Desktop/UNSW_battlecode/Codehammer/replays/research-5b2b9ed6a58416c2ff9b0ce2bb554501cb81d4584cb27d0157ccc8db94744a94.replay

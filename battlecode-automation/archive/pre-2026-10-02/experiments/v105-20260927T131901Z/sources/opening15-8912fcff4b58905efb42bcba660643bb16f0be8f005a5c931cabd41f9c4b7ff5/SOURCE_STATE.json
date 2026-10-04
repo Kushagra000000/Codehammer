@@ -1,0 +1,36 @@
+{
+  "parent": "bots/current/bot-v10.4.1",
+  "candidate": "battlecode-automation/experiments/v105-20260927T131901Z/candidates/opening15",
+  "revision": "exploratory-shorter-opening15",
+  "toolkit": "1.1.0",
+  "experiment_directory": "battlecode-automation/experiments/v105-20260927T131901Z",
+  "parameters": {
+    "OPENING_CENTER_END_ROUND": 15,
+    "OPENING_CENTER_WEIGHT": 300,
+    "OPENING_CENTER_RADIUS": 3,
+    "OPENING_FOOD_PRIORITY_RADIUS": 4,
+    "OPENING_CENTER_CROWD_LIMIT": 3,
+    "ALPHA_FEED_START_ROUND": 450,
+    "GROWER_NUMERATOR": 1,
+    "GROWER_DENOMINATOR": 8
+  },
+  "implementation_files": {
+    "main.cpp": {
+      "sha256": "73ff2e6000e908fe6f85994645847d67a4039c52c2e73612a003e25f56c120b0",
+      "parent_sha256": "c685184950d845a1d880965df4e51634307dd4e19d9a1589a1aa639b7fdc4d0e"
+    },
+    "coordination.hpp": {
+      "sha256": "7408f9aa59b70661e9c06249efa64ad3a1f1a0209c0a63e45974ec7106bfbc9e",
+      "parent_sha256": "7408f9aa59b70661e9c06249efa64ad3a1f1a0209c0a63e45974ec7106bfbc9e"
+    },
+    "helper.hpp": {
+      "sha256": "6bd3b258ad4db850bd209279db0d8a836e3ed4fb1589190cfeda0012bbae7bcc",
+      "parent_sha256": "6bd3b258ad4db850bd209279db0d8a836e3ed4fb1589190cfeda0012bbae7bcc"
+    },
+    "bot.toml": {
+      "sha256": "d56d20b38e5961083cba1d7e00ff47397f567bf55c2b4a4748ac0f32fcba9cd5",
+      "parent_sha256": "d56d20b38e5961083cba1d7e00ff47397f567bf55c2b4a4748ac0f32fcba9cd5"
+    }
+  },
+  "note": "Experimental shorter opening. Keep other selected strategy parameters fixed; original validation preserved."
+}

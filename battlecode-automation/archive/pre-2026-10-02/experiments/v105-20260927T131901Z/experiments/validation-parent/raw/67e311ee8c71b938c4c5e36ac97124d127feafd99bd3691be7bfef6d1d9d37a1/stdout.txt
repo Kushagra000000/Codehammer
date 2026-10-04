@@ -1,0 +1,38 @@
+loaded c/c++ vs c/c++
+without --sandbox the seed repeats the pearls but not the bots' own random numbers
+seed 0x0000000000019dad
+running round 2/500 --  last: 194ms  eta: 1m36s  dragons: 2 vs 2
+round 18: bot 9 (team B) died: lost a head-to-head
+round 18: bot 4 (team A) died: lost a head-to-head
+round 20: bot 1 (team B) died: lost a head-to-head
+round 20: bot 2 (team A) died: lost a head-to-head
+round 20: bot 5 (team B) died: lost a head-to-head
+round 20: bot 6 (team A) died: lost a head-to-head
+round 24: bot 3 (team B) died: lost a head-to-head
+round 24: bot 10 (team A) died: lost a head-to-head
+round 29: bot 19 (team B) died: lost a head-to-head
+round 29: bot 13 (team A) died: lost a head-to-head
+round 30: bot 7 (team B) died: lost a head-to-head
+round 30: bot 18 (team A) died: lost a head-to-head
+round 32: bot 17 (team B) died: hit itself
+round 34: bot 11 (team B) died: lost a head-to-head
+round 34: bot 20 (team A) died: lost a head-to-head
+round 36: bot 12 (team B) died: lost a head-to-head
+round 36: bot 14 (team A) died: lost a head-to-head
+round 39: bot 22 (team B) died: lost a head-to-head
+round 39: bot 23 (team A) died: lost a head-to-head
+round 39: bot 27 (team B) died: lost a head-to-head
+round 39: bot 25 (team A) died: lost a head-to-head
+round 42: bot 24 (team B) died: lost a head-to-head
+round 42: bot 21 (team A) died: lost a head-to-head
+round 46: bot 32 (team B) died: lost a head-to-head
+round 46: bot 26 (team A) died: lost a head-to-head
+round 48: bot 15 (team B) died: lost a head-to-head
+round 48: bot 29 (team A) died: lost a head-to-head
+round 49: bot 34 (team B) died: lost a head-to-head
+round 49: bot 31 (team A) died: lost a head-to-head
+running round 51/500 --  last: 3ms  eta: 3.9s  dragons: 9 vs 1
+round 50: bot 28 (team B) died: lost a head-to-head
+round 50: bot 33 (team A) died: lost a head-to-head
+team A wins after 51 rounds (by elimination) (0.5s)
+wrote replay: /Users/kushagra/Desktop/UNSW_battlecode/Codehammer/replays/research-67e311ee8c71b938c4c5e36ac97124d127feafd99bd3691be7bfef6d1d9d37a1.replay

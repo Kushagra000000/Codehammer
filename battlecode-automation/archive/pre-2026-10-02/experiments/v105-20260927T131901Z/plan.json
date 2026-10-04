@@ -1,0 +1,59 @@
+{
+  "scope": [
+    "opening center control",
+    "alpha feed start450",
+    "grower reduction tested last"
+  ],
+  "parent": "bot-v10.4.1",
+  "opponents": [
+    "bot-v9",
+    "bot-v10",
+    "bot-v10.1",
+    "bot-v10.3.1",
+    "bot-v11.1"
+  ],
+  "opening_screen": {
+    "maps": [
+      "Colosseum.map",
+      "arena.map",
+      "default.map",
+      "default_small.map",
+      "devil.map",
+      "queen_of_spades.map",
+      "trophy.map"
+    ],
+    "opponents": [
+      "bot-v10.1",
+      "bot-v10.3.1",
+      "bot-v11.1"
+    ],
+    "seed": 105101
+  },
+  "late_screen": {
+    "maps": [
+      "big_empty.map",
+      "schooltime.map",
+      "stronghold.map",
+      "trauma.map"
+    ],
+    "opponents": [
+      "bot-v10.3.1",
+      "bot-v11.1"
+    ],
+    "seeds": [
+      105201,
+      105202
+    ]
+  },
+  "final_validation": {
+    "maps": "all discovered",
+    "opponents": "all5requested plus directparentcomparison",
+    "seeds": [
+      105901,
+      105902
+    ],
+    "compare_parent_same_schedule": true
+  },
+  "acceptance": "Prefer improved score and elimination balance on paired fresh-seed parent comparisons; no unexplained map-family collapse. Report significance if supported, not claimed by threshold manipulation. Do not change combat/navigation/patrol/splitting schedules.",
+  "stopping": "Test at most4center choices,450feeding,then2fewer-grower choices. Finish fixed fresh validation; preservebest scopedcandidate if statisticallysuperior results are not attained. No automatic officialsubmission/championpromotion."
+}

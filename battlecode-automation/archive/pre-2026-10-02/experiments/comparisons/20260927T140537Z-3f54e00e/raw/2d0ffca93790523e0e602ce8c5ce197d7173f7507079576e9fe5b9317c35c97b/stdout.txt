@@ -1,0 +1,85 @@
+loaded c/c++ vs c/c++
+without --sandbox the seed repeats the pearls but not the bots' own random numbers
+seed 0x00000000000028a0
+running round 2/500 --  last: 165ms  eta: 1m22s  dragons: 2 vs 2
+round 29: bot 0 (team A) died: lost a head-to-head
+round 29: bot 1 (team B) died: lost a head-to-head
+round 45: bot 7 (team B) died: lost a head-to-head
+round 45: bot 4 (team B) died: lost a head-to-head
+round 48: bot 11 (team B) died: hit itself
+running round 51/500 --  last: 2ms  eta: 2.1s  dragons: 2 vs 7
+round 51: bot 12 (team B) died: hit itself
+round 59: bot 3 (team B) died: hit itself
+round 61: bot 16 (team B) died: hit itself
+round 62: bot 19 (team B) died: hit itself
+round 64: bot 18 (team B) died: hit itself
+round 67: bot 17 (team B) died: hit itself
+round 67: bot 6 (team A) died: lost a head-to-head
+round 67: bot 21 (team B) died: lost a head-to-head
+round 68: bot 9 (team B) died: hit itself
+round 79: bot 24 (team B) died: hit itself
+round 83: bot 23 (team B) died: hit itself
+round 83: bot 28 (team B) died: hit itself
+round 88: bot 33 (team B) died: hit itself
+round 88: bot 38 (team B) died: hit itself
+round 91: bot 44 (team B) died: hit itself
+round 92: bot 22 (team B) died: hit itself
+round 94: bot 48 (team B) died: hit itself
+round 97: bot 32 (team B) died: hit itself
+round 99: bot 30 (team A) died: lost a head-to-head
+round 99: bot 26 (team B) died: lost a head-to-head
+round 99: bot 36 (team B) died: hit itself
+running round 101/500 --  last: 4ms  eta: 1.7s  dragons: 2 vs 24
+round 107: bot 35 (team B) died: hit itself
+round 109: bot 49 (team B) died: hit itself
+round 109: bot 54 (team B) died: hit itself
+round 110: bot 27 (team B) died: hit itself
+round 112: bot 45 (team B) died: lost a head-to-head
+round 112: bot 55 (team B) died: lost a head-to-head
+round 114: bot 53 (team B) died: hit itself
+round 119: bot 60 (team B) died: hit itself
+round 123: bot 56 (team B) died: hit itself
+round 125: bot 41 (team A) died: lost a head-to-head
+round 125: bot 15 (team B) died: lost a head-to-head
+round 126: bot 61 (team B) died: hit itself
+round 133: bot 50 (team B) died: hit another dragon
+round 136: bot 39 (team B) died: hit itself
+round 136: bot 70 (team B) died: hit itself
+round 140: bot 69 (team A) died: lost a head-to-head
+round 140: bot 37 (team B) died: lost a head-to-head
+round 143: bot 58 (team B) died: hit itself
+round 144: bot 51 (team B) died: lost a head-to-head
+round 144: bot 67 (team B) died: lost a head-to-head
+round 144: bot 72 (team B) died: hit itself
+running round 151/500 --  last: 7ms  eta: 1.6s  dragons: 1 vs 30
+round 150: bot 34 (team B) died: hit itself
+round 150: bot 74 (team B) died: hit itself
+round 153: bot 78 (team B) died: lost a head-to-head
+round 153: bot 71 (team B) died: lost a head-to-head
+round 158: bot 77 (team B) died: hit itself
+round 159: bot 75 (team B) died: hit itself
+round 159: bot 82 (team B) died: hit itself
+round 160: bot 8 (team B) died: hit another dragon
+round 162: bot 25 (team B) died: hit itself
+round 165: bot 84 (team B) died: hit itself
+round 169: bot 88 (team B) died: hit itself
+round 169: bot 42 (team B) died: lost a head-to-head
+round 169: bot 89 (team B) died: lost a head-to-head
+round 169: bot 93 (team B) died: hit itself
+round 170: bot 86 (team B) died: hit itself
+round 171: bot 81 (team A) died: lost a head-to-head
+round 171: bot 62 (team B) died: lost a head-to-head
+round 171: bot 94 (team B) died: hit itself
+round 173: bot 90 (team B) died: hit itself
+round 175: bot 5 (team B) died: hit itself
+round 179: bot 96 (team B) died: lost a head-to-head
+round 179: bot 95 (team B) died: lost a head-to-head
+round 181: bot 85 (team B) died: hit itself
+round 181: bot 91 (team B) died: hit itself
+round 184: bot 46 (team B) died: hit itself
+round 185: bot 97 (team B) died: hit itself
+round 187: bot 102 (team B) died: hit itself
+round 194: bot 2 (team A) died: lost a head-to-head
+round 194: bot 29 (team B) died: lost a head-to-head
+team B wins after 195 rounds (by elimination) (1.0s)
+wrote replay: /Users/kushagra/Desktop/UNSW_battlecode/Codehammer/replays/research-2d0ffca93790523e0e602ce8c5ce197d7173f7507079576e9fe5b9317c35c97b.replay

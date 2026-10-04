@@ -1,0 +1,82 @@
+--- bot-v10.4.1/main.cpp
++++ bot-v10.5/main.cpp
+@@ -14,9 +14,16 @@
+ #include <utility>
+ #include <vector>
+ 
+-// v10.4.1 rewrite: v10.4 plus productive patrols, nearby food and escape splits.
++// v10.5: preserve v10.4.1; tune opening control and late grower consolidation.
+ namespace Config
+ {
++    // Extra center pull is opening-only. Nearby food, crowding and observed barren
++    // terrain disable it; the inherited center score remains unchanged afterward.
++    constexpr int OPENING_CENTER_END_ROUND = 40;
++    constexpr int OPENING_CENTER_WEIGHT = 300;
++    constexpr int OPENING_CENTER_RADIUS = 3;
++    constexpr int OPENING_FOOD_PRIORITY_RADIUS = 4;
++    constexpr int OPENING_CENTER_CROWD_LIMIT = 3;
+     constexpr int SPLIT_CUTOFF = 300, FINAL_GROWTH_CUTOFF = 425;
+     constexpr int TARGET_SWARM_SIZE = 64, MAX_SWARM_SIZE = 64;
+     constexpr int GROWER_NUMERATOR = 1, GROWER_DENOMINATOR = 8;
+@@ -43,7 +50,7 @@
+     constexpr int KING_SELECTION = 0, KING_ID = -1, ROOT_POLICY = 0, BACKUP_KING_POLICY = 0;
+     constexpr int FEED_START_ROUND = 380, FEEDER_MAX_LENGTH = 4;
+     constexpr int WORKER_SPLIT_STOP_ROUND = 350; // ordinary splits; emergency grower escapes remain
+-    constexpr int ALPHA_FEED_START_ROUND = 475; // even growers may donate to a strictly larger recipient
++    constexpr int ALPHA_FEED_START_ROUND = 450; // even growers may donate to a strictly larger recipient
+     constexpr int FEED_REQUEST_MAX_AGE = 1;
+     constexpr int FEED_APPROACH_WEIGHT = 2400;
+     constexpr int FEEDING_RADIUS = 3, KING_PROTECTION_RADIUS = 3;
+@@ -1553,6 +1560,44 @@
+ 
+         // ---------------------------------------------------------------
+ 
++        int opening_center_penalty(Position destination) const
++        {
++            if (game_.get_round_num() >= Config::OPENING_CENTER_END_ROUND ||
++                retaining_length() ||
++                objective_dist_[static_cast<std::size_t>(index(controller_.get_position()))] <=
++                    Config::OPENING_FOOD_PRIORITY_RADIUS)
++                return 0;
++
++            Position const center(width_ / 2, height_ / 2);
++            int allies = chebyshev_distance(controller_.get_position(), center) <= 3 ? 1 : 0;
++            for (SeenHead const &head : heads_)
++                if (head.team == controller_.get_team() && head.id != controller_.get_id() &&
++                    chebyshev_distance(head.position, center) <= 3)
++                    ++allies;
++            if (allies >= Config::OPENING_CENTER_CROWD_LIMIT)
++                return 0;
++
++            // Use only remembered observations, never privileged map contents.
++            int sampled = 0, fertile = 0;
++            for (int dy = -3; dy <= 3; ++dy)
++                for (int dx = -3; dx <= 3; ++dx)
++                {
++                    CellMemory const &m = cell(Position(wrap(center.x + dx, width_),
++                                                       wrap(center.y + dy, height_)));
++                    if (!m.seen)
++                        continue;
++                    ++sampled;
++                    if (m.pearl || m.pearl_time >= 0)
++                        ++fertile;
++                }
++            if (sampled >= 24 && fertile * 4 < sampled)
++                return 0;
++
++            int const gap = std::max(0, chebyshev_distance(destination, center) -
++                                        Config::OPENING_CENTER_RADIUS);
++            return gap * std::max(0, Config::OPENING_CENTER_WEIGHT - 45);
++        }
++
+         Candidate evaluate_single(Direction direction) const
+         {
+             Candidate candidate;
+@@ -1664,6 +1709,7 @@
+                 int center_y = height_ / 2;
+                 int dist_to_center = chebyshev_distance(step.destination, Position(center_x, center_y));
+                 score -= dist_to_center * (grow ? 5 : 45);
++                score -= opening_center_penalty(step.destination);
+ 
+                 if (!candidate.head_trade)
+                 {
