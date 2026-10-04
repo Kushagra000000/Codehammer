@@ -1,0 +1,605 @@
+// Included inside ReplayDerivedBot (after route.hpp).
+// v20 scoring. How a move is chosen, in three parts:
+//
+//  1. One currency. Every value is in thousandths of a segment (SEG = 1000): eating
+//     a pearl is +1000. Our dragon dying costs its length plus what a unit is worth
+//     (death_cost); killing an enemy gains its length plus what one of their units is
+//     worth (kill_value); a risk is its probability times what it would cost. Terms
+//     with no physical meaning (spacing, visit counts) keep their old weight relative
+//     to a pearl.
+//  2. One goal per turn (choose_goal), picked by a fixed priority list:
+//       FIGHT   an enemy head within FIGHT_RADIUS steps
+//       FEED    late game: walk to the king (feeder_target_)
+//       HUNT    a profitable enemy target within HUNT_RADIUS (enemy_target_)
+//       EAT     a pearl route is planned (route.hpp)
+//       EXPLORE anything else: timers, unexplored tiles, the dispersal destination
+//     Only the goal's own pull scores progress (goal_progress). In a fight, the goal
+//     we would otherwise have still pulls at half strength to break ties.
+//  3. Lookahead in fights (fight_value): each move is played out against every reply
+//     of each nearby enemy head and our best answer to it. Outcomes: a head-on (both
+//     die), the enemy left with no room to live (a kill), us left with no way out.
+//     Its replies include a sprint of 2-3 steps into our head when it is long enough.
+//     The enemy is assumed to pick the reply worst for us (mostly; see
+//     FIGHT_WORST_WEIGHT).
+
+enum class Goal
+{
+    FIGHT,
+    FEED,
+    HUNT,
+    EAT,
+    EXPLORE
+};
+Goal goal_ = Goal::EXPLORE;
+Goal base_goal_ = Goal::EXPLORE; // what we would do with no enemy close
+
+static constexpr int SEG = 1000;
+static int seg(double segments) { return static_cast<int>(std::lround(segments * SEG)); }
+static int risk(double probability, int cost) { return static_cast<int>(std::lround(probability * cost)); }
+
+static char const *goal_name(Goal g)
+{
+    switch (g)
+    {
+    case Goal::FIGHT:
+        return "FIGHT";
+    case Goal::FEED:
+        return "FEED";
+    case Goal::HUNT:
+        return "HUNT";
+    case Goal::EAT:
+        return "EAT";
+    default:
+        return "EXPLORE";
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Values
+// ---------------------------------------------------------------------------
+// What losing this dragon costs: its segments (the king's and growers' count more:
+// they decide the tiebreak) and the unit.
+int death_cost() const
+{
+    double const length = controller_.get_length() * (retaining_length() ? Config::KEEPER_LENGTH_WEIGHT : 1.0);
+    return seg(length + Config::UNIT_VALUE_OURS);
+}
+
+// A trapped dragon of 4+ escapes by splitting: it loses the 2-long remnant (a unit).
+int trap_cost() const
+{
+    return controller_.get_length() >= 4 ? seg(2.0 + Config::UNIT_VALUE_OURS) : death_cost();
+}
+
+// What killing this enemy gains: its segments and the unit; late in the game their
+// long dragons are their tiebreak, worth more.
+int kill_value(SeenHead const &h) const
+{
+    int const est = h.estimated_length();
+    double v = est + Config::UNIT_VALUE_THEIRS;
+    if (game_.get_round_num() >= Config::ENDGAME_HUNT_ROUND && est >= Config::ENDGAME_HUNT_MIN_LENGTH)
+        v += Config::ENDGAME_KILL_BONUS;
+    return seg(v);
+}
+
+// A head-on: both die.
+int trade_value(SeenHead const &h) const
+{
+    return kill_value(h) - death_cost();
+}
+
+// Eating the pearl on `p`. A pearl next to a grower is the grower's: a worker
+// still gains a little by taking it, a feeder must not.
+int food_value(Position p) const
+{
+    if (!reserved_food(p))
+        return Config::PEARL_VALUE;
+    if (feeder_target_)
+        return Config::RESERVED_PEARL_FEEDER;
+    return retaining_length() ? Config::RESERVED_PEARL_KEEPER : Config::RESERVED_PEARL_WORKER;
+}
+
+// ---------------------------------------------------------------------------
+// Goal
+// ---------------------------------------------------------------------------
+void choose_goal()
+{
+    Position const here = controller_.get_position();
+    if (feeder_target_)
+        base_goal_ = Goal::FEED;
+    else if (enemy_target_ && !valuable_now_ && distance(here, *enemy_target_) <= Config::HUNT_RADIUS)
+        base_goal_ = Goal::HUNT;
+    else if (route_first_ >= 0)
+        base_goal_ = Goal::EAT;
+    else
+        base_goal_ = Goal::EXPLORE;
+    prepare_fight();
+    goal_ = fight_targets_.empty() ? base_goal_ : Goal::FIGHT;
+}
+
+// Progress towards the goal by moving to the candidate's destination.
+int goal_progress(Goal g, Candidate const &c, Step const &step) const
+{
+    if (c.head_trade)
+        return 0; // a trade ends us: its value is the trade's
+    Position const origin = controller_.get_position();
+    bool const keeper = retaining_length();
+    switch (g)
+    {
+    case Goal::EAT:
+    {
+        // Follow the planned route (its first pearl); of the equally short ways on,
+        // prefer the one the route was checked on.
+        int const before = route_dist(origin);
+        int after = before + 1; // off the route's map, or through an unknown portal
+        if (step.destination_known && route_dist(step.destination) < INF)
+            after = route_dist(step.destination);
+        int v = std::clamp(before - after, -1, 1) * Config::STEP_EAT;
+        if (step.destination_known && index(step.destination) == route_next_cell_)
+            v += Config::ROUTE_TIE;
+        return v;
+    }
+    case Goal::HUNT:
+    {
+        if (!enemy_target_ || !step.destination_known)
+            return 0;
+        int const step_value = game_.get_round_num() >= Config::FEED_START_ROUND ? Config::LATE_STEP_HUNT : Config::STEP_HUNT;
+        return (distance(origin, *enemy_target_) - distance(step.destination, *enemy_target_)) * step_value;
+    }
+    case Goal::FEED:
+        return step.destination_known ? feeding_score(step.destination) : 0;
+    case Goal::EXPLORE:
+    default:
+    {
+        // The nearest objective (timers, unexplored tiles, pearls beyond the route's
+        // reach), the dispersal destination, the late-game meeting point.
+        int const radius = objective_radius_;
+        int const before = std::min(radius, objective_dist_[static_cast<std::size_t>(index(origin))]);
+        int after = before;
+        if (step.destination_known)
+            after = std::min(radius, objective_dist_[static_cast<std::size_t>(index(step.destination))]);
+        else if (c.unknown_portal && portal_exploring())
+            after = Config::UNKNOWN_PORTAL_EXPLORE_COST - 1; // crossing it is reaching that objective
+        else if (c.unknown_portal && !keeper && !valuable_now_ && before > Config::WORKER_EXPLORE_COST)
+            after = before - 1; // (v13) nothing closer: a portal we never took is worth exploring
+        // (A tile the search cannot reach reads as the radius: a strong "stay out".)
+        int v = std::min(before - after, 2) * Config::STEP_EXPLORE;
+        if (step.destination_known)
+        {
+            v += disperse_score(step.destination);
+            v += rendezvous_score(step.destination);
+        }
+        if (c.unknown_portal && portal_exploring())
+            v += Config::PORTAL_EXPLORE_VALUE;
+        return v;
+    }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Where a move ends: room and risks
+// ---------------------------------------------------------------------------
+// Expected loss (negative) and room (positive) at the tile a move ends on.
+int position_value(Candidate const &c, PostMove const &pm, bool in_fight) const
+{
+    int const D = death_cost();
+    int const need = pm.length + unknown_body(); // room our whole body needs
+    int v = 0;
+    if (c.pocket_plan)
+        v += (c.region.pearls - 2) * Config::POCKET_NET_PEARL; // eat them, then split out (2 segments)
+    else
+    {
+        if (c.exits == 0)
+            v -= risk(Config::P_NO_EXIT, D);
+        else if (c.exits == 1)
+            v -= risk(Config::P_ONE_EXIT, D);
+        // Time-aware: segments that will have moved on count as room.
+        if (c.space < need + 3)
+            v -= risk(Config::P_SPACE * (need + 3 - c.space) / (need + 3), D);
+        if (c.region.dead_end())
+            v -= risk(Config::P_DEAD_END, trap_cost());
+    }
+    v += c.exits * Config::EXIT_VALUE + std::min(need + 5, c.space) * Config::ROOM_CELL_VALUE;
+    // Outside a fight (the fight search prices it there) an enemy head next to the tile.
+    if (!in_fight)
+        v -= c.enemy_threats * risk(Config::P_ADJACENT_ENEMY, D);
+    v -= c.ally_threats * Config::ALLY_CONGESTION;
+    if (valuable_now_)
+    {
+        v -= c.hard_threats * risk(Config::P_HARD_THREAT, D) + c.soft_threats * risk(Config::P_SOFT_THREAT, D);
+        v -= crowd_risk(pm);
+    }
+    return v;
+}
+
+// Valuable dragons: crowds close pockets faster than any static check can see.
+int crowd_risk(PostMove const &pm) const
+{
+    int robust = 0;
+    for (Direction d : Direction::get_direction_list())
+    {
+        Step const s = step_from(pm.head, d);
+        if (!s.passable || !s.destination_known)
+            continue;
+        std::size_t const n = static_cast<std::size_t>(index(s.destination));
+        if (other_occ_[n] || post_index(pm, static_cast<int>(n)) >= 0)
+            continue;
+        if (enemy_threats_[n] == 0 && ally_threats_[n] == 0)
+            ++robust;
+    }
+    double p = robust == 0 ? Config::P_NO_ROBUST_EXIT : robust == 1 ? Config::P_ONE_ROBUST_EXIT : 0.0;
+    int crowd = 0;
+    for (int dy = -Config::CROWD_RADIUS; dy <= Config::CROWD_RADIUS; ++dy)
+        for (int dx = -Config::CROWD_RADIUS; dx <= Config::CROWD_RADIUS; ++dx)
+        {
+            Position const q(wrap(pm.head.x + dx, width_), wrap(pm.head.y + dy, height_));
+            if (other_occ_[static_cast<std::size_t>(index(q))])
+                ++crowd;
+        }
+    p += crowd * Config::P_CROWD_SEGMENT;
+    return risk(p, death_cost());
+}
+
+// Portals: the risk of an exit we cannot see, how rich the far side is, loops.
+int portal_value(Candidate const &c, Direction direction, bool blind, bool exit_occupied, int progress) const
+{
+    int const D = death_cost();
+    int v = 0;
+    if (c.unknown_portal)
+        v -= risk(portal_exploring() ? Config::P_WINDOW_PORTAL : Config::P_BLIND_PORTAL, D);
+    else
+    {
+        if (exit_occupied)
+            v -= risk(Config::P_OCCUPIED_PORTAL, D);
+        else if (blind)
+        {
+            CellMemory const &m = cell(c.destination);
+            bool const seen_free = m.seen && !m.other_seen && game_.get_round_num() - m.last_seen <= Config::KNOWN_FREE_MEMORY;
+            v -= risk(seen_free ? Config::P_SEEN_FREE_PORTAL : Config::P_BLIND_PORTAL, D);
+        }
+        int const diff = region_value(c.destination) - region_value(controller_.get_position()); // pearls x100
+        v += std::clamp(diff * Config::PORTAL_REGION_PER_PEARL / 100, -Config::PORTAL_REGION_CAP, Config::PORTAL_REGION_CAP);
+    }
+    // Back through the pair we just used, with nothing to eat that way: a loop.
+    Position const origin = controller_.get_position();
+    int const id = cell(origin).edges[static_cast<std::size_t>(direction_index(direction))].portal_id;
+    if (id >= 0 && id == last_portal_id_ &&
+        game_.get_round_num() - last_portal_round_ <= Config::PORTAL_LOOP_ROUNDS && progress <= 0)
+        v -= Config::PORTAL_LOOP;
+    return v;
+}
+
+// The whole value of a single step (see evaluate_single for how the candidate's
+// facts are gathered).
+int move_value(Candidate const &c, PostMove const &pm, Direction direction, Step const &step,
+               bool blind_portal, bool exit_occupied, int trade) const
+{
+    bool const keeper = retaining_length();
+    bool const fight = goal_ == Goal::FIGHT;
+    int v = deterministic_jitter(direction) / 5; // 0-20: ties only
+    if (direction == controller_.get_dir().get_opposite())
+        v -= death_cost(); // into our own neck
+    if (c.head_trade)
+        return v + trade;
+    // The goal.
+    int const progress = goal_progress(fight ? base_goal_ : goal_, c, step);
+    v += fight ? static_cast<int>(progress * Config::FIGHT_BASE_PULL) : progress;
+    // Food.
+    if (c.direct_pearl)
+        v += food_value(step.destination);
+    if (c.portal)
+        v += portal_value(c, direction, blind_portal, exit_occupied, progress);
+    if (!step.destination_known)
+        return v;
+    // Room and risks where we end up, and the fight from there.
+    v += position_value(c, pm, fight);
+    if (fight)
+        v += fight_value(pm, direction);
+    // Small habits (old weights relative to a pearl).
+    CellMemory const &destination = cell(step.destination);
+    v -= destination.visits * (keeper ? Config::KEEPER_VISIT_COST : Config::VISIT_COST);
+    if (!c.direct_pearl)
+    {
+        v += teammate_spacing_score(step.destination); // never talk a dragon out of an adjacent pearl
+        if (unswbc::Tile const *tile = controller_.get_tile(step.destination))
+        {
+            int const countdown = tile->get_pearl_time();
+            if (countdown >= 1 && countdown <= c.new_length - 1)
+                v -= Config::BLOCKED_SPAWN; // our body would sit on it when it spawns
+        }
+    }
+    if (!fight)
+    {
+        auto const [enemy_before, enemy_after] = nearest_visible_enemy_delta(controller_.get_position(), step.destination);
+        if (enemy_before < INF)
+            v += (enemy_after - enemy_before) * (keeper ? Config::KEEPER_ENEMY_DISTANCE_STEP : Config::ENEMY_DISTANCE_STEP);
+    }
+    return v;
+}
+
+// ---------------------------------------------------------------------------
+// Fights
+// ---------------------------------------------------------------------------
+struct FightTarget
+{
+    int id = -1;
+    Position head{};
+    Direction facing = Direction::NORTH;
+    int length = 2;          // lower bound: its segments free up no later than this says
+    bool truncated = true;   // its body may run out of sight
+    int value = 0;           // kill_value
+    int trade = 0;           // trade_value
+    bool tradeable = false;  // we may move into its head (eligible_target)
+    std::unordered_map<int, int> own; // its visible segments: cell -> index
+};
+std::vector<FightTarget> fight_targets_;
+mutable std::vector<int> fight_stamp_;
+mutable int fight_gen_ = 0;
+
+void prepare_fight()
+{
+    fight_targets_.clear();
+    Position const here = controller_.get_position();
+    std::vector<std::pair<int, SeenHead const *>> near;
+    for (SeenHead const &h : heads_)
+        if (h.team != controller_.get_team())
+        {
+            int const d = distance(here, h.position);
+            if (d <= Config::FIGHT_RADIUS)
+                near.push_back({d, &h});
+        }
+    std::sort(near.begin(), near.end(), [](auto const &a, auto const &b) { return a.first < b.first; });
+    if (static_cast<int>(near.size()) > Config::FIGHT_MAX_ENEMIES)
+        near.resize(static_cast<std::size_t>(Config::FIGHT_MAX_ENEMIES));
+    for (auto const &[d, h] : near)
+    {
+        FightTarget t;
+        t.id = h->id;
+        t.head = h->position;
+        t.facing = h->facing;
+        t.length = std::max(2, h->lower_length);
+        t.truncated = h->truncated;
+        t.value = kill_value(*h);
+        t.trade = trade_value(*h);
+        t.tradeable = eligible_target(*h);
+        BodyTrace const trace = trace_body(h->position, h->id);
+        for (std::size_t i = 0; i < trace.segments.size(); ++i)
+            t.own[index(trace.segments[i])] = static_cast<int>(i);
+        fight_targets_.push_back(std::move(t));
+    }
+}
+
+// Out of sight: a body seen there a moment ago is probably still there.
+bool remembered_occupied(int c) const
+{
+    CellMemory const &m = memory_[static_cast<std::size_t>(c)];
+    int const now = game_.get_round_num();
+    return m.last_seen != now && m.seen && m.other_seen && now - m.last_seen <= Config::OCCUPIED_MEMORY;
+}
+
+// Is `c` a wall for the enemy's next move, after our move left us as `pm`? Every
+// segment still blocks (the tail moves only after the collision check).
+bool blocked_for_enemy(FightTarget const &t, int c, PostMove const &pm) const
+{
+    return post_index(pm, c) >= 0 || t.own.count(c) || other_occ_[static_cast<std::size_t>(c)] || remembered_occupied(c);
+}
+
+// Is `c` a wall for our answer, after the enemy moved to `enemy_cell`?
+bool blocked_for_us(FightTarget const &t, int c, PostMove const &pm) const
+{
+    return post_index(pm, c) >= 0 || t.own.count(c) || other_occ_[static_cast<std::size_t>(c)] || remembered_occupied(c);
+}
+
+// Room the enemy head has after its move to `enemy_cell` and our answer to `our_cell`,
+// move by move (time-aware: its own segments and ours free up as each moves on), up
+// to its length + 3.
+int enemy_room_after(FightTarget const &t, int enemy_cell, Direction enemy_dir, PostMove const &pm, int our_cell) const
+{
+    if (fight_stamp_.size() != memory_.size())
+        fight_stamp_.assign(memory_.size(), 0);
+    ++fight_gen_;
+    int const gen = fight_gen_;
+    int const cap = t.length + 3;
+    auto our_index = [&](int c)
+    {
+        if (c == our_cell)
+            return 0;
+        int const j = post_index(pm, c);
+        return j >= 0 && j + 1 < pm.length ? j + 1 : -1;
+    };
+    auto its_index = [&](int c)
+    {
+        if (c == enemy_cell)
+            return 0;
+        auto const it = t.own.find(c);
+        return it != t.own.end() && it->second + 1 < t.length ? it->second + 1 : -1;
+    };
+    std::deque<std::pair<int, int>> queue{{enemy_cell, 0}};
+    fight_stamp_[static_cast<std::size_t>(enemy_cell)] = gen;
+    int room = 0;
+    while (!queue.empty() && room < cap)
+    {
+        auto const [c, k0] = queue.front();
+        queue.pop_front();
+        int const k = k0 + 1;
+        for (Direction d : Direction::get_direction_list())
+        {
+            if (k0 == 0 && d == enemy_dir.get_opposite())
+                continue;
+            Step const s = step_from(position_of(c), d);
+            if (!s.passable || !s.destination_known)
+                continue;
+            int const n = index(s.destination);
+            if (fight_stamp_[static_cast<std::size_t>(n)] == gen)
+                continue;
+            int const j = our_index(n);
+            if (j >= 0 && k < pm.length - j + 1)
+                continue; // not free yet: perhaps later, by another way
+            int const i = its_index(n);
+            if (i >= 0 && k < t.length - i + 1)
+                continue;
+            if (j < 0 && i < 0 && !t.own.count(n) && (other_occ_[static_cast<std::size_t>(n)] || remembered_occupied(n)))
+                continue;
+            fight_stamp_[static_cast<std::size_t>(n)] = gen;
+            ++room;
+            queue.push_back({n, k});
+        }
+    }
+    return room;
+}
+
+// After the enemy moved to `enemy_cell` (heading `enemy_dir`) and we answered to
+// `our_cell`: can it ram us next, has it room to live, have we a way on?
+int fight_leaf(FightTarget const &t, PostMove const &pm, int enemy_cell, Direction enemy_dir, int our_cell) const
+{
+    int const D = death_cost();
+    bool const kills_count = game_.get_round_num() >= Config::AGGRESSION_START_ROUND;
+    int v = 0;
+    // It can step onto our head next: it will if the trade pays for it.
+    for (Direction d : Direction::get_direction_list())
+    {
+        if (d == enemy_dir.get_opposite())
+            continue;
+        Step const s = step_from(position_of(enemy_cell), d);
+        if (s.passable && s.destination_known && index(s.destination) == our_cell)
+        {
+            int const loss = D - t.value; // what the trade costs us
+            if (loss > 0)
+                v -= risk(Config::P_RAM_PROFITABLE, loss);
+            break;
+        }
+    }
+    // Its room: too little to live in is a kill without a trade; less room is pressure.
+    if (kills_count)
+    {
+        int const room = enemy_room_after(t, enemy_cell, enemy_dir, pm, our_cell);
+        if (room < t.length)
+            v += risk(Config::P_TRAPPED_KILL, t.value);
+        else
+            v += (t.length + 3 - std::min(room, t.length + 3)) * Config::FIGHT_PRESSURE_PER_CELL;
+    }
+    // Our way on from there.
+    int exits = 0;
+    for (Direction d : Direction::get_direction_list())
+    {
+        Step const s = step_from(position_of(our_cell), d);
+        if (!s.passable || !s.destination_known)
+            continue;
+        int const n = index(s.destination);
+        if (n == our_cell || n == enemy_cell || index(pm.head) == n || blocked_for_us(t, n, pm))
+            continue;
+        ++exits;
+    }
+    if (exits == 0)
+        v -= risk(Config::P_NO_EXIT, trap_cost());
+    return v;
+}
+
+// Can the enemy head reach `target` (our head) in 2..reach steps through free tiles?
+bool enemy_can_sprint_to(FightTarget const &t, PostMove const &pm, int target, int reach) const
+{
+    std::vector<int> frontier{index(t.head)}, seen{index(t.head)};
+    for (int depth = 1; depth <= reach && !frontier.empty(); ++depth)
+    {
+        std::vector<int> next;
+        for (int c : frontier)
+            for (Direction d : Direction::get_direction_list())
+            {
+                if (depth == 1 && d == t.facing.get_opposite())
+                    continue;
+                Step const s = step_from(position_of(c), d);
+                if (!s.passable || !s.destination_known)
+                    continue;
+                int const n = index(s.destination);
+                if (n == target)
+                {
+                    if (depth >= 2)
+                        return true;
+                    continue;
+                }
+                if (std::find(seen.begin(), seen.end(), n) != seen.end() || blocked_for_enemy(t, n, pm))
+                    continue;
+                seen.push_back(n);
+                next.push_back(n);
+            }
+        frontier = std::move(next);
+    }
+    return false;
+}
+
+// One enemy: each of its replies (the ones that do not kill it outright), our best
+// answer to each, and the result weighted towards its best reply (worst for us).
+int fight_value_one(FightTarget const &t, PostMove const &pm, Direction our_dir) const
+{
+    bool const kills_count = game_.get_round_num() >= Config::AGGRESSION_START_ROUND;
+    int const kill = kills_count ? t.value : 0;
+    int const our_head = index(pm.head);
+    std::vector<int> outcomes;
+    for (Direction d : Direction::get_direction_list())
+    {
+        if (d == t.facing.get_opposite())
+            continue;
+        Step const s = step_from(t.head, d);
+        if (!s.passable)
+            continue; // kelp: it would die, so it will not go there
+        if (!s.destination_known)
+        {
+            outcomes.push_back(0); // through a portal we cannot follow: gone
+            continue;
+        }
+        int const n = index(s.destination);
+        if (n == our_head)
+        {
+            outcomes.push_back(t.trade); // it rams us: both die
+            continue;
+        }
+        if (blocked_for_enemy(t, n, pm))
+            continue; // it would die: it will not go there
+        // Our answer.
+        int best = std::numeric_limits<int>::min();
+        for (Direction m : Direction::get_direction_list())
+        {
+            if (m == our_dir.get_opposite())
+                continue;
+            Step const s2 = step_from(pm.head, m);
+            if (!s2.passable || !s2.destination_known)
+                continue;
+            int const n2 = index(s2.destination);
+            if (n2 == n)
+            {
+                if (t.tradeable)
+                    best = std::max(best, t.trade); // into its new head
+                continue;
+            }
+            if (blocked_for_us(t, n2, pm))
+                continue;
+            best = std::max(best, fight_leaf(t, pm, n, d, n2));
+        }
+        if (best == std::numeric_limits<int>::min())
+            best = -trap_cost(); // no way on: split out, or die
+        outcomes.push_back(best);
+    }
+    // It can also sprint into our head (2-3 steps, a segment per extra step) when it
+    // is long enough; a body running out of sight is assumed long enough for 2.
+    int const len = t.truncated ? std::max(t.length + 1, 3) : t.length;
+    int const reach = std::clamp(len - 1, 1, Config::FIGHT_SPRINT_REACH);
+    if (reach >= 2 && enemy_can_sprint_to(t, pm, our_head, reach))
+        outcomes.push_back(t.trade);
+    if (outcomes.empty())
+        return kill; // every move kills it
+    int const worst = *std::min_element(outcomes.begin(), outcomes.end());
+    double mean = 0.0;
+    for (int o : outcomes)
+        mean += o;
+    mean /= static_cast<double>(outcomes.size());
+    return static_cast<int>(std::lround(Config::FIGHT_WORST_WEIGHT * worst + (1.0 - Config::FIGHT_WORST_WEIGHT) * mean));
+}
+
+// The fight from where a move leaves us (`pm`, arriving heading `our_dir`).
+int fight_value(PostMove const &pm, Direction our_dir) const
+{
+    int total = 0;
+    for (FightTarget const &t : fight_targets_)
+        total += fight_value_one(t, pm, our_dir);
+    return total;
+}
