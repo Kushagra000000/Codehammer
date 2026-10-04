@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "candidate": "bots/New/current/bot-v22.1.0",
+  "baseline": "bots/New/current/bot-v22.0.0",
+  "maps": [
+    "maps/default_small.map",
+    "maps/arena.map",
+    "maps/trophy.map",
+    "maps/portals.map",
+    "maps/default.map",
+    "maps/stronghold.map",
+    "maps/big_empty.map"
+  ],
+  "seeds": [
+    22101
+  ],
+  "sandbox": true,
+  "toolkit": "1.2.9",
+  "fingerprints": {
+    "bots/New/current/bot-v22.1.0": "a0c6a11689283cc9b8e1e350352feba300f95c3a92a985a1be72c257c92bdcd8",
+    "bots/New/current/bot-v22.0.0": "26b31b0d21febd01b2d6f7f26b04746c300f66731e69db2363eddaabf5b98197"
+  },
+  "maps_sha256": {
+    "maps/default_small.map": "1b9d21bdec23388e8c72f3e7095cd70696b8dd816584627f44c05dd9e2d118b6",
+    "maps/arena.map": "b4bab09603289c2d186ca94d6cf5362e5cc8f24637736c497d9651c0dd921937",
+    "maps/trophy.map": "4f84e990688c1e96ee4c2a7ff0706e4b44f4ee63531dd5c5582cf9157b134fb1",
+    "maps/portals.map": "56341e6577da7429efb6f33b64b79b0c4223c4fbd9df995713ad781bead5f423",
+    "maps/default.map": "42d4766ffede5f445692b119a26a6eee687fdc63b5b86776fefdf7fd755789b8",
+    "maps/stronghold.map": "c83cb7579e89fff0064b075f38250fa06487a10b6ddf320f6c57d63a84e9f32c",
+    "maps/big_empty.map": "6cb3b7be72a4e27ed19363e9009d46742851709f701e61d73b56437314fdd827"
+  },
+  "harness_sha256": "77c86736f0dee99f674572cc18c42cdd35e6c9190115874aeaf6630d1db3bdbd"
+}

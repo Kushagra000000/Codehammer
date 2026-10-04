@@ -1,0 +1,46 @@
+{
+  "games": 2,
+  "errors": 0,
+  "wins": 1,
+  "draws": 0,
+  "losses": 1,
+  "elimination_wins": 0,
+  "elimination_losses": 1,
+  "runtime_errors": 0,
+  "population": {
+    "25": {
+      "candidate": 4.5,
+      "baseline": 3.5
+    },
+    "50": {
+      "candidate": 11.5,
+      "baseline": 7.5
+    },
+    "75": {
+      "candidate": 8.5,
+      "baseline": 8.0
+    }
+  },
+  "totals": {
+    "candidate": {
+      "early_splits": 33,
+      "early_pearls": 94,
+      "early_deaths": 20,
+      "early_turns": 1021,
+      "early_repeat_turns": 131,
+      "early_repeat_rate": 0.12830558276199805
+    },
+    "baseline": {
+      "early_splits": 33,
+      "early_pearls": 85,
+      "early_deaths": 21,
+      "early_turns": 826,
+      "early_repeat_turns": 138,
+      "early_repeat_rate": 0.16707021791767554
+    }
+  },
+  "max_turn_points": {
+    "candidate": 16736912,
+    "baseline": 12135665
+  }
+}

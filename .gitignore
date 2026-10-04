@@ -41,3 +41,5 @@ __pycache__/
 
 # Random
 random/
+# Local round-robin reports and match data
+battlecode-automation/experiments/round-robin-*/

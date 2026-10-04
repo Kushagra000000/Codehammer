@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "candidate": "bots/New/current/bot-v22.1.0",
+  "baseline": "bots/New/current/bot-v22.0.0",
+  "maps": [
+    "maps/default_small.map"
+  ],
+  "seeds": [
+    22101
+  ],
+  "sandbox": true,
+  "toolkit": "1.2.9",
+  "fingerprints": {
+    "bots/New/current/bot-v22.1.0": "be16857393c90651a3ab0ceb27e477d087e0275f5c9c3c8958172b6084af0367",
+    "bots/New/current/bot-v22.0.0": "26b31b0d21febd01b2d6f7f26b04746c300f66731e69db2363eddaabf5b98197"
+  },
+  "maps_sha256": {
+    "maps/default_small.map": "1b9d21bdec23388e8c72f3e7095cd70696b8dd816584627f44c05dd9e2d118b6"
+  },
+  "harness_sha256": "aec5a6a8deda0512fb5da9453c0a7204ab52d0f27397ece3bdb53e88aa089dc8"
+}
