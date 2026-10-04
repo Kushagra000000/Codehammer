@@ -1,1 +1,1 @@
-# Current bot: ./bots/New/current/bot-v21.0.0
+# Current bot: ./bots/New/current/bot-v23.0.0
