@@ -1,0 +1,60 @@
+PASS opposing founders receive the same centre proposal
+PASS consecutive split-child IDs receive distinct initial destination proposals
+PASS 20x40 starts regional exploration immediately
+PASS 20x40 destinations cover every quadrant and outer regions
+PASS 20x40 central nine blocks receive more than uniform share
+  distribution 20x40: 256 targets, 155 central, 32 outer, 45 blocks
+PASS 25x25 starts regional exploration immediately
+PASS 25x25 destinations cover every quadrant and outer regions
+PASS 25x25 central nine blocks receive more than uniform share
+  distribution 25x25: 256 targets, 129 central, 34 outer, 44 blocks
+PASS 32x32 starts regional exploration immediately
+PASS 32x32 destinations cover every quadrant and outer regions
+PASS 32x32 central nine blocks receive more than uniform share
+  distribution 32x32: 256 targets, 131 central, 37 outer, 46 blocks
+PASS 40x40 starts regional exploration immediately
+PASS 40x40 destinations cover every quadrant and outer regions
+PASS 40x40 central nine blocks receive more than uniform share
+  distribution 40x40: 256 targets, 143 central, 36 outer, 46 blocks
+PASS 50x50 starts regional exploration immediately
+PASS 50x50 destinations cover every quadrant and outer regions
+PASS 50x50 central nine blocks receive more than uniform share
+  distribution 50x50: 256 targets, 137 central, 42 outer, 47 blocks
+PASS opening target is assigned
+PASS arrival immediately releases the assigned region
+PASS leaving a completed region does not reactivate its old attraction
+PASS shared coverage releases an already explored destination
+PASS fully observed depleted region is released immediately
+PASS kelp-isolated destination is replaced
+PASS unproductive travel abandons a stalled destination promptly
+PASS fully explored map leaves no artificial destination to circle
+PASS founder receives an opening destination
+PASS visible open-path pearl takes the EAT goal during regional travel
+PASS finding a pearl en route preserves the unfinished destination
+PASS an immediately accessible pearl wins even when it leads away from the region
+PASS the pearl move grows the founder from length 3 to split length 4
+PASS EAT progress is independent of regional attraction
+PASS food detours pause travel-stall accounting without dropping the destination
+PASS the next real bot turn performs a normal population-building split
+PASS the parent keeps its unfinished destination through the split action
+PASS after splitting and exhausting local food, the parent resumes regional travel
+PASS the resumed destination still supplies an actionable travel preference
+PASS open-path pearl 2 tiles away wins its first non-eating step away from the region
+PASS open-path pearl 3 tiles away wins its first non-eating step away from the region
+FAIL an imminent reachable pearl spawn wins over opposing regional travel without a planned pearl route
+PASS arrival retires regional pull while pearl routing still harvests resources there
+PASS after local pearls are consumed, the completed region has no restoring attraction
+PASS depletion keeps the next unfinished region instead of restarting the old assignment
+PASS small-map target is active immediately before the opening cutoff
+PASS small-map active opening field is cleared at round 75
+PASS large-map target is active immediately before the opening cutoff
+PASS large-map active opening target transitions to the legacy exploration policy at round 75
+PASS post-opening large-map movement uses the unchanged legacy pull strength
+PASS small-map opening bias is disabled from round 75
+PASS large-map legacy exploration remains active after opening
+PASS gather phase has no exploration destination
+PASS early worker still splits at length 4 and keeps two segments
+PASS normal split still preserves escape unit slots
+PASS queen still seeds the swarm before round 75
+PASS queen preservation and cycling behavior are unchanged after round 75
+54 checks, 1 failures

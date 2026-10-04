@@ -1,0 +1,298 @@
+diff --git a/bots/New/current/bot-v22.0.0/explore.hpp b/bots/New/current/bot-v22.1.0/explore.hpp
+index 861acdd..c0805ad 100644
+--- a/bots/New/current/bot-v22.0.0/explore.hpp
++++ b/bots/New/current/bot-v22.1.0/explore.hpp
+@@ -99,11 +99,23 @@ std::optional<Position> explore_target_;
+ int explore_k_ = 0;
+ int target_since_ = 0;
+ std::vector<int> target_dist_;
++bool opening_target_ = false;
++std::uint64_t opening_retired_ = 0;
++int opening_best_dist_ = INF;
++int opening_stalled_moves_ = 0;
++
++bool opening_scouting() const
++{
++    return Config::DISPERSE_ENABLED && !retaining_length() &&
++           game_.get_round_num() < Config::OPENING_SCOUT_END_ROUND;
++}
+ 
+ bool dispersing() const
+ {
+-    return Config::DISPERSE_ENABLED && width_ * height_ >= Config::DISPERSE_MIN_AREA && !retaining_length() &&
+-           game_.get_round_num() >= Config::DISPERSE_START_ROUND && game_.get_round_num() < Config::GATHER_ROUND &&
++    bool const legacy = width_ * height_ >= Config::DISPERSE_MIN_AREA &&
++                        game_.get_round_num() >= Config::DISPERSE_START_ROUND;
++    return Config::DISPERSE_ENABLED && (opening_scouting() || legacy) && !retaining_length() &&
++           game_.get_round_num() < Config::GATHER_ROUND &&
+            (team_explored_ & ALL_BLOCKS) != ALL_BLOCKS;
+ }
+ 
+@@ -117,6 +129,37 @@ Position sequence_point(int n) const
+                     std::min(height_ - 1, static_cast<int>(fy * height_)));
+ }
+ 
++// Both founders get the same centre proposal; subsequent IDs and retries fan out.
++// Compress two proposals out of three into the central half of each axis. The
++// remaining proposals still cover every quadrant and the wrapped map borders.
++Position opening_point(int k) const
++{
++    int const ordinal = std::max(0, controller_.get_id() - 1);
++    Position p = sequence_point(ordinal + 64 * k);
++    if ((ordinal + k) % 3 != 2)
++        p = Position(width_ / 4 + p.x / 2, height_ / 4 + p.y / 2);
++    return p;
++}
++
++void retire_opening_target()
++{
++    if (explore_target_)
++        opening_retired_ |= 1ULL << block_of(*explore_target_);
++    explore_target_.reset();
++    target_dist_.clear();
++    opening_best_dist_ = INF;
++    opening_stalled_moves_ = 0;
++}
++
++bool opening_region_done(Position p) const
++{
++    // Arriving means scouting, not occupying. Pearl routing keeps harvesting a
++    // productive region independently; empty or consumed ground has no pull back.
++    // A visible target is also finished when only part of its larger block is seen.
++    return block_explored(block_of(p)) || cell(p).seen ||
++           chebyshev_distance(controller_.get_position(), p) <= 3;
++}
++
+ void build_target_field(Position aim)
+ {
+     target_dist_.assign(memory_.size(), INF);
+@@ -144,6 +187,47 @@ void build_target_field(Position aim)
+ void update_explore_target()
+ {
+     ensure_blocks();
++    if (opening_scouting())
++    {
++        opening_target_ = true;
++        if (explore_target_ && (opening_region_done(*explore_target_) ||
++                               opening_stalled_moves_ >= Config::OPENING_STALL_MOVES))
++            retire_opening_target();
++        for (int attempt = 0; attempt < 3; ++attempt)
++        {
++            if (!explore_target_)
++            {
++                for (int tries = 0; tries < 256 && !explore_target_; ++tries)
++                {
++                    Position const p = opening_point(explore_k_++);
++                    if (((opening_retired_ >> block_of(p)) & 1ULL) || opening_region_done(p))
++                        continue;
++                    explore_target_ = p;
++                    target_since_ = game_.get_round_num();
++                    opening_best_dist_ = INF;
++                    opening_stalled_moves_ = 0;
++                }
++                if (!explore_target_)
++                    return;
++            }
++            build_target_field(*explore_target_);
++            int const d = target_dist_[static_cast<std::size_t>(index(controller_.get_position()))];
++            if (d < INF)
++            {
++                opening_best_dist_ = std::min(opening_best_dist_, d);
++                return;
++            }
++            retire_opening_target(); // known kelp/portals leave no path there
++        }
++        return;
++    }
++    if (opening_target_)
++    {
++        // No opening target leaks into the existing mid/late-game policy.
++        retire_opening_target();
++        opening_target_ = false;
++        explore_k_ = 0;
++    }
+     if (!dispersing())
+     {
+         explore_target_.reset();
+@@ -190,7 +274,31 @@ int disperse_score(Position destination, int k = 1) const // k: steps the move t
+     int const after = target_dist_[static_cast<std::size_t>(index(destination))];
+     if (before >= INF || after >= INF)
+         return 0;
+-    return std::clamp(before - after, -k, k) * Config::STEP_DISPERSE;
++    int const pull = opening_target_ ? Config::STEP_OPENING_DISPERSE : Config::STEP_DISPERSE;
++    return std::clamp(before - after, -k, k) * pull;
++}
++
++// Count failed travel moves only. Eating, fighting, and the split action do not
++// expire a useful destination. A food detour rebases progress so returning from
++// it does not look like a stall; the parent's target survives an ordinary split.
++void note_opening_move(Candidate const &move)
++{
++    if (!opening_target_ || !explore_target_ || target_dist_.empty())
++        return;
++    int const d = move.destination_known ? target_dist_[static_cast<std::size_t>(index(move.destination))] : INF;
++    if (goal_ != Goal::EXPLORE)
++    {
++        opening_best_dist_ = d;
++        opening_stalled_moves_ = 0;
++        return;
++    }
++    if (d < opening_best_dist_)
++    {
++        opening_best_dist_ = d;
++        opening_stalled_moves_ = 0;
++    }
++    else
++        ++opening_stalled_moves_;
+ }
+ 
+ // ---------------------------------------------------------------------------
+@@ -318,4 +426,4 @@ void add_pearl_sprints(std::vector<Candidate> &candidates) const
+     }
+     if (found)
+         candidates.push_back(std::move(best_sprint));
+-}
+\ No newline at end of file
++}
+diff --git a/bots/New/current/bot-v22.0.0/main.cpp b/bots/New/current/bot-v22.1.0/main.cpp
+index 1b3e0ec..717e62d 100644
+--- a/bots/New/current/bot-v22.0.0/main.cpp
++++ b/bots/New/current/bot-v22.1.0/main.cpp
+@@ -39,6 +39,8 @@
+ // action"). The judge's clock counts points, so each search stops at its phase's
+ // deadline (Config::TURN_POINTS); a per-turn neighbour table (nbr_) and a one-pass
+ // plan_options make the same searches several times cheaper.
++// v22.1: temporary, centre-weighted opening destinations on every map. Scouted
++// regions are retired, food routes take priority, and stalled scouts move on.
+ namespace Config
+ {
+     // Growers start retaining at SPLIT_CUTOFF (v13: 300, was 250): the roaming king
+@@ -287,15 +289,13 @@ namespace Config
+     constexpr int STEP_EAT = 180, ROUTE_TIE = 80;          // along the pearl route (its checked first step: ties)
+     constexpr int STEP_EXPLORE = 180, STEP_DISPERSE = 120; // to the nearest objective; to the dispersal destination
+     constexpr int STEP_HUNT = 180, LATE_STEP_HUNT = 340;   // to the enemy target (from FEED_START_ROUND)
+-    // v22: the centre rush. On thin maps (short side at most CENTRE_MAP_MAX_SHORT_SIDE) and
+-    // compact ones (long side at most CENTRE_MAP_MAX_LONG_SIDE), where top teams take the
+-    // middle (Trophy 25x25 is compact; Queen of Spades 25x35 and Default 32x32 are not),
+-    // every dragon heads for
+-    // the map centre for the first CENTRE_RUSH_END_ROUND rounds: CENTRE_PULL per step of
+-    // path closer (kelp and portals as we know them), until within CENTRE_RADIUS steps
+-    // (short side / CENTRE_RADIUS_DIV, at least 2) so we do not pile up on one tile.
+-    constexpr int CENTRE_MAP_MAX_SHORT_SIDE = 20, CENTRE_MAP_MAX_LONG_SIDE = 30, CENTRE_RUSH_END_ROUND = 75;
+-    constexpr int CENTRE_PULL = 300, CENTRE_RADIUS_DIV = 4;
++    // v22.1: opening scouts spread from round zero on every map. Two out of three
++    // destination proposals are in the central half; the rest cover the whole map.
++    // This is a travel preference only, never a reason to stay in a scouted region
++    // or to pass up a pearl route. The round limit ends the opening policy; arrival
++    // retires each destination immediately, without waiting for this limit.
++    constexpr int OPENING_SCOUT_END_ROUND = 75, OPENING_STALL_MOVES = 8;
++    constexpr int STEP_OPENING_DISPERSE = 240;
+     // Habits with no physical meaning: the old weights / 2.5 (a pearl used to be 2500).
+     constexpr int VISIT_COST = 11, KEEPER_VISIT_COST = 2;                    // per earlier visit of the tile
+     constexpr int EXIT_VALUE = 22, ROOM_CELL_VALUE = 3;                      // per free neighbour; per tile of room (to body + 5)
+@@ -677,7 +677,6 @@ namespace
+             receive_status();
+             remember_vision();
+             refresh_neighbours(); // v22: the edges are known for this turn
+-            prepare_centre();     // v22: the centre rush on small maps (scoring.hpp)
+ #ifdef NBR_CHECK
+             nbr_check("start");
+ #endif
+@@ -886,6 +885,7 @@ namespace
+                                        static_cast<int>(best->steps.size()));
+             note_portals_taken(best->steps);
+             record_pending_path(best->steps);
++            note_opening_move(*best);
+ 
+             int projected_length = best->new_length;
+             if (projected_length <= 0)
+@@ -3573,4 +3573,4 @@ int main()
+         turn_start = ReplayDerivedBot::clock_now();
+     }
+     return 0;
+-}
+\ No newline at end of file
++}
+diff --git a/bots/New/current/bot-v22.0.0/scoring.hpp b/bots/New/current/bot-v22.1.0/scoring.hpp
+index bbfbd49..9244122 100644
+--- a/bots/New/current/bot-v22.0.0/scoring.hpp
++++ b/bots/New/current/bot-v22.1.0/scoring.hpp
+@@ -123,77 +123,10 @@ void choose_goal()
+     goal_ = fight_targets_.empty() ? base_goal_ : Goal::FIGHT;
+ }
+ 
+-// ---------------------------------------------------------------------------
+-// v22: the centre rush (thin or compact maps, the first CENTRE_RUSH_END_ROUND rounds)
+-// ---------------------------------------------------------------------------
+-std::vector<int> centre_dist_; // path steps to the map centre (bodies ignored), this turn
+-
+-bool centre_rush() const
+-{
+-    bool const small = std::min(width_, height_) <= Config::CENTRE_MAP_MAX_SHORT_SIDE ||
+-                       std::max(width_, height_) <= Config::CENTRE_MAP_MAX_LONG_SIDE;
+-    return small && game_.get_round_num() < Config::CENTRE_RUSH_END_ROUND;
+-}
+-
+-int centre_radius() const
+-{
+-    return std::max(2, std::min(width_, height_) / Config::CENTRE_RADIUS_DIV);
+-}
+-
+-// Once a turn while the rush is on: a search from the centre over the neighbour table.
+-void prepare_centre()
+-{
+-    if (!centre_rush())
+-    {
+-        centre_dist_.clear();
+-        return;
+-    }
+-    centre_dist_.assign(memory_.size(), INF);
+-    int const start = index(Position(width_ / 2, height_ / 2));
+-    std::vector<int> queue{start};
+-    centre_dist_[static_cast<std::size_t>(start)] = 0;
+-    for (std::size_t q = 0; q < queue.size(); ++q)
+-    {
+-        int const c = queue[q];
+-        int const d = centre_dist_[static_cast<std::size_t>(c)];
+-        for (int e = 0; e < 4; ++e)
+-        {
+-            int const n = nb(c, e);
+-            if (n >= 0 && centre_dist_[static_cast<std::size_t>(n)] > d + 1)
+-            {
+-                centre_dist_[static_cast<std::size_t>(n)] = d + 1;
+-                queue.push_back(n);
+-            }
+-        }
+-    }
+-}
+-
+-// CENTRE_PULL per step of path closer to the centre, from outside its radius.
+-int centre_pull(Position from, Position to) const
+-{
+-    if (centre_dist_.empty())
+-        return 0;
+-    int const df = centre_dist_[static_cast<std::size_t>(index(from))];
+-    int const dt = centre_dist_[static_cast<std::size_t>(index(to))];
+-    if (df >= INF || dt >= INF || df <= centre_radius())
+-        return 0;
+-    return (df - dt) * Config::CENTRE_PULL;
+-}
+-
+-// Progress towards the goal by the move `pm`, plus (v22) the centre rush's pull for
+-// every goal but fights and feeding.
+-int goal_progress(Goal g, Candidate const &c, PostMove const &pm) const
+-{
+-    int v = goal_progress_base(g, c, pm);
+-    if (!c.head_trade && !pm.path.empty() && g != Goal::FIGHT && g != Goal::FEED)
+-        v += centre_pull(controller_.get_position(), pm.head);
+-    return v;
+-}
+-
+ // Progress towards the goal by the move `pm` (v21: one step or several; pm.path is
+ // empty when a single step lands where we cannot tell). Per step of progress, so a
+ // free move of k steps can make up to k steps of it.
+-int goal_progress_base(Goal g, Candidate const &c, PostMove const &pm) const
++int goal_progress(Goal g, Candidate const &c, PostMove const &pm) const
+ {
+     if (c.head_trade)
+         return 0; // a trade ends us: its value is the trade's
