@@ -26,7 +26,7 @@
 \newcommand{\code}[1]{\texttt{\detokenize{#1}}}
 \setlist{itemsep=2pt,topsep=4pt}
 
-\title{Changelog: v20 $\rightarrow$ v25\\[2pt]\large v21: survival search, free steps, routing, landing safety, rushes and the king's plan;\\ v22: the judge's points budget, the queen, the centre rush; v23: per-map settings and the queen's survival; v24: portals; v25: dispersion}
+\title{Changelog: v20 $\rightarrow$ v25.1.0\\[2pt]\large v21: survival search, free steps, routing, landing safety, rushes and the king's plan;\\ v22: the judge's points budget, the queen, the centre rush; v23: per-map settings and the queen's survival; v24: portals; v25: dispersion; v25.1.0: queen wait splits}
 \author{}
 \date{}
 
@@ -36,6 +36,10 @@
 \vspace{-2.5em}
 
 \section*{Summary}
+\textbf{Latest entry: v25.1.0 (6 October 2026).} Based on \code{bot-v25.0.0-omar}, this version changes only the queen's
+emergency split: she detaches two segments, waits in place and reassesses movement next turn. The focused tests passed;
+six sandbox matches finished 3--3 with no runtime errors. See section~\ref{sec:queenwait251} for the behavior, limits and evidence.
+
 v21 was built in five rounds.
 
 \textbf{Part I, the survival search.} A depth-first \emph{survival search} (\code{survival.hpp}) asks, for each
@@ -1940,5 +1944,73 @@ forecasting. Setting off on time turned it round: 77 against 60.
       \item \textbf{Points} (metered wasm, 23,150 recorded turns on Big Empty, 64$\times$64, every tile a bed): median 18.3M
             $\rightarrow$ 18.4M, max unchanged at 29.1M.
 \end{itemize}
+
+%=====================================================================
+\part{v25.1.0: the queen waits by splitting}
+%=====================================================================
+\textbf{Implemented: 6 October 2026.} Base: \code{bots/New/current/bot-v25.0.0-omar}.
+The new version is \code{bots/New/current/bot-v25.1.0}; the base folder is unchanged.
+
+\section{Keep the queen's length while blocked}\label{sec:queenwait251}
+\textbf{The problem.} A queen whose head is blocked may survive if the blocking dragon moves away on a later turn.
+The existing escape could hand off most of her body to a child and leave only a two-segment queen, giving her no further
+split with which to wait. v25.1.0 instead spends the smallest legal amount of length to buy another turn.
+
+\textbf{Change} (\code{endgame.hpp}, \code{play_split_escape}):
+\begin{itemize}
+      \item The existing queen emergency test is unchanged: there are no candidate moves, or all candidates are judged hopeless
+            by the existing head-trade, exit and survival-search checks. Ordinary movement is still preferred when this test finds
+            a way on; this is not a new general-purpose waiting rule.
+      \item When the queen has at least four segments and the existing split-slot checks allow it, she issues \code{SPLIT 2}.
+            The two tail segments become a child; the queen keeps her original head position, identity and remaining $L-2$ segments.
+            Splitting consumes her action for that turn.
+      \item On the next turn, normal movement assessment runs again. She repeats the two-segment split while the emergency
+            condition remains true and a split remains available, and resumes movement when a viable move becomes available.
+      \item The wait split does not require a complete body trace or an escape route for the child. It can therefore buy the queen
+            a turn even if the child is boxed and dies. The queen is not marked as a sacrificial escape remnant; the existing
+            status and body-handover messages are still sent.
+\end{itemize}
+
+\textbf{Limits.} Two segments is the smallest legal child; the originally suggested one-segment child is not legal.
+The queen must retain at least two segments, so this behavior stops at length two or three. Existing team-cap and
+escape-slot reservations are unchanged. Waiting can help a temporary blockage, but does not guarantee escape from a permanent box.
+
+\textbf{Scope.} Only \code{endgame.hpp} changes executable behavior. \code{queen.hpp} updates the description of the queen's
+escape. Normal queen seeding, movement and cycling, worker splits and escapes, scoring, routing and all configuration settings
+are unchanged from Omar's base.
+
+\section{Verification of v25.1.0}
+\textbf{Focused tests: 53 checks passed.} \code{battlecode-automation/scripts/test_v251.py} runs the real metered wasm bots
+and the actual game engine using \code{unswbc 1.2.9}. Coverage includes both queen IDs, all queen phases, lengths 4/5/8/10,
+repeated splits, complete and incomplete body knowledge, a boxed child, release of a blocking ally, minimum-size and unit-cap
+boundaries, reserved slots, and matching baseline actions for ordinary queen and worker behavior.
+
+\textbf{Observed engine example} (round numbers start at zero):
+\begin{center}
+      \begin{tabular}{@{}rllr@{}}
+            \toprule
+            Round & Queen head before action & Action & Length before action \\
+            \midrule
+            0 & $(8,8)$ & \code{SPLIT 2} & 8 \\
+            1 & $(8,8)$ & \code{SPLIT 2} & 6 \\
+            2 & $(8,8)$ & \code{MOVE E}  & 4 \\
+            3 & $(9,8)$ & Movement continues & 4 \\
+            \bottomrule
+      \end{tabular}
+\end{center}
+The ally clears the exit after the queen's turn in round 1. She survives and moves on round 2. In the same straight-body
+fixture, Omar's base issues \code{SPLIT 6}, retains only two segments and dies before the blocker clears. A separate fixture
+keeps the head blocked longer and verifies three consecutive waits: $8\rightarrow6\rightarrow4\rightarrow2$.
+
+\textbf{Full-match sandbox check against Omar's base:} six completed 500-round games, on Default Small, Schooltime and
+Slithery Fight, each from both sides with seed 25101. Results: \textbf{3 wins, 0 draws, 3 losses}; zero evaluation errors and
+zero bot runtime errors across both versions. The candidate's highest measured turn cost was 94,449,969 of the 100,000,000-point
+budget. This small sample does not establish a win-rate improvement or a reduction in elimination losses; the focused engine
+fixtures establish that the requested waiting behavior works.
+
+\textbf{Evidence.} The test output, source/map hashes, match ledger and detailed validation are under:
+\par{\small\raggedright\path{battlecode-automation/experiments/v251/queen-wait-smoke/}\par}
+The directory includes \code{behavior-tests.txt}, \code{manifest.json}, \code{matches.jsonl} and \code{VALIDATION.md}.
+No new strategy tuning was included in this version.
 
 \end{document}
