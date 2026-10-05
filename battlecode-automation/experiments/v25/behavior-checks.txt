@@ -1,0 +1,53 @@
+PASS small-map newborn explores immediately
+PASS assignment survives an unchanged turn
+PASS fully known barren map has no area pull
+PASS covered region with a pearl remains productive
+PASS consuming the last pearl releases a depleted region
+PASS distant future spawn does not cause camping
+PASS near-term spawn can attract a worker
+PASS failed or reset spawn releases patch promptly
+PASS sealed resource target is abandoned
+PASS no progress expires target despite unknown terrain
+PASS stalled area receives a cooldown
+PASS overcrowding can override commitment
+PASS nearby newborn IDs distribute over multiple regions
+PASS only first two starting workers receive centre seats
+PASS only first two starting workers receive centre seats
+PASS only first two starting workers receive centre seats
+PASS only first two starting workers receive centre seats
+PASS only first two starting workers receive centre seats
+PASS only first two starting workers receive centre seats
+PASS queen reserves existing founder's seat and fills only the missing one
+PASS round-one child handover overrides founder-ID allocation
+PASS later child cannot claim centre by global ID
+PASS new handover preserves all 49 coverage bits
+PASS newborn gets seat and parent's area
+PASS duplicate handover cannot change a child's seat
+PASS designated child approaches centre
+PASS centre scout receives approach pull
+PASS ordinary worker has no universal centre pull
+PASS second scout works with arbitrary global ID
+PASS corrupt handover rejected
+PASS wrong-team handover rejected
+PASS existing worker cannot acquire a newborn assignment
+PASS legacy coverage format still decodes unchanged
+PASS scout leaves fully known empty centre
+PASS released scout is not pulled back to centre
+PASS productive centre role still has a dwell limit
+PASS queen issues two seats, never a third
+PASS backward sonar follows bent shortened tail toward child
+PASS incomplete body cannot promise a child handover
+PASS pearl routes prefer assigned region
+PASS nearby pearls retain full weight
+PASS outside routes are discounted, not forbidden
+PASS EAT goal retains regional progress incentive
+PASS opening expires cleanly into small-map legacy policy
+PASS safe population threshold scales with map area
+PASS small breeder chooses safety below population threshold
+PASS understrength swarm does not override safety for ordinary trades
+PASS no safe alternative retains escape/fallback choices
+PASS healthy short worker retains previous selection policy
+PASS existing long-worker safety remains
+PASS normal reproduction still stops at 62
+PASS queen calendar unchanged
+52 checks, 0 failures
