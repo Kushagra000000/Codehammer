@@ -43,3 +43,12 @@ __pycache__/
 random/
 # Local round-robin reports and match data
 battlecode-automation/experiments/round-robin-*/
+
+# Extra tex files
+bots/New/current/changelog/changelog.aux
+bots/New/current/changelog/changelog.fdb_latexmk
+bots/New/current/changelog/changelog.fls
+bots/New/current/changelog/changelog.log
+bots/New/current/changelog/changelog.out
+bots/New/current/changelog/changelog.synctex.gz
+bots/New/current/changelog/changelog.toc
