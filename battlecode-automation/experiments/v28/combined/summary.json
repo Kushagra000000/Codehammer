@@ -1,0 +1,580 @@
+{
+  "planned_games": 78,
+  "completed_games": 78,
+  "evaluation_errors": 0,
+  "attempted_rows": 78,
+  "campaign_attempts": 80,
+  "campaign_limit": 80,
+  "groups": {
+    "all": {
+      "games": 78,
+      "wins": 33,
+      "draws": 0,
+      "losses": 45,
+      "elimination_wins": 11,
+      "elimination_losses": 21,
+      "candidate_runtime_errors": 0,
+      "opponent_runtime_errors": 0,
+      "candidate_points_max": 95204947,
+      "opponent_points_max": 94635915,
+      "candidate_queen_deaths": 63,
+      "opponent_queen_deaths": 56,
+      "candidate_early_pearls": 6807,
+      "opponent_early_pearls": 7298,
+      "candidate_logs": {
+        "FREE_MOVE": 47089,
+        "PEARL_SPRINT": 788,
+        "QUEEN_WAIT_SPLIT": 123,
+        "TRAPPED_SELF": 6643,
+        "ATTACK_SPRINT": 1676,
+        "WORKER_REVERSE": 3786,
+        "ESCAPE_SPRINT": 304,
+        "FEED": 2098,
+        "FEEDER_REVERSE": 729,
+        "GROWER_REVERSE": 785,
+        "REMNANT_CLEAR": 2808,
+        "RUSH": 340,
+        "QUEEN_KILL": 33
+      },
+      "opponent_logs": {
+        "ATTACK_SPRINT": 1114,
+        "ESCAPE_SPRINT": 241,
+        "FEED": 1441,
+        "FEEDER_REVERSE": 491,
+        "FREE_MOVE": 32270,
+        "GROWER_REVERSE": 580,
+        "PEARL_SPRINT": 573,
+        "QUEEN_WAIT_SPLIT": 91,
+        "REMNANT_CLEAR": 1714,
+        "TRAPPED_SELF": 4153,
+        "QUEEN_KILL": 24,
+        "RUSH": 246,
+        "WORKER_REVERSE": 2316
+      },
+      "snapshots": {
+        "100": {
+          "candidate": {
+            "population": 22.243589743589745,
+            "total_length": 56.94871794871795,
+            "longest": 4.051282051282051,
+            "queen_length": 2.8974358974358974
+          },
+          "opponent": {
+            "population": 24.76923076923077,
+            "total_length": 62.705128205128204,
+            "longest": 4.333333333333333,
+            "queen_length": 3.3076923076923075
+          }
+        },
+        "200": {
+          "candidate": {
+            "population": 28.96153846153846,
+            "total_length": 76.28205128205128,
+            "longest": 4.346153846153846,
+            "queen_length": 1.9230769230769231
+          },
+          "opponent": {
+            "population": 31.73076923076923,
+            "total_length": 87.07692307692308,
+            "longest": 5.384615384615385,
+            "queen_length": 2.2564102564102564
+          }
+        },
+        "25": {
+          "candidate": {
+            "population": 8.192307692307692,
+            "total_length": 21.67948717948718,
+            "longest": 4.538461538461538,
+            "queen_length": 3.7051282051282053
+          },
+          "opponent": {
+            "population": 8.692307692307692,
+            "total_length": 22.28205128205128,
+            "longest": 4.230769230769231,
+            "queen_length": 3.5641025641025643
+          }
+        },
+        "380": {
+          "candidate": {
+            "population": 31.141025641025642,
+            "total_length": 107.67948717948718,
+            "longest": 8.884615384615385,
+            "queen_length": 1.2564102564102564
+          },
+          "opponent": {
+            "population": 32.03846153846154,
+            "total_length": 110.32051282051282,
+            "longest": 13.692307692307692,
+            "queen_length": 3.5256410256410255
+          }
+        },
+        "440": {
+          "candidate": {
+            "population": 23.73076923076923,
+            "total_length": 96.94871794871794,
+            "longest": 15.756410256410257,
+            "queen_length": 3.08974358974359
+          },
+          "opponent": {
+            "population": 26.615384615384617,
+            "total_length": 108.17948717948718,
+            "longest": 21.128205128205128,
+            "queen_length": 6.089743589743589
+          }
+        },
+        "50": {
+          "candidate": {
+            "population": 14.153846153846153,
+            "total_length": 36.743589743589745,
+            "longest": 3.8333333333333335,
+            "queen_length": 3.1794871794871793
+          },
+          "opponent": {
+            "population": 15.423076923076923,
+            "total_length": 39.91025641025641,
+            "longest": 4.128205128205129,
+            "queen_length": 3.3333333333333335
+          }
+        },
+        "75": {
+          "candidate": {
+            "population": 18.71794871794872,
+            "total_length": 49.666666666666664,
+            "longest": 4.064102564102564,
+            "queen_length": 3.0384615384615383
+          },
+          "opponent": {
+            "population": 20.76923076923077,
+            "total_length": 53.205128205128204,
+            "longest": 4.358974358974359,
+            "queen_length": 3.2948717948717947
+          }
+        }
+      }
+    },
+    "../Top_20_bot": {
+      "games": 26,
+      "wins": 6,
+      "draws": 0,
+      "losses": 20,
+      "elimination_wins": 1,
+      "elimination_losses": 11,
+      "candidate_runtime_errors": 0,
+      "opponent_runtime_errors": 0,
+      "candidate_points_max": 94889612,
+      "opponent_points_max": 4572435,
+      "candidate_queen_deaths": 21,
+      "opponent_queen_deaths": 14,
+      "candidate_early_pearls": 2135,
+      "opponent_early_pearls": 2550,
+      "candidate_logs": {
+        "FREE_MOVE": 16881,
+        "PEARL_SPRINT": 235,
+        "QUEEN_WAIT_SPLIT": 41,
+        "TRAPPED_SELF": 2272,
+        "ATTACK_SPRINT": 524,
+        "WORKER_REVERSE": 1324,
+        "ESCAPE_SPRINT": 96,
+        "FEED": 629,
+        "FEEDER_REVERSE": 264,
+        "GROWER_REVERSE": 296,
+        "QUEEN_KILL": 8,
+        "REMNANT_CLEAR": 1006,
+        "RUSH": 113
+      },
+      "opponent_logs": {},
+      "snapshots": {
+        "100": {
+          "candidate": {
+            "population": 20.346153846153847,
+            "total_length": 52.69230769230769,
+            "longest": 3.6153846153846154,
+            "queen_length": 2.3846153846153846
+          },
+          "opponent": {
+            "population": 28.23076923076923,
+            "total_length": 71.34615384615384,
+            "longest": 4.538461538461538,
+            "queen_length": 3.4615384615384617
+          }
+        },
+        "200": {
+          "candidate": {
+            "population": 26.73076923076923,
+            "total_length": 71.46153846153847,
+            "longest": 3.8846153846153846,
+            "queen_length": 1.8461538461538463
+          },
+          "opponent": {
+            "population": 34.88461538461539,
+            "total_length": 103.61538461538461,
+            "longest": 7.230769230769231,
+            "queen_length": 3.076923076923077
+          }
+        },
+        "25": {
+          "candidate": {
+            "population": 7.5,
+            "total_length": 19.73076923076923,
+            "longest": 4.3076923076923075,
+            "queen_length": 3.730769230769231
+          },
+          "opponent": {
+            "population": 9.076923076923077,
+            "total_length": 22.46153846153846,
+            "longest": 3.923076923076923,
+            "queen_length": 3.3076923076923075
+          }
+        },
+        "380": {
+          "candidate": {
+            "population": 27.26923076923077,
+            "total_length": 102.73076923076923,
+            "longest": 9.5,
+            "queen_length": 1.6153846153846154
+          },
+          "opponent": {
+            "population": 29.423076923076923,
+            "total_length": 109.8076923076923,
+            "longest": 21.692307692307693,
+            "queen_length": 8.653846153846153
+          }
+        },
+        "440": {
+          "candidate": {
+            "population": 19.653846153846153,
+            "total_length": 93.73076923076923,
+            "longest": 18.346153846153847,
+            "queen_length": 4.461538461538462
+          },
+          "opponent": {
+            "population": 28.923076923076923,
+            "total_length": 118.84615384615384,
+            "longest": 28.115384615384617,
+            "queen_length": 9.653846153846153
+          }
+        },
+        "50": {
+          "candidate": {
+            "population": 13.153846153846153,
+            "total_length": 34.53846153846154,
+            "longest": 3.9615384615384617,
+            "queen_length": 3.230769230769231
+          },
+          "opponent": {
+            "population": 16.423076923076923,
+            "total_length": 41.88461538461539,
+            "longest": 4.615384615384615,
+            "queen_length": 3.6153846153846154
+          }
+        },
+        "75": {
+          "candidate": {
+            "population": 18.384615384615383,
+            "total_length": 49.46153846153846,
+            "longest": 3.576923076923077,
+            "queen_length": 2.730769230769231
+          },
+          "opponent": {
+            "population": 23.307692307692307,
+            "total_length": 59.0,
+            "longest": 4.6923076923076925,
+            "queen_length": 3.576923076923077
+          }
+        }
+      }
+    },
+    "bots/New/current/bot-v27.3.0-leo": {
+      "games": 26,
+      "wins": 13,
+      "draws": 0,
+      "losses": 13,
+      "elimination_wins": 5,
+      "elimination_losses": 5,
+      "candidate_runtime_errors": 0,
+      "opponent_runtime_errors": 0,
+      "candidate_points_max": 95204947,
+      "opponent_points_max": 94629034,
+      "candidate_queen_deaths": 21,
+      "opponent_queen_deaths": 21,
+      "candidate_early_pearls": 2336,
+      "opponent_early_pearls": 2374,
+      "candidate_logs": {
+        "ATTACK_SPRINT": 572,
+        "ESCAPE_SPRINT": 101,
+        "FEED": 746,
+        "FEEDER_REVERSE": 230,
+        "FREE_MOVE": 15039,
+        "GROWER_REVERSE": 247,
+        "PEARL_SPRINT": 277,
+        "QUEEN_WAIT_SPLIT": 41,
+        "REMNANT_CLEAR": 910,
+        "RUSH": 117,
+        "TRAPPED_SELF": 2175,
+        "WORKER_REVERSE": 1232,
+        "QUEEN_KILL": 12
+      },
+      "opponent_logs": {
+        "ATTACK_SPRINT": 551,
+        "ESCAPE_SPRINT": 141,
+        "FEED": 747,
+        "FEEDER_REVERSE": 256,
+        "FREE_MOVE": 16108,
+        "GROWER_REVERSE": 318,
+        "PEARL_SPRINT": 284,
+        "QUEEN_WAIT_SPLIT": 45,
+        "REMNANT_CLEAR": 885,
+        "TRAPPED_SELF": 2085,
+        "QUEEN_KILL": 12,
+        "RUSH": 128,
+        "WORKER_REVERSE": 1157
+      },
+      "snapshots": {
+        "100": {
+          "candidate": {
+            "population": 23.192307692307693,
+            "total_length": 59.07692307692308,
+            "longest": 4.269230769230769,
+            "queen_length": 3.1538461538461537
+          },
+          "opponent": {
+            "population": 23.03846153846154,
+            "total_length": 58.38461538461539,
+            "longest": 4.230769230769231,
+            "queen_length": 3.230769230769231
+          }
+        },
+        "200": {
+          "candidate": {
+            "population": 30.076923076923077,
+            "total_length": 78.6923076923077,
+            "longest": 4.576923076923077,
+            "queen_length": 1.9615384615384615
+          },
+          "opponent": {
+            "population": 30.153846153846153,
+            "total_length": 78.8076923076923,
+            "longest": 4.461538461538462,
+            "queen_length": 1.8461538461538463
+          }
+        },
+        "25": {
+          "candidate": {
+            "population": 8.538461538461538,
+            "total_length": 22.653846153846153,
+            "longest": 4.653846153846154,
+            "queen_length": 3.6923076923076925
+          },
+          "opponent": {
+            "population": 8.5,
+            "total_length": 22.192307692307693,
+            "longest": 4.384615384615385,
+            "queen_length": 3.6923076923076925
+          }
+        },
+        "380": {
+          "candidate": {
+            "population": 33.07692307692308,
+            "total_length": 110.15384615384616,
+            "longest": 8.576923076923077,
+            "queen_length": 1.0769230769230769
+          },
+          "opponent": {
+            "population": 33.34615384615385,
+            "total_length": 110.57692307692308,
+            "longest": 9.692307692307692,
+            "queen_length": 0.9615384615384616
+          }
+        },
+        "440": {
+          "candidate": {
+            "population": 25.692307692307693,
+            "total_length": 98.57692307692308,
+            "longest": 14.384615384615385,
+            "queen_length": 2.3846153846153846
+          },
+          "opponent": {
+            "population": 25.807692307692307,
+            "total_length": 103.76923076923077,
+            "longest": 18.26923076923077,
+            "queen_length": 4.6923076923076925
+          }
+        },
+        "50": {
+          "candidate": {
+            "population": 14.653846153846153,
+            "total_length": 37.84615384615385,
+            "longest": 3.769230769230769,
+            "queen_length": 3.1538461538461537
+          },
+          "opponent": {
+            "population": 14.923076923076923,
+            "total_length": 38.92307692307692,
+            "longest": 3.8846153846153846,
+            "queen_length": 3.1923076923076925
+          }
+        },
+        "75": {
+          "candidate": {
+            "population": 18.884615384615383,
+            "total_length": 49.76923076923077,
+            "longest": 4.3076923076923075,
+            "queen_length": 3.1923076923076925
+          },
+          "opponent": {
+            "population": 19.5,
+            "total_length": 50.30769230769231,
+            "longest": 4.1923076923076925,
+            "queen_length": 3.1538461538461537
+          }
+        }
+      }
+    },
+    "bots/New/current/bot-v27.2.0-leo": {
+      "games": 26,
+      "wins": 14,
+      "draws": 0,
+      "losses": 12,
+      "elimination_wins": 5,
+      "elimination_losses": 5,
+      "candidate_runtime_errors": 0,
+      "opponent_runtime_errors": 0,
+      "candidate_points_max": 95204947,
+      "opponent_points_max": 94635915,
+      "candidate_queen_deaths": 21,
+      "opponent_queen_deaths": 21,
+      "candidate_early_pearls": 2336,
+      "opponent_early_pearls": 2374,
+      "candidate_logs": {
+        "ATTACK_SPRINT": 580,
+        "ESCAPE_SPRINT": 107,
+        "FEED": 723,
+        "FEEDER_REVERSE": 235,
+        "FREE_MOVE": 15169,
+        "GROWER_REVERSE": 242,
+        "PEARL_SPRINT": 276,
+        "QUEEN_WAIT_SPLIT": 41,
+        "REMNANT_CLEAR": 892,
+        "RUSH": 110,
+        "TRAPPED_SELF": 2196,
+        "WORKER_REVERSE": 1230,
+        "QUEEN_KILL": 13
+      },
+      "opponent_logs": {
+        "ATTACK_SPRINT": 563,
+        "ESCAPE_SPRINT": 100,
+        "FEED": 694,
+        "FEEDER_REVERSE": 235,
+        "FREE_MOVE": 16162,
+        "GROWER_REVERSE": 262,
+        "PEARL_SPRINT": 289,
+        "QUEEN_WAIT_SPLIT": 46,
+        "REMNANT_CLEAR": 829,
+        "TRAPPED_SELF": 2068,
+        "QUEEN_KILL": 12,
+        "RUSH": 118,
+        "WORKER_REVERSE": 1159
+      },
+      "snapshots": {
+        "100": {
+          "candidate": {
+            "population": 23.192307692307693,
+            "total_length": 59.07692307692308,
+            "longest": 4.269230769230769,
+            "queen_length": 3.1538461538461537
+          },
+          "opponent": {
+            "population": 23.03846153846154,
+            "total_length": 58.38461538461539,
+            "longest": 4.230769230769231,
+            "queen_length": 3.230769230769231
+          }
+        },
+        "200": {
+          "candidate": {
+            "population": 30.076923076923077,
+            "total_length": 78.6923076923077,
+            "longest": 4.576923076923077,
+            "queen_length": 1.9615384615384615
+          },
+          "opponent": {
+            "population": 30.153846153846153,
+            "total_length": 78.8076923076923,
+            "longest": 4.461538461538462,
+            "queen_length": 1.8461538461538463
+          }
+        },
+        "25": {
+          "candidate": {
+            "population": 8.538461538461538,
+            "total_length": 22.653846153846153,
+            "longest": 4.653846153846154,
+            "queen_length": 3.6923076923076925
+          },
+          "opponent": {
+            "population": 8.5,
+            "total_length": 22.192307692307693,
+            "longest": 4.384615384615385,
+            "queen_length": 3.6923076923076925
+          }
+        },
+        "380": {
+          "candidate": {
+            "population": 33.07692307692308,
+            "total_length": 110.15384615384616,
+            "longest": 8.576923076923077,
+            "queen_length": 1.0769230769230769
+          },
+          "opponent": {
+            "population": 33.34615384615385,
+            "total_length": 110.57692307692308,
+            "longest": 9.692307692307692,
+            "queen_length": 0.9615384615384616
+          }
+        },
+        "440": {
+          "candidate": {
+            "population": 25.846153846153847,
+            "total_length": 98.53846153846153,
+            "longest": 14.538461538461538,
+            "queen_length": 2.423076923076923
+          },
+          "opponent": {
+            "population": 25.115384615384617,
+            "total_length": 101.92307692307692,
+            "longest": 17.0,
+            "queen_length": 3.923076923076923
+          }
+        },
+        "50": {
+          "candidate": {
+            "population": 14.653846153846153,
+            "total_length": 37.84615384615385,
+            "longest": 3.769230769230769,
+            "queen_length": 3.1538461538461537
+          },
+          "opponent": {
+            "population": 14.923076923076923,
+            "total_length": 38.92307692307692,
+            "longest": 3.8846153846153846,
+            "queen_length": 3.1923076923076925
+          }
+        },
+        "75": {
+          "candidate": {
+            "population": 18.884615384615383,
+            "total_length": 49.76923076923077,
+            "longest": 4.3076923076923075,
+            "queen_length": 3.1923076923076925
+          },
+          "opponent": {
+            "population": 19.5,
+            "total_length": 50.30769230769231,
+            "longest": 4.1923076923076925,
+            "queen_length": 3.1538461538461537
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "protected_files_unchanged": true,
+  "changed_since_tournament": [
+    "lanes.hpp"
+  ],
+  "final_fingerprint": "4f1449b3d261dd586180d4f1fa493c9ca8c5187398df0ba21cc7b1d970027470",
+  "candidate_sha256": {
+    "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/bots/New/current/bot-v28.0.0-Kushagra/survival.hpp": "1930842a7dc1225bf2a226eb7fc058f810ed351e7e9140d6a216a2a22ef80ecd",
+    "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/bots/New/current/bot-v28.0.0-Kushagra/queen.hpp": "735ae6aa7d7af8394bdaa5c2b024eac8289e0a16b8388d8dd3d3ba1e7cebda96",
+    "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/bots/New/current/bot-v28.0.0-Kushagra/endgame.hpp": "f5ed39430b195a7233c14305668e3b27704b460d7377e63ce89ab320ca68df75",
+    "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/bots/New/current/bot-v28.0.0-Kushagra/scoring.hpp": "8c11bc700c928f5afa1f2410e2333008f12ad6cb4ab26aab83557d706c87dcaa",
+    "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/bots/New/current/bot-v28.0.0-Kushagra/lanes.hpp": "3c1669577ecc16a7e56fa67e6a09f3a57e783fdef014db578a4e58db4eb16acb",
+    "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/bots/New/current/bot-v28.0.0-Kushagra/.gitignore": "2c147c477a5e7050bebb482645844eda308cf71e61f85e491d5d2d0d4fb71b89",
+    "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/bots/New/current/bot-v28.0.0-Kushagra/helper.hpp": "ca57d2398f309144ce98f6c899d28847672cd9914ff8be03afdbb0379e7365b7",
+    "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/bots/New/current/bot-v28.0.0-Kushagra/route.hpp": "df41ad9e5d15381831b27a23be786c298a47faa5fe55b822a9f6cccee529ac3d",
+    "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/bots/New/current/bot-v28.0.0-Kushagra/bot.toml": "d56d20b38e5961083cba1d7e00ff47397f567bf55c2b4a4748ac0f32fcba9cd5",
+    "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/bots/New/current/bot-v28.0.0-Kushagra/main.cpp": "6a8f75e762d376d65bf9439ce463a3afc34808ebf051ae00405abdb3986bc8b3",
+    "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/bots/New/current/bot-v28.0.0-Kushagra/coordination.hpp": "3d893fc90a69b28e596311e2c0641a5e223dcd2d3e848185f4aa9412b303e500",
+    "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/bots/New/current/bot-v28.0.0-Kushagra/explore.hpp": "a874354dbc98865c593c41a2e749182da29548e184d8de963e82be79d6b929bd"
+  }
+}

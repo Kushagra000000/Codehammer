@@ -1,0 +1,260 @@
+{
+  "planned_games": 2,
+  "completed_games": 2,
+  "evaluation_errors": 0,
+  "attempted_rows": 2,
+  "campaign_attempts": 26,
+  "campaign_limit": 80,
+  "groups": {
+    "all": {
+      "games": 2,
+      "wins": 0,
+      "draws": 0,
+      "losses": 2,
+      "elimination_wins": 0,
+      "elimination_losses": 2,
+      "candidate_runtime_errors": 0,
+      "opponent_runtime_errors": 0,
+      "candidate_points_max": 9644483,
+      "opponent_points_max": 3722483,
+      "candidate_queen_deaths": 2,
+      "opponent_queen_deaths": 2,
+      "candidate_early_pearls": 50,
+      "opponent_early_pearls": 127,
+      "candidate_logs": {
+        "FREE_MOVE": 10,
+        "QUEEN_WAIT_SPLIT": 1,
+        "TRAPPED_SELF": 2,
+        "PEARL_SPRINT": 8,
+        "WORKER_REVERSE": 1,
+        "ATTACK_SPRINT": 1
+      },
+      "opponent_logs": {},
+      "snapshots": {
+        "25": {
+          "candidate": {
+            "population": 3.0,
+            "total_length": 10.0,
+            "longest": 5.0,
+            "queen_length": 5.0
+          },
+          "opponent": {
+            "population": 6.5,
+            "total_length": 14.5,
+            "longest": 3.0,
+            "queen_length": 3.0
+          }
+        },
+        "50": {
+          "candidate": {
+            "population": 5.0,
+            "total_length": 11.5,
+            "longest": 2.5,
+            "queen_length": 1.0
+          },
+          "opponent": {
+            "population": 12.0,
+            "total_length": 29.0,
+            "longest": 3.5,
+            "queen_length": 2.0
+          }
+        },
+        "75": {
+          "candidate": {
+            "population": 4.0,
+            "total_length": 10.5,
+            "longest": 3.0,
+            "queen_length": 0.0
+          },
+          "opponent": {
+            "population": 18.5,
+            "total_length": 45.0,
+            "longest": 3.5,
+            "queen_length": 2.0
+          }
+        },
+        "100": {
+          "candidate": {
+            "population": 2.5,
+            "total_length": 7.5,
+            "longest": 3.5,
+            "queen_length": 0.0
+          },
+          "opponent": {
+            "population": 25.0,
+            "total_length": 59.0,
+            "longest": 3.0,
+            "queen_length": 1.5
+          }
+        },
+        "200": {
+          "candidate": {
+            "population": 2.5,
+            "total_length": 7.0,
+            "longest": 2.0,
+            "queen_length": 0.0
+          },
+          "opponent": {
+            "population": 33.0,
+            "total_length": 78.0,
+            "longest": 3.5,
+            "queen_length": 0.0
+          }
+        },
+        "380": {
+          "candidate": {
+            "population": 0.0,
+            "total_length": 0.0,
+            "longest": 0.0,
+            "queen_length": 0.0
+          },
+          "opponent": {
+            "population": 33.0,
+            "total_length": 79.0,
+            "longest": 3.0,
+            "queen_length": 0.0
+          }
+        },
+        "440": {
+          "candidate": {
+            "population": 0.0,
+            "total_length": 0.0,
+            "longest": 0.0,
+            "queen_length": 0.0
+          },
+          "opponent": {
+            "population": 33.0,
+            "total_length": 79.0,
+            "longest": 3.0,
+            "queen_length": 0.0
+          }
+        }
+      }
+    },
+    "../Top_20_bot": {
+      "games": 2,
+      "wins": 0,
+      "draws": 0,
+      "losses": 2,
+      "elimination_wins": 0,
+      "elimination_losses": 2,
+      "candidate_runtime_errors": 0,
+      "opponent_runtime_errors": 0,
+      "candidate_points_max": 9644483,
+      "opponent_points_max": 3722483,
+      "candidate_queen_deaths": 2,
+      "opponent_queen_deaths": 2,
+      "candidate_early_pearls": 50,
+      "opponent_early_pearls": 127,
+      "candidate_logs": {
+        "FREE_MOVE": 10,
+        "QUEEN_WAIT_SPLIT": 1,
+        "TRAPPED_SELF": 2,
+        "PEARL_SPRINT": 8,
+        "WORKER_REVERSE": 1,
+        "ATTACK_SPRINT": 1
+      },
+      "opponent_logs": {},
+      "snapshots": {
+        "25": {
+          "candidate": {
+            "population": 3.0,
+            "total_length": 10.0,
+            "longest": 5.0,
+            "queen_length": 5.0
+          },
+          "opponent": {
+            "population": 6.5,
+            "total_length": 14.5,
+            "longest": 3.0,
+            "queen_length": 3.0
+          }
+        },
+        "50": {
+          "candidate": {
+            "population": 5.0,
+            "total_length": 11.5,
+            "longest": 2.5,
+            "queen_length": 1.0
+          },
+          "opponent": {
+            "population": 12.0,
+            "total_length": 29.0,
+            "longest": 3.5,
+            "queen_length": 2.0
+          }
+        },
+        "75": {
+          "candidate": {
+            "population": 4.0,
+            "total_length": 10.5,
+            "longest": 3.0,
+            "queen_length": 0.0
+          },
+          "opponent": {
+            "population": 18.5,
+            "total_length": 45.0,
+            "longest": 3.5,
+            "queen_length": 2.0
+          }
+        },
+        "100": {
+          "candidate": {
+            "population": 2.5,
+            "total_length": 7.5,
+            "longest": 3.5,
+            "queen_length": 0.0
+          },
+          "opponent": {
+            "population": 25.0,
+            "total_length": 59.0,
+            "longest": 3.0,
+            "queen_length": 1.5
+          }
+        },
+        "200": {
+          "candidate": {
+            "population": 2.5,
+            "total_length": 7.0,
+            "longest": 2.0,
+            "queen_length": 0.0
+          },
+          "opponent": {
+            "population": 33.0,
+            "total_length": 78.0,
+            "longest": 3.5,
+            "queen_length": 0.0
+          }
+        },
+        "380": {
+          "candidate": {
+            "population": 0.0,
+            "total_length": 0.0,
+            "longest": 0.0,
+            "queen_length": 0.0
+          },
+          "opponent": {
+            "population": 33.0,
+            "total_length": 79.0,
+            "longest": 3.0,
+            "queen_length": 0.0
+          }
+        },
+        "440": {
+          "candidate": {
+            "population": 0.0,
+            "total_length": 0.0,
+            "longest": 0.0,
+            "queen_length": 0.0
+          },
+          "opponent": {
+            "population": 33.0,
+            "total_length": 79.0,
+            "longest": 3.0,
+            "queen_length": 0.0
+          }
+        }
+      }
+    }
+  }
+}

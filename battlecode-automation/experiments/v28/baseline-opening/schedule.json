@@ -1,0 +1,20 @@
+[
+  {
+    "id": "8aae305ce6339f76f6d4",
+    "map": "maps/default_small.map",
+    "a": "bots/New/current/bot-v27.3.0-leo",
+    "b": "../Top_20_bot",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "d7b621463488bba616e3",
+    "map": "maps/default_small.map",
+    "a": "../Top_20_bot",
+    "b": "bots/New/current/bot-v27.3.0-leo",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  }
+]

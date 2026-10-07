@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "stage": "screen",
+  "candidate": "bots/New/current/bot-v28.0.0-Kushagra",
+  "opponents": [
+    "../Top_20_bot",
+    "bots/New/current/bot-v27.3.0-leo",
+    "bots/New/current/bot-v27.2.0-leo"
+  ],
+  "maps": [
+    "maps/default_small.map",
+    "maps/maze.map",
+    "maps/portals.map",
+    "maps/stripes.map"
+  ],
+  "seeds": [
+    28001
+  ],
+  "sandbox": true,
+  "toolkit": "1.2.9",
+  "fingerprints": {
+    "bots/New/current/bot-v28.0.0-Kushagra": "a0d4e8a677cef288ce5d87cd5898b9a4636c462fc333392bc13d437ce99cfc33",
+    "../Top_20_bot": "3933af54ff71b5e6346175eb5cbb550f2912c8ff4872e384e7e123470185e648",
+    "bots/New/current/bot-v27.3.0-leo": "d9507abbb53a69083f45963a00f963ee0fe6e5a9f387adc91b919875854ae25b",
+    "bots/New/current/bot-v27.2.0-leo": "595be55e78bfba6a5e9acb81aa8bf51b9f37d363e98225ddedbadac6df724589"
+  },
+  "maps_sha256": {
+    "maps/default_small.map": "1b9d21bdec23388e8c72f3e7095cd70696b8dd816584627f44c05dd9e2d118b6",
+    "maps/maze.map": "f154114e3ed9d39efd8516529acf8462328866b1580662228ff35dedd3cd3bdf",
+    "maps/portals.map": "56341e6577da7429efb6f33b64b79b0c4223c4fbd9df995713ad781bead5f423",
+    "maps/stripes.map": "31b22a24c467edb146f8c6fc291beccce1493617d90ff5bb6eff538c3af24715"
+  },
+  "harness_sha256": "1a90a7e6136befb9988730b549c1190a25a80fda029c938ff19dfbc96e35c545",
+  "base_harness_sha256": "77c86736f0dee99f674572cc18c42cdd35e6c9190115874aeaf6630d1db3bdbd",
+  "budget_ledger": "/Users/kushagra/Desktop/UNSW_battlecode/Codehammer/battlecode-automation/experiments/v28/game-budget.jsonl"
+}

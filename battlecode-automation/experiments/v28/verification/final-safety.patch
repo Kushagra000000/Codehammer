@@ -1,0 +1,24 @@
+--- tournament/lanes.hpp
++++ final/lanes.hpp
+@@ -133,7 +133,10 @@
+             return false; // a useful attack or a safe way back needs no sacrifice
+     Position const tail = own_trail_.back();
+     int const tc = index(tail);
+-    if (hard_threat_[static_cast<std::size_t>(tc)] || soft_threat_[static_cast<std::size_t>(tc)])
++    // Ordinary workers do not populate hard/soft reach maps. The always-built
++    // free-step map also protects the newborn before its first turn this round.
++    if (enemy_threats_[static_cast<std::size_t>(tc)] || hard_threat_[static_cast<std::size_t>(tc)] ||
++        soft_threat_[static_cast<std::size_t>(tc)])
+         return false;
+     bool outward_exit = false;
+     for (Direction d : Direction::get_direction_list())
+@@ -143,7 +146,8 @@
+             continue;
+         int const n = index(s.destination);
+         if (other_occ_[static_cast<std::size_t>(n)] || own_idx_[static_cast<std::size_t>(n)] != -1 ||
+-            !cell(s.destination).seen || hard_threat_[static_cast<std::size_t>(n)] || soft_threat_[static_cast<std::size_t>(n)])
++            !cell(s.destination).seen || enemy_threats_[static_cast<std::size_t>(n)] ||
++            hard_threat_[static_cast<std::size_t>(n)] || soft_threat_[static_cast<std::size_t>(n)])
+             continue;
+         if (lane_depth_[static_cast<std::size_t>(tc)] == 0 ||
+             lane_depth_[static_cast<std::size_t>(n)] < lane_depth_[static_cast<std::size_t>(tc)])
