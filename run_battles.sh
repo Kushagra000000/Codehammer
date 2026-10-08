@@ -2,7 +2,7 @@
 #     unswbc run "$map" bots/New/current/bot-v21.0.0 bots/New/current/bot-v22.0.0 --sandbox -v | grep -E "bot [01] .*died|wins|points per turn"
 # done
 for map in maps/*; do
-    unswbc run maps/slithery_fight.map bots/New/current/bot-v25.0.0-omar bots/New/current/bot-v26.1.0-omar
+    unswbc run "$map" bots/New/current/bot-v30.0.0-leo bots/New/current/bot-v27.1.0-omar
 done
 # unswbc run --sandbox maps/unsw.map bots/New/current/bot-v21.0.0 bots/New/current/bot-v22.0.0
 # unswbc run maps/default.map bots/New/current/bot-v21.0.0 bots/New/current/bot-v22.0.0 --sandbox -v | grep -E "bot [01] .*died|wins|points per turn"
