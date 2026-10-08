@@ -26,7 +26,7 @@
 \newcommand{\code}[1]{\texttt{\detokenize{#1}}}
 \setlist{itemsep=2pt,topsep=4pt}
 
-\title{Changelog: v20 $\rightarrow$ v25\\[2pt]\large v21: survival search, free steps, routing, landing safety, rushes and the king's plan;\\ v22: the judge's points budget, the queen, the centre rush; v23: per-map settings and the queen's survival; v24: portals; v25: dispersion}
+\title{Changelog: v20 $\rightarrow$ v27\\[2pt]\large v21: survival search, free steps, routing, landing safety, rushes and the king's plan;\\ v22: the judge's points budget, the queen, the centre rush; v23: per-map settings and the queen's survival; v24: portals; v25: dispersion; v26.0.0: a portal is a way out; v26.1.0: early portals; v26.2.0: splits of 2; v26.3.0: Leo's v27.2.0 merged; v27.0.0: eliminations; v27.1.0: the queen kill}
 \author{}
 \date{}
 
@@ -1940,5 +1940,487 @@ forecasting. Setting off on time turned it round: 77 against 60.
       \item \textbf{Points} (metered wasm, 23,150 recorded turns on Big Empty, 64$\times$64, every tile a bed): median 18.3M
             $\rightarrow$ 18.4M, max unchanged at 29.1M.
 \end{itemize}
+
+
+%=====================================================================
+\part{v25 $\rightarrow$ v26.0.0: a portal is a way out}
+%=====================================================================
+v26.0.0 starts here. Everything before this part is v25 (a top-30 bot at that point). v26.0.0 is v25 plus the next section.
+
+\section{A portal we have never looked through is a way out}\label{sec:door}
+\textbf{What happened} (sandbox, Maze, round 61). The queen, 4 long, had followed a chain of portals early on and stood with her
+head in a small kelp pocket, facing the wall:
+\begin{itemize}
+      \item \textbf{west}: a 1-tile pocket whose only other side is a portal she had never looked through;
+      \item \textbf{east}: a 2-tile dead end;
+      \item \textbf{behind}: her body, back the way she came.
+\end{itemize}
+She split (her rear 2 escaped the way she came), went east the next round, and died in the dead end.
+
+\textbf{Why.} The survival search (\code{surv_dfs}) treated a portal whose far end we do not know as a wall: it cannot see where
+it leads.
+\begin{itemize}
+      \item West scored 0 more moves and east 1. Both are ``hopeless'' by the queen's certain-death test (every move a head trade, no
+            free side, or a complete search allowing at most one more move), so she made her escape split.
+      \item With only her neck beside her head, nothing could be kept alive (section~\ref{sec:keep}): she kept 2 and her rear 2 left.
+      \item At length 2 the same search preferred east (1 more move) to the portal (0), and she died there.
+\end{itemize}
+The crossing itself was most likely safe: a portal's far tile held a dragon in 2--25\% of rounds in the simulator (section
+\ref{sec:portals}).
+
+\textbf{Changes} (\code{survival.hpp}, \code{scoring.hpp}, \code{endgame.hpp}; \code{SurvivalResult} and \code{Candidate} carry
+it from \code{main.cpp}, \code{route.hpp}, \code{explore.hpp}):
+\begin{itemize}
+      \item \textbf{A way on.} In the survival search, a portal beside the head whose far end we have never seen counts as reaching
+            the target, but only when no other move from there does (it cannot see beyond it). The result says so (\code{via_portal}).
+      \item \textbf{Priced as a crossing.} A move whose only way on is such a portal pays the crossing's chance of landing on a body:
+            5\% for workers in the early portal window, otherwise \code{blind_portal_p()} (8\% early, rising to 20\% by round
+            150), times our death cost. For the queen, whose death counts as at least 30 segments, that is about 2,600--6,600 points:
+            far less than a dead end, far more than open water.
+      \item \textbf{Not hopeless.} A step through such a portal is not ``certain death'' for the queen's test nor the workers': its
+            exits are unknown, not zero.
+\end{itemize}
+The room estimate (\code{timed_space}) already counted such a portal as open, so the two searches now agree.
+
+\textbf{Checked.}
+\begin{itemize}
+      \item \textbf{The screenshot rebuilt} (\code{sim/scen_maze_queen.py}: the pocket, a portal to the far side of the map, round 61).
+            v25: split, east, dead on round 64, exactly as in the sandbox. v26.0.0: west, through the portal on the next move, and still
+            alive and 4 long at round 66.
+      \item \textbf{Queen deaths by round 100} (self-play, all 25 maps, seed 1, 50 queens): 18 $\rightarrow$ 16. Most of the rest are
+            head-on deaths to the other side's queen hunters, which self-play doubles.
+      \item \textbf{Portals} (\code{sim/portal_loiter.py}, seed 5, 200 rounds, both teams): deaths on crossing moves Portals 49
+            $\rightarrow$ 43, Default 8 $\rightarrow$ 11, Maze 1 $\rightarrow$ 9. On Maze, crossings went 54 $\rightarrow$ 156 and
+            both teams ended longer (123 and 101 $\rightarrow$ 127 and 136).
+      \item \textbf{Against v25} (12 official maps, 150 rounds, sides swapped): 11--13, the same length at round 50 (33.0 against 33.3
+            averaged over both batches). A narrow fix, so no change expected there.
+      \item \textbf{Points} (metered wasm, 11,952 recorded turns on Unsw): unchanged (median 18.5M, max 46.8M).
+\end{itemize}
+
+\section{Tried after this, and reverted}\label{sec:reverted}
+Everything below was built on top of the change above, and all of it is reverted. v26.0.0 is the change above alone;
+v26.1.0 (next part) was built afresh on top of it.
+
+\textbf{Why.} The full build against v25 on the real engine (\code{unswbc run}, every map, sides swapped, 150 games): V25 won 78,
+it 71, with 1 draw. That gap is within the luck of 150 games, but nothing showed it was better. The changes had been tested
+mostly in the simulator, a few at a time, each against the build before it, on 8--16 games, and against our own bot, so each
+small step looked better, or no worse, without the whole being any better.
+
+What was reverted (the full build and its changelog are kept, should any of it be worth another look):
+\begin{itemize}
+      \item \textbf{The queen's deaths, traced}: no seeding or escape split inside an enemy's reach; she moves rather than split
+            when no split keeps her alive; pearls on a hunter's way and enemy tails counted in her threat map; her route only to
+            tiles with everything near them in view; free food on her route.
+      \item \textbf{The whole-window rule} (after round 75, an enemy whose tail she cannot see covers its whole 7$\times$7).
+      \item \textbf{More early portal pull for workers} (crossing value, objective cost, cheaper blind exits, far-side pearls).
+      \item \textbf{Two-sided portal pockets count as tunnels} (\code{portal_pocket_worth}).
+      \item \textbf{Portals: tunnels and death cells}: one-way tunnels, walls and pockets in portal messages, a survival search that
+            looks past a door.
+      \item \textbf{No centre rush on Portals} (told apart by its one-tile portal cells).
+      \item \textbf{No early portal exploring for the queen}.
+\end{itemize}
+
+\part{v26.0.0 $\rightarrow$ v26.1.0: early portals}
+%=====================================================================
+v26.1.0 starts here. Everything before this part is v26.0.0 (v25 and the door fix, section~\ref{sec:door}).
+
+\section{Early portals: workers go in, the queen stays out}\label{sec:earlyportals}
+\textbf{The aim.} Early on, a worker that sees a portal goes through it; the queen does not. The king and the growers do not
+either. Nobody paces in front of a portal.
+
+\textbf{What happened} (sandbox, Portals, round 7). A worker at (28,7) had three portals in plain sight and took none of them.
+Other workers did the same on other maps.
+
+\textbf{Why.} Five things held workers back:
+\begin{itemize}
+      \item \textbf{Only the explore goal paid for a crossing.} The crossing value (180) was paid only under the explore goal. A
+            worker with any other goal (eat, hunt, fight) got nothing for going through.
+      \item \textbf{Eat called it a detour.} Under the eat goal, a portal we have never looked through counted as a step off the
+            route to the pearl.
+      \item \textbf{The objective map charged for it.} Each unknown portal on the way cost 5 there.
+      \item \textbf{The centre rush won.} On 32$\times$16 and the other centre maps, it pulls 300 a step towards the middle, more than
+            the crossing was worth.
+      \item \textbf{Fights through walls.} Fights were picked by straight-line distance (at most 4), walls ignored. On Portals,
+            workers lined up along the double wall between the two halves, ``fighting'' enemies they could never reach, right
+            beside the portals they should have taken. In the simulator probe, every skipped portal beside a worker was under the
+            fight goal.
+\end{itemize}
+
+\textbf{Changes} (\code{main.cpp}, \code{scoring.hpp}, \code{queen.hpp}). Workers, while \code{portal_exploring()}: not
+retaining length, not valuable, before round 100.
+\begin{itemize}
+      \item \textbf{Crossing value.} \code{PORTAL_EXPLORE_VALUE} 180 $\rightarrow$ 800, whatever the goal (\code{portal_value}).
+      \item \textbf{Not a detour.} Under the eat goal, such a portal is no longer a step off the route.
+      \item \textbf{Cheaper on the objective map.} \code{UNKNOWN_PORTAL_EXPLORE_COST} 5 $\rightarrow$ 2 (an unseen tile costs 8).
+      \item \textbf{The centre rush gives way.} It pulls nothing while a portal nobody has been through is in view
+            (\code{note_unexplored_portals}, \code{centre_pull}). It is otherwise unchanged; removing it for the centre sizes was not
+            needed.
+      \item \textbf{Fights by path, for every dragon.} An enemy is near when it is at most 4 steps away by path. The path search
+            goes round walls, through known portals, and ignores bodies, which move (\code{fight_path_distances},
+            \code{prepare_fight}).
+      \item \textbf{Keep-out for the queen, the king and the growers} (\code{PORTAL_KEEPOUT}, \code{apply_portal_keepout},
+            \code{queen_safe}).
+            \begin{itemize}
+                  \item A move that takes a portal into the unknown costs a death while some other move keeps them alive. That
+                        covers a pair nobody has seen both ends of, a far tile out of sight, and a step whose only way on is such a
+                        portal.
+                  \item ``Keeps them alive'' means: not a head trade, not walled, no hard threat, and a way on.
+                  \item When every other move dies, the portal is still taken, as the way out (section~\ref{sec:door}).
+                  \item A portal onto a tile in view is a step like any other. On Stripes, the box of beds next to the start is one.
+                        Strict keep-out lost Stripes 0--4 in all three runs that had it; with this exception it went 2--2.
+            \end{itemize}
+\end{itemize}
+
+\textbf{Tried, not kept: sending a pair at once.} A pair a dragon has just seen both ends of went out by sonar on the next
+round, rather than waiting its turn. The aim was to tell teammates sooner that the portal is explored, so they pick another.
+It made no difference: pairs crossed by round 50 were 3.6 either way, and by round 100, 5.2 either way. Left out.
+
+\textbf{Checked.}
+\begin{itemize}
+      \item \textbf{Exploration} (simulator, \code{sim/explore_cov.py}): the 14 maps with 4 or more portal pairs, seeds 1--5, both
+            sides, against v26.0.0, 100 rounds.
+            \begin{itemize}
+                  \item Pairs first crossed: by round 25, 1.5 $\rightarrow$ 1.9; by round 50, 2.7 $\rightarrow$ 3.6; by round 100,
+                        4.5 $\rightarrow$ 5.2.
+                  \item By round 50: Portals 3.2 $\rightarrow$ 4.8, Default 4.4 $\rightarrow$ 6.2, Schooltime 2.5 $\rightarrow$ 4.2,
+                        Stripes 1.4 $\rightarrow$ 2.5, Dilemma 0 $\rightarrow$ 2.
+                  \item Maze by round 100: 8.3 $\rightarrow$ 7.3, slightly fewer. Stronghold, Trauma and Australia: unchanged. Their
+                        portals are seldom in view early, which is a dispersion problem rather than this one.
+            \end{itemize}
+      \item \textbf{Seen, then entered} (\code{sim/portal_behave.py}, \code{walkaway.py}, 150 rounds).
+            \begin{itemize}
+                  \item On Portals, workers next to a portal never looked through took it 31 times out of 32.
+                  \item Pacing 8 or more turns in front of a portal: 0--2 a game on Portals, Default, Islands, Stripes and Maze.
+                  \item The queen crossed only when she had a single move, or into the in-view box on Stripes.
+            \end{itemize}
+      \item \textbf{Real engine} (\code{ubcnative/ubcrun}, built from the official engine sources; all 25 maps, both sides).
+            \begin{itemize}
+                  \item The same seed does not replay the same game: deadlines are timed. So 100 games are good to about
+                        $\pm$10.
+                  \item Against v26.0.0, 100 games each:
+                        \begin{itemize}
+                              \item worker changes only: 57--43;
+                              \item worker changes + strict keep-out: 54--46;
+                              \item keep-out only: 53--47;
+                              \item + fight by path, strict keep-out: 49.5--50.5;
+                              \item v26.1.0 (keep-out with the in-view exception): 52.5--47.5.
+                        \end{itemize}
+                  \item \textbf{v26.1.0 against v25} (150 games, seeds 3--5): 76.5--73.5. Queens alive 43 against 41; total length 13,800
+                        against 11,899 (+16\%). Portals went 1--5 in those 6 games; 16 more Portals games went 8.5--7.5.
+            \end{itemize}
+\end{itemize}
+
+\part{v26.1.0 $\rightarrow$ v26.2.0}
+%=====================================================================
+v26.2.0 starts here. Everything before this part is v26.1.0 (early portals, section~\ref{sec:earlyportals}). Next: dispersion.
+
+\section{A worker's split takes 2 off its tail}\label{sec:split2}
+\textbf{The rule.} When a worker splits, the child is the 2 segments at its tail (the engine's child always comes off the
+tail), and the worker keeps the rest: $L = (L-2) + 2 = (L-4) + 2 + 2$, and so on, over the next turns. Before, the worker
+kept 2 and gave the rest (at most 9). So a long worker (Slithery Fight starts workers of 5--7) left a 2 at the front and a
+long dragon facing backwards. One switch, \code{SPLIT_TWO_FROM_TAIL} (\code{main.cpp}, \code{worker_child_size}); \code{false}
+gives the old sizes.
+
+\textbf{Not changed:} split escapes (the rear part reverses out of a dead end or a box, \code{endgame.hpp}), pocket raids that
+end in one, and the queen's seeding.
+
+\textbf{Tried first: every split, escapes included.} 45--55 against v26.1.0 over 100 games. Queens alive 24 against 31;
+total length $-14\%$. With escapes saving only the 2 at the tail, the rest of a doomed dragon died with its head, and
+pocket raids had to go. So the rule is for worker splits only.
+
+\textbf{Checked.}
+\begin{itemize}
+      \item Simulator, Slithery Fight, 60 rounds: every worker split (35) had a child of 2. Escape splits kept their sizes
+            (2--5, and the queen's 18 at the start); the queen seeded 3.
+      \item \textbf{Real engine against v26.1.0} (all 25 maps, seeds 1--2, both sides, 100 games): 53--47. Queens alive 29
+            against 25; total length 7,733 against 9,002 ($-14\%$). Slithery Fight went 1--3 in its 4 games. Within the luck
+            of 100 games on all three counts.
+\end{itemize}
+
+\part{v26.2.0 $\rightarrow$ v26.3.0: Leo's v27.2.0 merged in}
+%=====================================================================
+v26.3.0 starts here. Everything before this part is v26.2.0 (section~\ref{sec:split2}).
+
+\section{What Leo's bot changes}\label{sec:leo}
+Leo's v27.2.0 is V25 plus about 750 changed lines (\code{main.cpp}, \code{scoring.hpp}, \code{endgame.hpp}, \code{queen.hpp};
+the rest only reformatted). Most of it is experiments behind switches that are off. These five are on in his build:
+\begin{itemize}
+      \item \textbf{Late army} (his idea 2). Half the workers, by a hash of the id, do not feed the king from round 380 to 440:
+            they harvest, hunt and explore, skip the late rendezvous, and may keep splitting. His numbers: 0.511 against
+            V25 over 3,200 games.
+      \item \textbf{The queen and portals} (his safety A). From round 100, while the queen can reach 64 tiles or more without a
+            portal, any portal move is unsafe for her and costs 40,000. His numbers: 202--198, ``too small to measure''.
+      \item \textbf{The queen waits} (his v25.1 and safety B). Certainly dead, the queen splits off only 2 and keeps her place
+            and the rest of her length, where V25 let her rear $L-2$ escape and she died. She also waits when every move is
+            hopeless or ends in a certain enemy reach (or crosses a portal, as above) while her own tile is out of reach.
+      \item \textbf{Ally box} (his v27.1 idea 1). A move that takes every free side left to a teammate's head costs 0.7 of that
+            teammate's death; taking all but one costs 300. His numbers: 0.542 head to head against his v27.0.0 (800 games).
+      \item \textbf{Early trade} (his v27.2). Before round 50, a worker (not the queen, not valuable) may trade head-on into an
+            enemy as long as it or longer while we have 3 units or more. His numbers: 0.580 head to head against v27.1.0
+            (800 games).
+\end{itemize}
+Off in his build, so not brought over: workers growing before they split, sharing where the enemy queen is, a cautious
+queen pricing, corridor and dead-end costs, worker reach, child room, the army fed near the queen, bolder portals.
+
+\section{The merge}\label{sec:merge}
+The five are ported as they are, each behind its own switch (\code{main.cpp}, after the rest of \code{Config}):
+\code{KEEP_ARMY}, \code{QUEEN_NO_PORTAL}, \code{QUEEN_WAIT_SPLIT} with \code{QUEEN_STALL}, \code{ALLY_BOX},
+\code{EARLY_TRADE}.
+\begin{itemize}
+      \item \code{main.cpp}: \code{army_worker}, its split stop; \code{apply_queen_no_portal},
+            \code{queen_room_without_portals}, \code{path_crosses_portal}; the early trade in \code{eligible_target}.
+      \item \code{endgame.hpp}: feeders and the rendezvous leave the army out; the queen's wait split and stall in
+            \code{play_split_escape}.
+      \item \code{scoring.hpp}: \code{ally_box_cost}, in \code{goal_progress}.
+      \item \code{queen.hpp}: the header comment only.
+\end{itemize}
+How it sits with ours:
+\begin{itemize}
+      \item \textbf{Portals.} Our keep-out (section~\ref{sec:earlyportals}: queen, king and growers stay out of portals into the
+            unknown, all game) and his rule (the queen, any portal, from round 100 when she has room) both apply.
+      \item \textbf{The door} (section~\ref{sec:door}). A step through a portal we never looked through is still not hopeless
+            for the queen: she takes it rather than wait, except where his stall rule calls a portal move no better than
+            waiting.
+      \item \textbf{Splits.} Our 2-from-the-tail rule is for ordinary worker splits, his wait split is the queen's: no
+            overlap. His army may keep splitting after round 380, in 2s like any worker.
+\end{itemize}
+Two of our own v26 changes got switches too, for the tests below: \code{EARLY_PORTAL_PULL} (the worker pull of
+section~\ref{sec:earlyportals}; \code{false}: V25's 180, explore goal only, objective cost 5) and \code{FIGHT_BY_PATH}.
+
+\textbf{The port checked.} With our own v26 changes switched off and no deadlines (\code{BOT_UNLIMITED}, so a game replays
+exactly), the merge and Leo's build played the same moves on every turn of three simulator games on maps without portals,
+where the door fix cannot act: Default Small (1,485 turns), Weakhold (10,404) and Tower Defense (6,182).
+
+\section{Results}\label{sec:mergeresults}
+Real engine (\code{ubcrun}), all 25 maps, both sides. 100 games are good to about $\pm$10.
+\begin{itemize}
+      \item \textbf{v26.2.0 against Leo's v27.2.0} (seeds 1--2): 38--62. Queens alive 22 against 33; total length 6,625 against
+            10,480.
+      \item \textbf{v26.3.0 against Leo's v27.2.0} (seeds 1--6, 300 games): 156.5--143.5 (52\%, $\pm$6). Queens alive 103
+            against 73; total length 25,293 against 26,295 ($-4\%$). By seed pair: 47--53, 57.5--42.5, 52--48. Islands went
+            2--10 over the 12 games, the one map with a run like that.
+\end{itemize}
+\textbf{Which change matters} (head to head, v26.3.0 against itself with one switch off, seeds 1--2, 100 games):
+\begin{center}
+      \begin{tabular}{lrrr}
+            switched off                                    & score (with--without) & queens alive & total length    \\ \hline
+            early trade (Leo)                               & 60--40                & 31 / 26      & 8,728 / 7,691   \\
+            ally box (Leo), seeds 1--4, 200 games           & 92.5--107.5           & 65 / 65      & 16,875 / 15,805 \\
+            late army (Leo)                                 & 52--48                & 31 / 30      & 9,641 / 6,909   \\
+            queen waits (Leo)                               & 52--48                & 29 / 28      & 9,433 / 7,704   \\
+            2 off the tail (ours)                           & 52--48                & 32 / 26      & 8,251 / 8,500   \\
+            fight by path (ours), seeds 1--4, 200 games     & 95--105               & 59 / 60      & 16,506 / 16,847 \\
+            early portal pull (ours), seeds 1--4, 200 games & 92--108               & 63 / 63      & 16,728 / 17,544 \\
+      \end{tabular}
+\end{center}
+\begin{itemize}
+      \item \textbf{Early trade is the one that shows}: 60--40, ten points, in line with Leo's 0.58. Before round 50 our
+            workers now answer the enemy workers that ram them, and more games are won by elimination (31 against 19 of the
+            100).
+      \item \textbf{The ally box does not show here}: 92.5--107.5 over 200 games (46\%, $\pm$7). Leo measured +4 points in
+            his bot; in ours it is no gain, perhaps a small loss. It stays on, as in his build, pending more games.
+      \item \textbf{Our own early-portal changes do not show either}: the worker pull 92--108 and fights by path 95--105, over
+            200 games each. Like the ally box, inside the noise and leaning the wrong way.
+      \item \textbf{The rest are inside the noise} (52--48), the army and the queen's wait with more length.
+      \item \textbf{All three of those off together} (ally box, worker pull, fights by path; seeds 1--4, 200 games against
+            v26.3.0): 99.5--100.5. So their leanings were noise, as a whole they change nothing, and v26.3.0 keeps all three.
+            By map it is another story, 8 games each: Help 0--8 without them, but Dilemma 8--0, Islands 7--1 and Big Empty
+            7--1 without them. Worth a look when we come to exploration.
+\end{itemize}
+
+
+\part{v26.3.0 $\rightarrow$ v27.0.0: eliminations}
+%=====================================================================
+v27.0.0 starts here. Everything before this part is v26.3.0 (section~\ref{sec:mergeresults}).
+
+\section{Why v-top\_team eliminates us}\label{sec:whyelim}
+\textbf{Where.} Real engine, v-top\_team against v26.3.0 (seeds 1--2, 100 games): 59--41. All 34 of its wins by elimination
+came on the 11 maps under 1,100 tiles (Colosseum, Arena, Autarky, Default, Default Small, Devil, Prisoners Dilemma, Small,
+Stripes, Tower Defense, Trophy). On the larger maps the games ran to round 500, but both queens were usually dead and
+v-top\_team ended with 3--10 times our units (Help 53 against 2, Islands 28 against 3, UNSW 50 against 12), so it won on
+the longest dragon: the ``mostly eliminated'' loss.
+
+\textbf{How: a unit snowball.} On Devil, Stripes, Autarky and Arena both teams eat about the same for 30--40 rounds, but
+v-top\_team has twice our units by round 40 (Devil: 5 against 6 at round 10, 5 against 10 at round 40, 2 against 20 at round
+60). It splits every dragon the moment it reaches 4, its queen too on small maps. Ours sat at 4--5 in the 1-wide lanes of
+Devil and Stripes (no split in a corridor at length $\leq 5$, v17) and our queen held 4--6 segments. In the simulator the unit
+count at round 25 nearly decides the game (296 games): ahead, we win 89\%; level, 58\%; one behind, 42\%; two or more
+behind, 9\%.
+
+\textbf{Not the economy.} Each bot playing alone (the other team removed at round 0, simulator, 100 rounds) eats about the
+same on most of these maps (Default Small 85 against 83, Devil 213 against 197, Dilemma 18 against 17). The exceptions are
+maps whose food sits in portal pockets and dead-end lanes: Stripes 39 against 147, Portals 187 against 270, Schooltime 164
+against 298.
+
+\textbf{Their bot, one mechanism off at a time.} v-top\_team reads its parameters from a JSON argument, so each of its
+mechanisms can be switched off without touching its code (wrappers in its own folder). Our win rate against it, simulator,
+13 small maps, seeds 1--4, both sides (104 games each):
+\begin{center}
+      \begin{tabular}{>{\raggedright\arraybackslash}p{11.5cm}r}
+            v-top\_team with this off                                                                                                                         & our win rate  \\ \hline
+            nothing (control)                                                                                                                                 & 43\%          \\
+            its queen as a worker on small maps (protected there too, \code{Q_AREA 1})                                                                        & \textbf{70\%} \\
+            head-on rams (\code{RAM 0})                                                                                                                       & \textbf{66\%} \\
+            splitting at 4 (\code{SPLIT_MIN 6})                                                                                                               & 58\%          \\
+            the lane economy (\code{LANE 0}; with the newborn-split hold too, 57\%)                                                                           & 54\%          \\
+            no split on a newborn's first turn (\code{NB_NOSPLIT 0})                                                                                          & 42\%          \\
+            ram one shorter, hunt pull, centre-biased exploring, centre rush, hunting our queen, traps, rival discount on food, threat avoidance (each alone) & 38--43\%      \\
+      \end{tabular}
+\end{center}
+
+\textbf{Why the rams work: the drops.} In the first 60 rounds of 16 games it rammed 71 times, we rammed 30. Two in three of
+its rams had more of its heads than ours within 3 tiles of the collision (ours: one in eight), and it ate 87\% of the drops,
+2.1 pearls a ram, against 0.3 for us. It also ate most of the drops of \emph{our} rams. By who had the nearer head (any
+dragon but the two):
+\begin{center}
+      \begin{tabular}{lrrr}
+            nearest head & rams & drops eaten by us & by them \\ \hline
+            theirs       & 92   & 0.25              & 2.21    \\
+            equal        & 19   & 0.37              & 1.74    \\
+            ours         & 36   & 1.06              & 0.94    \\
+      \end{tabular}
+\end{center}
+Even with our head nearer, half the drops went to them. Our pearl routes divided a pearl's worth by $1 + 0.08$ for every
+other dragon's segment within 2 tiles of it (\code{ROUTE_WORKER_CROWD}): a pile of drops is exactly that.
+
+\section{What v27.0.0 changes}\label{sec:v27changes}
+Six switches, all in \code{main.cpp}'s \code{Config}:
+\begin{itemize}
+      \item \textbf{The queen plays as a worker on maps under 1,100 tiles} (\code{QUEEN_SMALL_AREA 1100}; \code{queen.hpp}
+            \code{worker_queen}). She splits at 4, trades, rushes and explores like any worker, and is not crowned. Small fix
+            on the way: as our last unit she never trades herself for their queen (on Arena both teams start with one dragon,
+            and both would be out: a draw).
+      \item \textbf{Nobody hunts the enemy queen on those maps} (\code{KILL_QUEEN_MIN_AREA 1100}). On small maps their queen is
+            often one of their swarm, and the hunt (1,000 a step towards her, and a kill whenever reachable) walked our workers
+            into it. On top of ``s5n'' below: +3 points, 216 eliminations suffered against 240 (416 games).
+      \item \textbf{Short dragons split in corridors too} (\code{CORRIDOR_SPLIT_MAX_LENGTH 0}, was 5).
+      \item \textbf{A pocket raid may start through a portal} (\code{PORTAL_POCKET_RAID}). Stripes keeps its food in portal
+            pockets of period-1 beds; alone on Stripes we ate 65 by round 100 instead of 37.
+      \item \textbf{No crowd discount on a worker's pearl route} (\code{ROUTE_WORKER_CROWD 0}, was 0.08; the king and growers
+            keep 0.25).
+      \item \textbf{No blind portal crossing onto a teammate} (\code{ALLY_PORTAL_GUARD}): an exit we cannot see with a teammate
+            reported (status packet, at most 2 rounds old) on or next to it is an occupied exit. Two of ours crossing one pair
+            from both sides met head-on 1.6 times a game on the small maps (Default, both Queens of Spades, Autarky); now
+            28\% fewer.
+\end{itemize}
+Files: \code{main.cpp}, \code{queen.hpp}, \code{scoring.hpp}, and \code{explore.hpp} (it carries the exploration tests below,
+all off).
+
+\section{Tried, and left off}\label{sec:v27tests}
+Each is a switch in \code{Config} (off), tested on its own against v-top\_team in the simulator: 13 small maps, seeds 1--16,
+both sides, 416 games each ($\pm$2.4 points). The exploration tests from the start of V27 (bed frontier, scouts, rich spots
+over sonar, magic 0x8) stay in the code, off.
+\begin{center}
+      \begin{tabular}{>{\raggedright\arraybackslash}p{8.2cm}rrr}
+            variant                                                                                                                          & win                  & eliminated & eliminating \\ \hline
+            v26.3.0                                                                                                                          & 32.7\%               & 255        & 109         \\
+            no corridor split block, alone                                                                                                   & 34.4\%               & 259        & 113         \\
+            queen as worker on maps $<$ 1,100 tiles, alone                                                                                   & 37.3\%               & 233        & 122         \\
+            queen as worker only when our start is $\leq$ 5 segments (\code{QUEEN_WORKER_MAX_START}), with no corridor split block (``s5n'') & 39.2\%               & 240        & 131         \\
+            \quad + their ram rule, sprint rams from round 0, rams first (\code{TOP_RAM}, \code{SPRINT_ANY_ROUND}, \code{RAM_FIRST})         & 40.1\%               & 232        & 136         \\
+            \quad + their ram rule (or ours) with local superiority, sprints from round 0 (\code{RAM_LOCAL})                                 & 38.9\%               & 238        & 133         \\
+            \quad + keep out of their sprint reach, equals and one longer too (\code{SPRINT_FEAR 2})                                         & 30.3\%               & 255        & 86          \\
+            \quad + no split while an enemy can reach us (\code{SPLIT_SAFE})                                                                 & 35.1\%               & 252        & 122         \\
+            \quad + every worker rushes the centre (\code{CENTRE_MAX_RUSHERS 99})                                                            & 39.4\%               & 239        & 138         \\
+            \quad + teammate spacing at 30\% (\code{SPACING_PCT})                                                                            & 38.9\%               & 237        & 122         \\
+            \quad + no queen hunt, kill kept / no queen hunt at all                                                                          & 39.8\% / 42.3\%      & 227 / 216  & 122 / 139   \\
+            \quad without the fight goal / without early trades / without pocket raids                                                       & 36.2 / 36.5 / 38.2\% &            &             \\
+      \end{tabular}
+\end{center}
+Also tried at 104 games: their hunt pull towards longer enemies (\code{HUNT_LONGER_PULL}), not fearing longer enemies
+(\code{NO_FEAR_LONGER}, \code{FEAR_MODE}), pocket raids from 2 pearls, a looser portal-pocket room test: all within the noise.
+
+\textbf{What the rams taught.} Their rams decide the game, but neither copying their rule nor avoiding their reach helps us:
+keeping out of it gave up the food, and their rams barely fell (71 to 61--67 over the same 16 games). What moved was what lets them win the aftermath:
+our queen's segments working, and the drops.
+
+\section{Results}\label{sec:v27results}
+\textbf{Simulator} (13 small maps, seeds 1--16, both sides, 416 games against v-top\_team):
+\begin{center}
+      \begin{tabular}{lrrr}
+                                                      & win             & eliminated   & eliminating  \\ \hline
+            v26.3.0                                   & 32.7\%          & 255          & 109          \\
+            queen worker + no queen hunt (small maps) & 40.4\%          & 222          & 142          \\
+            \quad + no corridor split block           & 45.0\%          & 203          & 152          \\
+            \quad + portal pocket raids               & 44.7\%          & 204          & 151          \\
+            \quad + no worker crowd discount          & 45.7\%          & 205          & 153          \\
+            \quad + both (``c11'')                    & 45.4\%          & 206          & 152          \\
+            \textbf{v27.0.0} (+ the portal guard)     & \textbf{45.7\%} & \textbf{208} & \textbf{154} \\
+      \end{tabular}
+\end{center}
+\textbf{Real engine} (all 25 maps, seeds 1--4, both sides, 200 games; nothing else running, see below):
+\begin{itemize}
+      \item v26.3.0 against v-top\_team: 75--125 (37.5\%). Small maps 33\%, eliminated in 58\% of them; large maps 44\%.
+      \item c11 against v-top\_team: 99--101 (49.5\%). Small maps 52.5\%: eliminated in 43\% of them (was 58\%), eliminating it
+            in 45\% (was 28\%). Large maps 45\%. Arena 0 $\rightarrow$ 62\%, Dilemma 0 $\rightarrow$ 50\%, Stripes 0 $\rightarrow$
+            38\%; Autarky still 0 of 8.
+      \item c11 against v26.3.0: 122--78 (61\%). Small maps 65\%, large maps 55\%. Queens alive 38 against 55: ours dies on small
+            maps (8 of 60 alive), which cost a few games decided on the queen (Weakhold); Trophy 3--5 and Queen of Spades but
+            She Ages 2--6, mostly by elimination.
+      \item \textbf{v27.0.0 against v-top\_team: 103--97 (51.5\%).} Small maps 51.7\%: eliminated in 42\% of them (v26.3.0:
+            58\%), eliminating it in 46\% (v26.3.0: 28\%). Large maps 51\% (v26.3.0: 44\%). Queens alive 47 against 40. By map,
+            8 games each: Queen of Spades 8, She Ages 8, Tower Defense 8, Trauma 8, Trophy 8, Australia 7, Maze 6, UNSW 6; lost
+            Autarky 0, Schooltime 0, Islands 1, Weakhold 1, Default Small 2, Devil 2, Small 2, Slithery Fight 2.
+      \item \textbf{v27.0.0 against v26.3.0: 115--85 (57.5\%).} Small maps 64\%: eliminated in 25\% of them, eliminating
+            v26.3.0 in 56\%. Large maps 47.5\% (c11: 55\%; the two differ there only in the portal guard, so mostly luck: 8 games
+            a map). Queens alive 38 against 56: on small maps ours is a worker and dies (7 of 60 alive, against 26). Lost:
+            Autarky 0--8, Big Empty 1--7, Help 2--6; won Arena, Dilemma and Tower Defense 8--0.
+\end{itemize}
+\textbf{Running tests alone.} Our searches stop at wall-clock deadlines, v-top\_team's at node counts, so a busy machine
+weakens only us. Two earlier real-engine runs made while the simulator shared the two cores gave the same bot (on the large
+maps the two variants were identical) 40\% and 57\%. Every real-engine number above was run with nothing else on the
+machine. The simulator's small maps finish well inside the deadlines and are not affected (v26.3.0: 34\% and 35\% over the
+same 104 games, busy and alone).
+
+\textbf{Not done.} Autarky is still lost every time, and their lane economy (relay children farming dead-end lanes) is
+worth 11 points to them; ours raids pockets only with 3 pearls. The queen on small maps is a worker all game; reverting her
+at round 200 made no difference against v26.3.0 in the simulator (64\% against 66\%, 120 games on 15 small maps).
+
+
+\part{v27.0.0 $\rightarrow$ v27.1.0: the queen kill on every map}
+%=====================================================================
+v27.1.0 starts here. Everything before this part is v27.0.0 (section~\ref{sec:v27results}).
+
+\section{The rule}\label{sec:qkill}
+\begin{itemize}
+      \item \textbf{Anyone but our queen rams the enemy queen when it can reach her this turn, on every map.} Workers, growers
+            and the king alike; by a step, or by a sprint that pays segments. It is checked first in the turn, before anything
+            else (\code{queen.hpp}, \code{play_queen_kill}). The rammer dies in the head-on whatever it pays on the way, so a
+            long sprint costs nothing a short one does not: one dragon and its length. The only difference is that it leaves
+            fewer drops, and on small maps their swarm eats most of those anyway.
+      \item \textbf{Our queen never rams theirs} (dragon 0 or 1), including while she plays as a worker on a small map. v27.0.0
+            stopped her only as our last unit.
+      \item \textbf{The walk towards her stays off on maps under 1,100 tiles.} v27.0.0's switch \code{KILL_QUEEN_MIN_AREA}
+            turned off both the walk (1,000 a step) and the kill there; it is now \code{QUEEN_CHASE_MIN_AREA} and turns off
+            only the walk.
+      \item Larger maps: unchanged (anyone but our queen already rammed her there).
+\end{itemize}
+Files: \code{queen.hpp} (\code{play_queen_kill}, \code{enemy_queen_seen}, \code{queen_kill_path} takes its reach) and
+\code{main.cpp} (the renamed switch, comments).
+
+\textbf{Why.} v27.0.0 dropped the kill on small maps together with the walk, on a 2.5-point simulator difference inside the
+noise (section~\ref{sec:v27tests}). But a reachable queen is at worst a one-for-one trade, and when our queen outlives theirs
+the kill decides the game at round 500.
+
+\section{Results}\label{sec:qkillresults}
+\textbf{Simulator.}
+\begin{itemize}
+      \item Against v-top\_team (13 small maps, seeds 1--16, both sides, 416 games): 45\% (v27.0.0: 46\%); eliminated in 207
+            games (208), eliminating it in 149 (154).
+      \item Against v26.3.0 (15 small maps, seeds 1--4, 500 rounds, 120 games): 62\% (v27.0.0: 64\%).
+      \item Also tried: the kill only within our free steps and not by the king or growers: 45\% against v-top\_team. Same.
+      \item In 10 games against v26.3.0 the kill fired in 6, killing their queen each time. Our queen, a worker on these maps,
+            was usually dead first (rounds 18--92), so mostly it turns ``their queen alive'' into ``both dead'', and the
+            longest dragon decides.
+\end{itemize}
+\textbf{Real engine} (all 25 maps, seeds 1--4, both sides, 200 games each, nothing else running):
+\begin{itemize}
+      \item Against v-top\_team: 99.5--100.5 (49.75\%; v27.0.0: 103--97). Small maps 50\% (51.7\%), eliminated in 42\% of them
+            (42\%); large maps 49\% (51\%; the two versions play these the same).
+      \item Against v26.3.0: 115--85 (57.5\%; v27.0.0: 115--85). Small maps 62.5\% (64\%), large maps 50\% (47.5\%). Their queen
+            alive in 52 games (v27.0.0: 56); on small maps 23 of 60 (26).
+\end{itemize}
+So against these two the kill neither gains nor costs anything we can measure. It stays on for the reason above: a team
+whose queen we can reach while ours is alive.
 
 \end{document}
