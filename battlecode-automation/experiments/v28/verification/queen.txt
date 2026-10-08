@@ -1,0 +1,56 @@
+PASS tested toolkit version 1.2.9
+PASS candidate snapshot matches current frozen source
+PASS bot-v28.0.0-Kushagra builds for sandbox
+PASS bot-v28.0.0-Kushagra source snapshot remains unchanged after build
+building /var/folders/g6/029cz76n75d7970bp8z2x0xw0000gn/T/v28-queen-tests/bot-v25.0.0-omar-62164cdc77a2fa9e to wasm with judge clang
+PASS bot-v25.0.0-omar builds for sandbox
+PASS bot-v25.0.0-omar source snapshot remains unchanged after build
+PASS queen 0, length 4: detach exactly two
+PASS queen 0, length 5: detach exactly two
+PASS queen 0, length 8: detach exactly two
+PASS queen 0, length 10: detach exactly two
+PASS queen 1, length 4: detach exactly two
+PASS queen 1, length 5: detach exactly two
+PASS queen 1, length 8: detach exactly two
+PASS queen 1, length 10: detach exactly two
+PASS blocked queen waits in phase at round 1
+PASS blocked queen waits in phase at round 75
+PASS blocked queen waits in phase at round 100
+PASS blocked queen waits in phase at round 380
+PASS blocked queen waits in phase at round 450
+PASS same queen repeats wait: 8 -> 6
+PASS same queen repeats wait: 6 -> 4
+PASS same queen resumes moving when exit opens
+PASS queen length 2 cannot illegally repeat split
+PASS queen length 3 cannot illegally repeat split
+PASS full population cap prevents queen split
+PASS uncrowned queen respects the reserved final slot
+PASS crowned queen can use the final population slot
+PASS unblocked post-seeding queen moves through its open exit
+PASS v25.0 regression baseline exposes the large tail split
+PASS engine accepts fixture actions: []
+PASS engine repeated two-segment splits, complete body=False
+PASS engine keeps original queen head fixed and deducts only two each turn
+PASS engine moves queen after blocking ally moves away
+PASS queen survives the released-blocker fixture
+[{"round": 0, "head": [8, 8], "length": 8, "action": "SPLIT 2"}, {"round": 1, "head": [8, 8], "length": 6, "action": "SPLIT 2"}, {"round": 2, "head": [8, 8], "length": 4, "action": "MOVE E"}, {"round": 3, "head": [9, 8], "length": 4, "action": "MOVE S"}]
+PASS engine accepts fixture actions: []
+PASS engine repeated two-segment splits, complete body=True
+PASS engine keeps original queen head fixed and deducts only two each turn
+PASS engine moves queen after blocking ally moves away
+PASS queen survives the released-blocker fixture
+[{"round": 0, "head": [8, 8], "length": 8, "action": "SPLIT 2"}, {"round": 1, "head": [8, 8], "length": 6, "action": "SPLIT 2"}, {"round": 2, "head": [8, 8], "length": 4, "action": "MOVE E"}, {"round": 3, "head": [9, 8], "length": 4, "action": "MOVE E"}]
+PASS engine accepts fixture actions: []
+PASS engine minimum-size boundary 4 -> 2
+PASS queen of length 2 cannot issue an illegal repeat split
+PASS engine accepts fixture actions: []
+PASS engine minimum-size boundary 5 -> 3
+PASS queen of length 3 cannot issue an illegal repeat split
+PASS engine accepts fixture actions: []
+PASS engine repeats while blocked until only two queen segments remain
+PASS engine accepts fixture actions: []
+PASS boxed tail does not prevent queen waiting and then escaping
+PASS engine accepts wait split even when its boxed child dies immediately
+PASS engine accepts fixture actions: []
+PASS baseline loses queen in the same delayed-release fixture
+52 checks passed; 7 tiny scripted engine fixtures (6 candidate, 1 historical baseline); 0 tournament matches.

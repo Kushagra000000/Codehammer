@@ -93,7 +93,15 @@ int kill_value(SeenHead const &h) const
 // A head-on: both die.
 int trade_value(SeenHead const &h) const
 {
+<<<<<<< HEAD
     return kill_value(h) - death_cost();
+=======
+    int const v = kill_value(h) - death_cost();
+    // NB7: a short worker that may ram shorter ones values the trade at least SHORT_RAM_VALUE.
+    if (short_rammer() && h.team != controller_.get_team())
+        return std::max(v, Config::SHORT_RAM_VALUE);
+    return v;
+>>>>>>> 2f1ac5a602a989a0121172adb7392c8c14fbbc24
 }
 
 // Eating the pearl on `p`. A pearl next to a grower is the grower's: a worker

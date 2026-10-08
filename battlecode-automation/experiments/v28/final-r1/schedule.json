@@ -1,0 +1,488 @@
+[
+  {
+    "id": "e5187f47abbb0bc90569",
+    "map": "maps/arena.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "../Top_20_bot",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "44ab54cd178ea27fa7aa",
+    "map": "maps/arena.map",
+    "a": "../Top_20_bot",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "61788b1c47eb02a333a3",
+    "map": "maps/arena.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "bots/New/current/bot-v27.3.0-leo",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "28a1dc23003b6f0c4dd4",
+    "map": "maps/arena.map",
+    "a": "bots/New/current/bot-v27.3.0-leo",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "13ed0c36468209c45e06",
+    "map": "maps/arena.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "bots/New/current/bot-v27.2.0-leo",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "d9c2136f8ce6026cd3c5",
+    "map": "maps/arena.map",
+    "a": "bots/New/current/bot-v27.2.0-leo",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "bf63afbe520d76c19d26",
+    "map": "maps/trophy.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "../Top_20_bot",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "13e5aa2b6ae68d369bda",
+    "map": "maps/trophy.map",
+    "a": "../Top_20_bot",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "65e9df77f6d60d34258b",
+    "map": "maps/trophy.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "bots/New/current/bot-v27.3.0-leo",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "a40ba1689686712703fa",
+    "map": "maps/trophy.map",
+    "a": "bots/New/current/bot-v27.3.0-leo",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "8b26349caeecde27c86b",
+    "map": "maps/trophy.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "bots/New/current/bot-v27.2.0-leo",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "baeed8130d212d0613b7",
+    "map": "maps/trophy.map",
+    "a": "bots/New/current/bot-v27.2.0-leo",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "bbcdd7c413d7c246693b",
+    "map": "maps/default.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "../Top_20_bot",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "291d3d85d7efd8f3e660",
+    "map": "maps/default.map",
+    "a": "../Top_20_bot",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "54db2be517adb972a907",
+    "map": "maps/default.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "bots/New/current/bot-v27.3.0-leo",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "7784aefbe014c0c30628",
+    "map": "maps/default.map",
+    "a": "bots/New/current/bot-v27.3.0-leo",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "c4c35941d2a74020231e",
+    "map": "maps/default.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "bots/New/current/bot-v27.2.0-leo",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "c3c1d89627ba992941b1",
+    "map": "maps/default.map",
+    "a": "bots/New/current/bot-v27.2.0-leo",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "ed5d31a6099bb88f3eeb",
+    "map": "maps/big_empty.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "../Top_20_bot",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "d1fcaf481e521a245572",
+    "map": "maps/big_empty.map",
+    "a": "../Top_20_bot",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "ef103dee4165d3abb97a",
+    "map": "maps/big_empty.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "bots/New/current/bot-v27.3.0-leo",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "51fda8e2d68a3f4a836d",
+    "map": "maps/big_empty.map",
+    "a": "bots/New/current/bot-v27.3.0-leo",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "ab88e23b2f5b3908da2e",
+    "map": "maps/big_empty.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "bots/New/current/bot-v27.2.0-leo",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "3f6cbb47fb219807da4c",
+    "map": "maps/big_empty.map",
+    "a": "bots/New/current/bot-v27.2.0-leo",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "45d9d9698ed5c68c362e",
+    "map": "maps/stronghold.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "../Top_20_bot",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "00812ed02fb6633481da",
+    "map": "maps/stronghold.map",
+    "a": "../Top_20_bot",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "7df373fbebd6a410ba7d",
+    "map": "maps/stronghold.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "bots/New/current/bot-v27.3.0-leo",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "56f5680b411a251a46db",
+    "map": "maps/stronghold.map",
+    "a": "bots/New/current/bot-v27.3.0-leo",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "ddae2df3e9686bab966c",
+    "map": "maps/stronghold.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "bots/New/current/bot-v27.2.0-leo",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "4479f30045aef0e517e1",
+    "map": "maps/stronghold.map",
+    "a": "bots/New/current/bot-v27.2.0-leo",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "f84c1392bbc5efe5e4dd",
+    "map": "maps/dilemma.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "../Top_20_bot",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "d248d1b2f210dc796dec",
+    "map": "maps/dilemma.map",
+    "a": "../Top_20_bot",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "162a41519ebf8346ebb9",
+    "map": "maps/dilemma.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "bots/New/current/bot-v27.3.0-leo",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "31dd998fd9f527addc78",
+    "map": "maps/dilemma.map",
+    "a": "bots/New/current/bot-v27.3.0-leo",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "82d7395d525edc701a7b",
+    "map": "maps/dilemma.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "bots/New/current/bot-v27.2.0-leo",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "525029a0261d76d5ed53",
+    "map": "maps/dilemma.map",
+    "a": "bots/New/current/bot-v27.2.0-leo",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "00462174c48783668b13",
+    "map": "maps/slithery_fight.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "../Top_20_bot",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "175bcca4502e7085ce27",
+    "map": "maps/slithery_fight.map",
+    "a": "../Top_20_bot",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "b9c1ac46a80f7d5f69ee",
+    "map": "maps/slithery_fight.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "bots/New/current/bot-v27.3.0-leo",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "81bc602d7d65700efe76",
+    "map": "maps/slithery_fight.map",
+    "a": "bots/New/current/bot-v27.3.0-leo",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "88c3f3b4c344c3454e27",
+    "map": "maps/slithery_fight.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "bots/New/current/bot-v27.2.0-leo",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "ed623bfa00877aaf518e",
+    "map": "maps/slithery_fight.map",
+    "a": "bots/New/current/bot-v27.2.0-leo",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "477e9911262d35399fa3",
+    "map": "maps/schooltime.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "../Top_20_bot",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "5c211c913b033079c225",
+    "map": "maps/schooltime.map",
+    "a": "../Top_20_bot",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "23efaa50104609071ed9",
+    "map": "maps/schooltime.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "bots/New/current/bot-v27.3.0-leo",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "8a0f157baaa5b9cb7abe",
+    "map": "maps/schooltime.map",
+    "a": "bots/New/current/bot-v27.3.0-leo",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "ac669622464a8bf69a84",
+    "map": "maps/schooltime.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "bots/New/current/bot-v27.2.0-leo",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "bd325be9dfee5538ef39",
+    "map": "maps/schooltime.map",
+    "a": "bots/New/current/bot-v27.2.0-leo",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "c05da4743c602c19f1d8",
+    "map": "maps/islands.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "../Top_20_bot",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "5b9437e86b9d6beaf101",
+    "map": "maps/islands.map",
+    "a": "../Top_20_bot",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "60d0a93ee3b8f7f0dca2",
+    "map": "maps/islands.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "bots/New/current/bot-v27.3.0-leo",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "4816778c2b1095a1f280",
+    "map": "maps/islands.map",
+    "a": "bots/New/current/bot-v27.3.0-leo",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  },
+  {
+    "id": "cccadb669363223aa780",
+    "map": "maps/islands.map",
+    "a": "bots/New/current/bot-v28.0.0-Kushagra",
+    "b": "bots/New/current/bot-v27.2.0-leo",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "A"
+  },
+  {
+    "id": "a8cc9bacaeebf9773906",
+    "map": "maps/islands.map",
+    "a": "bots/New/current/bot-v27.2.0-leo",
+    "b": "bots/New/current/bot-v28.0.0-Kushagra",
+    "seed": 28001,
+    "sandbox": true,
+    "candidate_side": "B"
+  }
+]

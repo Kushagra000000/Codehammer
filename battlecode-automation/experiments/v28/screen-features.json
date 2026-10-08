@@ -1,0 +1,376 @@
+{
+  "totals": {
+    "lane_intents": 238,
+    "lane_splits": 238,
+    "feed_intents": 580,
+    "feed_deaths": 580
+  },
+  "matches": [
+    {
+      "id": "4817e06f4e839b29a672",
+      "map": "maps/default_small.map",
+      "side": "B",
+      "opponent": "../Top_20_bot",
+      "lane_intents": 0,
+      "lane_splits": 0,
+      "feed_intents": 0,
+      "feed_deaths": 0,
+      "examples": []
+    },
+    {
+      "id": "745662515317632753f7",
+      "map": "maps/default_small.map",
+      "side": "A",
+      "opponent": "../Top_20_bot",
+      "lane_intents": 0,
+      "lane_splits": 0,
+      "feed_intents": 0,
+      "feed_deaths": 0,
+      "examples": []
+    },
+    {
+      "id": "47baf6ea018895ad827a",
+      "map": "maps/default_small.map",
+      "side": "A",
+      "opponent": "bots/New/current/bot-v27.3.0-leo",
+      "lane_intents": 0,
+      "lane_splits": 0,
+      "feed_intents": 28,
+      "feed_deaths": 28,
+      "examples": []
+    },
+    {
+      "id": "63c46b4fc8d7ec966807",
+      "map": "maps/default_small.map",
+      "side": "B",
+      "opponent": "bots/New/current/bot-v27.3.0-leo",
+      "lane_intents": 0,
+      "lane_splits": 0,
+      "feed_intents": 24,
+      "feed_deaths": 24,
+      "examples": []
+    },
+    {
+      "id": "ccfadb66aa2ce918e551",
+      "map": "maps/default_small.map",
+      "side": "A",
+      "opponent": "bots/New/current/bot-v27.2.0-leo",
+      "lane_intents": 0,
+      "lane_splits": 0,
+      "feed_intents": 28,
+      "feed_deaths": 28,
+      "examples": []
+    },
+    {
+      "id": "3e533c1358c73fb95783",
+      "map": "maps/default_small.map",
+      "side": "B",
+      "opponent": "bots/New/current/bot-v27.2.0-leo",
+      "lane_intents": 0,
+      "lane_splits": 0,
+      "feed_intents": 24,
+      "feed_deaths": 24,
+      "examples": []
+    },
+    {
+      "id": "4000cbe2ca6c33ce49d9",
+      "map": "maps/maze.map",
+      "side": "A",
+      "opponent": "../Top_20_bot",
+      "lane_intents": 0,
+      "lane_splits": 0,
+      "feed_intents": 48,
+      "feed_deaths": 48,
+      "examples": []
+    },
+    {
+      "id": "1522c78e1a23d10e187d",
+      "map": "maps/maze.map",
+      "side": "B",
+      "opponent": "../Top_20_bot",
+      "lane_intents": 0,
+      "lane_splits": 0,
+      "feed_intents": 55,
+      "feed_deaths": 55,
+      "examples": []
+    },
+    {
+      "id": "53fc3189e5cf61e91ea6",
+      "map": "maps/maze.map",
+      "side": "A",
+      "opponent": "bots/New/current/bot-v27.3.0-leo",
+      "lane_intents": 0,
+      "lane_splits": 0,
+      "feed_intents": 50,
+      "feed_deaths": 50,
+      "examples": []
+    },
+    {
+      "id": "fd089313266603294555",
+      "map": "maps/maze.map",
+      "side": "B",
+      "opponent": "bots/New/current/bot-v27.3.0-leo",
+      "lane_intents": 0,
+      "lane_splits": 0,
+      "feed_intents": 46,
+      "feed_deaths": 46,
+      "examples": []
+    },
+    {
+      "id": "c54a804c3f92ebef1859",
+      "map": "maps/portals.map",
+      "side": "B",
+      "opponent": "../Top_20_bot",
+      "lane_intents": 36,
+      "lane_splits": 36,
+      "feed_intents": 28,
+      "feed_deaths": 28,
+      "examples": [
+        {
+          "round": 10,
+          "parent": 5,
+          "child": 8
+        },
+        {
+          "round": 22,
+          "parent": 10,
+          "child": 18
+        },
+        {
+          "round": 26,
+          "parent": 20,
+          "child": 22
+        }
+      ]
+    },
+    {
+      "id": "2bf4ff6f70a05bcf0d97",
+      "map": "maps/portals.map",
+      "side": "A",
+      "opponent": "../Top_20_bot",
+      "lane_intents": 39,
+      "lane_splits": 39,
+      "feed_intents": 30,
+      "feed_deaths": 30,
+      "examples": [
+        {
+          "round": 10,
+          "parent": 4,
+          "child": 8
+        },
+        {
+          "round": 22,
+          "parent": 10,
+          "child": 16
+        },
+        {
+          "round": 26,
+          "parent": 18,
+          "child": 20
+        }
+      ]
+    },
+    {
+      "id": "69773384e58d6740edc3",
+      "map": "maps/maze.map",
+      "side": "B",
+      "opponent": "bots/New/current/bot-v27.2.0-leo",
+      "lane_intents": 0,
+      "lane_splits": 0,
+      "feed_intents": 46,
+      "feed_deaths": 46,
+      "examples": []
+    },
+    {
+      "id": "988201fb4a5ed97f3391",
+      "map": "maps/maze.map",
+      "side": "A",
+      "opponent": "bots/New/current/bot-v27.2.0-leo",
+      "lane_intents": 0,
+      "lane_splits": 0,
+      "feed_intents": 43,
+      "feed_deaths": 43,
+      "examples": []
+    },
+    {
+      "id": "3d2fe3d88183decbdd08",
+      "map": "maps/portals.map",
+      "side": "A",
+      "opponent": "bots/New/current/bot-v27.3.0-leo",
+      "lane_intents": 37,
+      "lane_splits": 37,
+      "feed_intents": 36,
+      "feed_deaths": 36,
+      "examples": [
+        {
+          "round": 10,
+          "parent": 4,
+          "child": 7
+        },
+        {
+          "round": 23,
+          "parent": 9,
+          "child": 13
+        },
+        {
+          "round": 27,
+          "parent": 15,
+          "child": 17
+        }
+      ]
+    },
+    {
+      "id": "cabb99606f45ed323563",
+      "map": "maps/portals.map",
+      "side": "B",
+      "opponent": "bots/New/current/bot-v27.3.0-leo",
+      "lane_intents": 44,
+      "lane_splits": 44,
+      "feed_intents": 29,
+      "feed_deaths": 29,
+      "examples": [
+        {
+          "round": 10,
+          "parent": 5,
+          "child": 7
+        },
+        {
+          "round": 23,
+          "parent": 9,
+          "child": 13
+        },
+        {
+          "round": 27,
+          "parent": 14,
+          "child": 16
+        }
+      ]
+    },
+    {
+      "id": "611d70f2dfbb356babf6",
+      "map": "maps/stripes.map",
+      "side": "B",
+      "opponent": "../Top_20_bot",
+      "lane_intents": 0,
+      "lane_splits": 0,
+      "feed_intents": 0,
+      "feed_deaths": 0,
+      "examples": []
+    },
+    {
+      "id": "408e557261c54711263b",
+      "map": "maps/stripes.map",
+      "side": "A",
+      "opponent": "../Top_20_bot",
+      "lane_intents": 1,
+      "lane_splits": 1,
+      "feed_intents": 0,
+      "feed_deaths": 0,
+      "examples": [
+        {
+          "round": 122,
+          "parent": 59,
+          "child": 68
+        }
+      ]
+    },
+    {
+      "id": "45b67be8b578529a8318",
+      "map": "maps/stripes.map",
+      "side": "A",
+      "opponent": "bots/New/current/bot-v27.3.0-leo",
+      "lane_intents": 0,
+      "lane_splits": 0,
+      "feed_intents": 0,
+      "feed_deaths": 0,
+      "examples": []
+    },
+    {
+      "id": "01107a25dbdeba342e4a",
+      "map": "maps/stripes.map",
+      "side": "B",
+      "opponent": "bots/New/current/bot-v27.3.0-leo",
+      "lane_intents": 0,
+      "lane_splits": 0,
+      "feed_intents": 0,
+      "feed_deaths": 0,
+      "examples": []
+    },
+    {
+      "id": "c46070390c85b8257f44",
+      "map": "maps/stripes.map",
+      "side": "A",
+      "opponent": "bots/New/current/bot-v27.2.0-leo",
+      "lane_intents": 0,
+      "lane_splits": 0,
+      "feed_intents": 0,
+      "feed_deaths": 0,
+      "examples": []
+    },
+    {
+      "id": "cba441f5adc9f611aa44",
+      "map": "maps/stripes.map",
+      "side": "B",
+      "opponent": "bots/New/current/bot-v27.2.0-leo",
+      "lane_intents": 0,
+      "lane_splits": 0,
+      "feed_intents": 0,
+      "feed_deaths": 0,
+      "examples": []
+    },
+    {
+      "id": "d44823bda14de95acc1a",
+      "map": "maps/portals.map",
+      "side": "A",
+      "opponent": "bots/New/current/bot-v27.2.0-leo",
+      "lane_intents": 37,
+      "lane_splits": 37,
+      "feed_intents": 36,
+      "feed_deaths": 36,
+      "examples": [
+        {
+          "round": 10,
+          "parent": 4,
+          "child": 7
+        },
+        {
+          "round": 23,
+          "parent": 9,
+          "child": 13
+        },
+        {
+          "round": 27,
+          "parent": 15,
+          "child": 17
+        }
+      ]
+    },
+    {
+      "id": "6632ccf5811f672d3eaf",
+      "map": "maps/portals.map",
+      "side": "B",
+      "opponent": "bots/New/current/bot-v27.2.0-leo",
+      "lane_intents": 44,
+      "lane_splits": 44,
+      "feed_intents": 29,
+      "feed_deaths": 29,
+      "examples": [
+        {
+          "round": 10,
+          "parent": 5,
+          "child": 7
+        },
+        {
+          "round": 23,
+          "parent": 9,
+          "child": 13
+        },
+        {
+          "round": 27,
+          "parent": 14,
+          "child": 16
+        }
+      ]
+    }
+  ]
+}

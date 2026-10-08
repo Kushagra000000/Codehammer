@@ -1,0 +1,5 @@
+# Rebuildable local snapshots and replay decoder. Reports/manifests stay reviewable.
+**/sources/
+**/maps/
+**/decoder/
+**/.run.lock

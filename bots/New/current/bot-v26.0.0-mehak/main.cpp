@@ -292,6 +292,17 @@ namespace Config
     // (at least EARLY_TRADE_MARGIN more of us than enemies seen); while outnumbered, only into
     // an enemy at least OUTNUMBERED_TRADE_GAP longer.
     constexpr int EARLY_TRADE_MARGIN = 2, OUTNUMBERED_TRADE_GAP = 2;
+<<<<<<< HEAD
+=======
+    // NB7 (short rams, from the top team's replays): from AGGRESSION_START_ROUND, while not
+    // outnumbered, a worker of up to SHORT_RAM_MAX_LENGTH rams (and sprints into) shorter
+    // enemies too, a trade worth at least SHORT_RAM_VALUE. Winners ram a shorter adjacent head
+    // 13% of the time, losers 4%. Switch: SHORT_RAMS.
+#ifndef SHORT_RAMS
+#define SHORT_RAMS 1
+#endif
+    constexpr int SHORT_RAM_MAX_LENGTH = 6, SHORT_RAM_VALUE = 300;
+>>>>>>> 2f1ac5a602a989a0121172adb7392c8c14fbbc24
     constexpr int LATE_KING_MIN_LENGTH = 3; // from GATHER_ROUND a king is always elected
     // Kingless dragons meet at the map centre (v20: per step, in thousandths of a segment).
     constexpr int RENDEZVOUS_PULL = 200, RENDEZVOUS_KING_PULL = 53;
@@ -1401,6 +1412,18 @@ namespace
                    (game_.get_round_num() < Config::DEFENCE_ROUND || outnumbered());
         }
 
+<<<<<<< HEAD
+=======
+        // NB7: a short worker that rams shorter enemies too (not outnumbered).
+        bool short_rammer() const
+        {
+            return SHORT_RAMS && !valuable_now_ && !retaining_length() && !outnumbered() &&
+                   controller_.get_length() <= Config::SHORT_RAM_MAX_LENGTH &&
+                   game_.get_round_num() >= Config::AGGRESSION_START_ROUND &&
+                   controller_.get_unit_count() >= Config::MIN_UNITS_FOR_TRADE;
+        }
+
+>>>>>>> 2f1ac5a602a989a0121172adb7392c8c14fbbc24
         int worker_child_size() const
         {
             // The parent keeps at least two (v23: the queen QUEEN_SEED_KEEP); the child never
@@ -3388,6 +3411,11 @@ namespace
                 !(round >= Config::ENDGAME_HUNT_ROUND && h.estimated_length() >= Config::ENDGAME_HUNT_MIN_LENGTH))
                 return false;
             int const est = h.estimated_length();
+<<<<<<< HEAD
+=======
+            if (short_rammer()) // NB7: shorter ones too
+                return true;
+>>>>>>> 2f1ac5a602a989a0121172adb7392c8c14fbbc24
             // v14: never trade into an enemy 4 or more shorter than us, in any mode or round.
             if (est <= controller_.get_length() - Config::TRADE_MAX_SIZE_GAP)
                 return false;

@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "candidate": "bots/New/current/bot-v25.1.0",
+  "baseline": "bots/New/current/bot-v25.0.0-omar",
+  "maps": [
+    "maps/default_small.map",
+    "maps/schooltime.map",
+    "maps/slithery_fight.map"
+  ],
+  "seeds": [
+    25101
+  ],
+  "sandbox": true,
+  "toolkit": "1.2.9",
+  "fingerprints": {
+    "bots/New/current/bot-v25.1.0": "9a6971b9b635577a2a2f56e1cb0e2023180558279ea24b9ac751bc0bf883a2aa",
+    "bots/New/current/bot-v25.0.0-omar": "62164cdc77a2fa9e92f9e0a2ef1e877ec31f1354953bdf9e287283f143e371ba"
+  },
+  "maps_sha256": {
+    "maps/default_small.map": "1b9d21bdec23388e8c72f3e7095cd70696b8dd816584627f44c05dd9e2d118b6",
+    "maps/schooltime.map": "5b9481d0c65454b6d0a6747a581c582414cba37dd99273cc5a23dbca63b31724",
+    "maps/slithery_fight.map": "001f3501dc5b76cb35b796f03fcaaed6c90be34741b5da03ab061ba0908347e7"
+  },
+  "harness_sha256": "77c86736f0dee99f674572cc18c42cdd35e6c9190115874aeaf6630d1db3bdbd"
+}
