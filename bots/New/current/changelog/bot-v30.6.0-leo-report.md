@@ -41,15 +41,15 @@ for the queen, right of way and the queen's stall on small maps).
 | Test | v30.5 | v30.6 |
 |---|---:|---:|
 | vs Sabotage-d v3.9f, 15 small official maps, seeds 2701-2702 (60) | 28 | **33** (without right of way: 28) |
-| vs Sabotage-d v3.9f, all 25 official maps, seeds 2701-2704 | 53/100 (seeds 2701-2702) | **72/119 so far** (small 46/79, big 26/40) |
+| vs Sabotage-d v3.9f, all 25 official maps, seeds 2701-2704 (200) | 108 (small 53/120, big 55/80) | **123 (61.5%)** (small 68/120, big 55/80) |
 | vs Sabotage-d v3.9f, 94 random small maps, seeds 1-2 (376) | — | 182 (48.4%) |
 
-Per small map vs v3.9f (seeds 2701-2702, of 4), v30.5 → v30.6: Stripes 0 → 2, Trophy 0 → 2, Tower Defense 1 → 2,
-Dilemma 2 → 4, Queen of Spades 2 → 3, Portals 1 → 2; Default 4 → 1.
+Per small map vs v3.9f (seeds 2701-2704, of 8), v30.5 → v30.6: Dilemma 4 → 8, Portals 2 → 5, Queen of Spades
+(ages) 2 → 5, Stripes 1 → 3, Tower Defense 2 → 4, Trophy 2 → 4, weakhold 4 → 6, Queen of Spades 4 → 5, Autarky 3 → 4;
+Default 6 → 4, Small 7 → 5, Colosseum 5 → 4. Big maps: identical (55/80).
 
 ## Limits
 
-- The 200-game official run against v3.9f was still running when this was written (119 games in).
 - On random small maps v30.6 is level with v3.9f (48%), not ahead.
 - Still open: friendly head-ons through portals on portal-heavy maps; the queen walking into walled rooms whose far
   walls she has not seen (Tower Defense).
