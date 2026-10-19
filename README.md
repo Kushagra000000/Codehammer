@@ -12,7 +12,6 @@ Read [Background](#background) to learn the game, follow [Install](#install) and
 
 ## Table of Contents
 
-- [Security](#security)
 - [Background](#background)
   - [UNSW Battlecode](#unsw-battlecode)
   - [The game in one minute](#the-game-in-one-minute)
