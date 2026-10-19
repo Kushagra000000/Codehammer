@@ -1,0 +1,2879 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black}
+
+\lstset{
+  language=C++,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue!60!black}\bfseries,
+  commentstyle=\color{green!40!black}\itshape,
+  stringstyle=\color{red!50!black},
+  columns=fullflexible,
+  breaklines=true,
+  frame=single,
+  rulecolor=\color{black!25},
+  backgroundcolor=\color{black!3},
+  xleftmargin=4pt,xrightmargin=4pt,
+  showstringspaces=false
+}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\setlist{itemsep=2pt,topsep=4pt}
+
+\title{Changelog: v20 $\rightarrow$ v40\\[2pt]\large v21: survival search, free steps, routing, landing safety, rushes and the king's plan;\\ v22: the judge's points budget, the queen, the centre rush; v23: per-map settings and the queen's survival; v24: portals; v25: dispersion; v26.0.0: a portal is a way out; v26.1.0: early portals; v26.2.0: splits of 2; v26.3.0: Leo's v27.2.0 merged; v27.0.0: eliminations; v27.1.0: the queen kill; v27.2.0: lanes, splits in dead ends, the queen's room; v31.0.0: Leo's v30 as the base, the queen first; v40.0.0: one bot from six}
+\author{}
+\date{}
+
+\begin{document}
+\sloppy
+\maketitle
+\vspace{-2.5em}
+
+\section*{Summary}
+v21 was built in five rounds.
+
+\textbf{Part I, the survival search.} A depth-first \emph{survival search} (\code{survival.hpp}) asks, for each
+candidate move, whether our dragon can keep moving for its own length plus two more turns, playing out the
+engine's movement rules exactly. Its result feeds the safety filter (\code{critical_ok}) and the position score.
+Two supporting changes came out of testing: traps are priced by whether a split-escape is actually possible,
+and workers of length $\geq 8$ may use the reserved escape slot at the unit cap.
+
+\textbf{Part II, the free-steps rule and routing.}
+\begin{itemize}
+  \item The game update's sprint rule ($\lceil L/4\rceil$ free steps a turn) is now modelled everywhere the bot
+        reasons about movement: its own moves, enemy reach and the simulator.
+  \item The bot uses the rule itself: besides single steps it weighs \emph{free moves} of several steps.
+  \item Pearl routing (\code{route.hpp}) is rebuilt around four ideas:
+        \begin{itemize}
+          \item time-aware paths: bodies are passable once they have moved on;
+          \item arrival measured in turns rather than steps;
+          \item who gets to each pearl first, by real paths from every visible head;
+          \item a survival search from where each route ends, so that a route that would box us in, above
+                all the king, is never chosen.
+        \end{itemize}
+  \item Testing showed free moves could carry the king to the edge of its vision, next to enemies it could not see,
+        so valuable dragons now price that exposure.
+\end{itemize}
+\textbf{Part III, landing safety and teammate memory.} Free moves never leave the 7$\times$7 window, but they can
+\emph{end} at its edge. Long snakes then got boxed in, mostly by allies they could not see, 5--10$\times$ more often than
+after a single step. The changes:
+\begin{itemize}
+  \item bodies are remembered for as long as they will really be there;
+  \item allies' moves are modelled from what we see and from their status packets;
+  \item long snakes pay a price for landing next to tiles they cannot see;
+  \item the king no longer outruns its feeders in the late game.
+\end{itemize}
+
+\textbf{Part IV, going back for remembered pearls.} A long king that left pearls behind, such as pearls 30 steps
+away around its own body, never went back: routes only looked 20 steps ahead, which is one turn for a king of 80.
+The changes:
+\begin{itemize}
+  \item routes now reach a few turns of free steps;
+  \item a \emph{rush} follows the route for all our free steps, also over ground we cannot see now but have seen,
+        priced by how likely it is that something has moved there since;
+  \item bodies running out of sight are predicted where they continue.
+\end{itemize}
+This round also found and fixed a bug that predates v21. Dragon ids pass 4096 in long games and our 12-bit status
+packets wrapped them, so feeders lost track of the king and teams were wiped out.
+
+\textbf{Part V, the king's own moves.} Three changes for the king and growers:
+\begin{itemize}
+  \item the survival search now proves a way on for their whole length, not 20 moves;
+  \item a dragon that does not know all of its body treats unseen tiles next to where it ends as possibly its own body;
+  \item each of the king's best moves is weighed by a search over its own multi-step moves for the next two turns.
+\end{itemize}
+Measuring showed that kings rarely die to their own body alone. They get boxed in by other dragons and then
+split-escape about once in ten turns, often in chains (see \S\ref{sec:cascade}).
+
+The queens/win-condition update is \textbf{not} implemented.
+
+\textbf{v22 (Part VI), the judge's points budget.} The judge meters every dragon's turn in CPU points (100M a turn); a
+turn over it gets no reply, and the dragon dies with ``no valid action''. Measured with the judge's own pricing, v21's
+long dragons went over on hundreds of turns a game (kings averaged 164M a turn, up to 1.2 billion). v22 reads its own
+spending off the judge's clock, which counts points, and stops each search at its phase's deadline. The same searches
+were also made cheaper: a survival-search position by 2.5$\times$, the king's plan options by over 10$\times$. No measured
+turn of v22 goes over 87M, and v22 keeps v21's lookahead wherever it fits: the budget changes the chosen move on 0\% of
+turns below length 100 and about 8\% at 150+.
+
+\begin{center}
+\begin{tabular}{@{}>{\raggedright}p{4.2cm}p{11.4cm}@{}}
+\toprule
+File & Change \\
+\midrule
+\code{survival.hpp} & \textbf{New}: the survival DFS (Part I); bodies-only timings for routing, free-step head reach, \code{survival_from} for route ends (Part II); remembered bodies' lifetimes, allies' known lengths and status packets (Part III); deep searches, unknown-body caution, the king's plan (Part V) \\
+\code{route.hpp} & \textbf{Rewritten} (Part II): time-aware searches, ETAs from every visible head, turn-based route values, BFS-guided replay with a route-end survival check, free moves; no exploring free moves for the late-game king (Part III); route range in turns, rushes (Part IV); deep route-end checks for the king (Part V) \\
+\code{main.cpp} & Movement-rule helpers; config; \code{Candidate} fields; turn order; safety filters; escape slot; \code{simulate_path}, threat maps, reach threats, sprints and the ally contest under the new rule; enemy-density tracking; body memory (\code{busy_until}, \code{remember_bodies}), \code{known_length}, ally density (Part III); fill rate and occupancy, remembered tiles in \code{simulate_path}, hidden segments, 12-bit ids (Part IV); deep-search and plan constants, \code{Candidate::plan_value}, plan hook (Part V) \\
+\code{scoring.hpp} & \code{trap_cost}; new \code{position_value} branches; goal progress for moves of $k$ steps; route progress; fight reach; \code{unseen_risk} (Part III: a box-in part for every dragon of 10+) \\
+\code{explore.hpp} & Pearl sprints: survival search, new rule, contest by turns; \code{disperse_score} per step \\
+\code{endgame.hpp} & Death-yield comment; ``cheap way out'' by paid steps; \code{feeding_score} per step; 12-bit ids (Part IV) \\
+\code{coordination.hpp} & 12-bit ids (Part IV) \\
+\code{helper.hpp} & Replaced with the upgraded-protocol release (still \code{PROTOCOL_MAJOR = 3}). Against ours, only the \code{make_moves} comment differs: it now states the free-steps rule (the first $\lceil L/4\rceil$ steps free, at least 2 segments kept), which the bot and \code{sim/engine.py} already follow. The compiled bot is byte-identical. \\
+\code{sim/engine.py} & The free-steps rule (\code{FREE_MOVES} switch) \\
+\code{sim/} probes & \code{probe_aggr.py} (metrics), new \code{probe_trapped.py}, \code{probe_bigdeath.py}, \code{probe_turn.py}, \code{scen_route.py}, \code{probe_freemove.py}, \code{probe_hitbody.py}, \code{ab_trap.py}, \code{probe_fill.py}; \code{scen_route.py} gains \code{loopback} and \code{ownpocket}; \code{probe_selfdeath.py}, \code{probe_kingtrap.py}, \code{probe_ksplit.py}, \code{probe_kroom.py}, \code{probe_kingself.py}, \code{probe_bodyk.py} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\tableofcontents
+
+%=====================================================================
+\part{The survival search}
+%=====================================================================
+\section{Movement rules the search is built on}
+These were confirmed before writing the search and are what \code{surv_dfs} simulates:
+\begin{enumerate}
+  \item \textbf{Self-collision includes the tail}, and is checked \emph{before} the tail advances.
+        Within a multi-step move, each step is checked against the body as the previous step left it.
+  \item \textbf{Dragons act one at a time}, and each sees the actual board at its turn.
+  \item \textbf{Sprints} check collisions at every step and remove one extra tail segment per paid step
+        (Part II: the first $\lceil L/4\rceil$ steps of a turn are free).
+  \item \textbf{Pay before eat}: the validity check for a step happens before that step's pearl is eaten,
+        so a pearl does not save a dragon on its death step.
+  \item \textbf{Death yield}: a dragon of length $L$ always drops $\lceil L/2 \rceil$ pearls.
+  \item \textbf{No simultaneous entry}: two dragons never move into a tile at the same time.
+\end{enumerate}
+
+\section{New file: \texttt{survival.hpp}}
+Included inside \code{ReplayDerivedBot}, before \code{scoring.hpp}.
+
+\subsection{What it computes}
+\begin{lstlisting}
+struct SurvivalResult {
+    int depth = -1;        // most moves survived on any path (-1: not searched)
+    int target = 0;
+    bool complete = false; // every path searched (budget did not cut it short)
+    bool ok()   const { return depth >= 0 && depth >= target; }
+    bool dead() const { return depth >= 0 && complete && depth * 4 < target * 3; }
+};
+\end{lstlisting}
+\begin{itemize}
+  \item \textbf{Target depth}: $\min(L + \code{DFS_EXTRA_DEPTH},\ \code{DFS_MAX_DEPTH}) = \min(L+2, 20)$,
+        where $L$ is our length after the candidate move. Surviving $L$ moves means our whole
+        current body has moved off its tiles; the $+2$ is margin.
+  \item \textbf{ok}: some path reached the target.
+  \item \textbf{dead}: the search finished in full and the best path is short of $3/4$ of the target. This is a trap.
+  \item Anything else (including a budget cut) is ``unknown'', and the old v20 heuristics decide.
+  \item Our own moves are searched \emph{one step a turn}. Free steps are optional, so we can always go that slowly,
+        and that pace gives other bodies the most turns to move on.
+\end{itemize}
+
+\subsection{State (new members)}
+\begin{itemize}
+  \item \code{other_free_at_}: per tile, how many moves the other dragons must have made before the tile is free (\code{INF}: never).
+  \item \code{body_free_at_} (Part II): the same for \emph{bodies only}, meaning other dragons' segments and remembered bodies.
+        Our own segments and the head-reach margin are left out. Routing and the ETA searches use it.
+  \item \code{surv_occ_}: our body during the search (occupancy counts).
+  \item \code{surv_eaten_}: pearls eaten along the current path, so the same pearl is not eaten twice.
+  \item \code{surv_nodes_}, \code{surv_turn_nodes_}: per-candidate and per-turn node counters.
+  \item Part II: \code{surv_route_nodes_} (the route checks' own per-turn counter), plus \code{surv_counter_}, \code{surv_cap_}
+        and \code{surv_offset_}, which select the counter, cap and time offset for the current search.
+\end{itemize}
+
+\subsection{\texttt{prepare\_survival()}: once per turn}
+Called from \code{play_turn}. Part II moved it before the objective map and routing (see \S\ref{sec:order}).
+It resets both node counters and fills \code{other_free_at_} and \code{body_free_at_}:
+\begin{enumerate}
+  \item A tile with a \textbf{remembered} (out-of-sight) body blocks for \code{DFS_REMEMBERED_STEPS} $=3$ moves (both maps).
+  \item \textbf{Our own unplaceable segments} (\code{own_idx_ == -2}, never seen since birth) free after
+        $\max(1,\ L - \code{known_body_})$ moves, since they are in the unknown tail (\code{other_free_at_} only).
+  \item \textbf{Every visible part of another dragon} is a wall (\code{INF}) by default (both maps).
+  \item For each \textbf{visible head}, the body is traced (\code{trace_body}). Segment $i$ frees after
+        $\max(\code{DFS_OTHER_MIN_WAIT},\ \mathit{est} - i + 1)$ moves, where $\mathit{est}$ is that
+        dragon's estimated length (both maps). Each dragon moves once between two of ours; the $+1$ covers it eating
+        (its tail then stays); and nothing frees before our second move. Segments whose head we cannot see stay walls.
+  \item \textbf{Head reach}: tiles a visible head could be on before our next move get a value of at least 2, so they are
+        not counted on for our first step. In Part I these were its non-reverse next tiles. In Part II they are every tile
+        within \code{free_moves(est)} steps (\code{tiles_within}), since its body follows it there. This applies to
+        \code{other_free_at_} only; where heads go after that is left to the fight search.
+\end{enumerate}
+
+\subsection{\texttt{survival(pm, heading)}: per candidate}
+\begin{itemize}
+  \item Builds our body after the move, head first: \code{pm.path} reversed, then \code{own_trail_},
+        truncated to \code{pm.length}. Any remaining length is an \code{unknown} count of tail segments we cannot place.
+  \item Part II: the search itself is now \code{survival_from(body, unknown, heading, length, offset, route)}, which
+        \code{survival} calls with offset 0 and the moves' budget.
+  \item If the per-turn budget is already spent, it returns ``not searched'' (\code{depth = -1}).
+\end{itemize}
+
+\subsection{\texttt{surv\_dfs}: the search}
+\begin{itemize}
+  \item Stops with success at the target. It stops with \code{cut = true} when either budget runs out:
+        \code{DFS_NODE_BUDGET} $=4000$ per search, and \code{DFS_TURN_BUDGET} $=40000$ per turn for moves.
+        Route checks have their own \code{ROUTE_DFS_TURN_BUDGET} $=24000$.
+  \item \textbf{Children} are the (up to three) non-reverse directions whose destination is passable and known.
+        The tile must also hold none of our body (tail included, per rule 1) and have
+        $\code{other_free_at_} \leq \mathit{step} + \code{surv_offset_}$. Kelp blocks, the map wraps, and known portals are
+        followed. Unknown portals are not taken, since we cannot see where they lead.
+  \item \textbf{Ordering}: children are sorted by \emph{openness}, the count of free neighbours at the next step,
+        most open first. In open water the first path reaches the target, so the search is cheap; the budget only bites in tight spots.
+        This is a manual insertion sort over at most three elements (see \S\ref{sec:iter}).
+  \item \textbf{Moving}: the head is pushed. If the tile has a pearl seen this round that is not already eaten on this path,
+        we grow and the tail stays. Otherwise an unknown tail segment is consumed if any remain, else the real tail tile is popped.
+  \item \textbf{Backtracking} undoes every change: the head push, the tail pop, the unknown count and the eaten marks.
+  \item Records the deepest depth reached in \code{best}.
+\end{itemize}
+
+\section{Part I changes outside \texttt{survival.hpp}}
+\subsection{Configuration (\texttt{main.cpp})}
+\begin{lstlisting}
+#ifndef LONG_WORKER_ESCAPE
+#define LONG_WORKER_ESCAPE 8
+#endif
+constexpr int LONG_WORKER_ESCAPE_LENGTH = LONG_WORKER_ESCAPE;
+
+// v21: survival search
+constexpr int DFS_EXTRA_DEPTH = 2;      // target = length + this ...
+constexpr int DFS_MAX_DEPTH = 20;       // ... capped here
+constexpr int DFS_NODE_BUDGET = 4000;   // per search
+constexpr int DFS_TURN_BUDGET = 40000;  // per turn (moves)
+constexpr int DFS_REMEMBERED_STEPS = 3; // remembered body blocks this long
+constexpr int DFS_OTHER_MIN_WAIT = 2;   // no other segment frees before this
+constexpr double P_DFS_SHORT = 0.9;     // trap probability per unit shortfall
+\end{lstlisting}
+\code{LONG_WORKER_ESCAPE} sits after \code{ESCAPE_UNIT_RESERVE = 2}. Its comment records why it exists:
+boxed-in workers at the unit cap used to die whole, about 140 deaths of dragons of length 10+ per 200 rounds on a big map.
+Compiling with \code{-DLONG_WORKER_ESCAPE=1000} turns the feature off.
+
+\subsection{\texttt{Candidate} fields}
+\begin{lstlisting}
+int dfs_depth = -1, dfs_target = 0; bool dfs_complete = false;
+bool dfs_ok() const   { return dfs_depth >= 0 && dfs_depth >= dfs_target; }
+bool dfs_dead() const { return dfs_depth >= 0 && dfs_complete
+                               && dfs_depth * 4 < dfs_target * 3; }
+\end{lstlisting}
+
+\subsection{Include}
+\code{#include "survival.hpp"} is added before \code{scoring.hpp}.
+
+\subsection{Escape slot policy (\texttt{escape\_slot\_available})}
+Previously a worker always had to leave \code{ESCAPE_UNIT_RESERVE} $=2$ unit slots free before it could
+split-escape. Now:
+\begin{lstlisting}
+reserve = king ? 0
+        : (valuable_now_ || length >= LONG_WORKER_ESCAPE_LENGTH) ? 1
+        : ESCAPE_UNIT_RESERVE;
+\end{lstlisting}
+A worker of length $\geq 8$ may use the second-to-last slot to split out of a trap, like a valuable dragon.
+Losing 8+ segments whole costs far more than one extra unit near the cap.
+
+\subsection{Safety filters}
+In \code{evaluate_single}, after the room facts are gathered, \code{survival(pm, direction)} runs and is stored in the
+candidate. The room part of \code{critical_ok} is now:
+\begin{lstlisting}
+room_ok = dfs_ok()
+       || (!dfs_dead() && exits > 0
+           && space >= pm.length + unknown_body() + 2 && !trap);
+\end{lstlisting}
+\begin{itemize}
+  \item A move the search proves survivable is safe even when the flood-fill heuristics call it tight.
+  \item A move the search proves a trap is unsafe even when they look fine.
+  \item Unknown falls back to v20.
+  \item The other conditions are unchanged: known destination, no unknown portal, no head trade, no occupied exit,
+        and for valuable dragons no hard threats or blind portal.
+\end{itemize}
+The same rule, run from each sprint's end, decides \code{critical_ok} for escape sprints
+(with \code{hard_threats == 0}) and pearl sprints (with \code{!valuable || hard == 0}).
+
+\subsection{Scoring (\texttt{scoring.hpp})}
+\textbf{\code{trap_cost}.} In v20 a trap was priced as if a split-escape were always available (2 segments plus a unit). At the unit
+cap it is not, and the dragon dies whole, so traps were underpriced by about $3\times$. Now:
+\begin{lstlisting}
+bool const can_escape = L >= 4 && escape_slot_available()
+                        && controller_.can_split(L - 2);
+return can_escape ? seg(2.0 + Config::UNIT_VALUE_OURS) : death_cost();
+\end{lstlisting}
+\textbf{\code{position_value}}: new branches after the pocket-plan case.
+\begin{itemize}
+  \item \code{dfs_ok()}: the room is proven. Only the \code{P_ONE_EXIT} risk is charged when \code{exits == 1};
+        the space and dead-end risks are skipped.
+  \item Searched in full but short: \code{v -= risk(P_DFS_SHORT * shortfall, trap_cost())}, where
+        $\mathit{shortfall} = (\mathit{target} - \mathit{depth})/\mathit{target}$.
+  \item Not searched, or cut short by the budget: the v20 exits/space/dead-end risks, unchanged.
+\end{itemize}
+
+\subsection{Debug log and comments}
+\begin{itemize}
+  \item The \code{CAND} debug line ends with \code{dfs <depth> <target> C|-}, where \code{C} means the search was complete.
+  \item \code{endgame.hpp}: ``Full yield'' was misleading, so the comment now reads:
+        \emph{Every death leaves $\lceil L/2\rceil$ pearls on the body's tiles; dying on our own neck here (rather than in a trade)
+        puts them where the king will eat them.}
+\end{itemize}
+
+\section{How the search got here}\label{sec:iter}
+\begin{enumerate}
+  \item \textbf{First version (optimistic).} Other dragons' tails freed at step 1 and other heads were ignored.
+        Since \code{dfs_ok()} drops the \code{exits == 0} risk, dragons stepped onto tiles with no free neighbour.
+  \item \textbf{Fix: cautious timing.} Added \code{DFS_OTHER_MIN_WAIT = 2} and the $\mathit{est} - i + 1$ eating margin,
+        and blocked other heads' next tiles for our first step.
+  \item \textbf{Fix: trap pricing.} Nearly all self-deaths were \code{TRAPPED_SELF} (no legal move)
+        at $\geq 62$ units, where workers cannot split-escape. \code{trap_cost} now checks \code{escape_slot_available() && can_split}.
+  \item \textbf{Escape slot.} Even correctly priced traps still happen at the cap, so long workers were allowed the reserve slot.
+  \item \textbf{Compiler warning.} \code{std::sort} on \code{std::array<Child,3>} triggered a GCC
+        \code{-Warray-bounds} false positive. It was replaced with a manual insertion sort.
+\end{enumerate}
+
+\section{Part I results (old movement rule)}
+No-legal-move deaths in 200 rounds on seed 20 against the baseline:
+\begin{center}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Version & Trapped deaths & of which length 10+ \\
+\midrule
+v20 & 318 & 157 \\
+v21, cautious DFS & 297 & -- \\
+v21, + trap pricing & 270 & -- \\
+v21, + escape slot & 238 & 92 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{itemize}
+  \item Walls around trapped heads were mostly allies (ally body 463--499, ally head 86--111), then own body ($\sim$450),
+        kelp ($\sim$120) and enemies ($\sim$25).
+  \item Full games against v20: 2--2 without the escape slot; \textbf{4--2} with it, with accidental self-deaths about
+        27\% lower on big maps.
+  \item The scenario tests passed and the coil stress test failed exactly as v20 did; the maximum turn time was 5--13\,ms.
+\end{itemize}
+
+%=====================================================================
+\part{The free-steps rule, free moves and routing}
+%=====================================================================
+\section{The free-steps rule}\label{sec:rule}
+\subsection{The rule as modelled}
+In one turn a dragon of length $L$ may take $\lceil L/4\rceil$ steps for free. Every step after those costs a segment
+(its tail loses one more) and is allowed only while the dragon is longer than 2. That gives 1 free step at lengths 1--4
+(the old rule), 2 at 5--8, 3 at 9--12 and 5 at 20.
+
+\textbf{Assumption}: the allowance is per turn, and $L$ is the length at the \emph{start} of the turn.
+
+\begin{lstlisting}
+constexpr int free_moves(int length) { return std::max(1, (length + 3) / 4); }
+constexpr int paid_steps(int length, int steps) { return std::max(0, steps - free_moves(length)); }
+// The most steps it can take in one turn (eating nothing on the way).
+constexpr int max_turn_steps(int length) { return free_moves(length) + std::max(0, length - 2); }
+// Turns to take `steps` steps at full free speed.
+constexpr int turns_for(int steps, int length);   // ceil(steps / free_moves(length))
+\end{lstlisting}
+
+\subsection{Where the bot now uses it}
+\begin{center}
+\begin{tabular}{@{}>{\raggedright}p{4.3cm}p{11.3cm}@{}}
+\toprule
+Place & Change \\
+\midrule
+\code{simulate_path} & The pay check applies only to paid steps (\code{s >= free && length_now <= 2}). Length before step $s$ is
+  $L + \mathit{eaten} - \max(0, s - \mathit{free})$; after the move, $L + \mathit{eaten} - \code{paid_steps}$. \\
+\code{play_turn} & The projected length sent in the status packet subtracts \code{paid_steps}. \\
+Reach threats (valuable) & Hard reach is \code{max_turn_steps(lower_length)} (was \code{lower_length - 1}). Soft reach for a truncated body is
+  \code{max_turn_steps} of the larger of the typical enemy length and that dragon's own estimate (what we see $+2$), still capped by
+  \code{HIDDEN_BODY_REACH}. \\
+\code{build_threat_maps} & An enemy head threatens every tile within its free steps (\code{tiles_within}); an ally's next step is still what
+  crowds us. For a reach of 1 this is the same set as before. \\
+Fight search & An enemy's sprint into our head reaches \code{clamp(max_turn_steps(len), 1, max(FIGHT_SPRINT_REACH, free_moves(len)))}. \\
+Survival search & Head reach covers its free steps (Part I, \code{prepare_survival}). \\
+Tactical (attack) sprints & Up to \code{min(max_turn_steps(L), MAX_ATTACK_STEPS)} steps; the tie-break cost is per \emph{paid} step. \\
+Escape sprints & Up to \code{min(max_turn_steps(L) - 1, MAX_ESCAPE_STEPS)} steps; the score is \code{(eaten - paid) * SEG}. \\
+Pearl sprints & Only for pearls beyond our free steps (closer ones are free moves). Net is eaten minus paid. ``Contested'' means an enemy
+  needs no more turns than we would at free speed (by ETA, \S\ref{sec:eta}). \\
+Split escape & A ``cheap way out'' is any safe move paying at most 2 segments (was: at most 3 steps). \\
+Simulator & \code{engine.py}: \code{FREE_MOVES = True} applies the rule (pay check and extra tail segment only past the free steps). \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Free moves}
+\subsection{Generation (\texttt{add\_free\_moves}, \texttt{route.hpp})}
+Each turn, after the single steps and the tactical and pearl sprints (and before escape sprints), we weigh moves of 2 up to
+$\min(\code{free_moves}(L), \code{FREE_MOVE_MAX_STEPS} = 6)$ steps:
+\begin{itemize}
+  \item A depth-first walk over step sequences (never reversing). Every step is through a tile we can see now, with no portal.
+        Each prefix is checked with \code{simulate_path}, which uses the exact engine rules.
+  \item One option is kept per (end tile, last direction), the best by a quick look (\code{quick_value}): food on the way,
+        exits at the end, and goal progress (along the route by the pearls' own maps).
+  \item The best \code{FREE_MOVE_EVALS} $=6$ are evaluated in full by \code{evaluate_path}.
+\end{itemize}
+
+\subsection{Evaluation (\texttt{evaluate\_path})}
+It gathers the same facts as \code{evaluate_single}: threats at the end, exits, time-aware space and region, known space
+(valuable), and the survival search. The move is priced as in \code{move_value}:
+\begin{itemize}
+  \item goal progress for $k$ steps (half strength in a fight);
+  \item every pearl eaten on the way (\code{path_food}), minus paid steps (none);
+  \item \code{position_value} at the end and, in a fight, \code{fight_value} from there;
+  \item visits to the end tile, teammate spacing (unless it eats), and \code{BLOCKED_SPAWN} for every path tile about to spawn;
+  \item the enemy-distance pull.
+\end{itemize}
+\code{critical_ok} and \code{safe} follow the single-step rules. The new \code{Candidate::free_move} flag makes the
+chosen move log as \code{FREE_MOVE}.
+
+\subsection{Goal progress for $k$ steps (\texttt{scoring.hpp})}
+\code{goal_progress} now takes the \code{PostMove} instead of a \code{Step}, so the same code prices one step or several.
+With $k = 1$ every term is as before.
+\begin{center}
+\begin{tabular}{@{}lp{11.6cm}@{}}
+\toprule
+Goal & Progress \\
+\midrule
+EAT & Steps still to go along the route, before minus after, clamped to $\pm k$ (\S\ref{sec:routeprog}); \code{ROUTE_TIE} if the move follows the checked route path. \\
+HUNT & Grid distance gained to the target (unclamped, as before). \\
+FEED & \code{feeding_score(dest, k)}: the gain clamped to $\pm(k+1)$ (was $\pm 2$). \\
+EXPLORE & Objective-map gain capped at $k + 1$ (was 2); \code{disperse_score(dest, k)} clamped to $\pm k$; rendezvous unchanged. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Routing (\texttt{route.hpp})}
+\subsection{Time-aware paths}
+\code{timed_bfs(pm, limit, target, out)} gives the fewest steps for our head to reach a tile from where a move \code{pm} leaves us
+(or from where we are now). Every body is placed where it will be by then:
+\begin{itemize}
+  \item Our own segment $j$ (after the move) is passed once the tail has moved past it: at least $\mathit{length} - j + 1$ more steps.
+  \item Another dragon's segment is passed once that dragon has made \code{body_free_at_} moves, one a turn. Our step is assumed
+        to come in turn $\code{turns_for}(\mathit{step})$, at full free speed, plus the current turn if a move is already
+        being made. Going that fast is pessimistic about other bodies.
+  \item Kelp, tiles we know nothing of, and marked traps block.
+\end{itemize}
+It is used in three places:
+\begin{itemize}
+  \item \code{route_head_dist_}: the map from our head, out to 30 steps (\code{prepare_etas}).
+  \item The pearls' own maps (legs between pearls): a body tile is passable if our time-aware map reaches it, since it will
+        have moved on by then. The first leg of every route uses \code{route_head_dist_} directly.
+  \item Route progress for candidate moves (\S\ref{sec:routeprog}).
+\end{itemize}
+
+\subsection{Arrival in turns}
+A pearl reached at step $t$ is reached in $\code{turns_for}(t, L)$ turns. The discount (0.92 for keepers, 0.85 for workers)
+is now \emph{per turn}; for $L \leq 4$ this is the old per-step rule. Orders that arrive in the same turns are told
+apart by a $10^{-4}$-per-step tie-break. Candidate pearls are filtered by time-aware steps within the route radius
+(20 for keepers, 14 for workers).
+
+\subsection{Who gets there first}\label{sec:eta}
+\code{prepare_etas()} runs once per turn, before the objective map. It computes our time-aware map and one search per
+visible head (\code{head_eta_bfs}, 30 steps):
+\begin{itemize}
+  \item That head's own segments pass once it has moved on.
+  \item Our segments pass once we have made that many moves (we move before each of its turns).
+  \item Others pass per \code{body_free_at_}.
+\end{itemize}
+Enemies are merged into \code{enemy_eta_turn_} and \code{enemy_eta_steps_}; allies are kept per head (\code{ally_etas_}).
+
+The results are used in four places:
+\begin{itemize}
+  \item \textbf{Route values}: a pearl an enemy reaches in fewer turns than our arrival on that route is worth
+        \code{ROUTE_CONTEST_LOST} $=0.4$ of itself. Before, any pearl closer to an enemy by \emph{grid} distance than to us by path
+        was halved. We win ties: every other dragon's $t$-th turn comes after ours.
+  \item \textbf{Keepers}: the fight-risk factor (0.4) now needs an enemy within \code{ROUTE_ENEMY_NEAR} $=4$ \emph{path} steps of the pearl.
+  \item \textbf{\code{pearl_taken_by_ally}}: turns at each dragon's own free speed, by time-aware paths for us and visible allies.
+        Allies out of sight still use grid distance, now in turns. Ties still go to the lower id, a rule both dragons follow.
+  \item \textbf{Pearl sprints}: contested by turns (see \S\ref{sec:rule}).
+\end{itemize}
+
+\subsection{Replay and the route-end check}
+\code{replay_route} walks a route as the engine would move us, with our body trailing and growing:
+\begin{itemize}
+  \item Each leg follows a shortest time-aware path from wherever the replay has got to (\code{replay_leg}): a BFS that
+        knows the replayed body's segment indices, with the most open first step preferred.
+  \item If the growing body gets in the way, the leg is searched again, at most 3 times per leg.
+  \item A replay may take at most \code{ROUTE_REPLAY_SLACK} $=8$ steps more than the horizon.
+\end{itemize}
+From where the route ends, the survival search runs (\code{survival_from}) on the replayed body:
+\begin{itemize}
+  \item The time offset is $\code{turns_for}(t) - 1$ other-dragon moves; the pearls the route ate are marked eaten.
+  \item It uses its own per-turn budget, so routing never starves the move evaluation.
+\end{itemize}
+The route is accepted only if that search succeeds:
+\begin{itemize}
+  \item \textbf{King and growers}: \code{ok()}, or cut short by the budget after reaching at least $3/4$ of the target.
+  \item \textbf{Workers}: not \code{dead()}.
+  \item \textbf{Budget already spent}: the old check (at least one free neighbour) decides.
+\end{itemize}
+The fallback (the nearest pearl on its own) goes through the same check. The replayed tiles are kept in
+\code{route_path_}, its first tile in \code{route_next_cell_}, and the order in \code{route_seq_}.
+
+\subsection{Route progress}\label{sec:routeprog}
+\code{route_remaining(pm, limit)} counts the steps still to go after a move:
+\begin{itemize}
+  \item time-aware steps (\code{timed_bfs}) from where the move leaves us to the first route pearl it has not eaten;
+  \item plus the legs between the rest, skipping pearls eaten on the way.
+\end{itemize}
+\code{route_remaining_now_} is the same from here. EAT progress is the difference, clamped to $\pm k$; a move that eats
+the first pearl and carries on toward the second is credited for both. \code{follows_route(pm)} gives \code{ROUTE_TIE}
+when the move's tiles are a prefix of \code{route_path_}. The old \code{route_dist()} is removed.
+
+\subsection{Turn order}\label{sec:order}
+\begin{lstlisting}
+update_explore_target();
+prepare_survival(); // v21: when other dragons' bodies move on (survival.hpp)
+prepare_etas();     // v21: who reaches which tile first (route.hpp)
+build_objective_map();
+plan_route();
+choose_goal();
+...
+add_tactical_sprints(candidates);
+add_pearl_sprints(candidates);
+add_free_moves(candidates); // v21
+add_escape_sprints(candidates);
+\end{lstlisting}
+The debug \code{ROUTE} line now shows \code{rest <route_remaining_now_>} and \code{end_dfs <depth>}.
+
+\section{Valuable dragons: what they cannot see}
+A test game showed the danger. A king of length 111 made a 6-step free move to the edge of its window and landed next to
+an enemy of length 6 it could not see; the enemy rammed it with a free 2-step move. A single step never ends closer than 2
+tiles to the window's edge; a free move can end on it.
+
+\textbf{\code{unseen_risk(pm)}} (\code{position_value}, valuable dragons only) prices this.
+\begin{itemize}
+  \item Count the tiles within \code{UNSEEN_RADIUS} $=3$ steps of where we end that we cannot see now.
+        Every single step has exactly one; an end at the window's edge has up to a dozen.
+  \item Each tile is a chance of $\code{P_UNSEEN_ATTACK} = 0.5$ times the enemy heads we see per tile.
+        That density is a running average (\code{enemy_density_x1e4_}, updated in \code{observe_heads}).
+  \item The total is capped at \code{P_UNSEEN_CAP} $=0.3$, times \code{death_cost()}.
+  \item A blind portal exit is not counted here, since portals are priced separately.
+\end{itemize}
+A second king death (length 85) came from a body running out of sight. It was assumed only as long as a typical enemy,
+reaching 3 steps, but it was 8 long and paid 3 segments to reach 5. The soft reach now also uses that dragon's own
+estimated length (see \S\ref{sec:rule}).
+
+\section{New and changed constants (Part II)}
+\begin{lstlisting}
+constexpr int FREE_MOVE_MAX_STEPS = 6, FREE_MOVE_EVALS = 6;
+constexpr int UNSEEN_RADIUS = 3;
+constexpr double P_UNSEEN_ATTACK = 0.5, P_UNSEEN_CAP = 0.3;
+constexpr double ROUTE_CONTEST_LOST = 0.4;
+constexpr int ETA_RADIUS = 30;
+constexpr int ROUTE_DFS_TURN_BUDGET = 24000;
+constexpr int ROUTE_REPLAY_SLACK = 8;
+\end{lstlisting}
+\code{main.cpp} also gains \code{#include <tuple>}, the four rule helpers, \code{tiles_within} and
+\code{enemy_density_x1e4_}. Its header comment adds: \emph{v21 (continued): the ceil(L/4) free-steps rule throughout
+(free\_moves); moves of several free steps; routing with time-aware paths, arrival in turns, who gets there first, and a survival
+check where each route ends (route.hpp).}
+
+\section{Part II testing (new movement rule, against v21 Part I)}
+\subsection{Routing scenarios (\texttt{sim/scen\_route.py})}
+\textbf{\code{room}.} A king of length 15 next to a fully visible 3$\times$3 walled room with a one-tile door and 3 pearls inside
+(eating them leaves 18 segments in 9 tiles), plus 2 pearls in the open.
+\begin{itemize}
+  \item Both versions eat the open pearls first.
+  \item The Part I version then plans a route into the room and spends 4+ turns walking at it; its move-level safety stops it at the door.
+  \item The new version rejects every route into the room and goes exploring elsewhere.
+\end{itemize}
+\textbf{\code{contest}.} A worker of length 6 (2 free steps) and an enemy head 2 tiles from pearl P1 by grid distance, but behind a
+kelp wall (30+ steps by path); pearl P2 is 1 step further for us and uncontested.
+\begin{itemize}
+  \item The Part I version gives P1 up to the enemy and eats nothing in 4 turns.
+  \item The new version takes P1 and then heads for P2.
+\end{itemize}
+
+\subsection{Games against v21 Part I (both under the new rule)}
+\begin{center}
+\begin{tabular}{@{}lllrrl@{}}
+\toprule
+Seed & Map & New as & New max & Old max & Result \\
+\midrule
+21 & 20$\times$36 & A & 177 & 90 & new wins \\
+21 & 20$\times$36 & B & 174 & 98 & new wins \\
+22 & 18$\times$25 & A & -- & -- & new wins (old eliminated, round 86) \\
+22 & 18$\times$25 & B & -- & -- & new wins (old eliminated, round 76) \\
+20 & 56$\times$53 & A & 296 & 97 & new wins \\
+20 & 56$\times$53 & B & 293 & 142 & new wins \\
+30 & 44$\times$61 & A & 220 & 89 & new wins \\
+30 & 44$\times$61 & B & 259 & 100 & new wins \\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{8--0.} These games were played before the one-line route-end offset fix (\S\ref{sec:iter2}). Seed 30 re-run with the final
+build: new wins both again (max 290 vs 95 as A, 310 vs 136 as B). By round 500 the new build is down to 1--2 units (its workers
+have fed the king), against the old build's 9--11. On total length the old build was ahead in both games (638 vs 562, 836 vs 310), so
+under the current tiebreak (longest dragon first) the new build wins, but the totals are worth watching once the queen rule
+is implemented.
+
+\subsection{Metrics (seed 20, 56$\times$53, 200 rounds)}
+\begin{center}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+ & New & v21 Part I \\
+\midrule
+Pearls eaten & 8791 & 4611 \\
+Total length at round 200 & 1052 & 627 \\
+Segments lost to enemy trades & 2382 & 1044 \\
+Our dragons of 16+ hit by enemy-started trades & 46 & 9 \\
+Accidental self-deaths (segments) & 294 (3896) & 251 (2012) \\
+Trapped deaths, length 10+ & 122 & 68 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Free moves almost double the food. They also make our workers far longer at the unit cap: 40--140 where the old build's are
+under 50. Long workers are juicy targets and die whole when trapped. Over full games, self-deaths of dragons of 16+ ran about
+2.5$\times$ the old build's (137--169 vs 62--67 per game on big maps).
+
+\subsection{Other checks}
+\begin{itemize}
+  \item The original scenario tests (\code{scen.py}) all give the same outcomes as before.
+  \item Coil stress test (\code{stress_box.py}, 30 trials): no king self-deaths, for either build.
+  \item Turn time (seed 20, 250 rounds, debug build): at most 6.1\,ms, 1.4\,ms on average (the Part I build: 2.7\,ms, 0.9\,ms).
+  \item No crashes, timeouts or pay deaths in any game.
+\end{itemize}
+
+\subsection{How Part II got here}\label{sec:iter2}
+\begin{enumerate}
+  \item The first version let the king make long free moves to the window's edge. The two king deaths above led to
+        \code{unseen_risk} and the estimate-based soft reach.
+  \item \code{std::unordered_map<int, std::pair<int, Direction>>::operator[]} does not compile (\code{Direction} has no
+        default constructor), so \code{insert_or_assign} and \code{at} are used.
+  \item The route-end search first counted the other dragons' moves one turn ahead (offset $\code{turns_for}(t)$ instead of
+        $\code{turns_for}(t) - 1$). That was slightly optimistic and is now fixed.
+\end{enumerate}
+
+%=====================================================================
+\part{Landing safety and teammate memory}
+%=====================================================================
+\section{What was actually happening}
+The concern was that long snakes, able to take 20 free steps, move far past their window and so move blindly into
+teammates. They do not.
+\begin{itemize}
+  \item Free moves are capped at \code{FREE_MOVE_MAX_STEPS} $=6$ steps.
+  \item Every step must be on a tile visible this turn, and \code{simulate_path} checks it against the board as it is.
+  \item Dragons act one at a time, so nothing moves while we move.
+\end{itemize}
+What \emph{is} blind is the landing. A multi-step move can end at the window's edge. Before our next turn, whatever is
+just outside the window (heads we cannot see, bodies we have forgotten) can close in, and the survival search cannot
+see it either. Bodies were also forgotten after 2 rounds, however long they were.
+
+\textbf{Measured} (\code{probe_freemove.py}, seed 20, 200 rounds): how often a dragon was boxed in (no legal move) on the
+turn right after a move the survival search had called safe.
+\begin{center}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Length & After a multi-step move & After a single step & Multi-step, after Part III \\
+\midrule
+10--29 & 28 / 2379 = 1.18\% & 1 / 959 = 0.10\% & 14 / 2536 = 0.55\% \\
+30+ & 4 / 803 = 0.50\% & 1 / 807 = 0.12\% & 4 / 897 = 0.45\% \\
+under 10 & 6 / 1673 = 0.36\% & 18 / 4561 = 0.39\% & 10 / 1592 = 0.63\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+The walls around those heads were allies' bodies on 569 sides, our own body on 451, kelp on 123, ally heads on 81 and
+enemies on 44. Direct collisions with allies were rare (about 5 per 200 rounds).
+
+\section{Body memory}
+\begin{itemize}
+  \item \code{CellMemory::busy_until}: the round from which a body seen on the tile should be gone. It is set to
+        $\mathit{now} + \code{OCCUPIED_MEMORY} + 1$ when the body is seen, which is the old 2-round memory.
+  \item \code{remember_bodies()}, after \code{observe_heads}, refines it. Segment $i$ of a visible head's body lasts
+        $\lceil(\mathit{len} - i)/\mathit{pace}\rceil + 1$ rounds, at most \code{BODY_MEMORY_MAX} $=30$, where:
+        \begin{itemize}
+          \item $\mathit{len}$ is \code{known_length} (for an ally, its last status report within 10 rounds, if longer);
+          \item $\mathit{pace}$ is half the dragon's free steps for an ally (ours take several steps on most turns),
+                and 1 for anyone else.
+        \end{itemize}
+  \item A visible segment of an ally whose head we cannot see, but whose length we know, lasts half that length at
+        its pace, clamped to 3--\code{UNPLACED_BODY_MEMORY_MAX} $=8$ rounds.
+  \item \code{body_remembered(m)} and \code{body_rounds_left(c)} replace the old fixed 2-round test. They are used by
+        \code{remembered_occupied}, \code{blocks_pearl_path}, the time-aware space search and blind portal exits.
+  \item The survival search frees a remembered tile after its rounds left (was a fixed 3); routing's \code{body_free_at_} does the same.
+  \item The crowd count around route pearls still uses recent sightings only.
+\end{itemize}
+A first version assumed every body moves one step a turn. Measured over three maps, that was \emph{worse} than having no
+long memory: our allies move faster, so it kept tiles closed too long and made the survival search pessimistic.
+The paced version measured slightly better than no memory.
+
+\section{Where allies can be before our next move}
+In \code{prepare_survival}, the step-1 head reach now uses what we know:
+\begin{itemize}
+  \item \textbf{Allies}: $\min(\code{free_moves}(\code{known_length}), \code{FREE_MOVE_MAX_STEPS})$, since our allies never
+        move further. \textbf{Enemies}: \code{free_moves(est)}.
+  \item \textbf{Traced bodies} of visible heads use \code{known_length}.
+  \item \textbf{Allies out of sight} that sent a status packet this round or the last: every tile within their reach of the
+        reported head is blocked for our first step. The reach is doubled when the packet is from last round and the ally
+        moves before us, since it has moved once since. The reported tile itself holds its body for
+        $\min(30, \mathit{len} - 1)$ moves.
+  \item \code{tiles_within} gained \code{any_first} (direction unknown) and now uses a set.
+\end{itemize}
+
+\section{Landing next to tiles we cannot see}
+\code{unseen_risk} is now charged for every dragon from \code{position_value}, in two parts. With $n$ the tiles within
+\code{UNSEEN_RADIUS} $=3$ steps of the end that we cannot see now:
+\begin{itemize}
+  \item \textbf{Ram} (valuable dragons, as in Part II): $\min(0.3,\ n \cdot \code{P_UNSEEN_ATTACK} \cdot \mathit{enemy\ density}) \times \code{death_cost()}$.
+  \item \textbf{Box-in} (any dragon of \code{UNSEEN_BOX_MIN_LENGTH} $=10$+):
+        $\min(0.3,\ n \cdot \code{P_UNSEEN_BOX} \cdot (\mathit{ally} + \mathit{enemy\ density})) \times \code{trap_cost()}$,
+        with \code{P_UNSEEN_BOX} $=0.05$. \code{ally_density_x1e4_} is a running average like the enemy one.
+\end{itemize}
+Every single step has $n = 1$, so single steps are not affected relative to each other.
+
+\textbf{Tried and dropped}: a hard rule that long dragons end a free move at most 2 tiles from where they started.
+It measured no better than the price above.
+
+\section{The late-game king keeps to its feeders' pace}
+From \code{GATHER_ROUND} (380), the king and growers take no free moves while their goal is EXPLORE (outside a fight).
+They still take them to eat along a route, to fight, and to escape. Without this, the \code{feeder_near} scenario failed:
+a king of length 15 roamed 3--4 steps a turn and its length-4 feeder, at 1 step a turn, never reached it.
+
+\section{Part III results}
+\textbf{Six large maps}, 200 rounds each, both builds against the Part I build (\code{ab_trap.py}, seeds 20, 30, 37, 23, 27, 50):
+\begin{center}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+ & Part II build & Part III build & Change \\
+\midrule
+Trapped deaths, length 10+ & 581 & 497 & $-14\%$ \\
+Accidental self-death segments & 18054 & 16669 & $-8\%$ \\
+Total length at round 200 & 5237 & 5334 & $+2\%$ \\
+Segments lost to enemy rams & 14320 & 15664 & $+9\%$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+More long snakes stay alive, and some of them are then rammed instead.
+
+\textbf{Head-to-head} against the Part II build, full games on large maps:
+\begin{itemize}
+  \item the first version of these changes: 2--2;
+  \item the paced memory: 1--3, every game by a small margin;
+  \item the final build, seed 20 both sides: 1--1.
+\end{itemize}
+This is about even: the gain shows up in long-snake survival, not yet in wins.
+
+\textbf{Also found}: every ``ran into another body'' death of ours is a single step through a portal whose exit we
+cannot see, onto an ally's body (\code{probe_hitbody.py}). About 40\% of blind crossings die, the same before and after
+this round. This risk predates v21 and is priced at \code{P_BLIND_PORTAL} $=0.3$.
+
+\textbf{Checks}: the scenario tests give the same outcomes as before, including \code{feeder_near}, where the king is
+fed again. The cleaned-up build was confirmed move-for-move identical to the tested one before the late-game change.
+
+%=====================================================================
+\part{Going back for remembered pearls}
+%=====================================================================
+\section{What was wrong}
+In a game, a long king knew of pearls behind it but never went back for them.
+\begin{itemize}
+  \item \textbf{Range in steps.} Routes considered only pearls within \code{KEEPER_ROUTE_RADIUS} $=20$ steps (whole route:
+        28). A king of length 80 takes 20 free steps a turn, so a remembered pearl 30--40 steps away around its own
+        body was never a route. The king fell back to exploring, and nearby unexplored ground (cost 12) always looked
+        closer than a pearl 30+ steps away.
+  \item \textbf{Speed capped by the window.} Even with a route, a free move only crosses tiles visible this turn.
+        Towards a target outside the window that is 3 tiles of progress a turn, whatever the free steps.
+\end{itemize}
+\textbf{Test} (\code{scen_route.py loopback}): a king of length 40 is made to walk 60 steps west past three pearls,
+leaving them 22--25 steps behind with its body between, and then plays on its own.
+\begin{center}
+\begin{tabular}{@{}lp{9.6cm}@{}}
+\toprule
+Build & What happens \\
+\midrule
+Before & No route: it explores away south and never eats them (20 turns watched). \\
+Route range only & Goes back at 3 tiles a turn and eats all three 8 turns after taking over. \\
+Final & Goes back and rushes 8 steps at once when the ground is quiet: all three eaten in 6--7 turns. \\
+\bottomrule
+\end{tabular}
+\end{center}
+In this test the rush waits a few turns because the measured averages start from crowded-game values (see below).
+
+\section{Route range in turns}
+\code{route_radius()} and \code{route_horizon()} replace the fixed values: the old ones, or this many turns of our free
+steps, whichever is further:
+\begin{itemize}
+  \item keepers: 4 turns (radius) and 6 turns (horizon);
+  \item workers: 3 and 4 turns;
+  \item capped at \code{ROUTE_MAX_RADIUS} $=100$ and \code{ROUTE_MAX_HORIZON} $=140$ steps.
+\end{itemize}
+A king of 40 now plans 40 steps ahead (60 for the whole route); one of 80, 80 and 120. Our time-aware map
+(\code{route_head_dist_}) is searched out to the same radius. Dragons with up to 5 free steps are unchanged.
+
+\section{Rush}
+\code{add_route_rush} runs when the goal is EAT. It follows the checked route path (\code{route_path_}) for all our free
+steps, never through a portal.
+\begin{itemize}
+  \item \textbf{Moves weighed}: all of it, stopping on each route pearl, and the part we can see. A fully visible move of
+        up to 6 steps is skipped, since it is already among the free moves.
+  \item \textbf{Remembered tiles}: with \code{remembered_ok}, \code{simulate_path} also accepts a step onto a tile we cannot see
+        now, if we have seen it, know the edge into it, and remember no body on it. Those tiles are returned as \emph{blind},
+        and a pearl remembered on one counts as eaten (its tail staying put is the cautious case for self-collision).
+  \item \textbf{Scoring}: \code{evaluate_path}, plus remembered pearls on blind tiles at their freshness, minus the chance of
+        hitting something times \code{death_cost()}.
+  \item \textbf{Safety}: a rush with more than \code{RUSH_MAX_RISK} $=8\%$ (valuable dragons: $2\%$) chance of a hit is not safe.
+        Rushes are exempt from the known-space penalty, since they price unseen tiles themselves.
+  \item The chosen move logs as \code{RUSH}.
+\end{itemize}
+\textbf{Chance a blind tile is taken}: a tile last seen $k$ rounds ago risks
+\[ \min(k \cdot \mathit{fill\ rate},\ \mathit{occupancy},\ \code{P_BLIND_TILE_CAP} = 0.5), \]
+and a tile our own body is on now risks 0. Nobody else can be there, and nothing else moves while we do, so following our
+own body round is safe however far it goes. Both rates are measured in \code{remember_vision} as running averages:
+\begin{itemize}
+  \item the fill rate: of the tiles we saw free last round and see again, the share now taken by another dragon;
+  \item occupancy: the share of tiles in view holding another dragon.
+\end{itemize}
+They start at 3\% and 20\%. In a real game around the king they ran 3\%/round and 23\% in the midgame, and 1.5\% and 15\%
+late. So in crowds a tile seen 7+ rounds ago is a 20\%+ risk and rushes are rare; in quiet ground or along our own body
+they go.
+
+\section{Bodies running out of sight}
+\code{predict_hidden_segments()} runs after \code{remember_bodies}.
+\begin{itemize}
+  \item A visible segment's facing points to the next segment towards its head. If that tile is out of sight, it holds the
+        same dragon.
+  \item If no visible segment follows a segment towards its tail, and only one tile out of sight could, that tile almost
+        surely does.
+  \item Both tiles are remembered as taken for as long as the segment next to them, so rushes, the survival search and
+        routing treat them as bodies. A remembered body no longer needs the tile to have been seen.
+\end{itemize}
+A rush in testing hit an ally's segment 3 just outside the window, where its body ran out of sight. Rush collisions went
+from 5 to 2 in 300 rounds with this.
+
+\section{The 12-bit id bug (predates v21)}
+Status packets, beacons and king records carry dragon ids in 12 bits. Both teams share one id counter, and with free
+moves (more eating, more splitting) it passed 4800 in a game. The king, id 4821, was reported as 725. Feeders looked
+for a head with id 725, never found it, never fed it, and wandered at lengths 150--215 until they died in their own coils.
+The team was wiped out in 2 of 6 games.
+
+The fix: \code{pid(id)} $=$ \code{id & 4095} and \code{my_id()}. Every id we store (\code{SeenHead}, signals, the king
+record, the ally length cache) and every comparison between a stored id and a real one uses that form; comparisons
+between two real ids (a visible part against our own id) are unchanged. Two live dragons whose ids differ by exactly
+4096 would be confused, which is rare.
+
+\section{Part IV results}
+Full games, large maps, both sides:
+\begin{center}
+\begin{tabular}{@{}>{\raggedright}p{4.2cm}>{\raggedright}p{2.6cm}>{\raggedright}p{4.6cm}p{3cm}@{}}
+\toprule
+New build & Against & Result & Final max length (avg) \\
+\midrule
+Range, rush, hidden bodies (no id fix) & Part III build & 4--2, both losses team wipeouts (id bug) & -- \\
+Final (with the id fix) & Part III build & \textbf{4--0} (seeds 30, 37) & 413 vs 245 \\
+Final & Id fix only & \textbf{5--1} (seeds 20, 30, 37) & 348 vs 278 \\
+\bottomrule
+\end{tabular}
+\end{center}
+So both parts pay: the id fix keeps the king fed, and the longer routes and rushes add about a quarter to its final
+length on top.
+
+Over six maps of 200 rounds (before kings matter) the variants differ by about $\pm 3\%$ in total length, within
+run-to-run noise. Rushes eat about 3\% more pearls there.
+
+\textbf{Checks}: the scenario tests are unchanged (\code{room}, \code{contest}, the feeder tests) and \code{loopback} passes.
+The cleaned-up build plays move-for-move like the tested one.
+
+%=====================================================================
+\part{The king's own moves}
+%=====================================================================
+\section{Deep self-safety}
+Until now a move was ``proven safe'' when the survival search found $\min(L+2, 20)$ moves. For a king of 200 that proves
+almost nothing: its newest segments stay put for up to 200 moves, so it could walk into a ring of its own recent body
+holding 25 tiles and be called safe.
+\begin{itemize}
+  \item \code{deep_dragon()}: the king (also before growers start at round 300) and growers.
+  \item For them, \code{survival_from(..., deep)} searches to $\min(L + 2, \code{KING_DFS_MAX_DEPTH} = 300)$. The budgets are
+        \code{KING_DFS_NODE_BUDGET} $=20000$ per search and \code{KING_DFS_TURN_BUDGET} $=250000$ per turn
+        (\code{KING_ROUTE_DFS_TURN_BUDGET} $=80000$ for route ends, which are deep for them too).
+  \item In deep searches, another dragon's body that we cannot place (head out of sight) is assumed gone after
+        \code{DEEP_UNPLACED_BODY} $=40$ moves rather than never, or a long search would fail on it.
+  \item \code{survival_from} now takes a budget pool (0 moves, 1 route ends, 2 plans) and a per-search node cap.
+\end{itemize}
+\textbf{Test} (\code{scen_route.py ownpocket}): a king of 60 walks (scripted, so it knows its body) east and then round a full
+ring; at hand-over its newest 23 segments enclose 25 tiles holding pearls, and its head is at the ring's one gap.
+\begin{center}
+\begin{tabular}{@{}lp{10cm}@{}}
+\toprule
+Build & Stepping into the ring \\
+\midrule
+Part IV build & \emph{safe} (20 of 20 moves proven); kept out only by its score. \\
+Final & \emph{unsafe}: only 23 of the 62 moves needed exist; heavy penalty. \\
+\bottomrule
+\end{tabular}
+\end{center}
+Both builds wait outside and eat the pearls once the ring has moved on, with 3 pearls inside or 7.
+
+\section{A body we do not know}
+A dragon born long from a split (an heir) starts as a new process: no map memory, and of its body only what it can
+see. On average heirs knew 79\% of their body (\code{probe_bodyk.py}). The rest is attached where the known body ends
+(\code{own_trail_.back()}). In deep searches, while some of it is still there, a tile we have never seen within
+$\min(\mathit{unknown}, \code{UNKNOWN_BODY_RADIUS} = 10)$ steps of that end counts as possibly our own body. (Multi-step
+moves never caused a body-model reset; \code{probe_bodyk.py} counted none.)
+
+\section{The king's plan}
+\code{plan_king_moves} runs after all move candidates exist, for deep dragons with 2+ free steps.
+\begin{itemize}
+  \item For each of the \code{PLAN_CANDIDATES} $=8$ best moves (safe ones first), the turns after it are searched.
+        For turns 2..\code{PLAN_TURNS} $=3$, a state's options are a shortest path to every tile within our free steps
+        (at most \code{PLAN_MAX_STEPS} $=24$, no portals). The search is time-aware against our own moving body. The
+        \code{PLAN_BRANCH} $=4$ best are kept, by food on the way and progress along the route (\code{plan_options}).
+  \item Each option is played out exactly by \code{plan_extend}. Every step is checked against our body as the step before
+        left it, tail included. A pearl, seen or remembered, eaten keeps the tail.
+  \item Other bodies are timed cautiously (\code{plan_free_at_}): a tile another head can reach may hold its body for its
+        length, not just for our next move. A plan should not count on gaps another dragon can fill.
+  \item \textbf{A plan counts only if it is proven safe}: from where it ends, the deep survival search (budget pool 2,
+        \code{PLAN_DFS_TURN_BUDGET} $=150000$) must find a way on for our whole length.
+  \item The best safe plan's \emph{food} in its later turns, discounted \code{PLAN_DISCOUNT} $=0.85$ a turn, is added to the
+        move (\code{Candidate::plan_value}, $\geq 0$; $-1$ means none was safe). Progress is left to the move's own score.
+\end{itemize}
+
+\textbf{Two dead ends on the way}
+\begin{itemize}
+  \item \textbf{Counting progress in the plan made the king hold back.} Later turns ``made'' 10 steps of progress each through
+        tiles the real move would price as risky, so a single step now left more for the plan to collect. In
+        \code{loopback} the king crept one step a turn (pearls eaten at turn 78, not 66). Food only fixed it.
+  \item \textbf{Cautious timing in every deep search} (not just in plans) made kings doubt every move in crowds. It lost
+        3 of 3 games against the Part IV build and was dropped. Used only inside plans it went 4--2; without it, plans
+        went 1--5.
+\end{itemize}
+
+\section{How kings actually get trapped}\label{sec:cascade}
+\begin{itemize}
+  \item \textbf{Self-deaths of long dragons by role} (\code{probe_selfdeath.py}): about 9 per game are kings or growers.
+        Most are dragons born from a split one or two turns earlier, already boxed in.
+  \item \textbf{Escape splits} (\code{probe_kingtrap.py}, \code{probe_ksplit.py}): the king escape-splits on about
+        \textbf{1 in 10} of its turns (56--89 times a game, in both builds). Each split costs the head and 2 segments and
+        restarts the king as a new process that knows little of its body.
+  \item \textbf{Where they come from}: about two thirds are ``blind'' splits by young heirs that do not know their body.
+        These are chains: the head alternates between the two ends of a body boxed in at both. The rest are kings that
+        knew their body and were boxed in mostly by \emph{other} dragons, often right after a multi-step move
+        (\code{probe_kroom.py}).
+  \item The deep check, the unknown-body caution and the plan did not change that rate.
+\end{itemize}
+
+\section{Part V results}
+\begin{itemize}
+  \item \textbf{Final build vs the Part IV build}, six full games on large maps, both sides: \textbf{4--2}. Final king length
+        averaged 346 vs 338, which is within the large game-to-game swings.
+  \item Scenario tests unchanged; \code{loopback} still eats at turns 66--67; \code{ownpocket} as above.
+  \item Coil stress test: no king self-deaths.
+  \item Turn time: at most 36\,ms (the king's plans and deep searches), 1.7\,ms on average.
+\end{itemize}
+
+%=====================================================================
+\section{Known limitations and not yet done}
+\begin{itemize}
+  \item \textbf{Free-steps assumption}: per turn, from the length at the start of the turn. If the real engine counts differently,
+        \code{free_moves} and \code{engine.py} are the two places to change.
+  \item \textbf{Queens / win condition}: not implemented.
+  \item \textbf{Teammate memory is partial}: we remember what we have seen and what status packets tell us (head position and
+        length only). Where an unseen ally's body lies is guessed.
+  \item \textbf{Blind portal crossings} die about 40\% of the time in crowded games.
+  \item \textbf{Rushes} use only free steps. Paying segments to rush to a remembered pearl is not considered: the pearl may be gone.
+  \item The fill rate and occupancy start at crowded-game values, so a newborn long dragon does not rush for its first ~30 turns.
+  \item \textbf{The king's escape-split chains} (\S\ref{sec:cascade}): about 1 split in 10 king turns, mostly by heirs
+        that do not know their body. The most valuable next step for the king.
+  \item \textbf{Crowding at the unit cap} is now the biggest leak. Workers can no longer split there and grow very long with free moves;
+        they then die whole when trapped or rammed. This is the most valuable next step (for example, feeding long workers to the king
+        or capping worker length).
+  \item The fight search still gives the enemy single-step replies plus a sprint into our head; free repositioning of 2+ steps is not played out.
+  \item Free moves avoid portals and stay inside our window.
+  \item \code{unseen_risk} counts unseen tiles; it does not use what we saw there last turn.
+  \item Route ends: the other dragons' future moves are unknown. A body whose head we cannot see stays a wall forever.
+  \item Edges never seen are assumed open (as before), so a route into unseen ground can look better than it is until we see it.
+  \item The survival search covers our own single steps only; other dragons are bodies that drain away plus a head reach.
+  \item Pearls in the survival search count only if seen this round.
+  \item Planned but not started: panic fallbacks.
+\end{itemize}
+
+
+%=====================================================================
+\part{v21 $\rightarrow$ v22: the judge's points budget}
+%=====================================================================
+\section{What the judge measures}
+From the Timeouts page and the organisers' public repository (\code{unswcpmsoc/unswbc}, \code{pythoncli/unswbc/metering.py}
+and \code{sandbox.py}, which reproduce the judge):
+\begin{itemize}
+  \item Bots run as WebAssembly (C++: \code{-O2 -msimd128}, libc++). Each instruction has a fixed price in \emph{points}: most cost 1,
+        loads and stores 2, division 3, calls 4--6, memory growth 50, bulk copies 10 plus 1 per 8 bytes.
+  \item \textbf{100 million points per dragon per turn}, no carry-over. The turn runs from reading the round to the flush in
+        \code{end_turn()}; work after that counts for the next turn. A process's first turn includes its own setup.
+  \item A write to stdout costs 2.5M plus 4,000 a byte; a read 6 a byte. The helper buffers the whole turn into one write (one
+        2.5M charge a turn); \code{output_log} lines cost only their bytes.
+  \item \textbf{The clock counts points}: \code{clock_time_get} returns points spent (1\,ns = 1 point). So
+        \code{std::chrono::steady_clock} inside the bot is an exact meter of its own spending.
+  \item A turn over budget is stopped and delivers nothing. The action stays at its default, suicide, and the engine records
+        \code{DragonDeathReason::NoValidAction}: the ``no valid action'' deaths.
+\end{itemize}
+The engine (\code{engine/src/actions.cc}) also uses \code{NoValidAction} for a paid step at length 2, a split that would leave
+fewer than 2 segments on either side, and a split at the unit cap. v21 already avoids all three: paid steps are capped at $L-2$
+(\code{max_turn_steps}), and every split goes through \code{can_split}, whose unit count is current at our turn. So the deaths
+were the points budget.
+
+\section{Measuring it}
+\texttt{unswbc run -{}-sandbox} measures exactly, but the toolkit ships through PyPI, which this workspace cannot reach. So the
+judge's build was reproduced:
+\begin{itemize}
+  \item wasi-libc, libc++ and compiler-rt built from source for \code{wasm32-wasi} with clang 18 (\code{wasm/setup_toolchain.sh});
+        the bot built with \code{-O2 -msimd128 -mbulk-memory} (\code{wasm/build_bot.sh}). Exceptions are off; the judge's
+        clang 20 with wasm exceptions may cost a little more.
+  \item The organisers' own \code{metering.py} adds the point counter (\code{wasm/meter/instrument.py}).
+  \item \code{wasm/meter/runner.mjs} runs it under Node's WASI the judge's way: the clock returns points, writes and reads are
+        charged, and each turn's points are logged.
+  \item The bot is deterministic, so a game is recorded natively (each dragon's input, \code{rec_bot.sh}) and every dragon is
+        replayed through the meter (\code{replay.py}, \code{analyze.py}). A \code{BOT_PROFILE} build adds the points of
+        each phase (\code{prof_an.py}).
+\end{itemize}
+
+\section{v21's turns}
+One recorded 500-round game (seed 20, 56$\times$53): our dragons of length 30+ and a sample of shorter ones, 7,410 turns,
+in millions of points.
+\begin{center}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Length & Turns & Median & p90 & p99 & Max & Over 100M \\
+\midrule
+2--9 & 1715 & 20.3 & 33.3 & 81.9 & 150.6 & 13 \\
+10--29 & 1700 & 28.6 & 53.0 & 95.5 & 116.3 & 8 \\
+30--59 & 2702 & 40.8 & 102.7 & 173.3 & 299.2 & 292 \\
+60--99 & 933 & 39.6 & 200.4 & 351.5 & 934.7 & 252 \\
+100--149 & 210 & 27.7 & 312.0 & 536.4 & 840.8 & 75 \\
+150--199 & 77 & 30.4 & 575.4 & 1217.5 & 1217.5 & 31 \\
+200+ & 73 & 285.6 & 578.8 & 850.8 & 850.8 & 61 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Kings averaged \textbf{164M a turn} (max 1.2B). Of that:
+\begin{itemize}
+  \item 84M (51\%) was the king's plan, almost all in \code{plan_options}: for every tile within 24 steps it copied the path
+        and looked for the tile along the whole body (up to 300 segments) and the route.
+  \item 50M (31\%) was routing: 14 whole-map searches for the pearls' fields and the route replays.
+  \item A survival-search position cost about 2,800 points, mostly \code{step_from} (edge copies, portal lookups in a
+        \code{std::map}).
+\end{itemize}
+Short dragons sat at 15--20M a turn, most of it map-wide setup.
+
+\section{The turn's clock and deadlines}
+\begin{itemize}
+  \item \code{clock_now()} is \code{steady_clock} in nanoseconds: points in the judge. Native builds (local tests) multiply by
+        \code{NATIVE_POINTS_PER_NS} $=24$, measured against the metered build (p10--p90: 17--32).
+  \item \code{main} starts the turn's clock before reading the round (the first turn: at program start).
+  \item Deadlines, counted from the turn's start:
+        \begin{itemize}
+          \item the route's checks stop at \code{ROUTE_STOP} $=40$M;
+          \item the moves' survival searches at \code{MOVES_STOP} $=66$M (first 64M);
+          \item the king's plans at \code{PLAN_STOP} $=91$M (first 82M);
+          \item anything else at \code{SEARCH_STOP} $=92$M (first 86M).
+        \end{itemize}
+        The results below were measured with the first values. \S\ref{sec:peak95} raised them to a 95M peak.
+        The phases are absolute, so a turn whose setup is expensive just leaves less for the later phases.
+  \item One survival search may spend at most a quarter of what its phase has left (at least \code{SEARCH_MIN_POINTS} $=2$M).
+        A search deep in a tight spot can no longer use up the phase before the escape sprints are searched.
+  \item Where the clock is read:
+        \begin{itemize}
+          \item \code{survival_from}: before starting, and every 128 positions;
+          \item \code{plan_king_moves}: before each candidate and each state's options;
+          \item \code{plan_route}: after each pearl's field (fewer pearls are kept when time is short) and before each replay.
+        \end{itemize}
+  \item \textbf{A search cut by time is treated like one cut by its node budget}:
+        \begin{itemize}
+          \item a candidate's survival falls back to the room estimates;
+          \item a route end falls back to the free-neighbour check;
+          \item a plan that cannot be proven adds nothing.
+        \end{itemize}
+        The node budgets stay; the deadlines only make sure the turn is never over.
+\end{itemize}
+
+\section{Cheaper searches}
+\begin{itemize}
+  \item \textbf{Neighbour table.} \code{step_from} for every tile and direction lives in \code{nbr_} (the tile stepped onto,
+        \code{NBR_WALL}, or \code{NBR_BLIND} for a portal whose far end we do not know), plus \code{nbr_portal_}. It is kept
+        from turn to turn and refreshed once a turn, after the sonar and the vision are learned.
+        \begin{itemize}
+          \item Only tiles whose edges changed are rebuilt, with their four neighbours: a step reads the far side's edge when
+                its own is unknown.
+          \item A newly learned portal end rebuilds everything.
+          \item \code{step_from} itself reads the table, so every caller got faster. The survival search, the plan, the route
+                fields, \code{timed_bfs}, \code{head_eta_bfs} and \code{replay_leg} index it directly.
+          \item \code{NBR_CHECK} compares it against the uncached \code{step_from} after the refresh and again mid-turn: no
+                mismatch in two games. A deliberately broken refresh gives 133.
+        \end{itemize}
+  \item \textbf{\code{plan_options} in one pass.}
+        \begin{itemize}
+          \item Our body's tiles go in a stamped table (O(1) per tile instead of a walk along the path).
+          \item Food and the route pearls eaten (a bitmask) are carried along the search tree.
+          \item The route's remaining length is cached per set of pearls eaten: only its first leg depends on the tile.
+          \item Only the best \code{PLAN_BRANCH} options are kept, without sorting all of them, and nothing is allocated per call.
+          \item One behaviour change: pearls on tiles the plan already ate no longer count as food again.
+        \end{itemize}
+  \item \textbf{Hash maps out of hot loops}: \code{replay_leg}'s parents and \code{head_eta_bfs}'s segment indices are
+        stamped arrays, and \code{route_bfs} uses a vector queue.
+  \item \textbf{The survival search's body is a ring buffer} instead of a \code{std::deque}. \code{SURV_CHECK} runs both on
+        every search: no mismatch; a broken \code{back()} gives 22. It saved only about 4\% a position.
+\end{itemize}
+A survival-search position now costs about 1,100 points (was 2,800). For kings of length 60+, \code{plan_options} fell from
+103M to 5--12M a turn and the route fields from 43M to 8--12M.
+
+\section{Part VI results}
+\textbf{Points} (the same game and dragons as above, release build):
+\begin{center}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Length & Turns & Median & p90 & p99 & Max & Over 100M \\
+\midrule
+2--9 & 1715 & 14.4 & 18.5 & 31.4 & 47.5 & 0 \\
+10--29 & 1700 & 17.8 & 24.1 & 31.1 & 36.6 & 0 \\
+30--59 & 2702 & 21.5 & 33.4 & 43.0 & 83.5 & 0 \\
+60--99 & 933 & 22.0 & 44.9 & 64.7 & 85.4 & 0 \\
+100--149 & 210 & 21.3 & 60.6 & 85.5 & 85.8 & 0 \\
+150--199 & 77 & 23.1 & 85.3 & 86.0 & 86.0 & 0 \\
+200+ & 73 & 59.4 & 85.2 & 85.6 & 85.6 & 0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{itemize}
+  \item Kings now average 36.5M a turn: route 10.5M, plan 9.7M, free moves 4.5M, objective map 4.4M.
+  \item Over four recorded games (15,225 turns of the dragons that reached length 40), the worst turn is \textbf{86.6M}.
+        With the earlier 82M stop, every turn of every dragon in two v22 games (52,359 turns) stayed at or under 82.7M.
+  \item Peak memory is 2.1\,MB of the 48\,MB allowed.
+  \item The work after the last deadline (choosing, the output) is under 1M. The 13M margin is for the judge's build, which
+        is not exactly ours.
+\end{itemize}
+
+\textbf{How much lookahead the budget costs.} On recorded inputs, v22 with deadlines off (\code{BOT_UNLIMITED}) chooses
+the same move as v21 on 2,244 of 2,258 turns. The 14 differences are all in one 200+ king and come from the plan's new
+tie-breaks. With deadlines on, v22's move differs from the unlimited one on:
+\begin{itemize}
+  \item 0 of 2,047 turns at length $<100$;
+  \item 1 of 88 at 100--149;
+  \item 7 of 83 at 150+.
+\end{itemize}
+At length 200+, the plan is cut on 8 of 73 turns and a single search's share on 14. The route and the moves are rarely cut
+(3 and 1).
+
+\textbf{Games.} \texttt{engine.py -{}-tle-ms} kills a dragon whose turn takes longer than that many wall-clock milliseconds, as the
+judge would. 4.5\,ms is about 100M points at 24 points/ns. Each game ran on its own (\code{ab_tle.sh}).
+\begin{center}
+\begin{tabular}{@{}>{\raggedright}p{4.6cm}>{\raggedright}p{1.3cm}>{\raggedright}p{3.6cm}p{5.4cm}@{}}
+\toprule
+Games & Result & Longest at the end (v22 / other) & Limit deaths per game \\
+\midrule
+v22 vs v21, limit on: seeds 20, 6, 27, 30, 20 (v22 second in the last two) & \textbf{5--0} & 81--139 / 0 (wiped out) &
+v22: 1--2. v21: 105--278, of them kings 49--99 \\
+v22 vs v22, limit on: 2 games & -- & -- & 0 \\
+v22 vs v21, \emph{no} limit (v21 unmetered): 3 games & 0--3 & 170--194 / 392--456 & -- \\
+v22 with deadlines off vs v21, no limit: 2 games & 1--1 & 251, 354 / 271, 299 & -- \\
+\bottomrule
+\end{tabular}
+\end{center}
+Two more limited games, recorded for the replays above (seeds 6 and 27), also went to v22 with v21 wiped out.
+\textbf{Correction (see \S\ref{sec:nativeclock}):} native v22 in these simulator games ran without its searches, because
+of a bug in its native turn clock. So the ``no limit'' rows compare v21 with a v22 that had no lookahead, and do not measure
+what the budget costs. The metered replays, the move comparisons (run from recorded files) and your sandbox runs were not
+affected.
+
+Under the limit, v21 is wiped out in every game. Its long dragons and kings die to the meter, which is what was seen in
+real matches. Without a limit, v21's unmetered lookahead (up to 1.2B points on a long king's turn) does buy strength. v22
+gets as much of it as 100M allows.
+
+v22's own limit deaths (7 in the 5 games against v21, none in self-play) took 4.9--5.8\,ms, twice about 30\,ms, and one was not
+timed. They are wall-clock noise of the local machine: native v22 stops its searches at about 3.6\,ms, and the metered
+replays show no turn over 86.6M.
+
+\section{Checked in the sandbox, and a 95M peak}\label{sec:peak95}
+\textbf{The official sandbox} (\code{unswbc run --sandbox}, v21 as team A, v22 as team B):
+\begin{center}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Team & p50 & p99 & Mean & Max \\
+\midrule
+v21 & 26.3M & 52.1M & 27.0M & 99.7M \\
+v22 & 17.1M & 25.8M & 17.1M & 85.3M \\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{itemize}
+  \item v22 won easily: its longest dragon reached 72, v21's 34.
+  \item Seven v21 dragons died to the limit, all of them kings. A turn over budget shows as just under 100M because the
+        sandbox stops it there.
+  \item v22's 85.3M peak agrees with the metered replays here (86.6M), so the rebuilt toolchain prices the bot like the judge.
+\end{itemize}
+
+\textbf{The peak is the plan's deadline plus a fixed tail.} The metered replays were re-paired line by line: on replays from a
+file, the runner's round labels can run ahead, because the bot's input buffer reads ahead.
+\begin{itemize}
+  \item The plan overshoots its stop by at most 0.8M (it ended at 82.81M at most against an 82M stop).
+  \item Everything after it costs at most 4.1M on the 73 turns whose plan ended past 75M. That is the
+        choosing, \code{send_status}, and the 2.5M write plus 4,000 a byte. The profiling build's own line is included;
+        the release build is about 0.7M less.
+\end{itemize}
+So \code{PLAN_STOP} $=91$M with \code{SEARCH_STOP} $=92$M. \code{SEARCH_STOP} is kept just above the plan's stop, because a
+search after the plan (a split escape, say) could otherwise run to it and then pay the tail.
+
+\textbf{Measured} over the same four recorded games (15,225 turns of the dragons that reached length 40):
+\begin{itemize}
+  \item p50 18.2M, p99 66.8M, max \textbf{95.05M};
+  \item one turn over 95M, none over 96M.
+\end{itemize}
+This leaves 5M for anything the judge prices differently from the rebuilt toolchain. Its own run measured
+85.3M where the replays gave 86.6M.
+
+\section{Tools added}
+\begin{itemize}
+  \item \code{wasm/setup_toolchain.sh}: builds the wasm32 sysroot (wasi-libc, libc++, compiler-rt builtins) with the system clang.
+  \item \code{wasm/build_bot.sh SRC OUT.wasm [flags]}: the judge-like build.
+  \item \code{wasm/meter/instrument.py} (with the organisers' \code{metering.py}): adds the point counter.
+  \item \code{wasm/meter/runner.mjs}: the metered runner (\code{METER_BUDGET}, \code{METER_LOG}).
+  \item \code{wasm/rec_bot.sh}, \code{wasm/replay.py}, \code{wasm/analyze.py}, \code{wasm/prof_an.py}: record, replay and summarise.
+  \item \texttt{sim/engine.py -{}-tle-ms}; \code{sim/ab_tle.sh}.
+  \item Build flags:
+        \begin{itemize}
+          \item \code{BOT_PROFILE}: a \code{PROF} line of points per phase, sub-timers, nodes and the deadlines hit;
+          \item \code{NBR_CHECK} and \code{SURV_CHECK}: the equivalence checks above;
+          \item \code{BOT_UNLIMITED}: no deadlines, for tests only.
+        \end{itemize}
+\end{itemize}
+With the official toolkit installed, \texttt{unswbc run \textless{}map\textgreater{} a b -{}-sandbox} gives the judge's own numbers. It is worth running once
+on a long game to confirm the margin.
+
+\section{v22: known limitations and next steps}
+\begin{itemize}
+  \item \textbf{Setup costs every dragon 12--15M a turn}: objective map, survival preparation, ETAs and parsing. It is
+        unguarded but bounded by the map size; trimming it would give every phase more.
+  \item Long kings (200+) still have their plan cut on about one turn in nine (8 of 73). The next savings are free moves (about 15M on
+        those turns), the route fields (12M) and the plan's option search.
+  \item The deadlines are fixed shares of one turn. Search depth could be traded between phases by role. The budget
+        resets every turn; nothing can be saved for a hard turn.
+  \item The native factor (24 points/ns) is a median. Native test games only approximate the judge; the metered replay is
+        the reference.
+\end{itemize}
+
+
+%=====================================================================
+\part{v22 (continued): the queen}
+%=====================================================================
+\section{The rule}
+From the engine (\code{engine/src/scoring.cc}), at the last round the ranking is:
+\begin{enumerate}
+  \item the queen's length (dragon 0 or 1, the first dragon each team's map lists; a dead queen counts 0);
+  \item the longest dragon;
+  \item total length.
+\end{enumerate}
+A team that is wiped out loses at once. A split keeps the parent's id with the head part, so a queen that never splits stays the queen.
+The official maps give each team 1 to 9 starting dragons (\code{arena} and \code{Colosseum}: 1; \code{default}: 4; \code{australia}: 9).
+
+\section{What the queen does (\texttt{queen.hpp})}
+\begin{itemize}
+  \item \textbf{Who}: \code{is_queen()} is \code{controller_.get_id() < 2}, the raw id. Our packets' 12-bit ids wrap past 4096, so
+        heads we see carry their own \code{SeenHead::queen} flag, and beacons carry a queen bit (bit 18).
+  \item \textbf{No splits}: no worker split (\code{should_split}), escape split (\code{play_split_escape}) or pocket raid
+        (\code{pocket_plan_allowed}). Trap pricing assumes she cannot split out (\code{trap_cost}).
+  \item \textbf{Growing the swarm first} (revised; see \S\ref{sec:seed75}): until round \code{QUEEN_SEED_END_ROUND} $=75$ she plays
+        as a founder and makes the usual small worker splits. The head part, and her id, stays with her. (First version: only
+        when she started alone, until we were 4 or round 60.)
+  \item \textbf{The cycle, from round 75 until \code{QUEEN_CYCLE_END_ROUND} $=400$}: a Hamiltonian cycle of a $w\times h$ block around her head
+        (row 0, a serpentine over the other columns, back up column 0; $h$ even).
+        \begin{itemize}
+          \item The block is the largest size from $16\times16$ down, at most $\max(144,\ 2(L + \code{QUEEN_CYCLE_SLACK}))$
+                tiles. Every step of its cycle must be an ordinary step (no kelp, no portal), by the neighbour table.
+          \item Of the placements, the one with the fewest other bodies on it and the fewest tiles never seen wins.
+          \item She walks it with as many of her free steps as are \emph{queen-safe}: the usual safety, plus no enemy, ally,
+                reach or soft threat at the end, and her whole length proven to have a way on (or two exits if that search
+                was cut). Paid steps are never used.
+          \item The route search and the king's plan are skipped while she cycles.
+        \end{itemize}
+  \item \textbf{Her body on the cycle}: walking it is safe only while every tile ahead is free of her own body by the time she
+        reaches it (\code{queen_body_fits}). A segment $i$ places back is gone after $L - i$ of her steps, one more for each pearl she
+        eats on the way (the known pearls ahead plus \code{QUEEN_GROWTH_MARGIN} $=2$); at least \code{QUEEN_CYCLE_MIN_FREE} $=4$
+        spare tiles are required. She only follows the cycle while this holds. A new block (kelp found, or within 12 of her
+        length) must pass the same test, and is never smaller than a cycle that still fits.
+  \item \textbf{Off the cycle} (its next tiles are not queen-safe, or no cycle fits her): she takes the queen-safe move that ends
+        nearest the cycle. If there is none, she takes the usual best move, as a deep-searching long dragon that never splits.
+        She looks for a cycle that fits every \code{QUEEN_RETRY_ROUNDS} $=3$ rounds.
+  \item \textbf{Crown, from \code{QUEEN_CROWN_ROUND} $=380$}: she stands for king, and she beats everyone in \code{offer_king} and
+        \code{elected_king}, so beacons carry her and feeders gather on her. Before 380 she does not stand, and her length
+        reports are ignored for the king/vice roles, so the team still has a roaming king. From 400 she retains as the king,
+        everyone else feeds her, and her cycle ends. If she dies, the normal election takes over.
+\end{itemize}
+
+\section{A bug in the native turn clock}\label{sec:nativeclock}
+The turn's clock started before reading the round. That is right in the judge: waiting costs no points there, and work after
+\code{end_turn} is charged to the next turn.
+
+Natively, though, the clock ran on while the bot waited for every other dragon to move. So in every native simulator game,
+every turn began past all its deadlines and \textbf{v22 ran no searches}: no survival search, no plan, no route checks.
+\begin{itemize}
+  \item This was found when the queen's candidates all showed an unsearched survival result.
+  \item Native builds now start the clock once the round is read (\code{main}). The WebAssembly build, the one the judge runs,
+        is unchanged.
+  \item Affected: the native games in Part VI (the 5--0 under the limit, the 0--3 without one, \code{loopback} being slower).
+  \item Not affected: the metered replays (recorded files and the points clock), the move comparisons from files, and your
+        sandbox runs.
+\end{itemize}
+
+\section{The simulator's pearls are far too rich}
+On the official maps, pearl beds and respawn gaps are set tile by tile (\code{TILE x y minGap maxGap}). On \code{default.map}
+most tiles respawn every 1--3,849 rounds (about 1,900 on average), and some every 1--255 or 1--385. The simulator's random maps
+use 4--60 on almost every tile: 30--100$\times$ more pearls. That is why simulator dragons reach 300--450 while the official
+sandbox game ended with a longest dragon of 72.
+\begin{itemize}
+  \item \code{engine.py --pearl-scale k} (and \code{probe_queen.py}'s 6th argument) stretch the simulator's gaps by $k$.
+  \item The simulator now ranks by queen length, then longest, then total, and reports \code{A_queen}/\code{B_queen}.
+  \item Everything tuned in the simulator so far was tuned for the rich economy. Loading the official \code{.map} files into the
+        simulator is the proper fix.
+\end{itemize}
+
+\section{Queen results (simulator, so indicative only)}
+\begin{itemize}
+  \item With the simulator's rich pearls she grew to 35--77 by round 45--50, and every cycle filled up; she died off the cycle.
+        This is what led to the body test above.
+  \item With gaps stretched 30$\times$, she walks the cycle on most turns (48 of her first 50 in one game). Her deaths there were
+        enemy rams at length 3--7 (rounds 51, 107, 189): an enemy queen's 2-step sprint, and workers' attack sprints, on turns
+        when no move was queen-safe.
+  \item Queen build against an identical build without the queen (\code{NO_QUEEN}), 4 founders, 30$\times$ gaps: 1--1. Side A was
+        wiped out in both games whichever build it was (a quirk of the stretched simulator to look into). Its queen
+        survived in the game it won.
+  \item Metered (the judge's pricing), over 250 queen turns: 11.2M points on average, 37.1M at most.
+\end{itemize}
+These need checking on official maps in the sandbox, with one founder (\code{arena}) and several (\code{default}).
+
+
+\section{The queen grows the swarm until round 75}\label{sec:seed75}
+A non-splitting queen hurt our early game: on maps with few founders, one of them stopped growing the swarm. Now:
+\begin{itemize}
+  \item \textbf{Until round 75} she is an ordinary founder (\code{queen_seeding()} is just \code{is_queen()} and the round). She
+        makes worker splits (she keeps her head, so she stays the queen) and joins the centre rush on small maps.
+  \item She never makes pocket raids, and makes escape splits only when she is certainly dead (\S\ref{sec:doomed}).
+  \item \textbf{From round 75}: her Hamiltonian cycle. From 380 feeders gather on her; from 400 she is the king.
+  \item Gone: \code{queen_alone_} and \code{QUEEN_SEED_UNITS}.
+\end{itemize}
+\textbf{Simulator} (pearls 30$\times$ sparser; indicative only):
+\begin{itemize}
+  \item 32$\times$16, 3 founders, against the previous build: our swarm went 7 $\rightarrow$ 25 $\rightarrow$ 29 dragons (rounds 75,
+        100, 125), while the other side, with a non-splitting queen, fell to 1. The game still went to the other side on queen length:
+        ours died and theirs lived, which shows how much the first tiebreak weighs.
+  \item 60$\times$46, 4 founders: she split until round 75, then walked her cycle on 86 of the next 100 turns, and was alive when the
+        other team was wiped out.
+\end{itemize}
+
+\section{When the queen is certainly dead, she saves the rest of her length}\label{sec:doomed}
+A split leaves the queen where she is, facing the same way: it cannot save her, only her length. So she splits only when
+nothing she can do saves her (\code{play_split_escape}). Every candidate move must be one of:
+\begin{itemize}
+  \item a head trade;
+  \item a move that leaves her head no free side (unless it eats a pearl, so the split can come next turn with one more segment);
+  \item a move from which the survival search, run to completion, finds at most one more move.
+\end{itemize}
+Unlike other dragons, an enemy that could reach her does not count as certain death, since it may not come. When she is doomed:
+\begin{itemize}
+  \item the rear $L-2$ segments become a new dragon, if its end is not boxed in too;
+  \item she, the 2 left behind, dies as she would have anyway;
+  \item the ``cheap way out'' room estimates cannot veto it, because her test already searched every way on.
+\end{itemize}
+Pocket raids stay off for her, and trap pricing still treats a trap as her death.
+
+\textbf{Test} (a test build that starts her cycle at round 1, in the simulator's rich economy, where she gets boxed in):
+\begin{itemize}
+  \item at length 102 she split off 100 (the child had 120 tiles of room);
+  \item at length 54 she split off 52 (72 tiles);
+  \item each time her head had no room left, and she died the next turn.
+\end{itemize}
+
+\textbf{Found while testing: seeding is risky for her.} As a founder she splits at length 4 and keeps 2, and she joins fights like
+any worker. In three rich-economy games she died at length 2, boxed in among enemies, by rounds 26--39, in this build and the
+previous one alike.
+
+%=====================================================================
+\part{v22 (continued): the centre rush on small maps}
+%=====================================================================
+\section{Which maps}
+Top teams head for the centre on Autarky (54$\times$18), Devil, Portals, Prisoners Dilemma and Tower Defense (32$\times$16),
+Stripes (24$\times$12) and Weakhold (40$\times$15), but not on the larger maps. Area does not separate them: Trophy (625) and
+Queen of Spades (875) are smaller than Autarky (972) and are not on the list. \textbf{The short side does}:
+\begin{itemize}
+  \item the listed maps' short sides are 12--18;
+  \item every other mid-size or large map's is 24 or more;
+  \item the tiny maps (Arena 11$\times$11, Small 16$\times$8, Colosseum and Default Small 16$\times$16) fall under the same rule.
+\end{itemize}
+So the rush is on when $\min(W,H) \leq \code{CENTRE_MAP_MAX_SHORT_SIDE} = 20$. The bot knows $W$ and $H$ from its first turn.
+
+\textbf{Added: compact maps.} The centre also pays on Trophy (25$\times$25, whose centre beds are 3.8$\times$ richer than its edges).
+Its short side is 25, the same as Queen of Spades (25$\times$35), which is not on the list. Area cannot separate them either: Autarky
+(972) is on the list and larger than Queen of Spades (875). So a second condition was added: the rush is also on when
+$\max(W,H) \leq \code{CENTRE_MAP_MAX_LONG_SIDE} = 30$.
+\begin{itemize}
+  \item \textbf{On}: Arena, Small, Colosseum, Default Small, Stripes, Devil, Portals, Prisoners Dilemma, Tower Defense, Weakhold,
+        Trophy, Autarky.
+  \item \textbf{Off}: Queen of Spades (both), Default (32$\times$32), Maze, Stronghold, Trauma, Slithery Fight, Islands, Schooltime,
+        and the 64$\times$64 maps.
+\end{itemize}
+
+It is not about pearls. On Prisoners Dilemma, Weakhold and Autarky the centre's pearl beds give 2--9\% of the outer rate;
+Tower Defense's give 15$\times$ it. On every listed map the teams start at opposite ends of the long axis, so the centre is the
+ground between them.
+
+\section{What it does}
+\begin{itemize}
+  \item For the first \code{CENTRE_RUSH_END_ROUND} $=75$ rounds, every dragon gets \code{CENTRE_PULL} $=300$ (thousandths of a
+        segment) per step a move brings it closer to the centre. 450 was tried; 300 was kept.
+  \item Exploring is worth 180 a step plus up to 120 for dispersal, so the centre wins over exploring. A pearl next to the
+        dragon still wins over the centre.
+  \item ``Closer'' is by path: a search from the centre over the neighbour table each turn of the rush (\code{prepare_centre}),
+        with kelp and portals as we know them and unseen edges open. A straight-line pull would press dragons against walls.
+  \item The pull stops within \code{CENTRE_RADIUS} steps of the centre (short side / 4, at least 2), so dragons do not pile onto
+        one tile. It applies to every goal but fights and feeding (\code{goal_progress} now adds it to
+        \code{goal_progress_base}).
+  \item After round 75 it is off, so nobody gets stuck in the middle.
+  \item The queen walks her cycle and does not rush (her moves are her own; see the queen part).
+\end{itemize}
+
+\section{Simulator check (random maps, pearls stretched 30$\times$: indicative only)}
+\code{probe_centre.py} gives the mean head distance to the centre (rush build vs current build):
+\begin{itemize}
+  \item 32$\times$16, 3 founders each: 4.0--5.7 vs 7.5--14.0 from round 25 to 75. Afterwards the rush build spreads out again
+        (11.0 at round 100).
+  \item 40$\times$15, 4 founders each: 4.6--7.2 vs 11.8--16.6 from round 10 to 75.
+  \item Both games, and the second with the sides swapped, left the rush team with far fewer dragons by round 75 (4--5 against
+        8--15). The likely reason is fewer pearls eaten on the way, so fewer splits. Whether this holds on the real maps, where top
+        teams do rush, is for the sandbox to show; \code{CENTRE_PULL} is the knob to try lower (around 150, so pearls compete).
+\end{itemize}
+
+
+%=====================================================================
+\part{v22 $\rightarrow$ v23: per-map settings and the queen's survival}
+%=====================================================================
+v23 starts here. Everything before this part is v22.
+
+\section{A map table replaces the size rule}
+Autarky (54$\times$18) turned out to be a near-certain loss with the centre rush, while Trophy (25$\times$25) gains from it. No size
+rule fits that, and neither does a pearl one: Autarky's centre beds give 3\% of its outer rate, but Weakhold's (2\%) and Prisoners
+Dilemma's (9\%) are just as poor, and the rush pays on both. So the choice is now made per map:
+\begin{itemize}
+  \item \code{Config::CENTRE_MAPS} lists the sizes with the rush: 11$\times$11 (Arena), 16$\times$8 (Small), 16$\times$16 (Colosseum,
+        Default Small), 24$\times$12 (Stripes), 32$\times$16 (Devil, Portals, Prisoners Dilemma, Tower Defense), 40$\times$15
+        (Weakhold), 25$\times$25 (Trophy). The bot knows the size from its first turn.
+  \item Among the 25 official maps, maps of the same size all get the same answer, so the size identifies the map well enough.
+        Should two of the same size ever need different settings, a founder can also tell them apart by its starting tile.
+  \item \textbf{Any other size gets no rush}: Autarky, the larger maps, and any map we have never seen (the grand finals may use new ones).
+  \item \code{CENTRE_MAP_TABLE_ENABLED} $=$ \code{false} turns the rush off on every map.
+  \item Gone: \code{CENTRE_MAP_MAX_SHORT_SIDE} and \code{CENTRE_MAP_MAX_LONG_SIDE}.
+\end{itemize}
+Checked in the simulator:
+\begin{itemize}
+  \item 54$\times$18: the table build never came within 4 steps of the centre. The size-rule build reached a mean of 4.6 steps by
+        round 50, with 4 dragons in the middle.
+  \item 32$\times$16: both sides rushed as before.
+\end{itemize}
+
+
+\section{Walled in, or only contested?}
+\textbf{What happened} (from two sandbox screenshots). A 2-long worker heading down had three moves:
+\begin{itemize}
+  \item \textbf{right}: into a tile with kelp above and to its right, whose only open side was the head of an ally worker heading left;
+  \item \textbf{down}: into the tile that worker was about to enter;
+  \item \textbf{left}: open water.
+\end{itemize}
+It went right. The ally moved on, so its neck sealed the last side, and our worker died on its next turn whatever happened.
+
+\textbf{Why.} The survival search counts every tile another head could reach on its next move as taken for our next step. With
+two heads nearby, that took every tile beyond left and beyond down. So all three moves came out ``searched completely, 0 of 4
+moves''. Left and down were judged exactly as dead as the kelp corner, and a small difference in goal progress picked the corner.
+
+\textbf{Change.} A move whose search says dead is searched again (\code{survival}) with only real walls: kelp, bodies as they drain
+away, our own body, but not other heads' reach (\code{wall_free_at_}, built before those marks in \code{prepare_survival}).
+\begin{itemize}
+  \item \textbf{Still dead}: \code{SurvivalResult::walled}, copied to \code{Candidate::walled}. It is priced as certain death
+        (\code{trap_cost()} in full, not 0.9$\times$ the shortfall), so it can never be preferred to a move that is only contested.
+  \item \textbf{Through}: the move is \emph{contested}. It takes the second search's result (a way on), and the usual threat
+        prices (adjacent heads, reach for valuable dragons, ally congestion) judge the contest.
+  \item \textbf{Second search not run} (out of nodes or points): the first result stands, as before.
+\end{itemize}
+It runs only on moves the first search rejects, so it costs little. The queen's ``certainly dead'' test uses the same results, so a
+merely contested queen no longer counts as doomed.
+
+\textbf{Test} (\code{sim/scen_walled.py}: the screenshot position rebuilt tile for tile; our worker's candidates):
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Move & Before (search, score) & After (search, score) \\
+\midrule
+right (kelp corner) & 0 of 4, complete; $-5514$ & 0 of 4, walled; $-6014$ \\
+down & 0 of 4, complete; $-5175$ & 4 of 4, safe; $-675$ \\
+left & 0 of 4, complete; $-4995$ & 4 of 4, safe; $-495$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+Before, the three were within about 500 points of each other. Here left happened to win; in the real game, right did. Now the
+dead end trails by about 5,500. A full simulator game against the previous build: no crashes, no timeouts.
+
+
+\section{Kill the enemy queen on sight}
+Their queen's length is the first tiebreak. So, in \code{queen.hpp}, every dragon checks this before anything else it might do
+(\code{play_queen_kill}, first in \code{play_turn}):
+\begin{itemize}
+  \item \textbf{Who}: any of us that sees the enemy queen (an enemy head with raw id 0 or 1) in its 7$\times$7 view, except our own
+        queen, who would die with her.
+  \item \textbf{How}: our head onto hers kills her (head on head: we die too). Dragons move one at a time, so where we see her head
+        is where it is when we move. The shortest way there this turn goes through tiles we can see with no dragon on them, at most
+        \code{max_turn_steps} (free steps, then paid ones, keeping 2 segments). It is replayed exactly (\code{simulate_path}).
+        If one exists, that is the move, ignoring roles, trade values and rounds. That includes the old ``no aggression before
+        round 50'' rule, and kings and growers.
+  \item \textbf{Out of reach}: \code{QUEEN_HUNT_PULL} $=1000$ per step closer to her head, whatever the goal
+        (\code{goal_progress}).
+  \item \code{KILL_ENEMY_QUEEN} $=$ \code{false} turns both off.
+\end{itemize}
+\textbf{Scenario test} (\code{sim/scen_qkill.py}, round 10): their queen died head on head in all three cases.
+\begin{itemize}
+  \item adjacent: one step;
+  \item a 6-long worker two tiles away: one step after she moved towards it;
+  \item a 3-long worker three tiles away: two steps, one of them paid.
+\end{itemize}
+\textbf{Simulator games} (seed 6, 4 founders a team, pearls 30$\times$ sparser; \code{probe_qkill.py}). In this simulator both teams'
+founders start next to each other, so a founder of ours traded itself for their queen on round 1. Both sides then had 3 dragons,
+but in both games (sides swapped) the killing team fell behind and was wiped out:
+\begin{itemize}
+  \item game 1: 12 against 26 dragons by round 60;
+  \item game 2: 11 against 21;
+  \item control without the rule: 18 against 17.
+\end{itemize}
+Two games, a simulator with the wrong economy and starts unlike the real maps (where teams begin at opposite ends): to be checked in
+the sandbox.
+
+
+\section{The official maps in the simulator}
+\code{sim/engine.py --map NAME --seed S} now plays any of the 25 official maps as the official engine does
+(\code{config.cc}, \code{pearls.cc}):
+\begin{itemize}
+  \item \textbf{Map contents}: kelp, portals, starting dragons in file order (ids 0 and 1 are the queens), rounds from 0, the map's
+        unit limit (none of the 25 sets one: 64).
+  \item \textbf{Pearl beds}: a bed and its mirror share one countdown. The gaps are drawn with the engine's own generator
+        (\code{std::mt19937_64} seeded with the match seed), so with a replay's seed every pearl spawns on the same round as in
+        that match. Only a spawn blocked by a dragon on the bed can differ.
+  \item \textbf{Checks}: every map loads, kelp mirrors on all of them, every portal crossing leads back, and the generator matches
+        the C++ standard's reference value.
+\end{itemize}
+\textbf{Two lost games reproduced} (v23 against itself, so where our pearls go rather than how they play; (dragons, total length)):
+\begin{center}
+\begin{tabular}{@{}llllll@{}}
+\toprule
+Map, seed & & round 25 & round 50 & round 75 & round 100 \\
+\midrule
+Schooltime, \code{0xa5e0c0ddde697915} & top team & (5, 11) & (7, 18) & (10, 26) & (22, 52) \\
+ & v23 before & (4, 8) & (13--15, 34--37) & (23--24, 62) & (20--34, 54--84) \\
+ & v23 now & (5, 11) & (16--18, 41--43) & (24--30, 62--74) & (33--35, 85--87) \\
+\midrule
+Autarky, \code{0xfd11114afed14603} & top team & (12, 30) & (8, 19) & (16, 38) & (15, 38) \\
+ & v23 now & (12, 33--36) & (12--14, 29--34) & (9--12, 28--32) & (14--15, 38--41) \\
+\bottomrule
+\end{tabular}
+\end{center}
+Our pearl economy keeps up with theirs on both. What lost Schooltime was the queen (next section).
+
+
+\section{Boxed in: keep the part that can live}\label{sec:keep}
+\textbf{What happened.}
+\begin{itemize}
+  \item \textbf{Schooltime}: each queen starts 4 long, sealed in a 2$\times$2 kelp box, so every move hits her own body. Ours died
+        on round 0. The top team splits off the 2-long tail; that child is boxed too and dies, and the queen eats the pearl it
+        leaves. She then lives 3 long, circling the box all game. Their (5, 11) at round 25 is exactly that. Since the queen's
+        length is the first tiebreak, the match was lost on round 0.
+  \item \textbf{Slithery Fight}: the queen starts coiled with no free side. The split escape always kept 2 (the v13 rule: the rear
+        $L-2$ leave, the head part dies), and on round 1 the remnant rule made her die on her own neck.
+  \item The same rule cost a unit in most split escapes: the 2-long remnant died even where it could have followed the child out.
+\end{itemize}
+\textbf{Change} (\code{endgame.hpp}, \code{choose_escape}). The child moves later the same round:
+\begin{itemize}
+  \item its first step frees its tail, our segment \code{keep};
+  \item a child that cannot move at all (boxed, and under 4 so it cannot split) dies at once and frees all of its tiles.
+\end{itemize}
+When such a tile is beside our head, we live on as well. The split keeps the most length that does this:
+\begin{itemize}
+  \item Candidate keeps: each body segment beside the head, $L-2$, $L-3$, and 2 (the old escape).
+  \item A plan wins on length saved: ours if we live, plus the child's if it has a way out.
+  \item The queen (the part we keep) must live first.
+  \item A child that dies at once is a price paid only when our head is otherwise certainly dead.
+  \item All earlier gates (\code{fine}, room, tail threatened) still come first.
+\end{itemize}
+Supporting changes:
+\begin{itemize}
+  \item \textbf{The child holds} (\code{main.cpp}, \code{escape_child_holding}). A child that got its parent's body handover makes
+        no ordinary split for its first \code{ESCAPE_CHILD_HOLD_TURNS} $=3$ turns (a split would leave its tail where it is). On its
+        first turn, a move that leaves its tail in place (eating with every step) costs \code{ESCAPE_CHILD_STALL_COST} $=5000$.
+        The handover now carries the child's segments whatever we keep.
+  \item \textbf{Remnant clear} (\code{play_clear_remnant}): only when boxed in (no free side), and never the queen.
+  \item \textbf{Ordinary splits check the parent} (\code{split_parent_ok}). The child moves right after the split, from our tail,
+        and may take a free side of our head next to it. We need a free side away from the child, or two beside it. On Slithery
+        Fight the queen's founder split on round 1 had just one, and the child took it.
+  \item \textbf{Our queen's last ways out} (\code{queen.hpp}, \code{queen_exit_block}). She moves first each round. A worker's
+        move onto a free side of her head, while she has at most two, costs \code{QUEEN_EXIT_BLOCK_COST} $=4000$.
+\end{itemize}
+\textbf{Checked} (round-0 to round-2 traces):
+\begin{itemize}
+  \item \textbf{Schooltime}: split 2, the child dies, she eats its pearl and circles the box at length 3. Both queens are alive at
+        rounds 60 and 200.
+  \item \textbf{Slithery Fight}: she keeps 7 (the child of 18 leaves first), follows it out, and seeds as usual. Before, she died on
+        round 1.
+  \item \textbf{Our deaths in rounds 0--3} (team A), before and now:
+        \begin{itemize}
+          \item Help 1 and 0;
+          \item Unsw 3 and 2;
+          \item Autarky 3 and 2;
+          \item Slithery Fight 8 and 4.
+        \end{itemize}
+        The escapes that still lose their remnant have no body segment beside the head, e.g.\ a straight body nosed into a dead end.
+  \item \textbf{Small}: still lost on round 3. She starts in a 1-wide corridor that runs into the corner where two of our starting
+        dragons are, and that worker had only two moves, both next to her.
+\end{itemize}
+
+
+\section{Farming good beds}
+A bed's respawn rate is learnt from the countdowns seen on it (\code{bed_gap}). The countdown runs $g, g-1, \dots, 1$ after each
+spawn, so its mean over time is about $(g+1)/2$. With \code{GOOD_BED_MIN_SAMPLES} $=3$ rounds of it seen, a bed whose estimated
+mean gap is at most \code{GOOD_BED_GAP} $=12$ is \emph{good}. A good bed is:
+\begin{itemize}
+  \item an objective \code{GOOD_BED_SOON_ROUNDS} $=8$ rounds before it spawns (other beds: 4);
+  \item once its timer has run out while nobody watched, an objective at cost \code{GOOD_BED_EXPIRED_COST} $=2$ for up to
+        \code{GOOD_BED_EXPIRED_MAX_AGE} $=150$ rounds (other beds: 5, for 40);
+  \item worth 80 instead of 50 in \code{region_value};
+  \item free of \code{VISIT_COST} when walked over again (farming is not wandering in circles).
+\end{itemize}
+\textbf{Effect} (official maps, 100 rounds, new build against the build without it, sides swapped). Bed pearls eaten, both games:
+\begin{itemize}
+  \item Devil 100 against 76; Schooltime 231 against 198; Portals 121 against 110;
+  \item Autarky and Default even; Weakhold not changed at all.
+  \item Overall $+12\%$.
+\end{itemize}
+The limit is memory: every split starts a new process that knows nothing, and most dragons are young.
+
+\textbf{Where the rest goes.} Measured yield is far below what the beds give:
+\begin{itemize}
+  \item Devil's 18 one-round beds give 1,800 pearls per 100 rounds; we eat about 50.
+  \item They lie in 1-wide vertical tubes, and Weakhold's and Stripes' good beds sit in dead ends.
+  \item On Portals, most 2$\times$2 bed blocks cannot be reached at all, and the rest are 1-tile dead ends behind portals.
+\end{itemize}
+Farming those needs a dragon that stays and loops through a tube, a bigger change than this one.
+
+\section{Pocket discipline: not changed}
+Raids already need 3 pearls inside the pocket (\code{POCKET_MIN_PEARLS}), and the keep-the-most escape above now saves the unit
+when a pocket is 2 wide. In a 1-wide dead end the head part still dies, as before. No new rule: the risk of dragons refusing pockets
+outweighs what is left.
+
+\section{v23 against the morning's v23 (simulator, official maps, 200 rounds, sides swapped)}
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Map & New as A & New as B \\
+\midrule
+Schooltime & won (queen 3 against 0) & won (queen 3 against 0) \\
+Slithery Fight & won & won \\
+Weakhold & won (queen 14 against 0) & won (queen 6 against 0) \\
+Help & lost & won \\
+Devil & won (wiped them out) & lost (wiped out) \\
+Autarky & won (queen alive) & lost \\
+\bottomrule
+\end{tabular}
+\end{center}
+8 of 12 by the official ranking. Devil is a wipe-out race whichever side starts first. No crashes or timeouts.
+
+
+\section{The queen stays out of fights}\label{sec:queensafe}
+\textbf{Why.} In self-play 27 of 50 queens were dead by round 100, almost all 2--3 long while seeding. In real games she also:
+\begin{itemize}
+  \item crossed a portal whose far side held a dragon, and died at once;
+  \item was boxed in by our own dragons.
+\end{itemize}
+\textbf{Changes.}
+\begin{itemize}
+  \item \textbf{Valuable from round 0} (\code{compute_roles}). Before, she was valuable only from round 75, when she starts
+        keeping her length. Now she has the king's caution throughout:
+        \begin{itemize}
+          \item enemy reach threats rule moves out;
+          \item crowd and unseen-head risks are priced;
+          \item a portal whose exit we cannot see now is never a safe move;
+          \item no hunting and no head trades (\code{eligible_target});
+          \item escape sprints are allowed.
+        \end{itemize}
+  \item \textbf{Her death is priced high} (\code{death_cost}): at least \code{QUEEN_DEATH_LENGTH} $=30$ segments, whatever her length.
+        Every risk is priced against it. A blind portal now costs her about 9,600 points; at length 3 it was about 1,500.
+  \item \textbf{No fight goal} (\code{prepare_fight}) and \textbf{no centre rush} (\code{centre_pull}): the middle is where the
+        fights are.
+  \item \textbf{Away from enemy heads}: \code{QUEEN_ENEMY_DISTANCE_STEP} $=150$ per step from the nearest one (workers: 12).
+  \item \textbf{Room from our own}: a worker's move onto any free side of her head costs \code{QUEEN_SIDE_COST} $=600$, and 4,000
+        when she has at most two free sides (\code{queen_exit_block}).
+  \item \textbf{She keeps 4 while seeding} (\code{QUEEN_SEED_KEEP}). At 2--3 long she could neither escape-split nor outlast a
+        crowd. She now splits only from 6 long, giving the child everything above 4.
+\end{itemize}
+\textbf{Queen deaths by round 100} (self-play, all 25 maps, seed 1, 50 queens):
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Build & Queens dead \\
+\midrule
+before (this morning's split fixes and farming only) & 27 \\
+cautious, still splitting down to 2 & 18 \\
+cautious, and nobody hunts queens (control) & 15 \\
+cautious, keeps 4 while seeding (this build) & 13 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Still lost:
+\begin{itemize}
+  \item \textbf{Small}: both queens on round 3, as before (her corridor runs into a corner our starting dragons fill).
+  \item \textbf{Prisoners Dilemma}: both, boxed at length 3. She starts 3 long, so she cannot split there.
+  \item The rest are scattered head-on deaths.
+\end{itemize}
+The portal and own-team cases are covered by these rules; no scenario was rebuilt for them.
+
+\textbf{Against the previous build} (8 official maps, 200 rounds, sides swapped): won 11 of 16. Her queen was alive at the end in 11
+games; the old one's in 4.
+\begin{itemize}
+  \item \textbf{Seeding is unaffected}: 301 against 305 dragons at round 50, summed over the 16 games.
+  \item \textbf{Devil} went against us twice. Four more Devil games split 2--2, so that looks like a wipe-out race with no clear
+        favourite rather than the change.
+  \item Some wins were by the queen alone, with a smaller total (Default 8 against 67, Weakhold 24 against 76).
+\end{itemize}
+
+
+
+%=====================================================================
+\part{v23 $\rightarrow$ v24: portals}
+%=====================================================================
+v24 starts here. Everything before this part is v23, which ended with the queen staying out of fights
+(section~\ref{sec:queensafe}).
+
+\section{Portals: rooms, pockets, and pacing in front of them}\label{sec:portals}
+\textbf{Measured} (\code{sim/portal_loiter.py}; v23 against itself, official maps, seed 3, 150 rounds). Two separate faults:
+\begin{itemize}
+  \item \textbf{Shut in a portal room.} Default's centre (a grid of 4$\times$4 rooms), Autarky's 3$\times$3 boxes and Portals' cells are
+        sealed by kelp; the only ways out are portals on their inner edges. Leaving means a crossing whose far tile we cannot
+        see, priced at 30\% death (\code{P_BLIND_PORTAL}). A worker that had eaten what was there circled the room instead:
+        on Autarky four dragons for 108--142 rounds each, on Default one for 124.
+  \item \textbf{Pacing in front of a portal.} The searches behind the goals (pearl route, objective map) treat a crossing as an
+        ordinary step, but the move prices it as a 15--30\% death. So the goal led a worker up to the portal, the crossing lost
+        (e.g.\ $-1460$ against $-562$ for turning away), the goal led it back. Rounds a dragon spent pacing (at most 4 tiles in
+        12 rounds) near portals: 125 on Portals, 24 on Islands. Away from portals: 9.
+  \item Most such pulls on Portals came from \textbf{pearls in portal pockets}: 1-tile cells whose only side out is a portal.
+        A small dragon that goes in eats and dies there: its neck is in the portal and it is too short to split out.
+\end{itemize}
+How risky blind crossings really are (\code{sim/portal_exit_risk.py}, share of rounds a crossing's far tile held a dragon):
+\begin{itemize}
+  \item rounds 0--49: 2--14\%;
+  \item rounds 50--149: 8--19\%;
+  \item later: 12--25\%.
+\end{itemize}
+\code{P_BLIND_PORTAL} $=0.3$ is pessimistic but not far off late in a game. It is left as it is for the fixes in this section;
+section~\ref{sec:portaltune} then prices crossings by round.
+
+\textbf{Changes} (\code{main.cpp}, \code{scoring.hpp}):
+\begin{itemize}
+  \item \textbf{Shut in a room} (\code{update_portal_room}, once a turn). We are shut in when:
+        \begin{itemize}
+          \item the tiles we can reach without a portal (at most \code{PORTAL_ROOM_MAX_CELLS} $=64$) are all seen;
+          \item they hold no objective at all;
+          \item a portal leads out.
+        \end{itemize}
+        Then a crossing (not onto a body we know of) is priced at \code{P_ROOM_EXIT} $=0.1$ and is worth \code{ROOM_EXIT_VALUE}
+        $=1500$. A valuable dragon may then cross blind too (its safety filter allows it), and a portal we never looked through counts
+        as exploring. Not the queen: a room is a fine place for her.
+  \item \textbf{Portal pockets are not objectives} (\code{portal_pocket_worth}). A pearl or bed whose portal-free tiles are few
+        (at most \code{PORTAL_POCKET_MAX_CELLS} $=8$), all known, and a dead end or too small to turn in, is left off the
+        objective map. The exception is when a pocket raid is allowed and it holds \code{POCKET_MIN_PEARLS}, as for kelp pockets.
+  \item \textbf{A portal on the way is crossed or dropped} (\code{refuse_route_portals}). The crossing's candidate records whether
+        it makes progress on the goal (\code{route_portal}). If we then choose another first step, its far tile is marked a trap
+        for \code{PORTAL_REFUSE_ROUNDS} $=15$, so the route and objective searches go round it and the goal picks something else.
+  \item The objective map now records which tiles are objectives themselves (\code{objective_src_round_}).
+\end{itemize}
+\textbf{Results} (same probe):
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+ & Before & After \\
+\midrule
+Autarky: stays $\geq$20 rounds by a portal & 7 (four of 108--142) & 2 (26 and 22) \\
+Default: stays $\geq$20 rounds & 15 & 1 \\
+Portals: rounds pacing near portals & 125 & 5 \\
+Islands: rounds pacing near portals & 24 & 1 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Against v23} (8 portal maps, 200 rounds, sides swapped): 9--7.
+\begin{itemize}
+  \item Maze, Prisoners Dilemma and Stripes were decided by side, not build: mirrored results, or the A side won every game
+        (Stripes, 4 more seeds: 4--4).
+  \item Total length 1,198 against 1,362, most of it one Schooltime game (93 against 393).
+\end{itemize}
+\textbf{Points} (metered wasm, 12,345 recorded turns on Unsw, 64$\times$64): median 17.3M $\rightarrow$ 17.5M, max 43.3M
+$\rightarrow$ 43.6M.
+
+
+\section{Open early, only good ones late}\label{sec:portaltune}
+Many portal maps keep pearls on the far side of their portals, and early in a game whoever gets through first eats them. The
+crossing risk was 30\% at any time; the simulator measured 2--14\% in rounds 0--49 and 12--25\% after round 150
+(section~\ref{sec:portals}). So:
+\begin{itemize}
+  \item \textbf{A blind crossing's risk follows the round} (\code{blind_portal_p}): \code{P_BLIND_EARLY} $=0.08$ up to round
+        \code{PORTAL_RISK_EARLY_ROUND} $=40$, rising linearly to \code{P_BLIND_LATE} $=0.20$ at \code{PORTAL_RISK_LATE_ROUND}
+        $=150$. Half that when we saw the far tile free in the last 4 rounds (was a flat 0.1). The constants
+        \code{P_BLIND_PORTAL} and \code{P_SEEN_FREE_PORTAL} are gone.
+  \item \textbf{The early window is longer}: \code{PORTAL_EXPLORE_END_ROUND} $80 \rightarrow 100$. Until then, as before, workers
+        treat a portal they have never seen through as an exploration objective and an ordinary move (5\% risk).
+  \item \textbf{Late, only good portals.} From round 100 the far side is valued by the pearls and timers we know of there
+        (\code{region_value} with unexplored tiles at 0): \code{PORTAL_GOOD_PER_PEARL} $=300$ per expected pearl more than
+        around us, up to \code{PORTAL_GOOD_CAP} $=2500$.
+        \begin{itemize}
+          \item Nothing for a far tile with no way on (a pocket, a dead end), unless it is a planned pocket raid.
+          \item Before round 100 the far side keeps its old small weight (48 per pearl, unexplored tiles counted, $\pm$360).
+          \item For a 3-long worker at round 150 the crossing's risk is about 1,000, so it needs about 3 more known pearls on
+                the far side; a longer dragon needs more.
+        \end{itemize}
+\end{itemize}
+\textbf{Tried and dropped} (each against the build with only the portal fixes above, 200 rounds, sides swapped):
+\begin{itemize}
+  \item A bonus of 720 for an early crossing the goal's way goes through lost all 4 Default games (total length 68 against 238).
+  \item Valuing the far side at 500 per pearl from round 0, unexplored tiles counted, went 4--8 and lost all 4 Default games.
+        On Default's grid of portal rooms both sent the swarm hopping room to room in the middle of the map.
+\end{itemize}
+\textbf{Results.}
+\begin{itemize}
+  \item \textbf{Against the portal fixes alone} (6 maps, sides swapped): 7--5, total length 1,479 against 1,099.
+        Help, Islands and Portals went to the B side in both orders.
+  \item \textbf{Early crossings} (rounds 0--99, seed 5, the team that crossed more): Portals $12 \rightarrow 53$, Default $28 \rightarrow 78$,
+        Islands $58 \rightarrow 111$.
+  \item \textbf{The cost}: more small dragons die finding out where an unknown portal leads. On Portals many lead into
+        1-tile pockets, where a 2--3-long dragon eats and dies. Deaths on a crossing move, early: Portals $4 \rightarrow 11$,
+        Islands $7 \rightarrow 23$.
+\end{itemize}
+\textbf{v24 against v23} (all of this part against the build that ended v23; 6 portal maps, 200 rounds, sides swapped): 5--7,
+total length 1,275 against 1,201. Seven of the 12 were settled by whose queen was alive or longer, not by length: Autarky as A
+had 122 against 17 and lost on the queen (4 against 11). Read it as even. Since the queen tiebreak swamps everything else in
+these runs, the portal changes are best judged by the loitering and crossing figures above, and by sandbox games on portal maps.
+
+%=====================================================================
+\part{v24 $\rightarrow$ v25: dispersion}
+%=====================================================================
+v25 starts here. Everything before this part is v24.
+
+\section{Spread out early}\label{sec:disperse}
+\textbf{The problem.} We keep losing early eliminations, and losing consistently means exploration is not luck. Several of our
+workers going to the same spot gain little, since one or two there split quickly and fill it. They should spread over the map
+instead.
+
+\textbf{What was there already:}
+\begin{itemize}
+  \item \textbf{Pearls}: each pearl is left to whichever known teammate reaches it first (\code{pearl_taken_by_ally}: visible
+        teammates by path steps, others by the position they last sent, at most a round old).
+  \item \textbf{Destinations} (v14, \code{explore.hpp}): every worker heads for a part of the map nobody has explored, chosen
+        by its id. Only on maps of 1,600 tiles or more and from round 20, so not on most official maps.
+  \item \textbf{Exploring}: nothing shared it out. Every never-seen tile within 30 steps was an objective for everyone, so dragons
+        near each other headed for the same unexplored ground, and on the centre-rush maps every worker ran to the middle.
+\end{itemize}
+\textbf{Measured} (\code{sim/spread.py}, v24 against itself): teammate heads within 6 tiles of each head, against what an even
+spread over the map would give.
+\begin{itemize}
+  \item Trophy, round 50: 9.6 against 4.3.
+  \item Schooltime, round 75: 3.7 against 1.6.
+  \item Default, round 50: 3.3 against 1.8.
+\end{itemize}
+
+\textbf{Changes} (\code{main.cpp}, \code{scoring.hpp}):
+\begin{itemize}
+  \item \textbf{Shared exploring} (\code{ally_claims}, in \code{build_objective_map}). Until \code{CLAIM_END_ROUND} $=200$, a
+        never-seen tile, or a timer that ran out while nobody watched, that a known teammate reaches first costs
+        \code{CLAIMED_EXTRA} $=10$ more (a never-seen tile costs 8).
+        \begin{itemize}
+          \item Known teammates: those we see, by their path steps (\code{ally_etas_}), and others by the position they sent
+                in the last \code{CLAIM_SIGNAL_AGE} $=4$ rounds plus that age.
+          \item Ties go to the lower id.
+          \item It is a cost, not a ban: with nothing else to do, a dragon still explores ground a teammate is nearer to.
+        \end{itemize}
+  \item \textbf{At most two rush the centre} (\code{centre_crowded}). On the centre-rush maps a dragon with
+        \code{CENTRE_MAX_RUSHERS} $=2$ or more known teammates closer to the centre gets no centre pull.
+\end{itemize}
+
+\textbf{Tried and dropped} (each against v24, the same 6 maps, 150 rounds, sides swapped):
+\begin{itemize}
+  \item \textbf{Destinations on every map from round 0} (the v14 rule without its size and round limits): 3--9, and 24\% less
+        length at round 50 (22.8 against 30.0). Sending workers away from food they can see costs more than it explores, as v14
+        found.
+  \item \textbf{Stronger shared exploring} (extra cost 20, positions up to 6 rounds old): 6--6, against 8--4 for the settings
+        kept.
+\end{itemize}
+
+\textbf{Results against v24} (12 official maps, 24 games, 150 rounds, sides swapped; \code{sim/ab.sh}, \code{sim/ab_econ.py}):
+\begin{itemize}
+  \item \textbf{Games}: 14--10 by the official ranking.
+  \item \textbf{Wipe-outs}: we wiped them out 6 times; they wiped us out once.
+  \item \textbf{At round 50}, on average: 9.7 dragons and 24.5 length, against 8.4 and 22.2.
+  \item Several of the 10 losses were on the queen tiebreak with more length (e.g.\ Portals as A, 47 length against 39 at round 100).
+\end{itemize}
+\textbf{Points} (metered wasm, 11,952 recorded turns on Unsw, 64$\times$64): median 17.4M $\rightarrow$ 18.5M, max 46.7M
+$\rightarrow$ 46.8M.
+
+
+\section{Anticipated pearls}\label{sec:forecast}
+Every tile in view shows how many rounds until its next pearl, and the bot already remembered that countdown
+(\code{CellMemory}). Until now it only used it within 4 rounds of the spawn (10 for the king), at cost rounds left $+1$ plus the
+walk. So a dragon passing a bed knew exactly when it would fill, and forgot about it until it was almost due.
+
+\textbf{Timed beds on the official maps} (beds that cannot spawn before round 20 or later):
+\begin{itemize}
+  \item \textbf{Prisoners Dilemma}: the two middle columns (32 beds) all spawn once, around rounds 479--489. 44 beds either side of
+        the middle first spawn around 150--250, then every 150--250 rounds.
+  \item \textbf{Tower Defense}: 38 beds (centre and corners) spawn once, between rounds about 399 and 499.
+  \item \textbf{Unsw}, \textbf{Maze}: 36 and 28 beds at 250--500. \textbf{Australia}: 126 beds starting after round 40 or 100.
+        \textbf{Schooltime}: nothing before round 19.
+  \item \textbf{Queen of Spades But She Ages}: its 170 delayed beds (rows timed 40--80 at the edges up to 400--480 near the middle)
+        are all sealed off by kelp (\code{sim/engine.py} reachability from every start). They spawn but nobody can eat them,
+        exactly as on the normal Queen of Spades, where the same tiles are 1--1000 beds.
+\end{itemize}
+
+\textbf{Change} (\code{main.cpp}, \code{spawn_forecast_cost}). Any map, no map table:
+\begin{itemize}
+  \item \textbf{When to set off.} A known future spawn becomes an objective once its rounds left are at most our turns to get
+        there plus \code{FORECAST_MAX_WAIT} $=2$, so we arrive as it spawns.
+  \item \textbf{Its cost} is that wait, max(0, rounds left $+\,1\,-$ our turns there); the objective search adds the
+        walk. A pearl that is about to appear right where we can be in time ranks like one already there.
+  \item \textbf{Bursts rank higher.} Each other spawn within \code{FORECAST_CLUSTER_RADIUS} $=3$ tiles and
+        \code{FORECAST_CLUSTER_WINDOW} $=6$ rounds takes $1/$\code{FORECAST_CLUSTER_DIV} $=1/3$ round off the cost, at most
+        \code{FORECAST_CLUSTER_CAP} $=8$.
+  \item The objective radius bounds it: 30 steps for workers, 200 for the king.
+  \item \code{SPAWN_SOON_ROUNDS}, \code{KEEPER_SPAWN_SOON_ROUNDS} and \code{GOOD_BED_SOON_ROUNDS} are gone.
+\end{itemize}
+\textbf{Tried and dropped}: making every known future spawn an objective at once (cost = the wait). Dragons went early and circled
+on the beds; a dragon's body on a bed when it spawns blocks the pearl. In a test copy of Prisoners Dilemma with its burst moved to
+round 80 (\code{sim/timed_beds.py}, 3 seeds, sides swapped) that build ate 59 of the burst's pearls against 79 for v25 without
+forecasting. Setting off on time turned it round: 77 against 60.
+
+\textbf{Results} (against v25 without forecasting):
+\begin{itemize}
+  \item \textbf{12 official maps}, 150 rounds, sides swapped: 14--10. At round 50, 9.0 dragons and 23.8 length against 8.5 and
+        23.0.
+  \item \textbf{Prisoners Dilemma}, 4 seeds, full games, sides swapped: won 7 of 8. The delayed beds' pearls eaten: 126 against
+        59. In self-play these games end by wipe-out between rounds 196 and 277, so the round-480 burst itself never came.
+  \item \textbf{Tower Defense}, 2 seeds: 2--2, all decided by the A side wiping the other out before the round-400 beds.
+  \item \textbf{Points} (metered wasm, 23,150 recorded turns on Big Empty, 64$\times$64, every tile a bed): median 18.3M
+        $\rightarrow$ 18.4M, max unchanged at 29.1M.
+\end{itemize}
+
+
+%=====================================================================
+\part{v25 $\rightarrow$ v26.0.0: a portal is a way out}
+%=====================================================================
+v26.0.0 starts here. Everything before this part is v25 (a top-30 bot at that point). v26.0.0 is v25 plus the next section.
+
+\section{A portal we have never looked through is a way out}\label{sec:door}
+\textbf{What happened} (sandbox, Maze, round 61). The queen, 4 long, had followed a chain of portals early on and stood with her
+head in a small kelp pocket, facing the wall:
+\begin{itemize}
+  \item \textbf{west}: a 1-tile pocket whose only other side is a portal she had never looked through;
+  \item \textbf{east}: a 2-tile dead end;
+  \item \textbf{behind}: her body, back the way she came.
+\end{itemize}
+She split (her rear 2 escaped the way she came), went east the next round, and died in the dead end.
+
+\textbf{Why.} The survival search (\code{surv_dfs}) treated a portal whose far end we do not know as a wall: it cannot see where
+it leads.
+\begin{itemize}
+  \item West scored 0 more moves and east 1. Both are ``hopeless'' by the queen's certain-death test (every move a head trade, no
+        free side, or a complete search allowing at most one more move), so she made her escape split.
+  \item With only her neck beside her head, nothing could be kept alive (section~\ref{sec:keep}): she kept 2 and her rear 2 left.
+  \item At length 2 the same search preferred east (1 more move) to the portal (0), and she died there.
+\end{itemize}
+The crossing itself was most likely safe: a portal's far tile held a dragon in 2--25\% of rounds in the simulator (section
+\ref{sec:portals}).
+
+\textbf{Changes} (\code{survival.hpp}, \code{scoring.hpp}, \code{endgame.hpp}; \code{SurvivalResult} and \code{Candidate} carry
+it from \code{main.cpp}, \code{route.hpp}, \code{explore.hpp}):
+\begin{itemize}
+  \item \textbf{A way on.} In the survival search, a portal beside the head whose far end we have never seen counts as reaching
+        the target, but only when no other move from there does (it cannot see beyond it). The result says so (\code{via_portal}).
+  \item \textbf{Priced as a crossing.} A move whose only way on is such a portal pays the crossing's chance of landing on a body:
+        5\% for workers in the early portal window, otherwise \code{blind_portal_p()} (8\% early, rising to 20\% by round
+        150), times our death cost. For the queen, whose death counts as at least 30 segments, that is about 2,600--6,600 points:
+        far less than a dead end, far more than open water.
+  \item \textbf{Not hopeless.} A step through such a portal is not ``certain death'' for the queen's test nor the workers': its
+        exits are unknown, not zero.
+\end{itemize}
+The room estimate (\code{timed_space}) already counted such a portal as open, so the two searches now agree.
+
+\textbf{Checked.}
+\begin{itemize}
+  \item \textbf{The screenshot rebuilt} (\code{sim/scen_maze_queen.py}: the pocket, a portal to the far side of the map, round 61).
+        v25: split, east, dead on round 64, exactly as in the sandbox. v26.0.0: west, through the portal on the next move, and still
+        alive and 4 long at round 66.
+  \item \textbf{Queen deaths by round 100} (self-play, all 25 maps, seed 1, 50 queens): 18 $\rightarrow$ 16. Most of the rest are
+        head-on deaths to the other side's queen hunters, which self-play doubles.
+  \item \textbf{Portals} (\code{sim/portal_loiter.py}, seed 5, 200 rounds, both teams): deaths on crossing moves Portals 49
+        $\rightarrow$ 43, Default 8 $\rightarrow$ 11, Maze 1 $\rightarrow$ 9. On Maze, crossings went 54 $\rightarrow$ 156 and
+        both teams ended longer (123 and 101 $\rightarrow$ 127 and 136).
+  \item \textbf{Against v25} (12 official maps, 150 rounds, sides swapped): 11--13, the same length at round 50 (33.0 against 33.3
+        averaged over both batches). A narrow fix, so no change expected there.
+  \item \textbf{Points} (metered wasm, 11,952 recorded turns on Unsw): unchanged (median 18.5M, max 46.8M).
+\end{itemize}
+
+\section{Tried after this, and reverted}\label{sec:reverted}
+Everything below was built on top of the change above, and all of it is reverted. v26.0.0 is the change above alone;
+v26.1.0 (next part) was built afresh on top of it.
+
+\textbf{Why.} The full build against v25 on the real engine (\code{unswbc run}, every map, sides swapped, 150 games): V25 won 78,
+it 71, with 1 draw. That gap is within the luck of 150 games, but nothing showed it was better. The changes had been tested
+mostly in the simulator, a few at a time, each against the build before it, on 8--16 games, and against our own bot, so each
+small step looked better, or no worse, without the whole being any better.
+
+What was reverted (the full build and its changelog are kept, should any of it be worth another look):
+\begin{itemize}
+  \item \textbf{The queen's deaths, traced}: no seeding or escape split inside an enemy's reach; she moves rather than split
+        when no split keeps her alive; pearls on a hunter's way and enemy tails counted in her threat map; her route only to
+        tiles with everything near them in view; free food on her route.
+  \item \textbf{The whole-window rule} (after round 75, an enemy whose tail she cannot see covers its whole 7$\times$7).
+  \item \textbf{More early portal pull for workers} (crossing value, objective cost, cheaper blind exits, far-side pearls).
+  \item \textbf{Two-sided portal pockets count as tunnels} (\code{portal_pocket_worth}).
+  \item \textbf{Portals: tunnels and death cells}: one-way tunnels, walls and pockets in portal messages, a survival search that
+        looks past a door.
+  \item \textbf{No centre rush on Portals} (told apart by its one-tile portal cells).
+  \item \textbf{No early portal exploring for the queen}.
+\end{itemize}
+
+\part{v26.0.0 $\rightarrow$ v26.1.0: early portals}
+%=====================================================================
+v26.1.0 starts here. Everything before this part is v26.0.0 (v25 and the door fix, section~\ref{sec:door}).
+
+\section{Early portals: workers go in, the queen stays out}\label{sec:earlyportals}
+\textbf{The aim.} Early on, a worker that sees a portal goes through it; the queen does not. The king and the growers do not
+either. Nobody paces in front of a portal.
+
+\textbf{What happened} (sandbox, Portals, round 7). A worker at (28,7) had three portals in plain sight and took none of them.
+Other workers did the same on other maps.
+
+\textbf{Why.} Five things held workers back:
+\begin{itemize}
+  \item \textbf{Only the explore goal paid for a crossing.} The crossing value (180) was paid only under the explore goal. A
+        worker with any other goal (eat, hunt, fight) got nothing for going through.
+  \item \textbf{Eat called it a detour.} Under the eat goal, a portal we have never looked through counted as a step off the
+        route to the pearl.
+  \item \textbf{The objective map charged for it.} Each unknown portal on the way cost 5 there.
+  \item \textbf{The centre rush won.} On 32$\times$16 and the other centre maps, it pulls 300 a step towards the middle, more than
+        the crossing was worth.
+  \item \textbf{Fights through walls.} Fights were picked by straight-line distance (at most 4), walls ignored. On Portals,
+        workers lined up along the double wall between the two halves, ``fighting'' enemies they could never reach, right
+        beside the portals they should have taken. In the simulator probe, every skipped portal beside a worker was under the
+        fight goal.
+\end{itemize}
+
+\textbf{Changes} (\code{main.cpp}, \code{scoring.hpp}, \code{queen.hpp}). Workers, while \code{portal_exploring()}: not
+retaining length, not valuable, before round 100.
+\begin{itemize}
+  \item \textbf{Crossing value.} \code{PORTAL_EXPLORE_VALUE} 180 $\rightarrow$ 800, whatever the goal (\code{portal_value}).
+  \item \textbf{Not a detour.} Under the eat goal, such a portal is no longer a step off the route.
+  \item \textbf{Cheaper on the objective map.} \code{UNKNOWN_PORTAL_EXPLORE_COST} 5 $\rightarrow$ 2 (an unseen tile costs 8).
+  \item \textbf{The centre rush gives way.} It pulls nothing while a portal nobody has been through is in view
+        (\code{note_unexplored_portals}, \code{centre_pull}). It is otherwise unchanged; removing it for the centre sizes was not
+        needed.
+  \item \textbf{Fights by path, for every dragon.} An enemy is near when it is at most 4 steps away by path. The path search
+        goes round walls, through known portals, and ignores bodies, which move (\code{fight_path_distances},
+        \code{prepare_fight}).
+  \item \textbf{Keep-out for the queen, the king and the growers} (\code{PORTAL_KEEPOUT}, \code{apply_portal_keepout},
+        \code{queen_safe}).
+        \begin{itemize}
+          \item A move that takes a portal into the unknown costs a death while some other move keeps them alive. That
+                covers a pair nobody has seen both ends of, a far tile out of sight, and a step whose only way on is such a
+                portal.
+          \item ``Keeps them alive'' means: not a head trade, not walled, no hard threat, and a way on.
+          \item When every other move dies, the portal is still taken, as the way out (section~\ref{sec:door}).
+          \item A portal onto a tile in view is a step like any other. On Stripes, the box of beds next to the start is one.
+                Strict keep-out lost Stripes 0--4 in all three runs that had it; with this exception it went 2--2.
+        \end{itemize}
+\end{itemize}
+
+\textbf{Tried, not kept: sending a pair at once.} A pair a dragon has just seen both ends of went out by sonar on the next
+round, rather than waiting its turn. The aim was to tell teammates sooner that the portal is explored, so they pick another.
+It made no difference: pairs crossed by round 50 were 3.6 either way, and by round 100, 5.2 either way. Left out.
+
+\textbf{Checked.}
+\begin{itemize}
+  \item \textbf{Exploration} (simulator, \code{sim/explore_cov.py}): the 14 maps with 4 or more portal pairs, seeds 1--5, both
+        sides, against v26.0.0, 100 rounds.
+        \begin{itemize}
+          \item Pairs first crossed: by round 25, 1.5 $\rightarrow$ 1.9; by round 50, 2.7 $\rightarrow$ 3.6; by round 100,
+                4.5 $\rightarrow$ 5.2.
+          \item By round 50: Portals 3.2 $\rightarrow$ 4.8, Default 4.4 $\rightarrow$ 6.2, Schooltime 2.5 $\rightarrow$ 4.2,
+                Stripes 1.4 $\rightarrow$ 2.5, Dilemma 0 $\rightarrow$ 2.
+          \item Maze by round 100: 8.3 $\rightarrow$ 7.3, slightly fewer. Stronghold, Trauma and Australia: unchanged. Their
+                portals are seldom in view early, which is a dispersion problem rather than this one.
+        \end{itemize}
+  \item \textbf{Seen, then entered} (\code{sim/portal_behave.py}, \code{walkaway.py}, 150 rounds).
+        \begin{itemize}
+          \item On Portals, workers next to a portal never looked through took it 31 times out of 32.
+          \item Pacing 8 or more turns in front of a portal: 0--2 a game on Portals, Default, Islands, Stripes and Maze.
+          \item The queen crossed only when she had a single move, or into the in-view box on Stripes.
+        \end{itemize}
+  \item \textbf{Real engine} (\code{ubcnative/ubcrun}, built from the official engine sources; all 25 maps, both sides).
+        \begin{itemize}
+          \item The same seed does not replay the same game: deadlines are timed. So 100 games are good to about
+                $\pm$10.
+          \item Against v26.0.0, 100 games each:
+                \begin{itemize}
+                  \item worker changes only: 57--43;
+                  \item worker changes + strict keep-out: 54--46;
+                  \item keep-out only: 53--47;
+                  \item + fight by path, strict keep-out: 49.5--50.5;
+                  \item v26.1.0 (keep-out with the in-view exception): 52.5--47.5.
+                \end{itemize}
+          \item \textbf{v26.1.0 against v25} (150 games, seeds 3--5): 76.5--73.5. Queens alive 43 against 41; total length 13,800
+                against 11,899 (+16\%). Portals went 1--5 in those 6 games; 16 more Portals games went 8.5--7.5.
+        \end{itemize}
+\end{itemize}
+
+\part{v26.1.0 $\rightarrow$ v26.2.0}
+%=====================================================================
+v26.2.0 starts here. Everything before this part is v26.1.0 (early portals, section~\ref{sec:earlyportals}). Next: dispersion.
+
+\section{A worker's split takes 2 off its tail}\label{sec:split2}
+\textbf{The rule.} When a worker splits, the child is the 2 segments at its tail (the engine's child always comes off the
+tail), and the worker keeps the rest: $L = (L-2) + 2 = (L-4) + 2 + 2$, and so on, over the next turns. Before, the worker
+kept 2 and gave the rest (at most 9). So a long worker (Slithery Fight starts workers of 5--7) left a 2 at the front and a
+long dragon facing backwards. One switch, \code{SPLIT_TWO_FROM_TAIL} (\code{main.cpp}, \code{worker_child_size}); \code{false}
+gives the old sizes.
+
+\textbf{Not changed:} split escapes (the rear part reverses out of a dead end or a box, \code{endgame.hpp}), pocket raids that
+end in one, and the queen's seeding.
+
+\textbf{Tried first: every split, escapes included.} 45--55 against v26.1.0 over 100 games. Queens alive 24 against 31;
+total length $-14\%$. With escapes saving only the 2 at the tail, the rest of a doomed dragon died with its head, and
+pocket raids had to go. So the rule is for worker splits only.
+
+\textbf{Checked.}
+\begin{itemize}
+  \item Simulator, Slithery Fight, 60 rounds: every worker split (35) had a child of 2. Escape splits kept their sizes
+        (2--5, and the queen's 18 at the start); the queen seeded 3.
+  \item \textbf{Real engine against v26.1.0} (all 25 maps, seeds 1--2, both sides, 100 games): 53--47. Queens alive 29
+        against 25; total length 7,733 against 9,002 ($-14\%$). Slithery Fight went 1--3 in its 4 games. Within the luck
+        of 100 games on all three counts.
+\end{itemize}
+
+\part{v26.2.0 $\rightarrow$ v26.3.0: Leo's v27.2.0 merged in}
+%=====================================================================
+v26.3.0 starts here. Everything before this part is v26.2.0 (section~\ref{sec:split2}).
+
+\section{What Leo's bot changes}\label{sec:leo}
+Leo's v27.2.0 is V25 plus about 750 changed lines (\code{main.cpp}, \code{scoring.hpp}, \code{endgame.hpp}, \code{queen.hpp};
+the rest only reformatted). Most of it is experiments behind switches that are off. These five are on in his build:
+\begin{itemize}
+  \item \textbf{Late army} (his idea 2). Half the workers, by a hash of the id, do not feed the king from round 380 to 440:
+        they harvest, hunt and explore, skip the late rendezvous, and may keep splitting. His numbers: 0.511 against
+        V25 over 3,200 games.
+  \item \textbf{The queen and portals} (his safety A). From round 100, while the queen can reach 64 tiles or more without a
+        portal, any portal move is unsafe for her and costs 40,000. His numbers: 202--198, ``too small to measure''.
+  \item \textbf{The queen waits} (his v25.1 and safety B). Certainly dead, the queen splits off only 2 and keeps her place
+        and the rest of her length, where V25 let her rear $L-2$ escape and she died. She also waits when every move is
+        hopeless or ends in a certain enemy reach (or crosses a portal, as above) while her own tile is out of reach.
+  \item \textbf{Ally box} (his v27.1 idea 1). A move that takes every free side left to a teammate's head costs 0.7 of that
+        teammate's death; taking all but one costs 300. His numbers: 0.542 head to head against his v27.0.0 (800 games).
+  \item \textbf{Early trade} (his v27.2). Before round 50, a worker (not the queen, not valuable) may trade head-on into an
+        enemy as long as it or longer while we have 3 units or more. His numbers: 0.580 head to head against v27.1.0
+        (800 games).
+\end{itemize}
+Off in his build, so not brought over: workers growing before they split, sharing where the enemy queen is, a cautious
+queen pricing, corridor and dead-end costs, worker reach, child room, the army fed near the queen, bolder portals.
+
+\section{The merge}\label{sec:merge}
+The five are ported as they are, each behind its own switch (\code{main.cpp}, after the rest of \code{Config}):
+\code{KEEP_ARMY}, \code{QUEEN_NO_PORTAL}, \code{QUEEN_WAIT_SPLIT} with \code{QUEEN_STALL}, \code{ALLY_BOX},
+\code{EARLY_TRADE}.
+\begin{itemize}
+  \item \code{main.cpp}: \code{army_worker}, its split stop; \code{apply_queen_no_portal},
+        \code{queen_room_without_portals}, \code{path_crosses_portal}; the early trade in \code{eligible_target}.
+  \item \code{endgame.hpp}: feeders and the rendezvous leave the army out; the queen's wait split and stall in
+        \code{play_split_escape}.
+  \item \code{scoring.hpp}: \code{ally_box_cost}, in \code{goal_progress}.
+  \item \code{queen.hpp}: the header comment only.
+\end{itemize}
+How it sits with ours:
+\begin{itemize}
+  \item \textbf{Portals.} Our keep-out (section~\ref{sec:earlyportals}: queen, king and growers stay out of portals into the
+        unknown, all game) and his rule (the queen, any portal, from round 100 when she has room) both apply.
+  \item \textbf{The door} (section~\ref{sec:door}). A step through a portal we never looked through is still not hopeless
+        for the queen: she takes it rather than wait, except where his stall rule calls a portal move no better than
+        waiting.
+  \item \textbf{Splits.} Our 2-from-the-tail rule is for ordinary worker splits, his wait split is the queen's: no
+        overlap. His army may keep splitting after round 380, in 2s like any worker.
+\end{itemize}
+Two of our own v26 changes got switches too, for the tests below: \code{EARLY_PORTAL_PULL} (the worker pull of
+section~\ref{sec:earlyportals}; \code{false}: V25's 180, explore goal only, objective cost 5) and \code{FIGHT_BY_PATH}.
+
+\textbf{The port checked.} With our own v26 changes switched off and no deadlines (\code{BOT_UNLIMITED}, so a game replays
+exactly), the merge and Leo's build played the same moves on every turn of three simulator games on maps without portals,
+where the door fix cannot act: Default Small (1,485 turns), Weakhold (10,404) and Tower Defense (6,182).
+
+\section{Results}\label{sec:mergeresults}
+Real engine (\code{ubcrun}), all 25 maps, both sides. 100 games are good to about $\pm$10.
+\begin{itemize}
+  \item \textbf{v26.2.0 against Leo's v27.2.0} (seeds 1--2): 38--62. Queens alive 22 against 33; total length 6,625 against
+        10,480.
+  \item \textbf{v26.3.0 against Leo's v27.2.0} (seeds 1--6, 300 games): 156.5--143.5 (52\%, $\pm$6). Queens alive 103
+        against 73; total length 25,293 against 26,295 ($-4\%$). By seed pair: 47--53, 57.5--42.5, 52--48. Islands went
+        2--10 over the 12 games, the one map with a run like that.
+\end{itemize}
+\textbf{Which change matters} (head to head, v26.3.0 against itself with one switch off, seeds 1--2, 100 games):
+\begin{center}
+\begin{tabular}{lrrr}
+  switched off & score (with--without) & queens alive & total length \\ \hline
+  early trade (Leo) & 60--40 & 31 / 26 & 8,728 / 7,691 \\
+  ally box (Leo), seeds 1--4, 200 games & 92.5--107.5 & 65 / 65 & 16,875 / 15,805 \\
+  late army (Leo) & 52--48 & 31 / 30 & 9,641 / 6,909 \\
+  queen waits (Leo) & 52--48 & 29 / 28 & 9,433 / 7,704 \\
+  2 off the tail (ours) & 52--48 & 32 / 26 & 8,251 / 8,500 \\
+  fight by path (ours), seeds 1--4, 200 games & 95--105 & 59 / 60 & 16,506 / 16,847 \\
+  early portal pull (ours), seeds 1--4, 200 games & 92--108 & 63 / 63 & 16,728 / 17,544 \\
+\end{tabular}
+\end{center}
+\begin{itemize}
+  \item \textbf{Early trade is the one that shows}: 60--40, ten points, in line with Leo's 0.58. Before round 50 our
+        workers now answer the enemy workers that ram them, and more games are won by elimination (31 against 19 of the
+        100).
+  \item \textbf{The ally box does not show here}: 92.5--107.5 over 200 games (46\%, $\pm$7). Leo measured +4 points in
+        his bot; in ours it is no gain, perhaps a small loss. It stays on, as in his build, pending more games.
+  \item \textbf{Our own early-portal changes do not show either}: the worker pull 92--108 and fights by path 95--105, over
+        200 games each. Like the ally box, inside the noise and leaning the wrong way.
+  \item \textbf{The rest are inside the noise} (52--48), the army and the queen's wait with more length.
+  \item \textbf{All three of those off together} (ally box, worker pull, fights by path; seeds 1--4, 200 games against
+        v26.3.0): 99.5--100.5. So their leanings were noise, as a whole they change nothing, and v26.3.0 keeps all three.
+        By map it is another story, 8 games each: Help 0--8 without them, but Dilemma 8--0, Islands 7--1 and Big Empty
+        7--1 without them. Worth a look when we come to exploration.
+\end{itemize}
+
+
+\part{v26.3.0 $\rightarrow$ v27.0.0: eliminations}
+%=====================================================================
+v27.0.0 starts here. Everything before this part is v26.3.0 (section~\ref{sec:mergeresults}).
+
+\section{Why v-top\_team eliminates us}\label{sec:whyelim}
+\textbf{Where.} Real engine, v-top\_team against v26.3.0 (seeds 1--2, 100 games): 59--41. All 34 of its wins by elimination
+came on the 11 maps under 1,100 tiles (Colosseum, Arena, Autarky, Default, Default Small, Devil, Prisoners Dilemma, Small,
+Stripes, Tower Defense, Trophy). On the larger maps the games ran to round 500, but both queens were usually dead and
+v-top\_team ended with 3--10 times our units (Help 53 against 2, Islands 28 against 3, UNSW 50 against 12), so it won on
+the longest dragon: the ``mostly eliminated'' loss.
+
+\textbf{How: a unit snowball.} On Devil, Stripes, Autarky and Arena both teams eat about the same for 30--40 rounds, but
+v-top\_team has twice our units by round 40 (Devil: 5 against 6 at round 10, 5 against 10 at round 40, 2 against 20 at round
+60). It splits every dragon the moment it reaches 4, its queen too on small maps. Ours sat at 4--5 in the 1-wide lanes of
+Devil and Stripes (no split in a corridor at length $\leq 5$, v17) and our queen held 4--6 segments. In the simulator the unit
+count at round 25 nearly decides the game (296 games): ahead, we win 89\%; level, 58\%; one behind, 42\%; two or more
+behind, 9\%.
+
+\textbf{Not the economy.} Each bot playing alone (the other team removed at round 0, simulator, 100 rounds) eats about the
+same on most of these maps (Default Small 85 against 83, Devil 213 against 197, Dilemma 18 against 17). The exceptions are
+maps whose food sits in portal pockets and dead-end lanes: Stripes 39 against 147, Portals 187 against 270, Schooltime 164
+against 298.
+
+\textbf{Their bot, one mechanism off at a time.} v-top\_team reads its parameters from a JSON argument, so each of its
+mechanisms can be switched off without touching its code (wrappers in its own folder). Our win rate against it, simulator,
+13 small maps, seeds 1--4, both sides (104 games each):
+\begin{center}
+\begin{tabular}{>{\raggedright\arraybackslash}p{11.5cm}r}
+  v-top\_team with this off & our win rate \\ \hline
+  nothing (control) & 43\% \\
+  its queen as a worker on small maps (protected there too, \code{Q_AREA 1}) & \textbf{70\%} \\
+  head-on rams (\code{RAM 0}) & \textbf{66\%} \\
+  splitting at 4 (\code{SPLIT_MIN 6}) & 58\% \\
+  the lane economy (\code{LANE 0}; with the newborn-split hold too, 57\%) & 54\% \\
+  no split on a newborn's first turn (\code{NB_NOSPLIT 0}) & 42\% \\
+  ram one shorter, hunt pull, centre-biased exploring, centre rush, hunting our queen, traps, rival discount on food, threat avoidance (each alone) & 38--43\% \\
+\end{tabular}
+\end{center}
+
+\textbf{Why the rams work: the drops.} In the first 60 rounds of 16 games it rammed 71 times, we rammed 30. Two in three of
+its rams had more of its heads than ours within 3 tiles of the collision (ours: one in eight), and it ate 87\% of the drops,
+2.1 pearls a ram, against 0.3 for us. It also ate most of the drops of \emph{our} rams. By who had the nearer head (any
+dragon but the two):
+\begin{center}
+\begin{tabular}{lrrr}
+  nearest head & rams & drops eaten by us & by them \\ \hline
+  theirs & 92 & 0.25 & 2.21 \\
+  equal & 19 & 0.37 & 1.74 \\
+  ours & 36 & 1.06 & 0.94 \\
+\end{tabular}
+\end{center}
+Even with our head nearer, half the drops went to them. Our pearl routes divided a pearl's worth by $1 + 0.08$ for every
+other dragon's segment within 2 tiles of it (\code{ROUTE_WORKER_CROWD}): a pile of drops is exactly that.
+
+\section{What v27.0.0 changes}\label{sec:v27changes}
+Six switches, all in \code{main.cpp}'s \code{Config}:
+\begin{itemize}
+  \item \textbf{The queen plays as a worker on maps under 1,100 tiles} (\code{QUEEN_SMALL_AREA 1100}; \code{queen.hpp}
+        \code{worker_queen}). She splits at 4, trades, rushes and explores like any worker, and is not crowned. Small fix
+        on the way: as our last unit she never trades herself for their queen (on Arena both teams start with one dragon,
+        and both would be out: a draw).
+  \item \textbf{Nobody hunts the enemy queen on those maps} (\code{KILL_QUEEN_MIN_AREA 1100}). On small maps their queen is
+        often one of their swarm, and the hunt (1,000 a step towards her, and a kill whenever reachable) walked our workers
+        into it. On top of ``s5n'' below: +3 points, 216 eliminations suffered against 240 (416 games).
+  \item \textbf{Short dragons split in corridors too} (\code{CORRIDOR_SPLIT_MAX_LENGTH 0}, was 5).
+  \item \textbf{A pocket raid may start through a portal} (\code{PORTAL_POCKET_RAID}). Stripes keeps its food in portal
+        pockets of period-1 beds; alone on Stripes we ate 65 by round 100 instead of 37.
+  \item \textbf{No crowd discount on a worker's pearl route} (\code{ROUTE_WORKER_CROWD 0}, was 0.08; the king and growers
+        keep 0.25).
+  \item \textbf{No blind portal crossing onto a teammate} (\code{ALLY_PORTAL_GUARD}): an exit we cannot see with a teammate
+        reported (status packet, at most 2 rounds old) on or next to it is an occupied exit. Two of ours crossing one pair
+        from both sides met head-on 1.6 times a game on the small maps (Default, both Queens of Spades, Autarky); now
+        28\% fewer.
+\end{itemize}
+Files: \code{main.cpp}, \code{queen.hpp}, \code{scoring.hpp}, and \code{explore.hpp} (it carries the exploration tests below,
+all off).
+
+\section{Tried, and left off}\label{sec:v27tests}
+Each is a switch in \code{Config} (off), tested on its own against v-top\_team in the simulator: 13 small maps, seeds 1--16,
+both sides, 416 games each ($\pm$2.4 points). The exploration tests from the start of V27 (bed frontier, scouts, rich spots
+over sonar, magic 0x8) stay in the code, off.
+\begin{center}
+\begin{tabular}{>{\raggedright\arraybackslash}p{8.2cm}rrr}
+  variant & win & eliminated & eliminating \\ \hline
+  v26.3.0 & 32.7\% & 255 & 109 \\
+  no corridor split block, alone & 34.4\% & 259 & 113 \\
+  queen as worker on maps $<$ 1,100 tiles, alone & 37.3\% & 233 & 122 \\
+  queen as worker only when our start is $\leq$ 5 segments (\code{QUEEN_WORKER_MAX_START}), with no corridor split block (``s5n'') & 39.2\% & 240 & 131 \\
+  \quad + their ram rule, sprint rams from round 0, rams first (\code{TOP_RAM}, \code{SPRINT_ANY_ROUND}, \code{RAM_FIRST}) & 40.1\% & 232 & 136 \\
+  \quad + their ram rule (or ours) with local superiority, sprints from round 0 (\code{RAM_LOCAL}) & 38.9\% & 238 & 133 \\
+  \quad + keep out of their sprint reach, equals and one longer too (\code{SPRINT_FEAR 2}) & 30.3\% & 255 & 86 \\
+  \quad + no split while an enemy can reach us (\code{SPLIT_SAFE}) & 35.1\% & 252 & 122 \\
+  \quad + every worker rushes the centre (\code{CENTRE_MAX_RUSHERS 99}) & 39.4\% & 239 & 138 \\
+  \quad + teammate spacing at 30\% (\code{SPACING_PCT}) & 38.9\% & 237 & 122 \\
+  \quad + no queen hunt, kill kept / no queen hunt at all & 39.8\% / 42.3\% & 227 / 216 & 122 / 139 \\
+  \quad without the fight goal / without early trades / without pocket raids & 36.2 / 36.5 / 38.2\% & & \\
+\end{tabular}
+\end{center}
+Also tried at 104 games: their hunt pull towards longer enemies (\code{HUNT_LONGER_PULL}), not fearing longer enemies
+(\code{NO_FEAR_LONGER}, \code{FEAR_MODE}), pocket raids from 2 pearls, a looser portal-pocket room test: all within the noise.
+
+\textbf{What the rams taught.} Their rams decide the game, but neither copying their rule nor avoiding their reach helps us:
+keeping out of it gave up the food, and their rams barely fell (71 to 61--67 over the same 16 games). What moved was what lets them win the aftermath:
+our queen's segments working, and the drops.
+
+\section{Results}\label{sec:v27results}
+\textbf{Simulator} (13 small maps, seeds 1--16, both sides, 416 games against v-top\_team):
+\begin{center}
+\begin{tabular}{lrrr}
+  & win & eliminated & eliminating \\ \hline
+  v26.3.0 & 32.7\% & 255 & 109 \\
+  queen worker + no queen hunt (small maps) & 40.4\% & 222 & 142 \\
+  \quad + no corridor split block & 45.0\% & 203 & 152 \\
+  \quad + portal pocket raids & 44.7\% & 204 & 151 \\
+  \quad + no worker crowd discount & 45.7\% & 205 & 153 \\
+  \quad + both (``c11'') & 45.4\% & 206 & 152 \\
+  \textbf{v27.0.0} (+ the portal guard) & \textbf{45.7\%} & \textbf{208} & \textbf{154} \\
+\end{tabular}
+\end{center}
+\textbf{Real engine} (all 25 maps, seeds 1--4, both sides, 200 games; nothing else running, see below):
+\begin{itemize}
+  \item v26.3.0 against v-top\_team: 75--125 (37.5\%). Small maps 33\%, eliminated in 58\% of them; large maps 44\%.
+  \item c11 against v-top\_team: 99--101 (49.5\%). Small maps 52.5\%: eliminated in 43\% of them (was 58\%), eliminating it
+        in 45\% (was 28\%). Large maps 45\%. Arena 0 $\rightarrow$ 62\%, Dilemma 0 $\rightarrow$ 50\%, Stripes 0 $\rightarrow$
+        38\%; Autarky still 0 of 8.
+  \item c11 against v26.3.0: 122--78 (61\%). Small maps 65\%, large maps 55\%. Queens alive 38 against 55: ours dies on small
+        maps (8 of 60 alive), which cost a few games decided on the queen (Weakhold); Trophy 3--5 and Queen of Spades but
+        She Ages 2--6, mostly by elimination.
+  \item \textbf{v27.0.0 against v-top\_team: 103--97 (51.5\%).} Small maps 51.7\%: eliminated in 42\% of them (v26.3.0:
+        58\%), eliminating it in 46\% (v26.3.0: 28\%). Large maps 51\% (v26.3.0: 44\%). Queens alive 47 against 40. By map,
+        8 games each: Queen of Spades 8, She Ages 8, Tower Defense 8, Trauma 8, Trophy 8, Australia 7, Maze 6, UNSW 6; lost
+        Autarky 0, Schooltime 0, Islands 1, Weakhold 1, Default Small 2, Devil 2, Small 2, Slithery Fight 2.
+  \item \textbf{v27.0.0 against v26.3.0: 115--85 (57.5\%).} Small maps 64\%: eliminated in 25\% of them, eliminating
+        v26.3.0 in 56\%. Large maps 47.5\% (c11: 55\%; the two differ there only in the portal guard, so mostly luck: 8 games
+        a map). Queens alive 38 against 56: on small maps ours is a worker and dies (7 of 60 alive, against 26). Lost:
+        Autarky 0--8, Big Empty 1--7, Help 2--6; won Arena, Dilemma and Tower Defense 8--0.
+\end{itemize}
+\textbf{Running tests alone.} Our searches stop at wall-clock deadlines, v-top\_team's at node counts, so a busy machine
+weakens only us. Two earlier real-engine runs made while the simulator shared the two cores gave the same bot (on the large
+maps the two variants were identical) 40\% and 57\%. Every real-engine number above was run with nothing else on the
+machine. The simulator's small maps finish well inside the deadlines and are not affected (v26.3.0: 34\% and 35\% over the
+same 104 games, busy and alone).
+
+\textbf{Not done.} Autarky is still lost every time, and their lane economy (relay children farming dead-end lanes) is
+worth 11 points to them; ours raids pockets only with 3 pearls. The queen on small maps is a worker all game; reverting her
+at round 200 made no difference against v26.3.0 in the simulator (64\% against 66\%, 120 games on 15 small maps).
+
+
+\part{v27.0.0 $\rightarrow$ v27.1.0: the queen kill on every map}
+%=====================================================================
+v27.1.0 starts here. Everything before this part is v27.0.0 (section~\ref{sec:v27results}).
+
+\section{The rule}\label{sec:qkill}
+\begin{itemize}
+  \item \textbf{Anyone but our queen rams the enemy queen when it can reach her this turn, on every map.} Workers, growers
+        and the king alike; by a step, or by a sprint that pays segments. It is checked first in the turn, before anything
+        else (\code{queen.hpp}, \code{play_queen_kill}). The rammer dies in the head-on whatever it pays on the way, so a
+        long sprint costs nothing a short one does not: one dragon and its length. The only difference is that it leaves
+        fewer drops, and on small maps their swarm eats most of those anyway.
+  \item \textbf{Our queen never rams theirs} (dragon 0 or 1), including while she plays as a worker on a small map. v27.0.0
+        stopped her only as our last unit.
+  \item \textbf{The walk towards her stays off on maps under 1,100 tiles.} v27.0.0's switch \code{KILL_QUEEN_MIN_AREA}
+        turned off both the walk (1,000 a step) and the kill there; it is now \code{QUEEN_CHASE_MIN_AREA} and turns off
+        only the walk.
+  \item Larger maps: unchanged (anyone but our queen already rammed her there).
+\end{itemize}
+Files: \code{queen.hpp} (\code{play_queen_kill}, \code{enemy_queen_seen}, \code{queen_kill_path} takes its reach) and
+\code{main.cpp} (the renamed switch, comments).
+
+\textbf{Why.} v27.0.0 dropped the kill on small maps together with the walk, on a 2.5-point simulator difference inside the
+noise (section~\ref{sec:v27tests}). But a reachable queen is at worst a one-for-one trade, and when our queen outlives theirs
+the kill decides the game at round 500.
+
+\section{Results}\label{sec:qkillresults}
+\textbf{Simulator.}
+\begin{itemize}
+  \item Against v-top\_team (13 small maps, seeds 1--16, both sides, 416 games): 45\% (v27.0.0: 46\%); eliminated in 207
+        games (208), eliminating it in 149 (154).
+  \item Against v26.3.0 (15 small maps, seeds 1--4, 500 rounds, 120 games): 62\% (v27.0.0: 64\%).
+  \item Also tried: the kill only within our free steps and not by the king or growers: 45\% against v-top\_team. Same.
+  \item In 10 games against v26.3.0 the kill fired in 6, killing their queen each time. Our queen, a worker on these maps,
+        was usually dead first (rounds 18--92), so mostly it turns ``their queen alive'' into ``both dead'', and the
+        longest dragon decides.
+\end{itemize}
+\textbf{Real engine} (all 25 maps, seeds 1--4, both sides, 200 games each, nothing else running):
+\begin{itemize}
+  \item Against v-top\_team: 99.5--100.5 (49.75\%; v27.0.0: 103--97). Small maps 50\% (51.7\%), eliminated in 42\% of them
+        (42\%); large maps 49\% (51\%; the two versions play these the same).
+  \item Against v26.3.0: 115--85 (57.5\%; v27.0.0: 115--85). Small maps 62.5\% (64\%), large maps 50\% (47.5\%). Their queen
+        alive in 52 games (v27.0.0: 56); on small maps 23 of 60 (26).
+\end{itemize}
+So against these two the kill neither gains nor costs anything we can measure. It stays on for the reason above: a team
+whose queen we can reach while ours is alive.
+
+\part{v27.1.0 $\rightarrow$ v27.2.0: what we do with what we find}
+%=====================================================================
+v27.2.0 starts here. Everything before this part is v27.1.0 (section~\ref{sec:qkillresults}).
+
+\section{Exploration against v-top\_team, measured}\label{sec:explore272}
+\textbf{The question.} v-top\_team still eliminates us on most small maps and out-grows us on several large ones. Is it
+finding food that we do not? Measured in the simulator, both sides, v27.1.0 against v-top\_team (4 games a map, 200
+rounds; \code{bed_race2.py}): for each team, the share of the map's pearl-bed spawn rate it has had within 3 tiles of one
+of its heads by round 100, and the pearls it ate by then; and each bot alone on a map (the other team removed at round 0).
+
+\textbf{Finding food is not where we lose.} Over all 21 maps that last 100 rounds we had seen 83\% of the bed rate by
+round 100 against their 72\%, and eaten 156 against 147. We see less only on four maps:
+\begin{center}
+\begin{tabular}{lrrrr}
+  & \multicolumn{2}{c}{seen by round 100} & \multicolumn{2}{c}{eaten by round 100} \\
+  map & ours & theirs & ours & theirs \\ \hline
+  Autarky & 61\% & 100\% & 48 & 143 \\
+  Schooltime & 62\% & 71\% & 127 & 186 \\
+  Weakhold & 72\% & 76\% & 50 & 106 \\
+  Help & 85\% & 89\% & 186 & 307 \\ \hline
+  Stripes & 100\% & 100\% & 42 & 77 \\
+  Islands & 81\% & 80\% & 149 & 202 \\ \hline
+  \multicolumn{5}{l}{UNSW, Maze, Tower Defense, Trauma, both Queens of Spades: we see far more.} \\
+\end{tabular}
+\end{center}
+Where they out-eat us, it is what happens on and after reaching the food:
+\begin{itemize}
+  \item \textbf{Dead-end lanes} (Stripes, Weakhold, Portals). Stripes keeps its food in four lanes of beds that refill every
+        round. Alone there for 100 rounds they walked into lanes 26--32 times and ate 76--91 pearls in them; we did 12--15
+        and 33--41. Their \emph{lane economy} (section~\ref{sec:lanes}) is what we lacked.
+  \item \textbf{Weakhold}: a v27.0.0 regression and a queen bug (sections~\ref{sec:deadsplit}, \ref{sec:queen272}).
+  \item \textbf{Schooltime}, a maze. Alone, by round 50 they eat 24--39 to our 7--16, on the same coverage. Their dragons have
+        a pearl in view within 6 steps on 34--37\% of their turns, ours on 16--25\% (when one is, we go for it: 140 of 152
+        such turns). So their way of choosing where to go when nothing is in view finds food sooner. Not solved here; the
+        bed-frontier rule (section~\ref{sec:big272}) helps. Also both queens are sealed in 2$\times$2 rooms all game
+        (section~\ref{sec:queen272}).
+  \item \textbf{Help}, open water. Alone they eat 16\% more by round 100 (397 against 341); against each other 65\% more,
+        and our units fall from 42 at round 50 to 29 at round 100 (8 games) while theirs reach the cap. In one game the
+        head-ons were even (153 of ours died in them, 155 of theirs) but the drops were not. Of 103 head-ons in one game, their nearest other head was closer in 64:
+        they ate 162 of those drops, we ate 11. Where ours was closer (27) we ate 67 to their 21.
+  \item \textbf{Autarky}: alone we eat as much as they do (114 against 121 by round 100). We lose the fight for the middle
+        zone in the first 20 rounds, and then the map.
+\end{itemize}
+
+\section{The lane economy (maps under 1,100 tiles)}\label{sec:lanes}
+Ported from v-top\_team (their own ablation: without it they won 0.43 $\rightarrow$ 0.55 less against us, section~\ref{sec:whyelim}).
+All in \code{main.cpp} (\code{build_lanes}, \code{lane_food}, \code{play_lane_split}, \code{lane_run_food}); switches
+\code{LANE}, \code{LANE_AREA 1100}, \code{LANE_OUT}, \code{LANE_RELAY}, \code{LANE_RUN}, \code{LANE_IN_HOLD_ALL},
+\code{LANE_RELAY_FOOD 2}, \code{LANE_RUN_MIN 2}.
+\begin{itemize}
+  \item \textbf{Lanes.} Each turn a dragon peels the map it knows: a seen tile with at most one way on (kelp the other
+        sides; an edge it has not seen, or a portal whose far end it does not know, counts as a way on) is a dead end; take
+        it away and repeat. What comes off are 1-wide trees hanging off the rest by one edge, each tile with its depth.
+  \item \textbf{Food in a lane}: the most pearls along one path deeper, counting a pearl seen there in the last 30 rounds
+        and a bed due by the time a head would get there. A tile with another dragon on it (seen in the last 2 rounds)
+        ends the path and marks the lane busy.
+  \item \textbf{Walking in} (head deeper than neck): no routine split (the part kept would die at the end with more
+        segments). With nothing left ahead, all but the front 2 split off and walk out (\code{LANE_OUT}).
+  \item \textbf{Walking out with the tail in a lane facing deeper}: with 2 or more pearls behind and nobody in there, split
+        off 2 that walk back in (\code{LANE_RELAY}); with less, or somebody there, no routine split (its child would face
+        into it).
+  \item \textbf{Raids from 2 pearls}: a step deeper into a lane whose food brings us to 4 is a pocket raid
+        (\code{LANE_RUN_MIN 2}; other pockets keep \code{POCKET_MIN_PEARLS 3}). A portal pocket's pull counts its beds due
+        within 8 rounds. Never the queen (section~\ref{sec:queen272}).
+\end{itemize}
+\textbf{Effect.} Stripes alone, 100 rounds: lane entries 16--19 (was 12--15), pearls eaten in lanes 46--52 (33--41), in all
+97 (79; theirs 135). Against v-top\_team on Stripes (simulator, 32 games): 34\% (v27.1.0: 19\%; with the lane economy alone added, 41\%).
+
+\section{Splits in dead ends: the Weakhold regression}\label{sec:deadsplit}
+\textbf{What went wrong.} v27.0.0 let short dragons split in 1-wide corridors (\code{CORRIDOR_SPLIT_MAX_LENGTH 0}). On
+Weakhold, a map of 1-wide pockets of three beds, a worker of 2 walked into a pocket, reached 4 halfway in, split there,
+and the 2 it kept ate the last pearl and died at the end with 3 segments; whole teams wasted away like this. Simulator,
+32 games against v-top\_team (500 rounds): v27.1.0 was eliminated in 21 (v26.3.0: 3); real engine, 6 of 8.
+
+\textbf{The rules} (what the corridor block was for, tested directly; \code{main.cpp}):
+\begin{itemize}
+  \item \code{SPLIT_HOLD_DEAD_END}: when every step our head can take ends in a dead end (a closed region with no loop), a
+        worker splits only if the part it keeps can still split out at the far end (4 counting the pearls on the way).
+        Where the lane economy is on, walking into a lane holds the split instead (\code{SPLIT_HOLD_WITH_LANES false}).
+  \item \code{SPLIT_CHILD_ROOM}: no routine split whose child (born at our tail) would start in a trap: the region at our
+        tail closed and too small to turn in, or a dead end (searched 12 tiles past its length).
+\end{itemize}
+\begin{center}
+\begin{tabular}{lrr}
+  Weakhold, simulator, 32 games against v-top\_team & win & eliminated \\ \hline
+  v26.3.0 & 44\% & 3 \\
+  v27.1.0 & 31\% & 21 \\
+  v27.1.0 with the corridor block back & 41\% & 3 \\
+  v27.1.0 + the split rules & 38\% & 5 \\
+  v27.1.0 + the worker queen raids no pocket, alone & 22\% & 24 \\
+  \textbf{v27.2.0} & 22\% & \textbf{0} \\
+\end{tabular}
+\end{center}
+The eliminations are gone, but not the losses: on Weakhold the side that moves second does better for both bots
+(v-top\_team eats 680--700 as side B against our 490--510), and those games now go to round 500 and are lost on the longest
+dragon. Real engine: v27.1.0 2 of 8 (6 eliminated), v27.2.0 0 of 8 (1 eliminated); against v27.1.0, 6--2.
+
+\section{The queen}\label{sec:queen272}
+\begin{itemize}
+  \item \textbf{The worker queen raids no pocket} (\code{QUEEN_NO_RAID}; \code{queen.hpp} \code{keeps_queen_head}). On maps
+        under 1,100 tiles she plays as a worker (v27.0.0), and that included pocket raids, which by design end with the
+        raider's head dead in the pocket. On Weakhold she did this by round 27 in every game. Now, as for the protected
+        queen: no pocket plan, a trap costs her her life (\code{trap_cost}), and in a split escape she is the part that
+        lives (she detaches 2 and waits, \code{QUEEN_WAIT_SPLIT}; \code{endgame.hpp}).
+  \item \textbf{A sealed queen is not crowned} (\code{SEALED_QUEEN_NO_CROWN}, \code{QUEEN_SEALED_MAX 16}; \code{queen.hpp}
+        \code{sealed_at}, \code{crown_ok}). On Schooltime both queens start in a 2$\times$2 room of kelp and end at length
+        3: the queens tie and the longest dragon decides. Ours was crowned at round 380 all the same, so nobody else
+        became king and the feeders walked to a room they could not enter (real engine: 1 win in 8). Now a queen whose
+        every reachable tile is known and within 16 tiles does not stand, nobody offers her, and the king is elected as if
+        she were not there. Real engine, Schooltime: 2 of 8 (v27.1.0: 1).
+\end{itemize}
+
+\section{Larger maps: company before a ram, and the bed frontier}\label{sec:big272}
+\begin{itemize}
+  \item \textbf{On maps of 1,100 tiles or more} (\code{FIGHT_LOCAL_MIN_AREA}): a worker trades into an enemy head only with
+        at least as many of our heads as theirs within 3 tiles of it (\code{RAM_LOCAL}), and workers of length 8 or less
+        close on visible enemy heads longer than them, 500 a step (\code{HUNT_LONGER_PULL}). Both were v27.0.0 tests that
+        did nothing on the small maps. On Help (simulator, 8 games, 200 rounds) our units at round 100 went from 29 to 39
+        (theirs 64 $\rightarrow$ 57) and our pearls from 388 to 495 (theirs 779 $\rightarrow$ 740).
+  \item \textbf{The bed frontier} (\code{BED_FRONTIER_BONUS 4}, every map): a never-seen tile next to a bed we know is an
+        exploration objective at cost 4 instead of 8. Beds come in clusters, so the swarm explores round the ones it finds.
+\end{itemize}
+Simulator, 10 large maps, both sides, 500 rounds, against v-top\_team: without the bed frontier 42\% and 38\% (seeds 1--4
+and 5--8, 80 games each); with it 54\% and 46\%. On the real engine the large maps did not move (below).
+
+\section{Tried, and left off}\label{sec:v272tests}
+Simulator, against v-top\_team. All are switches in \code{Config}, off unless noted.
+\begin{center}
+\begin{tabular}{>{\raggedright\arraybackslash}p{9.2cm}>{\raggedright\arraybackslash}p{5.6cm}}
+  test & result \\ \hline
+  the worker queen starts no head-on (\code{QUEEN_WORKER_NO_TRADE}) & Weakhold 34\% (38\%) \\
+  the queen protected again from round 380 on small maps (\code{QUEEN_SMALL_UNTIL 380}) & Weakhold 34\% (38\%) \\
+  halving splits while the team is under half the unit limit, as theirs (\code{SPLIT_HALF}) & small maps 42\% (41\%) \\
+  lane raids from 3 pearls (\code{LANE_RUN_MIN 3}), relays from 3 & Weakhold 31--38\% (25\%), Stripes 28\% (41\%) \\
+  walking into a lane, split if the kept part can still split out (\code{LANE_IN_HOLD_ALL false}) & Prisoners Dilemma still lost \\
+  the endgame 50 rounds earlier (gather 330, sacrifice 350) & large maps 29\% (42\%), 15 eliminations (2) \\
+  on large maps: not fearing equal or longer heads (\code{FEAR_MODE 2}); their ram rule (\code{TOP_RAM 2}) & Help: little or no
+  change in units or food \\
+  bed frontier at 6 & large maps 47\% (bed frontier 4: 46\%) \\
+  scouts (\code{SCOUT_PERMIL 333}); rich spots over sonar (\code{RICH_SHARE}, mode 1) & small maps 39\% and 41\% (42\%) \\
+\end{tabular}
+\end{center}
+
+\section{Results}\label{sec:v272results}
+\textbf{Simulator} (against v-top\_team):
+\begin{itemize}
+  \item 13 small maps, seeds 1--16, both sides, 416 games: 44\% (v27.1.0: 45\%). Stripes 34\% (19\%), Default 47\%
+        (28\%), Tower Defense 94\% (84\%); Prisoners Dilemma 0\% (50\%). Prisoners Dilemma is the same game on every seed (the
+        simulator and the real engine play it move for move alike), so it counts as 2 games, not 32; any change to how the
+        first long dragon splits in its pocket turns our side-B win into a loss.
+  \item Weakhold (32 games, 500 rounds): eliminated in 0 (21).
+  \item 10 large maps (80 games, 500 rounds; two seed sets): 54\% and 46\% (v27.2.0 without the bed frontier: 42\% and 38\%).
+\end{itemize}
+\textbf{Real engine} (all 25 maps, seeds 1--4, both sides, 200 games each, nothing else running):
+\begin{itemize}
+  \item \textbf{Against v27.1.0: 111--89 (55.5\%).} Small maps 59\% (Autarky 8--0, Weakhold 6--2, Portals 6--2, Devil 6--2),
+        large maps 50\%. Queens alive 50 against 43.
+  \item \textbf{Against v26.3.0: 116--84} (v27.1.0: 115--85). Small maps 65\%, large maps 47.5\%.
+  \item \textbf{Against v-top\_team: 92.5--107.5} (v27.1.0: 99.5--100.5). Small maps 46\% (50\%), large maps 46\% (49\%).
+        Prisoners Dilemma 0 of 8 (4 of 8: the side-B game above, four times); Default 5 (2), Schooltime 2 (1), Help 3 (1);
+        Weakhold 0 (2), Trauma 6 (8). Autarky is still 0 of 8.
+\end{itemize}
+So v27.2.0 beats v27.1.0 head to head and keeps its margin over v26.3.0. Against v-top\_team it is 7 games lower over 200;
+4 of those are Prisoners Dilemma and the rest is within the luck of 200 games ($\pm$7). The lane economy and the dead-end
+split rules show their gain against v27.1.0 rather than against the bot they were taken from.
+
+\textbf{Not done.} Against v-top\_team: Autarky (the middle zone in the first 20 rounds), where their dragons go when no food
+is in view (Schooltime), and the drops after head-ons on open maps (Help, Islands).
+
+
+\part{v27.2.0 $\rightarrow$ v31.0.0: Leo's v30 as the base, the queen first; v40.0.0: one bot from six}
+
+\section{Why a new base}
+Leo's v30.0.0 plays move for move like v-top\_team. Against it v27.2.0 scores 46.6\% (116.5--133.5 over 250 games, both
+sides, on the test rig below); the user's own 250 games with v27.2.0 always as team A gave 112--137. v31.0.0 therefore
+starts from v30's code: \code{bots/New/current/bot-v31.0.0} is a copy of \code{bot-v30.0.0-leo} (it builds to the same
+program and plays the same games), and v31.0.0 changes two switches and one line of it.
+
+Where v30 loses to v27.2.0 is the queen. With v27.2.0 as team A, v30's queen was the shorter one at round 500 in 14 of 250
+games, v27.2.0's in 4: v27.2.0 crowns its queen on big maps and feeds her, v30's queen is never fed (on big maps she
+stays within 8 tiles of home and takes one step a turn).
+
+\section{What v31.0.0 changes}
+\begin{itemize}
+  \item \textbf{The queen is the king from round 250} (\code{QKING_FROM 250} in \code{tuning.hpp}; Leo's switch, 0 in v30). She
+        beacons as the king; from the guard round the short dragons stay round her, and from the feed round they give her
+        their bodies. A dragon that has not seen or heard her for 30 rounds (\code{QKING_SILENT}) goes back to the longest
+        dragon as its king.
+  \item \textbf{On big maps the crowned queen free-sprints} (\code{Q_KING_SPRINT}; \code{decide.hpp}, the free sprint). In v30
+        every dragon but the big-map queen takes the free steps its length gives it towards food in view; she always took
+        one. From the round she is crowned she sprints like the others. Her escape sprint, her leash to home and her other
+        rules stay as in v30.
+  \item \code{main.cpp}: the header comment names the version.
+\end{itemize}
+Files: \code{tuning.hpp}, \code{decide.hpp}, \code{main.cpp}.
+
+\section{The test rig}
+The games now run on the user's Mac, in the Cowork Linux virtual machine (4 cores), in \code{random/claude-tests/}: the
+official engine built from source (unswbc 1.2.7; a stand-in for \code{std::format}, which g++ 11 lacks), both bots
+compiled from the project folder, and \code{ubctest.py}, which plays every (map, seed) from both sides, runs as many
+games at once as memory allows (a $64\times64$ game needs about 1.2 GB: every dragon is a process) and resumes across the
+3-minute calls. 250 games against v27.2.0 take about 6 minutes, against v30 about 2.
+
+v27.2.0 plays the tests with its deadlines off (\code{BOT_UNLIMITED}). On that machine its turns use under a tenth of the
+budget on 97\% of turns and a deadline cut 0.002\% of them; with deadlines on, 9 of 250 games came out differently on a
+second run, with them off none do. Every game is then repeatable, so a variant and the base are compared game by game.
+
+\section{Results}
+\textbf{Against v27.2.0}: all 25 maps, seeds 1--10, both sides, 500 games each. ``Lost by'' counts the variant's losses;
+the last column, the games whose result changed against v30.
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.3cm}rrrrrrr}
+  & & \multicolumn{5}{c}{lost by} & changed \\
+  variant & score & elim. & q.\ dead & q.\ shorter & longest & total & + / -- \\ \hline
+  v30 & 280.5 (56.1\%) & 107 & 23 & 22 & 66 & 1 & \\
+  the queen king from 250 & 281.5 (56.3\%) & 107 & 23 & 23 & 65 & 0 & 19 / 18 \\
+  big-map queen sprints, all game & 294.5 (58.9\%) & 109 & 21 & 9 & 64 & 2 & 45 / 31 \\
+  \quad only with no enemy in view & 283.5 (56.7\%) & 107 & 25 & 16 & 66 & 2 & 31 / 28 \\
+  king from 300, sprints as king & 290.5 (58.1\%) & 107 & 23 & 9 & 70 & 0 & 22 / 12 \\
+  \textbf{v31.0.0}: king from 250, sprints as king & \textbf{298.5 (59.7\%)} & 107 & 24 & 6 & 64 & 0 & 27 / 9 \\
+\end{tabular}
+\normalsize
+\end{center}
+
+\textbf{Against v30} (that is, v-top\_team's play): seeds 1--10, both sides, 500 games each. v30 against itself scores
+exactly 50\%: each (map, seed) is the same game from both sides.
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{5.2cm}rcc}
+  & & \multicolumn{2}{c}{lost by (ours / theirs)} \\
+  variant & score & queen dead & queen shorter \\ \hline
+  the queen king from 250 & 268--232 (53.6\%) & 22 / 41 & 11 / 18 \\
+  big-map queen sprints, all game & 259--241 (51.8\%) & 30 / 24 & 2 / 24 \\
+  \quad only with no enemy in view & 259--241 (51.8\%) & 22 / 22 & 5 / 25 \\
+  king from 250, sprints all game & 260--240 (52.0\%) & 22 / 19 & 2 / 29 \\
+  king from 300, sprints as king & 265--235 (53.0\%) & 27 / 33 & 3 / 26 \\
+  \textbf{v31.0.0} & \textbf{265--235 (53.0\%)} & 27 / 27 & 1 / 28 \\
+\end{tabular}
+\normalsize
+\end{center}
+The queen king from 300 alone (no sprints): 392--358 (52.3\%) over 750 games.
+
+\textbf{The crowning round alone} against v27.2.0 (seeds 1--5, 250 games; v30: 134.5): 200: 138.5, 250: 139.5, 300: 138.5,
+350: 134.5, 400: 132.5, 430: 135.5, 450: 133.5, 470: 133.5. From 430 on almost no game changes (one at 470): the feeding
+has too little time left.
+
+\textbf{In the user's format} (v27.2.0 as team A, the v31 bot as team B; 250 games, seeds 1--10):
+\begin{center}
+\begin{tabular}{lcc}
+  & v30 & v31.0.0 \\ \hline
+  final A -- B & 114 -- 136 & 101 -- 149 \\
+  lost by elimination (A / B) & 72 / 53 & 72 / 53 \\
+  lost by queen (its queen dead) & 12 / 9 & 9 / 11 \\
+  lost by queen (its queen shorter) & 4 / 14 & 11 / 3 \\
+  lost by longest dragon & 45 / 37 & 54 / 34 \\
+  lost by total length & 3 / 1 & 3 / 0 \\
+\end{tabular}
+\end{center}
+
+\textbf{What it shows.}
+\begin{itemize}
+  \item Crowning alone hardly changes the games against v27.2.0 (which crowns its own queen) but beats v30, whose queen is
+        never fed.
+  \item Sprints are what make the crowned queen long. Sprinting all game, she died more often against v30 (30 against 24);
+        sprinting only once crowned, her deaths stay level (27 and 27) while her losses on a shorter queen against v27.2.0
+        fall from 22 to 6 of 500 (Trauma 12 $\rightarrow$ 5, Stronghold 6 $\rightarrow$ 0, Maze 3 $\rightarrow$ 1).
+  \item Eliminations do not move in any variant: these rules act late, on big maps.
+\end{itemize}
+
+\section{Tried, and left off}
+The crowning rounds 200, 300, 350, 400, 430, 450 and 470; big-map queen sprints all game, or only with no enemy in view;
+crowning from 250 with sprints all game (tables above). On v27.2.0, not shipped: the worker queen taking no fight goal
+(+1 in 250 games against v30) and the last dragon never starting a head-on (+0.5).
+
+\textbf{Not done.} v31.0.0 against other opponents (the panel in \code{battlecode-automation/panel.json}, older versions)
+and a \code{--sandbox} check; the queen's deaths (24 of 500 against v27.2.0: Maze 9, UNSW 6).
+
+\part{v31.0.0 $\rightarrow$ v40.0.0: one bot from six}
+
+\section{The brief, and the bots}
+Six bots were on the table: our v31.0.0 (Leo's v30.0.0 with the crowned queen), Leo's v30.6.0, the top team's v3.9f, our
+old line's v27.2.0, and two Codehammer-derived bots from the ladder, noobergamer (v73, rank 39) and cybers (v68, rank 26).
+v40.0.0 was to take what each does better and beat all of them, with one rule from the user: no map recognition, no
+per-map strategy and no map knowledge seeded at round 0 (the qualifier is played on new maps). Everything v40 does
+follows from what its dragons see.
+
+A round robin of the six on the Mac runner (all 25 maps, seeds 1--6, both sides, 300 games a pair, 4,500 games) set the
+baseline: v30.6.0 56.6\%, v31.0.0 56.2\%, top team 55.0\%, v27.2.0 46.3\%, noobergamer 40.1\%, cybers 39.7\%. The three
+top-team-family bots are even with each other (v31--v30.6: 49.3/50.7). Where they differ is by map: v31 loses Tower
+Defense (17\%), Trophy (23\%), Queen of Spades (33\%), Australia (27\%) and Maze (35\%); v30.6 loses Devil (38\%) and
+Australia (43\%). The Codehammer family wins exactly the maps the top-team family loses: v27.2.0 scores 94\% on Queen of
+Spades, 88\% on Tower Defense and 56\% on Trophy against the field.
+
+\section{Why the top-team family loses Tower Defense, Queen of Spades and Trophy}
+Every one of those losses is an elimination, and the death logs show two steps.
+
+\textbf{The start is barren and the food is elsewhere.} On Tower Defense the dragons start in towers of dead tiles
+rimmed with slow beds (gaps of up to 1,000 rounds); the food is in the central structure, 15--22 steps away through a
+one-wide exit. On Queen of Spades the start opens onto a corridor of 1--1,000-gap beds; the fast beds (gap 1--50) sit in
+two walled pens. On Trophy the fast beds are in the cup. v30's navigation prices a known pearl at its arrival time and
+unseen water at depth $+3$, so a pearl due in 5--12 rounds at home always beats the exit 20 steps away. A dragon in the
+tower takes one trickle pearl, replans, and takes the next; the whole team stays home. v31 eats 3--9 pearls by round 100
+on Tower Defense; v27.2.0, whose workers disperse to unexplored 7$\times$7 blocks from round 0 and share rich spots by
+sonar, eats 80.
+
+\textbf{Then the swarm trades heads.} v27.2.0 values one of its units at 2 segments and one of ours at 3, so it rams any
+enemy no longer than itself from its third unit on (noobergamer doubles the aggression). v30's threat model assumes an
+enemy rams only when it gains length, so an equal-length enemy is no threat at all. Against two to five dragons that
+never grew, a few even trades are an elimination.
+
+\section{What v40.0.0 is}
+\code{bots/New/current/bot-v40.0.0} starts from \code{bot-v30.6.0-leo} (Leo's right of way, the top team's opening and
+queen rules) and adds, every switch in \code{tuning.hpp} (a \code{-DV40_X=value} build sets one for a test):
+\begin{itemize}
+  \item \textbf{v31's crown on every map} (\code{QKING_FROM 250}, \code{QKING_AREA 0}, \code{QKING_SILENT 30},
+        \code{Q_KING_SPRINT}): the queen is the king from round 250 and the crowned big-map queen free-sprints.
+  \item \textbf{FORAGE} (\code{navigate.hpp}): poor water is fewer than 4 pearls due within 40 rounds per 100 known tiles
+        in the 17$\times$17 square round the head (maps under 1,100 tiles, before round 380). In poor water unseen water
+        is worth 10 steps of the way (its cost is depth $+3-10$ instead of depth $+3$, half of that for water not looked
+        at for 70 rounds) and the route search looks 10 steps deeper before it settles for the cheapest goal. A known
+        pearl keeps its price (its arrival time), so the dragon still takes a pearl due in 3 rounds next door, but no
+        longer walks 12 steps for one due in 12 while unseen water lies 15 steps away; and a route to unseen water is
+        kept against a new goal by 6 instead of 2 (\code{FORAGE_STICK}). Food in view is eaten as before.
+  \item \textbf{QHUNT} (the top team's late queen hunt, \code{decide.hpp}, \code{perceive.hpp}): from round 250 a dragon
+        that sees their queen's head beacons her tile (a kind-1 beacon with id 1, relayed like the long-enemy beacon);
+        every dragon keeps her last known tile for 60 rounds, drops it when the spot is in view and empty, and dragons of
+        at most 8 segments go for it while our king is at least as long as the longest enemy seen lately, so that her
+        death wins the tiebreak. v30 already rammed her at any price once in view.
+\end{itemize}
+
+\section{The test rig}
+The Mac runner (\code{random/claude-tests/mac/runner.py}): a queue of build and match jobs played by the official engine
+on all 14 cores, bots compiled with clang (libc++, which is what the judge compiles to wasm; v27.2.0-line bots play
+different games under GCC's libstdc++: 36 of 100 identical), 14 games at once, 2.25 games a second. Candidates are
+compared with v31 game by game on the same seeds (\code{panel.py sum NAME --base v31}); all opponents are deterministic
+but noobergamer and cybers, which think by the clock and rarely differ.
+
+\section{Results}
+\textbf{Candidates} (all 25 maps, seeds 1--4, both sides, 200 games a pair, clang builds). ``Five'' is the mean score
+against the five bots other than v31; the losses are counted over those 1,000 games; ``+ / --'' counts the games won /
+lost that v31 lost / won on the same (map, seed, side). v31 itself against the five: 54.6\%.
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.6cm}rrrrrrrrrrrr}
+  & \multicolumn{6}{c}{score against} & & \multicolumn{4}{c}{lost by} & \\
+variant & v31 & v306 & top39f & v272u & noober & cybers & five & elim. & q.\ dead & q.\ shorter & longest & + / -- \\ \hline
+  v31 & -- & 51 & 50 & 54 & 59 & 59 & \textbf{54.6} & 214 & 67 & 12 & 156 &  \\
+  v40 base (v30.6 + crown) & 51 & 52 & 51 & 53 & 64 & 64 & \textbf{56.6} & 200 & 66 & 11 & 153 & 136 / 116 \\
+  + FORAGE & 57 & 54 & 54 & 55 & 63 & 62 & \textbf{57.5} & 187 & 71 & 10 & 154 & 136 / 107 \\
+  + FORAGE + EVEN 3 & 46 & 46 & 50 & 54 & 58 & 60 & \textbf{53.4} & 231 & 60 & 12 & 163 & 167 / 180 \\
+  + FORAGE scouts + EVEN, teams of at most 6 & 48 & 47 & 49 & 56 & 62 & 63 & \textbf{55.4} & 214 & 68 & 9 & 154 & 158 / 151 \\
+  + FORAGE scouts, trickle pearls no goal & 50 & 50 & 54 & 55 & 63 & 63 & \textbf{56.8} & 204 & 72 & 9 & 147 & 151 / 130 \\
+  + FORAGE, right of way off & 54 & 50 & 52 & 56 & 67 & 65 & \textbf{58.2} & 192 & 71 & 9 & 145 & 134 / 98 \\
+  + FORAGE + QHUNT (= v40.0.0) & 55 & 52 & 54 & 55 & 64 & 64 & \textbf{57.6} & 187 & 70 & 9 & 155 & 160 / 130 \\
+\end{tabular}
+\normalsize
+\end{center}
+\begin{itemize}
+  \item \textbf{the base} (v30.6 + the crown everywhere + sprint) gains 2 points on v31: it inherits v30.6's wins on
+        Tower Defense, Trophy and Australia and v31's late queen; it also inherits v30.6's Devil (78 $\rightarrow$ 46\%).
+  \item \textbf{FORAGE} adds another point and moves the four target maps: Tower Defense 15 $\rightarrow$ 44\%, Trophy 22
+        $\rightarrow$ 42, Queen of Spades 32 $\rightarrow$ 46, Queen of Spades but she ages 32 $\rightarrow$ 54 (and Default
+        38 $\rightarrow$ 52, Islands 40 $\rightarrow$ 56). Against the top-team family those maps are now won (Tower Defense
+        7--1 against v31, Queen of Spades but she ages 8--0 against the top team); against the Codehammer family they are
+        still lost by elimination (0--8 against v27.2.0 on Queen of Spades): the swarm's head-on trades remain.
+  \item \textbf{EVEN}, the cure for the trades, costs more than it saves everywhere: 4 points against the top-team family,
+        and even 2--3 against noobergamer and cybers. Keeping out of an equal dragon's reach means keeping away from
+        contested pearls, and on these maps the pearls are the game. Restricted to teams of at most 6 dragons
+        (\code{EVEN_UNITS}) it still costs 3 points against the top-team family: the opening is where those games are
+        decided. It stays in the code, off.
+  \item \textbf{Scout destinations} (half the dragons head for unseen 7$\times$7 blocks from a sequence keyed by their id,
+        and a trickle pearl is no goal in poor water, as v27.2.0 does) won Queen of Spades and Trophy against v27.2.0 in
+        single simulator games but lost a point on the panel, 7 against v31 and 4 against v30.6: dragons walking to far
+        blocks do not eat. The simple bonus ships; the destinations stay in the code, off.
+  \item \textbf{Right of way off} gains 3 against noobergamer and cybers and loses 4 against v30.6 and 2 against the
+        top team; Devil only comes back to 54\%. Leo's rule stays on.
+  \item \textbf{QHUNT} is neutral on the panel (57.6 against 57.5, the same losses by every condition) and kills their
+        queen in 5.4\% of games instead of 3.9\%. It ships on.
+\end{itemize}
+
+\textbf{Validation on fresh seeds}: the shipped build (no flags) against all six bots on seeds 7--12 (unused in any
+tuning), 300 games a pair, 1,800 games; v31 on the same seeds against the five for comparison.
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.6cm}rrrrrrrrrrrr}
+  & \multicolumn{6}{c}{score against} & & \multicolumn{4}{c}{lost by} & \\
+variant & v31 & v306 & top39f & v272u & noober & cybers & five & elim. & q.\ dead & q.\ shorter & longest & + / -- \\ \hline
+  v31 & -- & 50 & 52 & 61 & 62 & 61 & \textbf{57.1} & 303 & 78 & 15 & 244 &  \\
+  v40.0.0 & 55 & 54 & 55 & 57 & 65 & 66 & \textbf{59.4} & 298 & 69 & 15 & 222 & 212 / 177 \\
+\end{tabular}
+\normalsize
+\end{center}
+
+
+\textbf{By map} (seeds 7--12, both bots against the five other opponents, 60 games a map each):
+\begin{center}
+\small
+\begin{tabular}{lrrr}
+  map & v31 & v40.0.0 & diff \\ \hline
+Colosseum & 65 & 65 & +0 \\
+  arena & 68 & 70 & +2 \\
+  australia & 37 & 33 & -3 \\
+  autarky & 72 & 72 & +0 \\
+  big\_empty & 53 & 60 & +7 \\
+  default & 70 & 63 & -7 \\
+  default\_small & 72 & 75 & +3 \\
+  devil & 53 & 50 & -3 \\
+  dilemma & 73 & 80 & +7 \\
+  help & 62 & 72 & +10 \\
+  islands & 53 & 53 & +0 \\
+  maze & 52 & 52 & +0 \\
+  portals & 62 & 62 & +0 \\
+  queen\_of\_spades & 33 & 52 & +18 \\
+  queen\_of\_spades\_but\_she\_ages & 20 & 30 & +10 \\
+  schooltime & 45 & 45 & +0 \\
+  slithery\_fight & 60 & 68 & +8 \\
+  small & 77 & 77 & +0 \\
+  stripes & 68 & 73 & +5 \\
+  stronghold & 83 & 88 & +5 \\
+  tower\_defense & 20 & 32 & +12 \\
+  trauma & 72 & 67 & -5 \\
+  trophy & 55 & 45 & -10 \\
+  unsw & 48 & 48 & +0 \\
+  weakhold & 53 & 53 & +0 \\
+\end{tabular}
+\normalsize
+\end{center}
+
+\textbf{What it shows.}
+\begin{itemize}
+  \item On seeds it was never tuned on, v40.0.0 scores 59.4\% against the five (v31: 57.1) and 55\% against v31 itself;
+        game by game it turns 212 of v31's losses into wins and 177 of its wins into losses. Every loss category is equal
+        or better: eliminations 298 against 303, queen dead 69 against 78, queen shorter 15 against 15, longest dragon
+        222 against 244.
+  \item The gains are against the top-team family (+4, +3), noobergamer (+3) and cybers (+5); against v27.2.0 v40 is
+        4 points worse on these seeds and 1 better on seeds 1--4: our old line is the one opponent it does not beat more
+        than v31 does. Its specialities, Queen of Spades (0--8 against it on seeds 1--4) and Tower Defense, are still its.
+  \item By map the four targets move the most (Queen of Spades +18, Tower Defense +12, Queen of Spades but she ages
+        +10); Trophy is $-10$ on these seeds after $+19$ on seeds 1--4, so call it even; 60 games a map is $\pm13$ points.
+\end{itemize}
+
+
+\section{Tried, and left off}
+EVEN (always, and only while the team has at most 6 dragons), the scout destinations with trickle pearls excluded
+(tables above); SWARM (an outnumbered dragon takes every enemy for a rammer; queued and cancelled for time, so not measured);
+the poor-water threshold at 8 instead of 4 pearls per 100 tiles (simulator: Default's economy collapses, 16 pearls by round
+100 against v31's 58); \code{FORAGE_W} 15 (54 / 51 / 52 against v31 / v30.6 / the top team, W 10: 57 / 54 / 54). Not done: the crown without the sprint on small maps (cancelled for
+time); a \code{--sandbox} run of the final bot (the user's Mac has the toolkit); Tower Defense itself, where v40 still
+loses to the Codehammer family (the towers' one-wide exits, friends in the way) and Devil, where v30.6's economy stalls
+with or without right of way.
+
+
+\end{document}

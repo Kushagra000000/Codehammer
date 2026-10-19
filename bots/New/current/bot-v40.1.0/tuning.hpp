@@ -1,0 +1,503 @@
+// v30 tuning constants (one place for every number the strategy uses)
+#pragma once
+
+// ---- v40.1.0 build-time overrides
+#ifndef V41_PORTAL_EARLY
+#define V41_PORTAL_EARLY 120
+#endif
+#ifndef V41_PORTAL_EARLY_LEN
+#define V41_PORTAL_EARLY_LEN 8
+#endif
+#ifndef V41_PORTAL_EARLY_AREA
+#define V41_PORTAL_EARLY_AREA 1100
+#endif
+#ifndef V41_QPORTAL_HARD
+#define V41_QPORTAL_HARD true
+#endif
+#ifndef V41_PORTAL_EARLY_COST
+#define V41_PORTAL_EARLY_COST -5
+#endif
+#ifndef V41_FARM
+#define V41_FARM true
+#endif
+#ifndef V41_FARM_MIN_EAT
+#define V41_FARM_MIN_EAT 1
+#endif
+#ifndef V41_FARM_GAP
+#define V41_FARM_GAP 30
+#endif
+#ifndef V41_FARM_FOUNT
+#define V41_FARM_FOUNT 4
+#endif
+#ifndef V41_QPATH_W
+#define V41_QPATH_W 3
+#endif
+#ifndef V41_MAJ_HUNT
+#define V41_MAJ_HUNT true
+#endif
+#ifndef V41_MAJ_MAXLEN
+#define V41_MAJ_MAXLEN 6
+#endif
+#ifndef V41_MAJ_MARGIN
+#define V41_MAJ_MARGIN 0
+#endif
+#ifndef V41_MAJ_RAM_DOWN
+#define V41_MAJ_RAM_DOWN 2
+#endif
+// ---- v40.0.0 build-time overrides: -DV40_X=value sets switch X for a test build; the values here are v40.0.0's
+#ifndef V40_QKING_FROM
+#define V40_QKING_FROM 250
+#endif
+#ifndef V40_QKING_SILENT
+#define V40_QKING_SILENT 30
+#endif
+#ifndef V40_QKING_AREA
+#define V40_QKING_AREA 0
+#endif
+#ifndef V40_QKING_FEED_LONGER
+#define V40_QKING_FEED_LONGER true
+#endif
+#ifndef V40_QGUARD
+#define V40_QGUARD 0
+#endif
+#ifndef V40_QG2_W
+#define V40_QG2_W 0
+#endif
+#ifndef V40_QFLEE_W
+#define V40_QFLEE_W 0
+#endif
+#ifndef V40_SE_ROUNDS
+#define V40_SE_ROUNDS 0
+#endif
+#ifndef V40_ROW
+#define V40_ROW true
+#endif
+#ifndef V40_OE_W
+#define V40_OE_W 36
+#endif
+#ifndef V40_LATE_KEEP
+#define V40_LATE_KEEP 420
+#endif
+#ifndef V40_QNR_SMALL
+#define V40_QNR_SMALL false
+#endif
+#ifndef V40_QQRAM
+#define V40_QQRAM false
+#endif
+#ifndef V40_Q_KING_SPRINT
+#define V40_Q_KING_SPRINT true
+#endif
+#ifndef V40_FORAGE_W
+#define V40_FORAGE_W 10
+#endif
+#ifndef V40_FORAGE_T
+#define V40_FORAGE_T 4
+#endif
+#ifndef V40_FORAGE_R
+#define V40_FORAGE_R 8
+#endif
+#ifndef V40_FORAGE_DUE
+#define V40_FORAGE_DUE 40
+#endif
+#ifndef V40_FORAGE_MIN
+#define V40_FORAGE_MIN 40
+#endif
+#ifndef V40_FORAGE_AREA
+#define V40_FORAGE_AREA 1100
+#endif
+#ifndef V40_FORAGE_UNTIL
+#define V40_FORAGE_UNTIL 380
+#endif
+#ifndef V40_FORAGE_FREE
+#define V40_FORAGE_FREE 0
+#endif
+#ifndef V40_FORAGE_DEST
+#define V40_FORAGE_DEST false
+#endif
+#ifndef V40_FORAGE_SCOUT_MOD
+#define V40_FORAGE_SCOUT_MOD 2
+#endif
+#ifndef V40_FORAGE_GIVEUP
+#define V40_FORAGE_GIVEUP 3
+#endif
+#ifndef V40_FORAGE_PATIENCE
+#define V40_FORAGE_PATIENCE 5
+#endif
+#ifndef V40_FORAGE_STICK
+#define V40_FORAGE_STICK 6
+#endif
+#ifndef V40_EVEN_STAKE
+#define V40_EVEN_STAKE 0
+#endif
+#ifndef V40_QHUNT
+#define V40_QHUNT true
+#endif
+#ifndef V40_Q_HUNT_FROM
+#define V40_Q_HUNT_FROM 250
+#endif
+#ifndef V40_Q_HUNT_MAXLEN
+#define V40_Q_HUNT_MAXLEN 8
+#endif
+#ifndef V40_Q_HUNT_MEM
+#define V40_Q_HUNT_MEM 60
+#endif
+#ifndef V40_Q_HUNT_LEAD
+#define V40_Q_HUNT_LEAD true
+#endif
+#ifndef V40_OE_NR
+#define V40_OE_NR 50
+#endif
+#ifndef V40_OE_DECAY
+#define V40_OE_DECAY true
+#endif
+#ifndef V40_Q_TUNNEL
+#define V40_Q_TUNNEL 1
+#endif
+#ifndef V40_QNOLANE
+#define V40_QNOLANE true
+#endif
+#ifndef V40_QNOPOCKET_RUN
+#define V40_QNOPOCKET_RUN true
+#endif
+#ifndef V40_Q_NOFEED
+#define V40_Q_NOFEED true
+#endif
+#ifndef V40_EVEN_UNITS
+#define V40_EVEN_UNITS 0
+#endif
+#ifndef V40_EVEN_FORAGE
+#define V40_EVEN_FORAGE false
+#endif
+#ifndef V40_SWARM_STAKE
+#define V40_SWARM_STAKE 0
+#endif
+
+namespace v30::cfg
+{
+
+    // ---- splitting and the game clock
+    constexpr int SPLIT_MIN = 4; // shortest dragon that splits
+    constexpr int BUD = 2;       // child length once the team is past half the unit limit
+    constexpr int LATE = 380;    // from here a dragon at least half the king's length stops splitting
+    constexpr int STOP_SPLIT = 440;
+    constexpr int BANK = 460; // last rounds: long dragons play safe
+    constexpr int BANK_LEN = 12;
+    constexpr double BANK_SAFETY = 3.0;
+    constexpr int GUARD = 300;      // short dragons stay near the king from here
+    constexpr int FEED = 330;       // short dragons feed themselves to the king from here
+    constexpr int BEACON = 300;     // the king announces itself from here
+    constexpr int KING_SPLIT = 350; // the king stops splitting from here
+    constexpr int CAP_MARGIN = 12;  // near the unit cap the longest stop splitting
+    constexpr int CAP_ROUND = 100;
+    // early economy: a big team that has not met the enemy starts the late game sooner
+    constexpr int EARLY = 260;
+    constexpr int EARLY_UNITS = 30;
+    constexpr int EARLY_FEED = 20;
+    constexpr int EARLY_LATE = 20;
+    constexpr int SEP_ROUND = 200;
+    constexpr double SEP_T = 0.003;
+    // nobody around for long: the game goes the distance
+    constexpr int QUIET_ROUND = 150;
+    constexpr int QUIET_GAP = 60;
+    constexpr int QUIET_FEED_EARLY = 50;
+    constexpr int QUIET_UNITS = 12;
+    // the contact clock (the team's rate of meeting the enemy)
+    constexpr int REG_R = 3;
+    constexpr int REG_WIN = 60;
+    constexpr double REG_A = 0.2;
+    constexpr double REG_T = 0.01;
+    constexpr double REG_OPEN = 0.01;
+    constexpr int REG_FROM = 260;
+    constexpr int REG_GUARD = 440;
+    constexpr int REG_BEACON = 330;
+    constexpr int REG_FEED = 450;
+    constexpr int REG_KSPLIT = 370;
+    constexpr int REG_LATE = 499;
+    constexpr int REG_STOP = 499;
+    constexpr int REG_KLEN = 4;
+
+    // ---- king, guards, feeding
+    constexpr int BEACON_LEN = 5;
+    constexpr int BEACON_RELAY = 3;
+    constexpr int KING_FRESH = 20;
+    constexpr int FEED_FRESH = 4;
+    constexpr int HUNGRY = 30;
+    constexpr int KING_HUNGRY = 12;
+    constexpr int GUARD_KING = 10; // a friend this long (in view) is worth guarding
+    constexpr int GUARD_MAXLEN = 6;
+    constexpr double GUARD_W = 0.6;
+    constexpr double GUARD_FOOD = 0.1; // a pearl next to the king is the king's
+    constexpr int GUARD_MEM = 40;
+    constexpr int GUARD_MEM_BONUS = 8;
+    constexpr int GUARD_NAV_CAP = 400;
+    constexpr double KING_STAY_W = 0.3;
+    constexpr double KING_SPACE = 0.3;
+    constexpr int FEED_LATE = 440;
+    constexpr int FEED_DIST = 4;
+    constexpr double FEED_RATIO = 2.0;
+    constexpr int FEED_KING_MIN = 4;
+    constexpr int FEED_KING_MARGIN = 3;
+    constexpr int FEED_KING_MARGIN_LEN = 6;
+    constexpr int HUNT_ROUND = 350;
+    constexpr int HUNT_SEG = 8;
+    constexpr int HUNT_MAXLEN = 3;
+    constexpr int HUNT_MEM = 12;
+
+    // ---- fighting
+    constexpr int FIGHT_MAX_LEN = 8;   // trap kills: lengths 3..this
+    constexpr int RAM_DOWN_MAXLEN = 4; // a dragon this short rams an enemy one shorter (with friends)
+    constexpr int EVEN_MARGIN = 0;     // even / down trades need friends in view > enemies - 1 + this
+    constexpr int REACH_CAP = 6;
+    constexpr double KEEP1 = 0.35;
+    constexpr double KEEP2 = 0.2;
+    constexpr double THREAT_W = 1.5;
+    constexpr double HUNT_W = 0.5;
+    constexpr int THREAT_OUTNUM_MAXLEN = 8;
+    constexpr int LATE_KILL = 440;
+    constexpr int ELEN_MEMORY = 10;
+    constexpr int ESC_LEN = 8;
+    constexpr double ESC_PEN = 12.0;
+    constexpr int ESC_TAIL = 2;
+    constexpr int ESC_ROOM = 24;
+    constexpr int BOXED_REV_AFTER = 2;
+    constexpr int BOXED_REV_LEN = 10;
+
+    // ---- the queen on big maps
+    constexpr double Q_AREA = 1100;
+    constexpr double Q_SAFE = 200;
+    constexpr int Q_SPLIT = 20;
+    constexpr int Q_KEEP = 5;
+    constexpr int Q_ESC = 8;
+    constexpr double Q_ESC_COST = 2.0;
+    constexpr int Q_JAM = 5;
+    constexpr double Q_EXIT = 3;
+    constexpr int Q_HOME = 8;
+    constexpr double Q_HOME_W = 0.7;
+
+    // ---- moving
+    constexpr double SOFT_W = 4.0;
+    constexpr double SAFE0 = 1.5;
+    constexpr double POCKET_L2 = 0.02;
+    constexpr int SURV_CAP = 80;
+    constexpr int SURV_NODES = 220;
+    constexpr int WORK = 550;
+    constexpr int POCKET_MIN = 2;
+    constexpr double POCKET_RUN_COST = 2.5;
+    constexpr int POCKET_MEM_AGE = 30;
+    constexpr int FOUNT_CD = 2;
+    constexpr double FOUNT_W = 1.0;
+    constexpr int FOUNT_PKMIN = 3;
+    constexpr int FOUNT_MAXLEN = 6;
+    constexpr double TERR_FOOD = 0.5;
+    constexpr double TERR_W = 2.0;
+    constexpr double SPACE_W = 3.0;
+    constexpr double PORTAL_CLEAR_LONG = 0.4;
+    constexpr int PORTAL_CLEAR_LEN = 4;
+    constexpr double NAV_GATE = 0.06;
+    constexpr int GOAL_BAN = 30;
+    constexpr int LANE_RELAY_F = 2;
+    constexpr int LANE_OCC_MEM = 2;
+    constexpr double LANE_AREA = 1100;
+
+    // ---- navigation
+    constexpr int RUSH_ROUND = 40;
+    constexpr int RUSH_POOR = 2;
+    constexpr int RUSH_DUE = 30;
+    constexpr double RUSH_SHARE = 0.5;
+    constexpr int RUSH_MAXD = 20;
+    constexpr double RUSH_W = 3.0;
+    constexpr int RUSH_CAP = 600;
+    constexpr int RUSH_WAIT = 2;
+    constexpr int REVISIT = 70;
+    constexpr int UNSEEN_COST = 3;
+    constexpr int EXPLORE_REDRAW = 60;
+    constexpr int NAV_MAX = 1000;
+    constexpr int NAV_RATE = 120;
+    constexpr int NAV_MIN = 200;
+    constexpr int KING_NAV_CAP = 600;
+    constexpr int ROUTE_AGE = 15;
+    constexpr int ROUTE_SLACK = 6;
+    constexpr double ROUTE_STICK = 2.0;
+    constexpr int BLIND_COST = 5;
+    constexpr int PORTAL_STEP = 2;
+    constexpr double PORTAL_HOLD_W = 0.3;
+    constexpr int OE_ROUND = 50; // the opening's pull to the centre (small maps)
+    constexpr double OE_W = V40_OE_W;
+    constexpr double OE_R = 0.5;
+    constexpr int OE_BMIN = 12;
+    constexpr double OE_BFRAC = 0.3;
+    constexpr double OE_AREA = 1100;         // ... on maps smaller than this
+    constexpr int SE_ROUNDS = V40_SE_ROUNDS; // starving (no pearl for this many rounds): stale tiles are no goal, search wider (0: off)
+    constexpr int SE_CAP = 1500;             // ... navigation node budget while starving
+    constexpr bool QOPEN_HOME = false;       // the queen neither rushes the centre nor feels the opening's pull
+    constexpr int OE_STARVE = 0;             // a dragon that has not eaten for this many rounds stops feeling the pull (0: off)
+    constexpr int OE_MOD = 1;
+    // (from Sabotage-d's 7 Oct play) the pull fades linearly from OE_W at round 0 to nothing at OE_ROUND
+    constexpr bool OE_DECAY = V40_OE_DECAY;
+    // two starters a side (and a map of OE_NR_AREA+ tiles): the one that is not the queen, 3+ long at round 0, feels no
+    // pull before round OE_NR - it explores while the queen goes for the middle (0: off)
+    constexpr int OE_NR = V40_OE_NR;
+    constexpr double OE_NR_AREA = 400;
+    // small maps (< Q_TUNNEL_AREA tiles): the queen pays Q_TUNNEL for a step into a 1-wide corridor with food in it that
+    // runs out of her sight (or is Q_TUNNEL_MIN+ tiles long): bait for a queen, a dragon coming the other way kills her
+    constexpr double Q_TUNNEL = V40_Q_TUNNEL;
+    constexpr int Q_TUNNEL_MIN = 99;
+    constexpr double Q_TUNNEL_AREA = 1100;
+    constexpr bool Q_NOFEED = V40_Q_NOFEED; // the queen never feeds the king                 // only dragons with (id >> 1) % OE_MOD == 0 feel it (1: all)
+
+    // ---- experiments (0 / false: off - the base plays as described above)
+    constexpr bool DEBUG_WHY = false;          // INDICATOR line with the reason for each action (analysis builds)
+    constexpr bool KEEP_POCKET_MEM = false;    // dead-end pearls stay in memory (still not in-view food)
+    constexpr int QKING_FROM = V40_QKING_FROM; // from this round our queen is the king, whatever her length (0: off)
+    constexpr int QKING_SILENT = V40_QKING_SILENT;
+    constexpr double QKING_AREA = V40_QKING_AREA;             // the crown only on maps of at least this many tiles (0: every map)
+    constexpr bool QKING_FEED_LONGER = V40_QKING_FEED_LONGER; // under the crown, dragons longer than the queen feed her too (false: only shorter ones)          // ... unless nobody has seen or heard her for this long
+    constexpr double FOUNT_NAV = V41_FARM_FOUNT;              // v40.1.0 FARM: navigation bonus for a known fountain or fast bed (0: off; v40: 0)
+    // food scarcity: the share of tiles first seen that hold a pearl or are due within SCARCE_DUE rounds. Below
+    // SCARCE_T (once SCARCE_MIN tiles are seen) dragons chase farther pearls and explore less
+    constexpr double SCARCE_T = 0; // (0: off)
+    constexpr int SCARCE_DUE = 100;
+    constexpr int SCARCE_MIN = 100;
+    constexpr double SCARCE_GATE = 0.015;             // NAV_GATE while scarce
+    constexpr int SCARCE_UNSEEN = 8;                  // UNSEEN_COST while scarce
+    constexpr bool QNOPOCKET_RUN = V40_QNOPOCKET_RUN; // the queen never takes a harvest run into a dead end (her split-escape leaves her inside)
+    constexpr double OWP = 0;                         // one-way passages: penalty for entering a 1-wide passage against its direction
+                                                      // (vertical: even column north, odd south; horizontal: even row east, odd west)
+    constexpr bool OWP_QUEEN_ONLY = false;
+    constexpr double CY = 0;              // corridor yield: penalty for stepping into a 1-wide passage a friend's head is coming down
+    constexpr bool CY_QUEEN_ONLY = false; // ... for the queen only
+    constexpr int BIGCLK = 0;             // big maps: the contact clock's guard / feed / beacon / king-split rounds this much sooner
+    constexpr double BIGCLK_AREA = 1100;
+    constexpr double QSAFE_SMALL = 0;         // small maps: the queen prices every enemy head's reach at this stake
+    constexpr bool QNR_SMALL = V40_QNR_SMALL; // small maps: the queen never rams or traps
+    constexpr bool QESC_SMALL = false;        // small maps: the queen's escape sprint
+    constexpr double QGUARD = V40_QGUARD;     // small maps: the queen's penalty for ending inside an enemy head's ram reach
+    constexpr int QGUARD_CAP = 8;             // ... reach counted up to this many steps
+    // small maps, graded guard for the queen: for each enemy head that would see her there, a tile inside the reach of
+    // its seen length costs QG2_W * (1 + steps to spare), inside only its estimated reach or one step past it QG2_W / 2;
+    // summed over enemies, so with every step threatened she takes the least threatened one (0: off)
+    constexpr double QG2_W = V40_QG2_W;
+    constexpr double QG2_HALO = 0.5; // ... share of QG2_W inside only the estimated reach or one step past it
+    // small maps: our queen rams the enemy queen at any price, as the workers do (a queen trade), even when she otherwise
+    // never rams (QNR_SMALL)
+    constexpr bool QQRAM = V40_QQRAM;
+    // small maps: with an enemy head in view, the queen's step is worth QFLEE_W per tile it adds to her distance from the
+    // nearest one (and costs as much per tile it takes away): the top teams' queens step away ~75% of the time, ours ~50%
+    constexpr double QFLEE_W = V40_QFLEE_W;
+    constexpr double QFLEE_CROWD = 0; // ... and this much per enemy head within 3 steps of where she ends (minus where she is)
+    constexpr double QPORTAL_PEN = 0; // small maps: the queen's cost of a portal step (twice that through an unseen one)
+    constexpr bool QSPLIT_SAFE = false;
+    // right of way among our own dragons (ROW). Priority: our queen; then a dragon longer than ROW_LONG_SMALL (maps of
+    // at most ROW_SMALL_AREA tiles) / ROW_LONG_BIG (larger) - it assumes it is the longest; then the longer by what is seen
+    // in view or heard by sonar (a right-of-way packet a dragon in a jam sends straight at the friend); then the lower id.
+    // A dragon does not step onto a 1-wide passage ahead of a friend with priority (or next to its head there). When
+    // boxed in, the queen stalls (SPLIT 2) and calls "stuck" on all four sonars; a friend whose segment blocks her and
+    // would not free up on its next move dies against kelp (never into a head); a boxed worker in the way of a friend
+    // with priority dies instead of stalling.
+    constexpr bool ROW = V40_ROW;
+    constexpr double ROW_AREA_MAX = 1100; // ... only on maps smaller than this many tiles (0: every map)
+    // small maps: the queen never walks deeper into a lane (a dead-end farming corridor) and never makes the lane-out
+    // split (it leaves her, the head end, inside)
+    constexpr bool QNOLANE = V40_QNOLANE;
+    constexpr int QNEED = 0;
+    // one-way portals for our team: a step through a portal from the higher-numbered tile to the lower costs this much,
+    // so our dragons do not cross the same portal from both ends at once and meet head-on on the unseen side (0: off)
+    constexpr double OWPORT_W = 0;
+    // a step through a portal lands on a tile out of sight: priced as risk = p(round) x (length + PRISK_BASE) x PRISK_W,
+    // p rising from PRISK_EARLY (to round 40) to PRISK_LATE (from round 150) - about how often such a tile holds a body
+    // (on Portals ~10% of our crossings ended head-on with a friend) (0: off)
+    constexpr double PRISK_W = 0;
+    constexpr double PRISK_BASE = 4;
+    constexpr double PRISK_EARLY = 0.08;
+    constexpr double PRISK_LATE = 0.2; // small maps: the queen's steps must leave her at least this many moves (0: as v30)
+    constexpr double ROW_SMALL_AREA = 256;
+    constexpr int ROW_LONG_SMALL = 8;
+    constexpr int ROW_LONG_BIG = 15;
+    constexpr double ROW_W = 5.0; // cost of stepping onto the passage ahead of a friend with priority
+    constexpr int ROW_AHEAD = 5;  // ... tiles of 1-wide passage followed ahead of its head       // small maps: the queen does not split (stand still) while an enemy head can reach her
+    // from this round (whatever the contact clock says) a dragon at least half the king's length stops splitting: under
+    // the clock's "everything late" setting (REG_LATE 499) the second-longest dragon - or the king's own tail after an
+    // escape split, still hearing the old king's beacon - otherwise sheds a bud every turn down to 3 (0: off)
+    constexpr int LATE_KEEP = V40_LATE_KEEP;
+    // under the crown, the dragon that would be king without it (longest of ours that it knows, longer than the queen)
+    // keeps the king's no-split rule: our longest stays whole in case the queen dies
+    constexpr bool QK_KEEP_LONG = false;
+    // big-map gather: from GATHER_BIG every dragon that knows the king (and is not it) heads for it, food or not
+    constexpr int GATHER_BIG = 0; // round (0: off)
+    constexpr double GATHER_AREA = 1100;
+    constexpr double GATHER_W = 2.0;   // navigation weight towards the king
+    constexpr int GATHER_FEED = 0;     // big maps: feeding may start from this round (0: the clock's)
+    constexpr int GATHER_MEM = 40;     // how old a king sighting a gatherer still follows
+    constexpr double GATHER_BONUS = 8; // a gatherer's route-cost bonus for the king's tile (guards: GUARD_MEM_BONUS)
+
+    // ---- v40.0.0
+    constexpr bool Q_KING_SPRINT = V40_Q_KING_SPRINT; // v31.0.0: the crowned big-map queen free-sprints like every other dragon
+    // FORAGE: poor water round me (fewer than FORAGE_T pearls due within FORAGE_DUE rounds per 100 known tiles in the
+    // (2 FORAGE_R + 1)-square round my head, once FORAGE_MIN of them are known): unseen water is worth FORAGE_W steps of
+    // the way, the search looks that much deeper, and an exploration goal sticks (FORAGE_STICK). Small maps, before
+    // FORAGE_UNTIL. (Tower Defense / Queen of Spades / Trophy: the start is barren and the food sits in pens elsewhere;
+    // a trickle of slow beds at home otherwise keeps every dragon home.) 0: off
+    constexpr double FORAGE_W = V40_FORAGE_W;
+    constexpr double FORAGE_T = V40_FORAGE_T;
+    constexpr int FORAGE_R = V40_FORAGE_R;
+    constexpr int FORAGE_DUE = V40_FORAGE_DUE;
+    constexpr int FORAGE_MIN = V40_FORAGE_MIN;
+    constexpr double FORAGE_AREA = V40_FORAGE_AREA;
+    constexpr int FORAGE_UNTIL = V40_FORAGE_UNTIL;
+    constexpr double FORAGE_STICK = V40_FORAGE_STICK;
+    constexpr int FORAGE_FREE = V40_FORAGE_FREE;           // (tried, off) in poor water a known pearl is a goal only if due within this many rounds (0: pearls keep their price)
+    constexpr bool FORAGE_DEST = V40_FORAGE_DEST;          // (tried, off) scouts head for unseen 7x7 blocks from a sequence keyed by their id (false: the nearest unseen water)
+    constexpr int FORAGE_SCOUT_MOD = V40_FORAGE_SCOUT_MOD; // ... one dragon in this many (by id >> 1) is a scout with destinations; the rest take the nearest unseen water (1: all)
+    constexpr int FORAGE_GIVEUP = V40_FORAGE_GIVEUP;       // ... a scout that reached this many destinations and still sits in poor water stops scouting (the map is poor all over)
+    constexpr int FORAGE_PATIENCE = V40_FORAGE_PATIENCE;   // ... turns a destination may be unreachable (friends in a passage) before the next one is taken    // ... and each dragon heads for unseen 7x7 blocks from a sequence keyed by its id (false: nearest unseen water)      // ... and a known pearl is a goal only if due within this many rounds
+    // SWARM: with more enemy heads than friends in view, every enemy that can reach me is taken to ram me at any price
+    // (the Codehammer family trades its two-long workers for anything): its reach costs at least SWARM_STAKE (0: off)
+    constexpr double SWARM_STAKE = V40_SWARM_STAKE;
+    // EVEN: an enemy head no longer than me is taken to trade heads: its reach costs EVEN_STAKE (0: off)
+    constexpr double EVEN_STAKE = V40_EVEN_STAKE;
+    constexpr int EVEN_UNITS = V40_EVEN_UNITS;    // ... only while my team has at most this many dragons: a trade costs a small team the game
+    constexpr bool EVEN_FORAGE = V40_EVEN_FORAGE; // ... or while I am in poor water (FORAGE's test, last turn); neither set: always
+    // QHUNT (the top team's v3.9f late queen hunt): from Q_HUNT_FROM a dragon that sees their queen's head beacons her tile
+    // (kind 1, id 1; relayed), everyone remembers her last known tile for Q_HUNT_MEM rounds, and dragons of at most
+    // Q_HUNT_MAXLEN go for it (then ram her at any price, as v30 always did when she is in view) - only while our king is
+    // at least as long as the longest enemy about (Q_HUNT_LEAD), so that her death wins the tiebreak
+    constexpr bool QHUNT = V40_QHUNT;
+    constexpr int Q_HUNT_FROM = V40_Q_HUNT_FROM;
+    constexpr int Q_HUNT_MAXLEN = V40_Q_HUNT_MAXLEN;
+    constexpr int Q_HUNT_MEM = V40_Q_HUNT_MEM;
+    constexpr bool Q_HUNT_LEAD = V40_Q_HUNT_LEAD;
+
+    // ---- v40.1.0
+    // PORTAL_EARLY: before this round (0: never), on small maps, workers (not the queen) up to PORTAL_EARLY_LEN long take unexplored portals as exploration
+    // goals (v30: only dragons of 3 or less), an unexplored portal is a goal worth PORTAL_EARLY_COST (negative: a bonus;
+    // v30: a cost of BLIND_COST 5), a known portal costs its one step (PORTAL_STEP 2 otherwise), and a step through a portal
+    // costs 0.15 whatever my length (v30: 1 at 4-6 long, 6 beyond). The busy-portal (-50) and dead-end-beyond (-900) rules stay.
+    constexpr int PORTAL_EARLY = V41_PORTAL_EARLY;
+    constexpr int PORTAL_EARLY_LEN = V41_PORTAL_EARLY_LEN;
+    constexpr double PORTAL_EARLY_COST = V41_PORTAL_EARLY_COST;
+    constexpr double PORTAL_EARLY_AREA = V41_PORTAL_EARLY_AREA; // ... on maps smaller than this (Schooltime's 25 portals: 62 -> 29% with it everywhere)
+    // QPORTAL_HARD: the queen never steps through a portal (or plans a route through one) unless every other step of hers
+    // is certain death (-1000) and no split or stall is left: a portal step of hers scores -950
+    constexpr bool QPORTAL_HARD = V41_QPORTAL_HARD;
+    // FARM: lane farming. A lane tile has kelp on two opposite sides (a 1-wide passage). A dragon that ate FARM_MIN_EAT+
+    // pearls (or passed a fast bed) while walking through a lane and steps out of it with its tail still inside splits 2: the child is born in
+    // the lane facing back in and farms it, the parent forages on. A bed whose countdown resets to FARM_GAP or less (or holds
+    // a pearl with the next due in FARM_GAP) is a fast bed; known fast beds and fountains are navigation goals worth
+    // FOUNT_NAV steps when nothing in view is worth eating (how a farmer keeps coming back).
+    constexpr bool FARM = V41_FARM;
+    constexpr int FARM_MIN_EAT = V41_FARM_MIN_EAT;
+    constexpr int FARM_GAP = V41_FARM_GAP;
+    // QPATH: our queen moves before every worker, so a worker that sees her head knows where she is going: a step that ends
+    // on the tile straight ahead of her costs QPATH_W, on the two tiles beside her head or two ahead QPATH_W / 2 (0: off).
+    // A worker whose segment boxes her in (no open tile round her head) and would not free up in time dies against kelp
+    // (the right of way's rule, now on every map).
+    constexpr double QPATH_W = V41_QPATH_W;
+    // MAJ_HUNT: a free worker (nothing in view worth eating, not the queen, at most MAJ_MAXLEN long) that, with the friends
+    // it sees, outnumbers the enemy heads in view (by more than MAJ_MARGIN) goes for the nearest enemy head and rams it when it can reach it
+    // (try_kill already trades into any enemy no shorter than itself, and into a shorter one with friends about).
+    constexpr bool MAJ_HUNT = V41_MAJ_HUNT;
+    constexpr int MAJ_MAXLEN = V41_MAJ_MAXLEN;
+    constexpr int MAJ_MARGIN = V41_MAJ_MARGIN;
+    constexpr int MAJ_RAM_DOWN = V41_MAJ_RAM_DOWN; // ... and rams an enemy up to this much shorter than itself (v30: 1, only at 4 or less)
+
+} // namespace v30::cfg
